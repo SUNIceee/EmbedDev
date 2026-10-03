@@ -1,0 +1,315 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-02T05:59:32.522301+00:00",
+  "task": "gpio_output",
+  "status": "prepared_unscored",
+  "prepared_before_new_generation": true,
+  "checklist_unit": "original numbered requirement, not newly split atomic requirements",
+  "item_count": 8,
+  "item_ids": [
+    "GO-R01",
+    "GO-R02",
+    "GO-R03",
+    "GO-R04",
+    "GO-R05",
+    "GO-R06",
+    "GO-R07",
+    "GO-R08"
+  ],
+  "source_requirement": {
+    "path": "inputs/RE_req.txt",
+    "workspace_relative_path": "inputs/RE_req.txt",
+    "sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+    "bytes": 1765,
+    "line_count": 12
+  },
+  "source_preamble": {
+    "text_exact": "GPIO Output Controller — self-authored small embedded task\n\nScope: two independent logical LEDs on a host-observable GPIO platform. This is a newly authored task, not a new open-source project. Implement the fixed C11 API. Do not provide a main function or implement platform callbacks.\n\n",
+    "line_start_1based": 1,
+    "line_end_1based_inclusive": 4,
+    "sha256": "be1c28d6144a722a5171a95807d0e6c6a89b2abdb279fd446373f16301ed0775",
+    "role": "original scope context; no additional score items"
+  },
+  "contract_context_bindings": [
+    {
+      "path": "inputs/RE_api.txt",
+      "workspace_relative_path": "inputs/RE_api.txt",
+      "sha256": "9cdff25bcb10cce27351ed92c3a6d7edd55735ec933078d49e7e82c43d8663fa",
+      "purpose": "declared contract context, not extra score items"
+    },
+    {
+      "path": "inputs/RE_device_interface.txt",
+      "workspace_relative_path": "inputs/RE_device_interface.txt",
+      "sha256": "784e07978ae487c3a2876ba3958bc783c05543659fb85533bdd7a6a5bbd4679f",
+      "purpose": "declared contract context, not extra score items"
+    }
+  ],
+  "review_protocol": {
+    "unit": "One original numbered requirement, unchanged; every stated condition belongs to this single judgment.",
+    "pass": "P: the unchanged candidate code provides direct, internally consistent evidence that every condition in this whole numbered requirement is implemented within the declared input and platform contract.",
+    "fail": "F: code directly contradicts, omits, or fails to implement at least one required condition. Do not invent a missing function or repair a behavior before judging.",
+    "uncertain": "U: evidence is insufficient to decide the whole requirement, including an unresolved path, external behavior beyond the declared platform contract, or code whose meaning cannot be determined reliably.",
+    "not_applicable": "N/A: a stated contract/scope condition makes the entire numbered requirement inapplicable. Cite the exact scope basis. Missing code, a missing feature, compilation failure, or reviewer difficulty is not an applicability reason.",
+    "compound_requirement": "P only if all conjunctive conditions hold; an established violation of any condition makes the whole item F; otherwise unresolved conditions make it U. Never split a numbered item or award partial credit.",
+    "required_evidence": [
+      "Exact candidate identity and code-file SHA256 bindings",
+      "Per-item P/F/U/N/A verdict",
+      "Relevant code file and line spans, or precise missing evidence",
+      "Short reason covering all conditions; N/A must additionally cite contract scope"
+    ],
+    "build_errors": "Review the original candidate without editing. Pure syntax/build obstacles do not automatically make functional requirements F; assess recoverable intended semantics only where the original code provides unambiguous evidence, otherwise U. Do not assume missing functional behavior.",
+    "host_separation": "Existing Host scenarios are a separately bound executable protocol. Their verdicts must not be copied into static judgments or used as a substitute for code evidence.",
+    "support_formula": "P/(P+F+U); N/A excluded with count and rationale retained. Report P/F/U/N/A and the denominator. An unreviewed or absent candidate has no fabricated item verdicts.",
+    "no_protocol_equivalence": "These are new-task whole numbered-requirement judgments. They are not the same units as the legacy Crazyflie/OnStep/DiscoBot 100/90/124 static testcase sets or the separate atomic-requirement coverage protocol."
+  },
+  "host_protocol_binding": {
+    "scenario_inventory": {
+      "path": "tests/scenarios.json",
+      "sha256": "cac5529c3bd28a9ee67228b9d644a1baca95034333599733272205ccba38e520"
+    },
+    "scenario_count": 10,
+    "scenario_ids": [
+      "GO-S01",
+      "GO-S02",
+      "GO-S03",
+      "GO-S04",
+      "GO-S05",
+      "GO-S06",
+      "GO-S07",
+      "GO-S08",
+      "GO-S09",
+      "GO-S10"
+    ],
+    "validation_report": {
+      "path": "source-evidence:original-fixture-validation-report",
+      "sha256": "9ef082099e3cf79f26c1cf4b660187c9636fab18b5d35d18f0ab875095441273"
+    },
+    "host_implementation": {
+      "path": "tests/host_scenarios.c",
+      "expected_sha256_recorded_in_validation_report": "31cf57bf350e5a767fde0e031e705edbb4bc6787710f5164ccaa8b634f3cf87b",
+      "contents_not_opened": true
+    },
+    "meaning": "Binding and requirement-to-scenario links only; this preparation creates no executable or static outcomes."
+  },
+  "candidate_binding": null,
+  "review_results": null,
+  "aggregate_score": null,
+  "items": [
+    {
+      "id": "GO-R01",
+      "ordinal": 1,
+      "requirement_original_text": "GO-R01 Initialization: gpio_output_init() configures logical state for channels 0 and 1 as off and calls board_gpio_write(0, false), then board_gpio_write(1, false), exactly once each. Reinitialization has the same effects regardless of prior state.\n",
+      "source": {
+        "path": "inputs/RE_req.txt",
+        "workspace_relative_path": "inputs/RE_req.txt",
+        "file_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 5,
+        "line_end_1based_inclusive": 5,
+        "byte_start_0based": 290,
+        "byte_end_0based_exclusive": 540,
+        "original_slice_sha256": "409a3adf150c5beb0d4ddb8ae0177941843386b7ac0097edb478bd3e3e6c3da8",
+        "encoding": "UTF-8",
+        "line_endings_preserved": true
+      },
+      "unit": "whole_original_numbered_requirement",
+      "host_scenario_ids_for_separate_reporting_only": [
+        "GO-S02",
+        "GO-S10"
+      ],
+      "judgment": null,
+      "rationale": null,
+      "code_evidence": [],
+      "applicability_basis": null
+    },
+    {
+      "id": "GO-R02",
+      "ordinal": 2,
+      "requirement_original_text": "GO-R02 Before the first initialization, set, toggle, and get return false and cause no platform writes; get does not modify the caller's output variable.\n",
+      "source": {
+        "path": "inputs/RE_req.txt",
+        "workspace_relative_path": "inputs/RE_req.txt",
+        "file_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 6,
+        "line_end_1based_inclusive": 6,
+        "byte_start_0based": 540,
+        "byte_end_0based_exclusive": 694,
+        "original_slice_sha256": "afc437c9ef3a61cd698e8705fd5c096278885a01fd55e6153b07c8a32b9d21aa",
+        "encoding": "UTF-8",
+        "line_endings_preserved": true
+      },
+      "unit": "whole_original_numbered_requirement",
+      "host_scenario_ids_for_separate_reporting_only": [
+        "GO-S01"
+      ],
+      "judgment": null,
+      "rationale": null,
+      "code_evidence": [],
+      "applicability_basis": null
+    },
+    {
+      "id": "GO-R03",
+      "ordinal": 3,
+      "requirement_original_text": "GO-R03 Valid set: after initialization, gpio_output_set(channel, on) for channel 0 or 1 returns true, stores exactly the requested Boolean state, and calls board_gpio_write exactly once with that channel and value, even if the value is unchanged.\n",
+      "source": {
+        "path": "inputs/RE_req.txt",
+        "workspace_relative_path": "inputs/RE_req.txt",
+        "file_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 7,
+        "line_end_1based_inclusive": 7,
+        "byte_start_0based": 694,
+        "byte_end_0based_exclusive": 941,
+        "original_slice_sha256": "4a1502846aae471950e1427876f4d188cf8eb434366e27032f28c924d98c165f",
+        "encoding": "UTF-8",
+        "line_endings_preserved": true
+      },
+      "unit": "whole_original_numbered_requirement",
+      "host_scenario_ids_for_separate_reporting_only": [
+        "GO-S03",
+        "GO-S04",
+        "GO-S05"
+      ],
+      "judgment": null,
+      "rationale": null,
+      "code_evidence": [],
+      "applicability_basis": null
+    },
+    {
+      "id": "GO-R04",
+      "ordinal": 4,
+      "requirement_original_text": "GO-R04 Channel independence: changing a valid channel leaves the other channel's stored state unchanged and never writes the other channel.\n",
+      "source": {
+        "path": "inputs/RE_req.txt",
+        "workspace_relative_path": "inputs/RE_req.txt",
+        "file_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 8,
+        "line_end_1based_inclusive": 8,
+        "byte_start_0based": 941,
+        "byte_end_0based_exclusive": 1081,
+        "original_slice_sha256": "136314ae545de3dd743a9d25110f60388004745c7eeca7258c81e0c0aadde675",
+        "encoding": "UTF-8",
+        "line_endings_preserved": true
+      },
+      "unit": "whole_original_numbered_requirement",
+      "host_scenario_ids_for_separate_reporting_only": [
+        "GO-S03",
+        "GO-S04",
+        "GO-S06"
+      ],
+      "judgment": null,
+      "rationale": null,
+      "code_evidence": [],
+      "applicability_basis": null
+    },
+    {
+      "id": "GO-R05",
+      "ordinal": 5,
+      "requirement_original_text": "GO-R05 Valid toggle: after initialization, gpio_output_toggle(channel) negates the stored state of the requested channel, makes exactly one matching platform write, and returns true.\n",
+      "source": {
+        "path": "inputs/RE_req.txt",
+        "workspace_relative_path": "inputs/RE_req.txt",
+        "file_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 9,
+        "line_end_1based_inclusive": 9,
+        "byte_start_0based": 1081,
+        "byte_end_0based_exclusive": 1264,
+        "original_slice_sha256": "74720886e195ec2731b9cff940a8f1e70cfb48455a1a2c6077c212a9c4ff710d",
+        "encoding": "UTF-8",
+        "line_endings_preserved": true
+      },
+      "unit": "whole_original_numbered_requirement",
+      "host_scenario_ids_for_separate_reporting_only": [
+        "GO-S06"
+      ],
+      "judgment": null,
+      "rationale": null,
+      "code_evidence": [],
+      "applicability_basis": null
+    },
+    {
+      "id": "GO-R06",
+      "ordinal": 6,
+      "requirement_original_text": "GO-R06 Invalid channels: any uint8_t channel other than 0 or 1 makes set, toggle, and get return false, with no state changes or platform writes. Failed get leaves its output variable unchanged.\n",
+      "source": {
+        "path": "inputs/RE_req.txt",
+        "workspace_relative_path": "inputs/RE_req.txt",
+        "file_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 10,
+        "line_end_1based_inclusive": 10,
+        "byte_start_0based": 1264,
+        "byte_end_0based_exclusive": 1459,
+        "original_slice_sha256": "63ed61d373e9430e28168ecaaeb3066a23bb6fe90c3e51eed7cc0ae8a041cb51",
+        "encoding": "UTF-8",
+        "line_endings_preserved": true
+      },
+      "unit": "whole_original_numbered_requirement",
+      "host_scenario_ids_for_separate_reporting_only": [
+        "GO-S07"
+      ],
+      "judgment": null,
+      "rationale": null,
+      "code_evidence": [],
+      "applicability_basis": null
+    },
+    {
+      "id": "GO-R07",
+      "ordinal": 7,
+      "requirement_original_text": "GO-R07 Query: after initialization, gpio_output_get(channel, out_on) for a valid channel and non-null pointer returns true and writes its current state to out_on. Query never writes GPIO or changes controller state.\n",
+      "source": {
+        "path": "inputs/RE_req.txt",
+        "workspace_relative_path": "inputs/RE_req.txt",
+        "file_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 11,
+        "line_end_1based_inclusive": 11,
+        "byte_start_0based": 1459,
+        "byte_end_0based_exclusive": 1675,
+        "original_slice_sha256": "d60e8f847d6dbb32308df6520cc77f572d1a8424cdb6eb1c96432128f890e74c",
+        "encoding": "UTF-8",
+        "line_endings_preserved": true
+      },
+      "unit": "whole_original_numbered_requirement",
+      "host_scenario_ids_for_separate_reporting_only": [
+        "GO-S08"
+      ],
+      "judgment": null,
+      "rationale": null,
+      "code_evidence": [],
+      "applicability_basis": null
+    },
+    {
+      "id": "GO-R08",
+      "ordinal": 8,
+      "requirement_original_text": "GO-R08 Null output: gpio_output_get(channel, NULL) returns false and has no side effects.\n",
+      "source": {
+        "path": "inputs/RE_req.txt",
+        "workspace_relative_path": "inputs/RE_req.txt",
+        "file_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 12,
+        "line_end_1based_inclusive": 12,
+        "byte_start_0based": 1675,
+        "byte_end_0based_exclusive": 1765,
+        "original_slice_sha256": "a78e53e68c7d4eff36441f46a9168ba3e03c533d2bb6a5893710e298dc55e1da",
+        "encoding": "UTF-8",
+        "line_endings_preserved": true
+      },
+      "unit": "whole_original_numbered_requirement",
+      "host_scenario_ids_for_separate_reporting_only": [
+        "GO-S09"
+      ],
+      "judgment": null,
+      "rationale": null,
+      "code_evidence": [],
+      "applicability_basis": null
+    }
+  ],
+  "construction_validation": {
+    "original_numbering_contiguous": true,
+    "all_numbered_source_requirements_extracted_once": true,
+    "original_text_bytes_and_line_spans_exact": true,
+    "source_input_sha_matches_existing_validation_report": true,
+    "all_ids_have_existing_host_scenario_links": true,
+    "reference_or_candidate_code_read": false,
+    "model_calls": 0,
+    "host_executions": 0,
+    "code_modifications": 0
+  }
+}

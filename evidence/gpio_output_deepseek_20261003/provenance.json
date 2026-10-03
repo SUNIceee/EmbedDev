@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "scope": "One fresh GPIO logical attempt completed through a local infrastructure correction; not seven experiments.",
+  "distributed_artifacts": [
+    {
+      "source_id": "fixed-candidate-packet",
+      "original_sha256": "8f068ea1e27cb7407ed9667f6248cf55a7e291ced4304202633fe005cee8ebdf",
+      "distributed_path": "evidence/candidate_packet.json",
+      "distributed_sha256": "8f068ea1e27cb7407ed9667f6248cf55a7e291ced4304202633fe005cee8ebdf",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_id": "fixed-candidate-file:6_generated_code.h",
+      "original_sha256": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9",
+      "distributed_path": "candidate/6_generated_code.h",
+      "distributed_sha256": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9",
+      "transformation": "UTF-8 bytes extracted without newline changes",
+      "source_json_pointer": "/files/6_generated_code.h"
+    },
+    {
+      "source_id": "fixed-candidate-file:6_generated_code.c",
+      "original_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+      "distributed_path": "candidate/6_generated_code.c",
+      "distributed_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+      "transformation": "UTF-8 bytes extracted without newline changes",
+      "source_json_pointer": "/files/6_generated_code.c"
+    },
+    {
+      "source_id": "original-input:RE_req.txt",
+      "original_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+      "distributed_path": "inputs/RE_req.txt",
+      "distributed_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_id": "original-input:RE_api.txt",
+      "original_sha256": "9cdff25bcb10cce27351ed92c3a6d7edd55735ec933078d49e7e82c43d8663fa",
+      "distributed_path": "inputs/RE_api.txt",
+      "distributed_sha256": "9cdff25bcb10cce27351ed92c3a6d7edd55735ec933078d49e7e82c43d8663fa",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_id": "original-input:RE_device_interface.txt",
+      "original_sha256": "784e07978ae487c3a2876ba3958bc783c05543659fb85533bdd7a6a5bbd4679f",
+      "distributed_path": "inputs/RE_device_interface.txt",
+      "distributed_sha256": "784e07978ae487c3a2876ba3958bc783c05543659fb85533bdd7a6a5bbd4679f",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_id": "original-host-suite:host_scenarios.c",
+      "original_sha256": "31cf57bf350e5a767fde0e031e705edbb4bc6787710f5164ccaa8b634f3cf87b",
+      "distributed_path": "tests/host_scenarios.c",
+      "distributed_sha256": "31cf57bf350e5a767fde0e031e705edbb4bc6787710f5164ccaa8b634f3cf87b",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_id": "original-host-suite:scenarios.json",
+      "original_sha256": "cac5529c3bd28a9ee67228b9d644a1baca95034333599733272205ccba38e520",
+      "distributed_path": "tests/scenarios.json",
+      "distributed_sha256": "cac5529c3bd28a9ee67228b9d644a1baca95034333599733272205ccba38e520",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_id": "original-host-suite:gpio_output.h",
+      "original_sha256": "b2328837c4a280707ebd6144e5ee3de6c14017fa8019daf2dc8a232b882126e4",
+      "distributed_path": "tests/gpio_output.h",
+      "distributed_sha256": "b2328837c4a280707ebd6144e5ee3de6c14017fa8019daf2dc8a232b882126e4",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_id": "independent-host:final_host_report.json",
+      "original_sha256": "0f8bf87266fa9628e97b29c214fdbd56fa145a7497ea2537917e6a457bc4ad2f",
+      "distributed_path": "evidence/host_report.json",
+      "distributed_sha256": "0f8bf87266fa9628e97b29c214fdbd56fa145a7497ea2537917e6a457bc4ad2f",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_id": "independent-host:binding_evidence.json",
+      "original_sha256": "dd6776f2d989034b4be1843894e51d4d4c739f3279327e9859401eab68cdb71f",
+      "distributed_path": "evidence/host_binding.json",
+      "distributed_sha256": "dd6776f2d989034b4be1843894e51d4d4c739f3279327e9859401eab68cdb71f",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_id": "independent-host:development_result.json",
+      "original_sha256": "3fd0cc358546d9000939289b7fd653d1c9213dc2351dcbf7d3dc8f826d25d423",
+      "distributed_path": "evidence/compile_result.json",
+      "distributed_sha256": "3fd0cc358546d9000939289b7fd653d1c9213dc2351dcbf7d3dc8f826d25d423",
+      "transformation": "byte-identical copy"
+    },
+    {
+      "source_id": "original-eight-requirement-checklist",
+      "original_sha256": "091d0835b039ba498d832c26facaa00fa7c7f84bdba21e661eb01963c9f7f706",
+      "distributed_path": "review/checklist.json",
+      "distributed_sha256": "527dd4a157382169bdb5e876187fc403df426a5c49a8fb8f694e3ffc327af621",
+      "transformation": "Local origin paths replaced with public relative bindings; original requirement text and decisions unchanged"
+    },
+    {
+      "source_id": "completed-eight-item-static-review",
+      "original_sha256": "07e3060111dc032a0d82ac3eea70d5b4d58740b77e27709a9fb294eb094d2e44",
+      "distributed_path": "review/static_review.json",
+      "distributed_sha256": "9e64a02e816bd4f276cd0589207f7e0e46dcaa6e2c6da9a5e0b4265932c51f80",
+      "transformation": "Public relative paths and reviewer task label; distributed checklist hash rebound with original hash retained; no judgment changes"
+    },
+    {
+      "source_id": "logical-attempt-closeout",
+      "original_sha256": "6fcb43df0ed0fabecd836abc823dae9b1d99ccd4c10b8749252f730752d7e59a",
+      "distributed_path": "summary.json",
+      "distributed_sha256": "ad07e9df7c09764fc58f7db3edc5f7a1557d647a0ac7964c24c277a331a6fd73",
+      "transformation": "Explicit public result/accounting whitelist; private process/approval/request paths and unrelated cumulative ledger omitted"
+    }
+  ],
+  "not_distributed": [
+    {
+      "source_id": "original-fixture-validation-report",
+      "sha256": "9ef082099e3cf79f26c1cf4b660187c9636fab18b5d35d18f0ab875095441273",
+      "reason": "Historical fixture-qualification origin binding retained; not needed for the supplied candidate compilation and static-evidence checks."
+    }
+  ],
+  "privacy_transformations": "Only local path metadata and an internal reviewer-task label are replaced. Original candidate and original requirement/Host source bytes are unchanged.",
+  "external_provider_messages_included": false,
+  "credentials_or_authorization_records_included": false,
+  "full_runtime_source_tree_included": false,
+  "original_hash_meaning": "Hash of the private original source artifact, or of the candidate file bytes selected by a JSON pointer. A source-evidence identifier is an origin reference, not a local file path."
+}

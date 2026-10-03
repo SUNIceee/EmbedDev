@@ -7,14 +7,22 @@ This package provides an English-language implementation of EmbedDev and offline
 Python 3.11 or later is required. The following commands use the standard library, saved observations, and local files only. They do not read credentials, contact a model, or execute generated C code.
 
 ```console
-python scripts/verify_package.py
-python scripts/reproduce_tables.py
-python scripts/reproduce_rq3.py
+python -B scripts/verify_package.py
+python -B scripts/reproduce_tables.py
+python -B scripts/reproduce_rq3.py
 ```
 
 The table script writes to `results/`; the RQ3 script writes to `outputs/rq3/`. For another RQ3 run, choose a fresh directory with `--output`. RQ1 has 135 selected positions and 15 method--model rows; RQ2 has 54 DeepSeek positions and six conditions; RQ3 displays six tasks, five methods, and 90 positions; RQ4 classifies 162 positions. These scopes overlap and must not be added together as independent experiments. Historical seven-task records remain available for provenance and are not included in the current RQ3 display.
 
 For the six-task line chart, follow the optional plotting command in [docs/RQ3.md](docs/RQ3.md). The paper's RQ3 figure uses static support, not whole-Host success. EmbedDev is red; no uncertainty intervals are drawn.
+
+## Additional GPIO evidence
+
+The [GPIO output evidence bundle](evidence/gpio_output_deepseek_20261003/README.md) contains one documented EmbedDev/DeepSeek-V4-Pro run: unchanged generated C/header files, the original requirements and Host suite, the compiler diagnostic, and all eight static-review judgments. Static requirement support is **8/8 (100.00%)** under the recorded build-obstacle policy. Independent compilation **failed** because `NULL` was undeclared; **0 of 10 Host scenarios executed**. The static percentage is not an executable pass rate, and human review of this new assessment has not been attested.
+
+This bundle is additional evidence. It does not silently replace the author-reported historical GPIO position, change the saved RQ1--RQ4 statistics, or establish the earlier Host-success claim. See [publication notes](docs/GPIO_EVIDENCE_PUBLICATION.md).
+
+The repository preserves file bytes through `.gitattributes`. The package verifier ignores only root Git metadata, while continuing to check all distributed file hashes. Use `python -B` and place local generated results under `results/` or `outputs/`.
 
 ## What is included
 
@@ -105,6 +113,6 @@ The package does not include every historical request/response trace or the orig
 
 ## Availability and attribution
 
-This is the locally prepared replication archive. A public or anonymous hosting URL is not created by these scripts. The manuscript statement is in `paper/data_availability.tex`; insert an actual verified archive URL before claiming public availability.
+The manuscript statement in `paper/data_availability.tex` is a template for a verified anonymous artifact URL. All documentation links within this package are relative. `RELEASE_VALIDATION.json` records the earlier English translation validation; the additional GPIO evidence and Git-distribution checks are described in [publication notes](docs/GPIO_EVIDENCE_PUBLICATION.md).
 
 See [docs/THIRD_PARTY.md](docs/THIRD_PARTY.md) for upstream notices and license boundaries. See [docs/RELEASE_CHANGES.md](docs/RELEASE_CHANGES.md) for differences from the earlier September review package.

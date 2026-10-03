@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "created_at_utc": "2026-10-03T07:07:35.525953+00:00",
+  "created_at_utc": "2026-10-03T08:27:16.979626+00:00",
   "files": [
     {
       "path": "baselines/c_project.py",
@@ -1509,8 +1509,8 @@
     },
     {
       "path": "docs/RQ3.md",
-      "bytes": 5856,
-      "sha256": "fb3310f2a4a4b20c700212b7dddbe3d2b5a01e50db140d27a4ad5f7de7ccccad"
+      "bytes": 6542,
+      "sha256": "d485d40aa0e5ec69aa4c04675a66ea67440e10415fd681f534ddfc43326f4984"
     },
     {
       "path": "docs/STATIC_REVIEW.md",
@@ -5349,8 +5349,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 12067,
-      "sha256": "e94d3ff3d01f59c3486b1c5b565f99319a7e9330097341629f95f7474c97aa12"
+      "bytes": 13335,
+      "sha256": "7bf577b0caf948040245f9bd7c9b6ca94678471a76c3e6151fcdf258fd912dfb"
     },
     {
       "path": "reference_outputs/rq3/rq3_recomputed.json",
@@ -5444,8 +5444,8 @@
     },
     {
       "path": "scripts/verify_package.py",
-      "bytes": 6390,
-      "sha256": "d1924b40ca711ca5adbf2e81290a1ca1b55d3a9122eee94972eeeda90ac2d2ed"
+      "bytes": 6888,
+      "sha256": "a5361e006c70b87f28ecaa6f43650f0128bc274e0fdef36b84507521c0db53c5"
     },
     {
       "path": "third_party/ChatDev/LICENSE",
@@ -5456,6 +5456,126 @@
       "path": "third_party/MetaGPT/LICENSE",
       "bytes": 1072,
       "sha256": "74945da6216c3f6498159a55cd25c0564acc684b791c169f869117a095808b00"
+    },
+    {
+      "path": ".gitattributes",
+      "bytes": 83,
+      "sha256": "4d6bfaeb75747b83d7d7df2ce7778bc589a394cd7723ec4740b63b851ac664ba"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 20,
+      "sha256": "edd76626006a37f5d7d4fdd30ad63ed52daceaea2d75b074fc0af8d9c8991d15"
+    },
+    {
+      "path": "docs/GPIO_EVIDENCE_PUBLICATION.md",
+      "bytes": 2748,
+      "sha256": "2e4c6b053bc6473baa362dadb2f600a705528e7ee40e797101d676160fe2018e"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/.gitattributes",
+      "bytes": 19,
+      "sha256": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/README.md",
+      "bytes": 5179,
+      "sha256": "8da5ade2984f3b52f9480f036f332b97ede77300c1a7618a60ca437b29216827"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/candidate/6_generated_code.c",
+      "bytes": 1250,
+      "sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/candidate/6_generated_code.h",
+      "bytes": 405,
+      "sha256": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/evidence/candidate_packet.json",
+      "bytes": 2506,
+      "sha256": "8f068ea1e27cb7407ed9667f6248cf55a7e291ced4304202633fe005cee8ebdf"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/evidence/compile_result.json",
+      "bytes": 2214,
+      "sha256": "3fd0cc358546d9000939289b7fd653d1c9213dc2351dcbf7d3dc8f826d25d423"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/evidence/host_binding.json",
+      "bytes": 1413,
+      "sha256": "dd6776f2d989034b4be1843894e51d4d4c739f3279327e9859401eab68cdb71f"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/evidence/host_report.json",
+      "bytes": 1530,
+      "sha256": "0f8bf87266fa9628e97b29c214fdbd56fa145a7497ea2537917e6a457bc4ad2f"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/inputs/RE_api.txt",
+      "bytes": 752,
+      "sha256": "9cdff25bcb10cce27351ed92c3a6d7edd55735ec933078d49e7e82c43d8663fa"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/inputs/RE_device_interface.txt",
+      "bytes": 1045,
+      "sha256": "784e07978ae487c3a2876ba3958bc783c05543659fb85533bdd7a6a5bbd4679f"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/inputs/RE_req.txt",
+      "bytes": 1765,
+      "sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/manifest.sha256.json",
+      "bytes": 2175,
+      "sha256": "b27c9efa1d2f21e09d0de637d4fcba8041d8fb968bb10969f3112559e065b643"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/provenance.json",
+      "bytes": 6899,
+      "sha256": "4d3c8087e2d78618b10645f91616121666d30a2c9b0a432e5fe2d02db20288d2"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/review/checklist.json",
+      "bytes": 14269,
+      "sha256": "527dd4a157382169bdb5e876187fc403df426a5c49a8fb8f694e3ffc327af621"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/review/static_review.json",
+      "bytes": 45064,
+      "sha256": "9e64a02e816bd4f276cd0589207f7e0e46dcaa6e2c6da9a5e0b4265932c51f80"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/scripts/reproduce_compile.py",
+      "bytes": 2936,
+      "sha256": "16425b338528c19c5282bcc653f69dcac78f66f73e655b8a89fccd907f7fd2a7"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/scripts/verify_evidence.py",
+      "bytes": 4915,
+      "sha256": "20f091180b974d86423df4be3a7ef7c3aecd667000740148789d93bea33a77ac"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/summary.json",
+      "bytes": 2331,
+      "sha256": "ad07e9df7c09764fc58f7db3edc5f7a1557d647a0ac7964c24c277a331a6fd73"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/tests/gpio_output.h",
+      "bytes": 390,
+      "sha256": "b2328837c4a280707ebd6144e5ee3de6c14017fa8019daf2dc8a232b882126e4"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/tests/host_scenarios.c",
+      "bytes": 3498,
+      "sha256": "31cf57bf350e5a767fde0e031e705edbb4bc6787710f5164ccaa8b634f3cf87b"
+    },
+    {
+      "path": "evidence/gpio_output_deepseek_20261003/tests/scenarios.json",
+      "bytes": 1655,
+      "sha256": "cac5529c3bd28a9ee67228b9d644a1baca95034333599733272205ccba38e520"
     }
   ],
   "excluded": "Generated outputs/results, Python caches, translation working maps and original-language author files remain outside this English archive."

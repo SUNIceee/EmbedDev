@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "algorithm": "SHA-256",
+  "files": {
+    ".gitattributes": "3e5e82fc72e044ea9af807a2030b73dbb94800d2cd1775302063b2eee761ba1e",
+    "candidate/6_generated_code.c": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+    "candidate/6_generated_code.h": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9",
+    "evidence/candidate_packet.json": "8f068ea1e27cb7407ed9667f6248cf55a7e291ced4304202633fe005cee8ebdf",
+    "evidence/compile_result.json": "3fd0cc358546d9000939289b7fd653d1c9213dc2351dcbf7d3dc8f826d25d423",
+    "evidence/host_binding.json": "dd6776f2d989034b4be1843894e51d4d4c739f3279327e9859401eab68cdb71f",
+    "evidence/host_report.json": "0f8bf87266fa9628e97b29c214fdbd56fa145a7497ea2537917e6a457bc4ad2f",
+    "inputs/RE_api.txt": "9cdff25bcb10cce27351ed92c3a6d7edd55735ec933078d49e7e82c43d8663fa",
+    "inputs/RE_device_interface.txt": "784e07978ae487c3a2876ba3958bc783c05543659fb85533bdd7a6a5bbd4679f",
+    "inputs/RE_req.txt": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+    "provenance.json": "4d3c8087e2d78618b10645f91616121666d30a2c9b0a432e5fe2d02db20288d2",
+    "README.md": "8da5ade2984f3b52f9480f036f332b97ede77300c1a7618a60ca437b29216827",
+    "review/checklist.json": "527dd4a157382169bdb5e876187fc403df426a5c49a8fb8f694e3ffc327af621",
+    "review/static_review.json": "9e64a02e816bd4f276cd0589207f7e0e46dcaa6e2c6da9a5e0b4265932c51f80",
+    "scripts/reproduce_compile.py": "16425b338528c19c5282bcc653f69dcac78f66f73e655b8a89fccd907f7fd2a7",
+    "scripts/verify_evidence.py": "20f091180b974d86423df4be3a7ef7c3aecd667000740148789d93bea33a77ac",
+    "summary.json": "ad07e9df7c09764fc58f7db3edc5f7a1557d647a0ac7964c24c277a331a6fd73",
+    "tests/gpio_output.h": "b2328837c4a280707ebd6144e5ee3de6c14017fa8019daf2dc8a232b882126e4",
+    "tests/host_scenarios.c": "31cf57bf350e5a767fde0e031e705edbb4bc6787710f5164ccaa8b634f3cf87b",
+    "tests/scenarios.json": "cac5529c3bd28a9ee67228b9d644a1baca95034333599733272205ccba38e520"
+  },
+  "self_hash_excluded": true,
+  "allowed_local_runtime_directories": [
+    "local_outputs",
+    "__pycache__"
+  ]
+}

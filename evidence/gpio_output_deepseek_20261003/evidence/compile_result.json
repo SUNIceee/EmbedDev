@@ -1,0 +1,56 @@
+{
+  "packet_sha256": "1e12f8c44456e8b7181222c7a019531c415f882fbd880eb626796073aabf28f6",
+  "compiler": "gcc (Debian 12.2.0-14) 12.2.0",
+  "sources": [
+    "6_generated_code.c"
+  ],
+  "include_directories": [
+    "."
+  ],
+  "translation_units": [
+    {
+      "source": "6_generated_code.c",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-O0",
+        "-ffunction-sections",
+        "-fdata-sections",
+        "-Werror=implicit-function-declaration",
+        "-Werror=incompatible-pointer-types",
+        "-Werror=int-conversion",
+        "-I",
+        ".",
+        "-c",
+        "6_generated_code.c",
+        "-o",
+        "__fse_obj_000.o"
+      ],
+      "returncode": 1,
+      "timeout": false,
+      "output": "6_generated_code.c: In function ‘gpio_output_get’:\n6_generated_code.c:62:19: error: ‘NULL’ undeclared (first use in this function)\n   62 |     if (out_on == NULL)\n      |                   ^~~~\n6_generated_code.c:2:1: note: ‘NULL’ is defined in header ‘<stddef.h>’; did you forget to ‘#include <stddef.h>’?\n    1 | #include \"6_generated_code.h\"\n  +++ |+#include <stddef.h>\n    2 | \n6_generated_code.c:62:19: note: each undeclared identifier is reported only once for each function it appears in\n   62 |     if (out_on == NULL)\n      |                   ^~~~\n",
+      "output_bytes": 578
+    }
+  ],
+  "compile_pass": false,
+  "cases": [],
+  "test_status": "not_executed",
+  "infrastructure_error": null,
+  "passed": false,
+  "cache_key": "e17541c21ab0d00b4bc43f7cbe93bc3aa550dd592c4747af13cc9b61380e5dc2",
+  "driver_sources": {
+    "c_project.py": "9b45ec3480526fc4ee83da6ea47b38594f10a09f9c6366fb4337157c68d40c81",
+    "c_container_driver.py": "edcb4a917b2ce498b5ca0b0ad26e372edd127bb7e8de405b359a549b8b0b2135"
+  },
+  "image": "sha256:0293f851d58c726748c9f5d7dca65528ac2d38887b18a48e5689f6c59ef77ea9",
+  "isolation": {
+    "network": "none",
+    "credentials": false,
+    "uid": 65534,
+    "memory_mb": 1024,
+    "cpus": 1,
+    "pids": 64,
+    "candidate_mount_read_only": true,
+    "candidate_compilation": "one object per translation unit; explicit final linking; no source concatenation"
+  }
+}

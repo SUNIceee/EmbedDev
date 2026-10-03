@@ -1,0 +1,772 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-03T08:13:09.450354+00:00",
+  "status": "completed_model_static_review",
+  "identity": "gpio_output__deepseek-v4-pro__C4_structured__r03",
+  "task": "gpio_output",
+  "review_method": "Direct model reading of the complete unchanged candidate C/header and the fixed original numbered requirements; no external API, keyword-only scoring, code repair, compilation, or execution.",
+  "reviewer": {
+    "kind": "assistant_model_code_reading",
+    "reviewer_task": "independent_model_static_review",
+    "human_reviewed": false,
+    "human_review_status": "not_performed_or_attested_for_this_new_review",
+    "not_human_verification": true
+  },
+  "review_disclosures": {
+    "prior_host_harness_exposure": "Before this candidate existed, the reviewer inspected the original Host harness and hand-authored fixture qualification metadata for infrastructure readiness. This is not a claim of complete blindness to the evaluator.",
+    "decision_basis": "Every verdict below is based on this fixed candidate and the original eight-item contract, with explicit code-line evidence.",
+    "new_host_results_read": false,
+    "internal_review_scores_read": false,
+    "historical_candidate_scores_read_for_this_review": false,
+    "old_score_inherited": false,
+    "result_not_executable_testcase_success": true
+  },
+  "candidate_binding": {
+    "packet_path": "evidence/candidate_packet.json",
+    "packet_sha256": "8f068ea1e27cb7407ed9667f6248cf55a7e291ced4304202633fe005cee8ebdf",
+    "candidate_header": "6_generated_code.h",
+    "selection": "last complete candidate by generation order; final tests never used",
+    "selected_stage": "initial",
+    "all_packet_file_hashes_verified": true,
+    "files": [
+      {
+        "file": "6_generated_code.h",
+        "sha256": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9",
+        "utf8_bytes": 405,
+        "line_count": 14,
+        "packet_pointer": "/files/6_generated_code.h",
+        "source_file_sha256_recorded_in_packet": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9"
+      },
+      {
+        "file": "6_generated_code.c",
+        "sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+        "utf8_bytes": 1250,
+        "line_count": 69,
+        "packet_pointer": "/files/6_generated_code.c",
+        "source_file_sha256_recorded_in_packet": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38"
+      }
+    ]
+  },
+  "checklist_binding": {
+    "path": "review/checklist.json",
+    "sha256": "527dd4a157382169bdb5e876187fc403df426a5c49a8fb8f694e3ffc327af621",
+    "unit": "original numbered requirement, not newly split atomic requirements",
+    "item_count": 8,
+    "item_ids": [
+      "GO-R01",
+      "GO-R02",
+      "GO-R03",
+      "GO-R04",
+      "GO-R05",
+      "GO-R06",
+      "GO-R07",
+      "GO-R08"
+    ],
+    "original_sha256": "091d0835b039ba498d832c26facaa00fa7c7f84bdba21e661eb01963c9f7f706"
+  },
+  "contract_bindings": [
+    {
+      "path": "inputs/RE_req.txt",
+      "sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca"
+    },
+    {
+      "path": "inputs/RE_api.txt",
+      "sha256": "9cdff25bcb10cce27351ed92c3a6d7edd55735ec933078d49e7e82c43d8663fa"
+    },
+    {
+      "path": "inputs/RE_device_interface.txt",
+      "sha256": "784e07978ae487c3a2876ba3958bc783c05543659fb85533bdd7a6a5bbd4679f"
+    }
+  ],
+  "protocol": {
+    "compound_requirements": "All conjunctive conditions required for P; established omission or contradiction is F; otherwise unresolved evidence is U. No partial credit or added score items.",
+    "N/A": "Only an explicit original scope exclusion for an entire item; none applies here.",
+    "build_error_policy": "Review the original candidate without editing. Pure syntax/build obstacles do not automatically make functional requirements F; assess recoverable intended semantics only where the original code provides unambiguous evidence, otherwise U. Do not assume missing functional behavior.",
+    "host_separation": "Existing Host scenarios are a separately bound executable protocol. Their verdicts must not be copied into static judgments or used as a substitute for code evidence.",
+    "formula": "100 * P / (P + F + U), excluding N/A"
+  },
+  "contract_context_observations": {
+    "fixed_public_signatures": {
+      "status": "matched",
+      "evidence": [
+        {
+          "file": "6_generated_code.h",
+          "file_sha256": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9",
+          "packet_pointer": "/files/6_generated_code.h",
+          "line_start_1based": 3,
+          "line_end_1based_inclusive": 12,
+          "text": "#include <stdbool.h>\n#include <stdint.h>\n\nvoid gpio_output_init(void);\nbool gpio_output_set(uint8_t channel, bool on);\nbool gpio_output_toggle(uint8_t channel);\nbool gpio_output_get(uint8_t channel, bool *out_on);\n\n/* Platform-supplied callback; do not implement in generated code. */\nextern void board_gpio_write(uint8_t channel, bool on);"
+        }
+      ]
+    },
+    "platform_callback_ownership": {
+      "status": "extern declaration only; no candidate definition",
+      "evidence": [
+        {
+          "file": "6_generated_code.h",
+          "file_sha256": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9",
+          "packet_pointer": "/files/6_generated_code.h",
+          "line_start_1based": 11,
+          "line_end_1based_inclusive": 12,
+          "text": "/* Platform-supplied callback; do not implement in generated code. */\nextern void board_gpio_write(uint8_t channel, bool on);"
+        },
+        {
+          "file": "6_generated_code.c",
+          "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+          "packet_pointer": "/files/6_generated_code.c",
+          "line_start_1based": 1,
+          "line_end_1based_inclusive": 69,
+          "text": "#include \"6_generated_code.h\"\n\nstatic bool initialized = false;\nstatic bool logical_state[2] = { false, false };\n\nvoid gpio_output_init(void)\n{\n    initialized = true;\n    logical_state[0] = false;\n    logical_state[1] = false;\n\n    board_gpio_write(0, false);\n    board_gpio_write(1, false);\n}\n\nbool gpio_output_set(uint8_t channel, bool on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    logical_state[channel] = on;\n    board_gpio_write(channel, on);\n    return true;\n}\n\nbool gpio_output_toggle(uint8_t channel)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    logical_state[channel] = !logical_state[channel];\n    board_gpio_write(channel, logical_state[channel]);\n    return true;\n}\n\nbool gpio_output_get(uint8_t channel, bool *out_on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    if (out_on == NULL)\n    {\n        return false;\n    }\n\n    *out_on = logical_state[channel];\n    return true;\n}"
+        }
+      ]
+    },
+    "main_function": {
+      "status": "not present in either complete candidate file"
+    },
+    "additional_dependencies": {
+      "status": "Only the generated header, stdbool.h, stdint.h, and the declared platform callback are referenced; NULL header availability is noted in B01."
+    },
+    "scope": "Two stored logical Boolean states and single-threaded APIs; no register access, hardware timing, OS or extra behavior is credited."
+  },
+  "build_observations": [
+    {
+      "id": "B01",
+      "status": "potential_build_obstacle_identified_by_source_reading_only",
+      "description": "6_generated_code.c uses NULL at line 62. Its only include is the generated header; that header includes stdbool.h and stdint.h, neither of which is required by ISO C11 to define NULL, and neither candidate file defines it. The candidate does not include a standard header guaranteeing NULL. No compilation was performed to determine the actual toolchain outcome.",
+      "evidence": [
+        {
+          "file": "6_generated_code.c",
+          "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+          "packet_pointer": "/files/6_generated_code.c",
+          "line_start_1based": 1,
+          "line_end_1based_inclusive": 1,
+          "text": "#include \"6_generated_code.h\""
+        },
+        {
+          "file": "6_generated_code.h",
+          "file_sha256": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9",
+          "packet_pointer": "/files/6_generated_code.h",
+          "line_start_1based": 1,
+          "line_end_1based_inclusive": 14,
+          "text": "#ifndef GPIO_OUTPUT_H\n#define GPIO_OUTPUT_H\n#include <stdbool.h>\n#include <stdint.h>\n\nvoid gpio_output_init(void);\nbool gpio_output_set(uint8_t channel, bool on);\nbool gpio_output_toggle(uint8_t channel);\nbool gpio_output_get(uint8_t channel, bool *out_on);\n\n/* Platform-supplied callback; do not implement in generated code. */\nextern void board_gpio_write(uint8_t channel, bool on);\n\n#endif"
+        },
+        {
+          "file": "6_generated_code.c",
+          "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+          "packet_pointer": "/files/6_generated_code.c",
+          "line_start_1based": 62,
+          "line_end_1based_inclusive": 65,
+          "text": "    if (out_on == NULL)\n    {\n        return false;\n    }"
+        }
+      ],
+      "static_protocol_treatment": "The existing comparison and false-return branch unambiguously express the required null-pointer check. Under the frozen pure-build-obstacle policy this does not automatically make functional items F or U. No source was edited and no missing behavior was invented.",
+      "not_claimed": [
+        "Successful compilation",
+        "Host-all-pass",
+        "Ten executable scenarios passed",
+        "Human repair or human re-execution"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": "GO-R01",
+      "verdict": "P",
+      "reason": "Every invocation of gpio_output_init unconditionally sets both stored channel states to false. Its next two callback statements request channel 0 false and then channel 1 false, exactly once each, with no loop, conditional, or helper that could skip, reorder, or duplicate them. There is no already-initialized early return, so calling init again after any prior channel states repeats the same reset and ordered writes.",
+      "conditions": [
+        {
+          "condition": "Both channels become logically off.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 6,
+              "line_end_1based_inclusive": 10,
+              "text": "void gpio_output_init(void)\n{\n    initialized = true;\n    logical_state[0] = false;\n    logical_state[1] = false;"
+            }
+          ]
+        },
+        {
+          "condition": "Exactly one low write for channel 0 followed by exactly one low write for channel 1.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 12,
+              "line_end_1based_inclusive": 14,
+              "text": "    board_gpio_write(0, false);\n    board_gpio_write(1, false);\n}"
+            }
+          ]
+        },
+        {
+          "condition": "Reinitialization has the same effects regardless of prior state.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 6,
+              "line_end_1based_inclusive": 14,
+              "text": "void gpio_output_init(void)\n{\n    initialized = true;\n    logical_state[0] = false;\n    logical_state[1] = false;\n\n    board_gpio_write(0, false);\n    board_gpio_write(1, false);\n}"
+            }
+          ]
+        }
+      ],
+      "requirement_original_text": "GO-R01 Initialization: gpio_output_init() configures logical state for channels 0 and 1 as off and calls board_gpio_write(0, false), then board_gpio_write(1, false), exactly once each. Reinitialization has the same effects regardless of prior state.\n",
+      "source_requirement_line_1based": 5,
+      "whole_requirement_judgment": true,
+      "applicability": "Applicable: the declared two-channel API and single-threaded platform contract cover this requirement.",
+      "applicability_exclusion": null,
+      "human_reviewed": false
+    },
+    {
+      "id": "GO-R02",
+      "verdict": "P",
+      "reason": "The static initialized flag is explicitly false before the first init call. set, toggle, and get each test it first and immediately return false on that path. No callbacks or output assignments precede these guards. In particular, the only assignment through out_on is later in get, so a pre-initialization query leaves caller memory unchanged. This is a code-semantic judgment under the frozen build-obstacle rule, not a compilation claim; see B01.",
+      "conditions": [
+        {
+          "condition": "All three operations return false before first initialization.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 3,
+              "line_end_1based_inclusive": 4,
+              "text": "static bool initialized = false;\nstatic bool logical_state[2] = { false, false };"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 16,
+              "line_end_1based_inclusive": 21,
+              "text": "bool gpio_output_set(uint8_t channel, bool on)\n{\n    if (!initialized)\n    {\n        return false;\n    }"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 33,
+              "line_end_1based_inclusive": 38,
+              "text": "bool gpio_output_toggle(uint8_t channel)\n{\n    if (!initialized)\n    {\n        return false;\n    }"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 50,
+              "line_end_1based_inclusive": 55,
+              "text": "bool gpio_output_get(uint8_t channel, bool *out_on)\n{\n    if (!initialized)\n    {\n        return false;\n    }"
+            }
+          ]
+        },
+        {
+          "condition": "Those paths perform no platform write.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 16,
+              "line_end_1based_inclusive": 31,
+              "text": "bool gpio_output_set(uint8_t channel, bool on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    logical_state[channel] = on;\n    board_gpio_write(channel, on);\n    return true;\n}"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 33,
+              "line_end_1based_inclusive": 48,
+              "text": "bool gpio_output_toggle(uint8_t channel)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    logical_state[channel] = !logical_state[channel];\n    board_gpio_write(channel, logical_state[channel]);\n    return true;\n}"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 50,
+              "line_end_1based_inclusive": 69,
+              "text": "bool gpio_output_get(uint8_t channel, bool *out_on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    if (out_on == NULL)\n    {\n        return false;\n    }\n\n    *out_on = logical_state[channel];\n    return true;\n}"
+            }
+          ]
+        },
+        {
+          "condition": "Pre-initialization get leaves the caller output unchanged.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 50,
+              "line_end_1based_inclusive": 69,
+              "text": "bool gpio_output_get(uint8_t channel, bool *out_on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    if (out_on == NULL)\n    {\n        return false;\n    }\n\n    *out_on = logical_state[channel];\n    return true;\n}"
+            }
+          ]
+        }
+      ],
+      "requirement_original_text": "GO-R02 Before the first initialization, set, toggle, and get return false and cause no platform writes; get does not modify the caller's output variable.\n",
+      "source_requirement_line_1based": 6,
+      "whole_requirement_judgment": true,
+      "applicability": "Applicable: the declared two-channel API and single-threaded platform contract cover this requirement.",
+      "applicability_exclusion": null,
+      "human_reviewed": false,
+      "shared_build_note": "B01"
+    },
+    {
+      "id": "GO-R03",
+      "verdict": "P",
+      "reason": "After initialization, either valid channel bypasses both rejection guards. set stores the supplied bool on directly at logical_state[channel], makes one unconditional board_gpio_write(channel,on) call, and returns true. There is no comparison against the previous state, so even setting an unchanged value follows the same one-write path.",
+      "conditions": [
+        {
+          "condition": "Both valid channels and requested Boolean values are accepted after initialization.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.h",
+              "file_sha256": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9",
+              "packet_pointer": "/files/6_generated_code.h",
+              "line_start_1based": 3,
+              "line_end_1based_inclusive": 7,
+              "text": "#include <stdbool.h>\n#include <stdint.h>\n\nvoid gpio_output_init(void);\nbool gpio_output_set(uint8_t channel, bool on);"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 16,
+              "line_end_1based_inclusive": 30,
+              "text": "bool gpio_output_set(uint8_t channel, bool on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    logical_state[channel] = on;\n    board_gpio_write(channel, on);\n    return true;"
+            }
+          ]
+        },
+        {
+          "condition": "The requested Boolean state is stored exactly.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 28,
+              "line_end_1based_inclusive": 28,
+              "text": "    logical_state[channel] = on;"
+            }
+          ]
+        },
+        {
+          "condition": "Exactly one callback carries that channel and value, including unchanged values.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 23,
+              "line_end_1based_inclusive": 30,
+              "text": "    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    logical_state[channel] = on;\n    board_gpio_write(channel, on);\n    return true;"
+            }
+          ]
+        },
+        {
+          "condition": "The valid call returns true.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 30,
+              "line_end_1based_inclusive": 30,
+              "text": "    return true;"
+            }
+          ]
+        }
+      ],
+      "requirement_original_text": "GO-R03 Valid set: after initialization, gpio_output_set(channel, on) for channel 0 or 1 returns true, stores exactly the requested Boolean state, and calls board_gpio_write exactly once with that channel and value, even if the value is unchanged.\n",
+      "source_requirement_line_1based": 7,
+      "whole_requirement_judgment": true,
+      "applicability": "Applicable: the declared two-channel API and single-threaded platform contract cover this requirement.",
+      "applicability_exclusion": null,
+      "human_reviewed": false
+    },
+    {
+      "id": "GO-R04",
+      "verdict": "P",
+      "reason": "The two channel states occupy distinct elements of a two-element array. After validating the channel, set and toggle assign only logical_state[channel] and each calls the platform exactly once with that same channel. Neither path writes the other array element or issues another callback. Initialization legitimately resets both channels under GO-R01 and is not misclassified as a set/toggle independence violation.",
+      "conditions": [
+        {
+          "condition": "Changing a valid channel leaves the other stored channel state unchanged.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 4,
+              "line_end_1based_inclusive": 4,
+              "text": "static bool logical_state[2] = { false, false };"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 23,
+              "line_end_1based_inclusive": 31,
+              "text": "    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    logical_state[channel] = on;\n    board_gpio_write(channel, on);\n    return true;\n}"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 40,
+              "line_end_1based_inclusive": 48,
+              "text": "    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    logical_state[channel] = !logical_state[channel];\n    board_gpio_write(channel, logical_state[channel]);\n    return true;\n}"
+            }
+          ]
+        },
+        {
+          "condition": "Changing a valid channel never writes the other channel.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 28,
+              "line_end_1based_inclusive": 30,
+              "text": "    logical_state[channel] = on;\n    board_gpio_write(channel, on);\n    return true;"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 45,
+              "line_end_1based_inclusive": 47,
+              "text": "    logical_state[channel] = !logical_state[channel];\n    board_gpio_write(channel, logical_state[channel]);\n    return true;"
+            }
+          ]
+        }
+      ],
+      "requirement_original_text": "GO-R04 Channel independence: changing a valid channel leaves the other channel's stored state unchanged and never writes the other channel.\n",
+      "source_requirement_line_1based": 8,
+      "whole_requirement_judgment": true,
+      "applicability": "Applicable: the declared two-channel API and single-threaded platform contract cover this requirement.",
+      "applicability_exclusion": null,
+      "human_reviewed": false
+    },
+    {
+      "id": "GO-R05",
+      "verdict": "P",
+      "reason": "For an initialized controller and channel 0 or 1, toggle assigns the logical negation of that channel's current stored bool back to the same element. It then makes exactly one callback with that channel and its updated stored value and returns true. It neither guesses the physical pin state nor substitutes a fixed on/off value.",
+      "conditions": [
+        {
+          "condition": "A valid initialized toggle negates the current stored value.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 33,
+              "line_end_1based_inclusive": 45,
+              "text": "bool gpio_output_toggle(uint8_t channel)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    logical_state[channel] = !logical_state[channel];"
+            }
+          ]
+        },
+        {
+          "condition": "Exactly one platform write matches the requested channel and resulting state.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 45,
+              "line_end_1based_inclusive": 46,
+              "text": "    logical_state[channel] = !logical_state[channel];\n    board_gpio_write(channel, logical_state[channel]);"
+            }
+          ]
+        },
+        {
+          "condition": "The valid call returns true.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 47,
+              "line_end_1based_inclusive": 47,
+              "text": "    return true;"
+            }
+          ]
+        }
+      ],
+      "requirement_original_text": "GO-R05 Valid toggle: after initialization, gpio_output_toggle(channel) negates the stored state of the requested channel, makes exactly one matching platform write, and returns true.\n",
+      "source_requirement_line_1based": 9,
+      "whole_requirement_judgment": true,
+      "applicability": "Applicable: the declared two-channel API and single-threaded platform contract cover this requirement.",
+      "applicability_exclusion": null,
+      "human_reviewed": false
+    },
+    {
+      "id": "GO-R06",
+      "verdict": "P",
+      "reason": "All three APIs accept a uint8_t channel and reject whenever it is neither 0 nor 1; this covers every value 2 through 255. The invalid-channel branches return false before any array access, callback, or output assignment. If called before initialization, the earlier readiness guard also returns false without effects. Thus invalid calls leave both controller state and caller query output unchanged. The get null-token build concern is recorded separately in B01 and does not create an assumed missing behavior.",
+      "conditions": [
+        {
+          "condition": "Every invalid uint8_t channel makes set, toggle, and get return false.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.h",
+              "file_sha256": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9",
+              "packet_pointer": "/files/6_generated_code.h",
+              "line_start_1based": 7,
+              "line_end_1based_inclusive": 9,
+              "text": "bool gpio_output_set(uint8_t channel, bool on);\nbool gpio_output_toggle(uint8_t channel);\nbool gpio_output_get(uint8_t channel, bool *out_on);"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 18,
+              "line_end_1based_inclusive": 26,
+              "text": "    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 35,
+              "line_end_1based_inclusive": 43,
+              "text": "    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 52,
+              "line_end_1based_inclusive": 60,
+              "text": "    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }"
+            }
+          ]
+        },
+        {
+          "condition": "Rejected calls change no controller state or platform outputs.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 16,
+              "line_end_1based_inclusive": 31,
+              "text": "bool gpio_output_set(uint8_t channel, bool on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    logical_state[channel] = on;\n    board_gpio_write(channel, on);\n    return true;\n}"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 33,
+              "line_end_1based_inclusive": 48,
+              "text": "bool gpio_output_toggle(uint8_t channel)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    logical_state[channel] = !logical_state[channel];\n    board_gpio_write(channel, logical_state[channel]);\n    return true;\n}"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 50,
+              "line_end_1based_inclusive": 69,
+              "text": "bool gpio_output_get(uint8_t channel, bool *out_on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    if (out_on == NULL)\n    {\n        return false;\n    }\n\n    *out_on = logical_state[channel];\n    return true;\n}"
+            }
+          ]
+        },
+        {
+          "condition": "A rejected get does not modify the caller output.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 50,
+              "line_end_1based_inclusive": 69,
+              "text": "bool gpio_output_get(uint8_t channel, bool *out_on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    if (out_on == NULL)\n    {\n        return false;\n    }\n\n    *out_on = logical_state[channel];\n    return true;\n}"
+            }
+          ]
+        }
+      ],
+      "requirement_original_text": "GO-R06 Invalid channels: any uint8_t channel other than 0 or 1 makes set, toggle, and get return false, with no state changes or platform writes. Failed get leaves its output variable unchanged.\n",
+      "source_requirement_line_1based": 10,
+      "whole_requirement_judgment": true,
+      "applicability": "Applicable: the declared two-channel API and single-threaded platform contract cover this requirement.",
+      "applicability_exclusion": null,
+      "human_reviewed": false,
+      "shared_build_note": "B01"
+    },
+    {
+      "id": "GO-R07",
+      "verdict": "P",
+      "reason": "With initialization complete, channel 0 or 1, and a valid non-null output pointer, get reaches the assignment *out_on = logical_state[channel] and returns true. This is the same state array maintained by init, set, and toggle. The entire get function contains no callback, controller-state assignment, or helper call, so the query does not change controller state or GPIO. The explicit NULL comparison has unambiguous null-guard intent but a visible header/build issue, documented in B01; the frozen static protocol permits this functional judgment without source repair.",
+      "conditions": [
+        {
+          "condition": "A valid initialized non-null query returns true.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 50,
+              "line_end_1based_inclusive": 68,
+              "text": "bool gpio_output_get(uint8_t channel, bool *out_on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    if (out_on == NULL)\n    {\n        return false;\n    }\n\n    *out_on = logical_state[channel];\n    return true;"
+            }
+          ]
+        },
+        {
+          "condition": "The current stored state for the requested channel is written to caller memory.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 4,
+              "line_end_1based_inclusive": 4,
+              "text": "static bool logical_state[2] = { false, false };"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 9,
+              "line_end_1based_inclusive": 10,
+              "text": "    logical_state[0] = false;\n    logical_state[1] = false;"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 28,
+              "line_end_1based_inclusive": 29,
+              "text": "    logical_state[channel] = on;\n    board_gpio_write(channel, on);"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 45,
+              "line_end_1based_inclusive": 46,
+              "text": "    logical_state[channel] = !logical_state[channel];\n    board_gpio_write(channel, logical_state[channel]);"
+            },
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 67,
+              "line_end_1based_inclusive": 68,
+              "text": "    *out_on = logical_state[channel];\n    return true;"
+            }
+          ]
+        },
+        {
+          "condition": "The query makes no GPIO write and changes no controller state.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 50,
+              "line_end_1based_inclusive": 69,
+              "text": "bool gpio_output_get(uint8_t channel, bool *out_on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    if (out_on == NULL)\n    {\n        return false;\n    }\n\n    *out_on = logical_state[channel];\n    return true;\n}"
+            }
+          ]
+        }
+      ],
+      "requirement_original_text": "GO-R07 Query: after initialization, gpio_output_get(channel, out_on) for a valid channel and non-null pointer returns true and writes its current state to out_on. Query never writes GPIO or changes controller state.\n",
+      "source_requirement_line_1based": 11,
+      "whole_requirement_judgment": true,
+      "applicability": "Applicable: the declared two-channel API and single-threaded platform contract cover this requirement.",
+      "applicability_exclusion": null,
+      "human_reviewed": false,
+      "shared_build_note": "B01"
+    },
+    {
+      "id": "GO-R08",
+      "verdict": "P",
+      "reason": "If get is called before initialization or with an invalid channel, it returns false before touching the pointer. Otherwise its explicit out_on == NULL branch returns false before the only dereference. None of these paths assigns controller state or calls the platform. No particular order of the safe checks is required. The omitted header guaranteeing the NULL macro is a pure build obstacle with recoverable null-check semantics, not a missing null-handling branch; B01 records the limitation and the source is unchanged.",
+      "conditions": [
+        {
+          "condition": "A NULL-output query returns false for both valid and invalid channels, before or after initialization.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 50,
+              "line_end_1based_inclusive": 65,
+              "text": "bool gpio_output_get(uint8_t channel, bool *out_on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    if (out_on == NULL)\n    {\n        return false;\n    }"
+            }
+          ]
+        },
+        {
+          "condition": "The NULL paths have no output dereference or other side effect.",
+          "assessment": "supported",
+          "code_evidence": [
+            {
+              "file": "6_generated_code.c",
+              "file_sha256": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38",
+              "packet_pointer": "/files/6_generated_code.c",
+              "line_start_1based": 50,
+              "line_end_1based_inclusive": 69,
+              "text": "bool gpio_output_get(uint8_t channel, bool *out_on)\n{\n    if (!initialized)\n    {\n        return false;\n    }\n\n    if ((channel != 0u) && (channel != 1u))\n    {\n        return false;\n    }\n\n    if (out_on == NULL)\n    {\n        return false;\n    }\n\n    *out_on = logical_state[channel];\n    return true;\n}"
+            }
+          ]
+        }
+      ],
+      "requirement_original_text": "GO-R08 Null output: gpio_output_get(channel, NULL) returns false and has no side effects.\n",
+      "source_requirement_line_1based": 12,
+      "whole_requirement_judgment": true,
+      "applicability": "Applicable: the declared two-channel API and single-threaded platform contract cover this requirement.",
+      "applicability_exclusion": null,
+      "human_reviewed": false,
+      "shared_build_note": "B01"
+    }
+  ],
+  "aggregate": {
+    "P": 8,
+    "F": 0,
+    "U": 0,
+    "N/A": 0,
+    "denominator": 8,
+    "supported_fraction": "8/8",
+    "static_support_percent": 100.0,
+    "score_kind": "whole-original-numbered-requirement static support",
+    "host_success": null,
+    "human_reviewed": false,
+    "reason": "All eight requirements have direct code evidence for every condition under the stated static build-obstacle protocol; no prior score was reused."
+  },
+  "actions": {
+    "candidate_code_modified": false,
+    "frozen_inputs_modified": false,
+    "api_calls": 0,
+    "model_provider_requests": 0,
+    "candidate_compilations": 0,
+    "candidate_executions": 0,
+    "host_result_reads": 0,
+    "internal_score_reads": 0,
+    "new_human_review_claimed": false
+  },
+  "publication_note": "Paths refer to this public supplement; original source hashes are preserved in provenance.json. Judgments, code excerpts, line numbers, and human_reviewed=false are unchanged."
+}

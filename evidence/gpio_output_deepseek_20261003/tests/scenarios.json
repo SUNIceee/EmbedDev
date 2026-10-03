@@ -1,0 +1,75 @@
+[
+  {
+    "id": "GO-S01",
+    "description": "Calls before initialization are rejected without touching outputs",
+    "requirements": [
+      "GO-R02"
+    ]
+  },
+  {
+    "id": "GO-S02",
+    "description": "Initialization produces exactly two ordered low writes and low state",
+    "requirements": [
+      "GO-R01"
+    ]
+  },
+  {
+    "id": "GO-S03",
+    "description": "Set channel 0 on and off without disturbing channel 1",
+    "requirements": [
+      "GO-R03",
+      "GO-R04"
+    ]
+  },
+  {
+    "id": "GO-S04",
+    "description": "Set channel 1 on and off without disturbing channel 0",
+    "requirements": [
+      "GO-R03",
+      "GO-R04"
+    ]
+  },
+  {
+    "id": "GO-S05",
+    "description": "Every repeated set produces one observable write",
+    "requirements": [
+      "GO-R03"
+    ]
+  },
+  {
+    "id": "GO-S06",
+    "description": "Two toggles on each channel return to the starting state",
+    "requirements": [
+      "GO-R04",
+      "GO-R05"
+    ]
+  },
+  {
+    "id": "GO-S07",
+    "description": "Every invalid uint8_t channel is rejected and leaves state untouched",
+    "requirements": [
+      "GO-R06"
+    ]
+  },
+  {
+    "id": "GO-S08",
+    "description": "Queries return stored states without writes or mutations",
+    "requirements": [
+      "GO-R07"
+    ]
+  },
+  {
+    "id": "GO-S09",
+    "description": "Null queries are rejected without side effects",
+    "requirements": [
+      "GO-R08"
+    ]
+  },
+  {
+    "id": "GO-S10",
+    "description": "Reinitialization resets both nonzero states and repeats low writes",
+    "requirements": [
+      "GO-R01"
+    ]
+  }
+]

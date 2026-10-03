@@ -1,0 +1,62 @@
+{
+  "identity": "gpio_output__deepseek-v4-pro__C4_structured__r03",
+  "new_logical_attempts": 1,
+  "methods": [
+    "EmbedDev"
+  ],
+  "models": [
+    "deepseek-v4-pro"
+  ],
+  "task": "gpio_output",
+  "code_delivered": true,
+  "internal_accepted": true,
+  "independent_host": {
+    "compile_pass": false,
+    "host_all_pass": false,
+    "scheduled_scenarios": 10,
+    "executed_scenarios": 0,
+    "passed_scenarios": 0,
+    "failure_class": "candidate_compile_failure",
+    "diagnosis": "NULL undeclared at 6_generated_code.c:62; candidate omits a header such as stddef.h that guarantees its definition.",
+    "behavior_failures_observed": false,
+    "infrastructure_error": null
+  },
+  "static_review": {
+    "P": 8,
+    "F": 0,
+    "U": 0,
+    "N/A": 0,
+    "denominator": 8,
+    "supported_fraction": "8/8",
+    "static_support_percent": 100.0,
+    "score_kind": "whole-original-numbered-requirement static support",
+    "host_success": null,
+    "human_reviewed": false,
+    "reason": "All eight requirements have direct code evidence for every condition under the stated static build-obstacle protocol; no prior score was reused."
+  },
+  "code_modified_after_generation": false,
+  "final_feedback_returned_to_generation": false,
+  "not_an_original_historical_artifact_reconstruction": true,
+  "does_not_substantiate_previous_author_reported_host_success": true,
+  "accounting": {
+    "logical_attempt_physical_requests": 7,
+    "logical_attempt_reported_tokens": 135348,
+    "before_local_fix_requests": 3,
+    "before_local_fix_tokens": 64211,
+    "after_local_fix_new_requests": 4,
+    "after_local_fix_new_tokens": 71137,
+    "old_responses_replayed_without_network": 3,
+    "unknown_requests": 0,
+    "in_flight_requests": 0,
+    "actual_invoice_cost": null
+  },
+  "local_continuation": {
+    "same_logical_attempt": true,
+    "cause": "Normal compiler runtime mutex was wrongly treated as a newly introduced frozen source file. Only that exact runtime-lock path was excluded in a separate corrected package.",
+    "completed_responses_replayed_locally": 3,
+    "provider_requests_repeated": 0,
+    "original_method_inputs_and_final_tests_unchanged": true,
+    "historical_halt_and_evidence_preserved_privately": true
+  },
+  "manuscript_effect": "Evidence supplement only; no manuscript score is automatically replaced."
+}

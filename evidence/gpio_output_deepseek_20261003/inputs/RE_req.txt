@@ -1,0 +1,12 @@
+GPIO Output Controller — self-authored small embedded task
+
+Scope: two independent logical LEDs on a host-observable GPIO platform. This is a newly authored task, not a new open-source project. Implement the fixed C11 API. Do not provide a main function or implement platform callbacks.
+
+GO-R01 Initialization: gpio_output_init() configures logical state for channels 0 and 1 as off and calls board_gpio_write(0, false), then board_gpio_write(1, false), exactly once each. Reinitialization has the same effects regardless of prior state.
+GO-R02 Before the first initialization, set, toggle, and get return false and cause no platform writes; get does not modify the caller's output variable.
+GO-R03 Valid set: after initialization, gpio_output_set(channel, on) for channel 0 or 1 returns true, stores exactly the requested Boolean state, and calls board_gpio_write exactly once with that channel and value, even if the value is unchanged.
+GO-R04 Channel independence: changing a valid channel leaves the other channel's stored state unchanged and never writes the other channel.
+GO-R05 Valid toggle: after initialization, gpio_output_toggle(channel) negates the stored state of the requested channel, makes exactly one matching platform write, and returns true.
+GO-R06 Invalid channels: any uint8_t channel other than 0 or 1 makes set, toggle, and get return false, with no state changes or platform writes. Failed get leaves its output variable unchanged.
+GO-R07 Query: after initialization, gpio_output_get(channel, out_on) for a valid channel and non-null pointer returns true and writes its current state to out_on. Query never writes GPIO or changes controller state.
+GO-R08 Null output: gpio_output_get(channel, NULL) returns false and has no side effects.

@@ -1,0 +1,65 @@
+{
+  "candidate_sha256": {
+    "6_generated_code.h": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9",
+    "6_generated_code.c": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38"
+  },
+  "binding": {
+    "fixture_include": "gpio_output.h",
+    "candidate_header": "6_generated_code.h",
+    "kind": "include_alias_only"
+  },
+  "suite_sha256": {
+    "host_scenarios.c": "31cf57bf350e5a767fde0e031e705edbb4bc6787710f5164ccaa8b634f3cf87b",
+    "scenarios.json": "cac5529c3bd28a9ee67228b9d644a1baca95034333599733272205ccba38e520",
+    "gpio_output.h": "b2328837c4a280707ebd6144e5ee3de6c14017fa8019daf2dc8a232b882126e4"
+  },
+  "private_test_dependencies": [],
+  "evaluator_source_sha256": "e71965078a1567227f7babad86bea59b0943acb9e1da26071339a8b70405db1f",
+  "scenario_ids": [
+    "GO-S01",
+    "GO-S02",
+    "GO-S03",
+    "GO-S04",
+    "GO-S05",
+    "GO-S06",
+    "GO-S07",
+    "GO-S08",
+    "GO-S09",
+    "GO-S10"
+  ],
+  "requirements_by_scenario": {
+    "GO-S01": [
+      "GO-R02"
+    ],
+    "GO-S02": [
+      "GO-R01"
+    ],
+    "GO-S03": [
+      "GO-R03",
+      "GO-R04"
+    ],
+    "GO-S04": [
+      "GO-R03",
+      "GO-R04"
+    ],
+    "GO-S05": [
+      "GO-R03"
+    ],
+    "GO-S06": [
+      "GO-R04",
+      "GO-R05"
+    ],
+    "GO-S07": [
+      "GO-R06"
+    ],
+    "GO-S08": [
+      "GO-R07"
+    ],
+    "GO-S09": [
+      "GO-R08"
+    ],
+    "GO-S10": [
+      "GO-R01"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "files": {
+    "6_generated_code.h": "#ifndef GPIO_OUTPUT_H\r\n#define GPIO_OUTPUT_H\r\n#include <stdbool.h>\r\n#include <stdint.h>\r\n\r\nvoid gpio_output_init(void);\r\nbool gpio_output_set(uint8_t channel, bool on);\r\nbool gpio_output_toggle(uint8_t channel);\r\nbool gpio_output_get(uint8_t channel, bool *out_on);\r\n\r\n/* Platform-supplied callback; do not implement in generated code. */\r\nextern void board_gpio_write(uint8_t channel, bool on);\r\n\r\n#endif",
+    "6_generated_code.c": "#include \"6_generated_code.h\"\r\n\r\nstatic bool initialized = false;\r\nstatic bool logical_state[2] = { false, false };\r\n\r\nvoid gpio_output_init(void)\r\n{\r\n    initialized = true;\r\n    logical_state[0] = false;\r\n    logical_state[1] = false;\r\n\r\n    board_gpio_write(0, false);\r\n    board_gpio_write(1, false);\r\n}\r\n\r\nbool gpio_output_set(uint8_t channel, bool on)\r\n{\r\n    if (!initialized)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    if ((channel != 0u) && (channel != 1u))\r\n    {\r\n        return false;\r\n    }\r\n\r\n    logical_state[channel] = on;\r\n    board_gpio_write(channel, on);\r\n    return true;\r\n}\r\n\r\nbool gpio_output_toggle(uint8_t channel)\r\n{\r\n    if (!initialized)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    if ((channel != 0u) && (channel != 1u))\r\n    {\r\n        return false;\r\n    }\r\n\r\n    logical_state[channel] = !logical_state[channel];\r\n    board_gpio_write(channel, logical_state[channel]);\r\n    return true;\r\n}\r\n\r\nbool gpio_output_get(uint8_t channel, bool *out_on)\r\n{\r\n    if (!initialized)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    if ((channel != 0u) && (channel != 1u))\r\n    {\r\n        return false;\r\n    }\r\n\r\n    if (out_on == NULL)\r\n    {\r\n        return false;\r\n    }\r\n\r\n    *out_on = logical_state[channel];\r\n    return true;\r\n}"
+  },
+  "candidate_header": "6_generated_code.h",
+  "selected_stage": "initial",
+  "selection": "last complete candidate by generation order; final tests never used",
+  "file_sha256": {
+    "6_generated_code.h": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9",
+    "6_generated_code.c": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38"
+  },
+  "source_file_sha256": {
+    "6_generated_code.h": "49645791745b5233fcb7e540800d065b9fa621c38f0d8b94f59f020ed53c33a9",
+    "6_generated_code.c": "c48864a4bc3a099ad5a41e11e184be596b1450afd746e5271a899111b7584d38"
+  }
+}

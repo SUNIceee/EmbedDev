@@ -3,6 +3,7 @@
 Only MANIFEST.json itself and new files below the documented results/ and
 outputs/ runtime directories may be absent from the manifest. Links and
 Windows reparse points are rejected even below those runtime directories.
+Root Git metadata is excluded from the distributed-file inventory.
 """
 from pathlib import Path, PurePosixPath, PureWindowsPath
 import hashlib
@@ -76,6 +77,10 @@ def inventory(errors):
                 if is_link(path):
                     errors.append("Link/reparse point: " + path.relative_to(ROOT).as_posix())
                     dirs.remove(name)
+                elif current == ROOT and name == ".git":
+                    # Git metadata is not a distributed artifact. Nested .git
+                    # directories remain subject to the normal strict inventory.
+                    dirs.remove(name)
             except OSError:
                 errors.append("Unreadable directory: " + path.relative_to(ROOT).as_posix())
                 dirs.remove(name)
@@ -85,6 +90,9 @@ def inventory(errors):
             try:
                 if is_link(path):
                     errors.append("Link/reparse point: " + raw)
+                elif current == ROOT and name == ".git" and path.is_file():
+                    # A normal root .git file is used by Git worktrees.
+                    continue
                 elif path.is_file():
                     files.add(raw)
                 else:

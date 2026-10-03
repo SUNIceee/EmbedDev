@@ -48,6 +48,10 @@ The third EmbedDev / GPIO output score remains the author's reported 100% rerun.
 
 The current 90 positions comprise 81 code-bound static reviews, eight no-code positions, and this one author-reported GPIO score. No-code positions contribute zero only when aggregating the planned positions.
 
+## Additional code-bound GPIO observation
+
+A [separate GPIO evidence bundle](../evidence/gpio_output_deepseek_20261003/README.md) now provides complete candidate code, an eight-item static review, and the independent compiler diagnostic for one new EmbedDev/DeepSeek-V4-Pro attempt. Its static support is 8/8 (100.00%); its independent Host compilation failed and none of the ten scenarios executed. This does not establish the historical author-reported Host result. The saved 90-position data and current chart remain unchanged; this additional observation is not silently pooled into them or treated as a seventh task. The new static assessment has no human-review attestation.
+
 ## Files
 
 - `data/rq3/display_cells.json`: 30 cells, their three position scores, means, and population SD.
