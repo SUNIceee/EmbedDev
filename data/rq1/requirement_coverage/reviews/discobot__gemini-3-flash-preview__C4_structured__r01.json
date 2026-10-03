@@ -1,0 +1,1405 @@
+{
+  "identity": "discobot__gemini-3-flash-preview__C4_structured__r01",
+  "project": "discobot",
+  "model": "gemini-3-flash-preview",
+  "method": "EmbedDev",
+  "repeat": 1,
+  "status": "complete_static_subset",
+  "candidate_files": [
+    {
+      "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+      "sha256": "ee7eac7f38d2b567ccec8d2b699c64599606d732434f41440db4ba5124f32689"
+    },
+    {
+      "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.h",
+      "sha256": "41f0919010085c8272617d47886a712811af89ade20bf2c032bf455e9385fca4"
+    }
+  ],
+  "candidate_all_files_sha256_verified": true,
+  "checklist_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+  "candidate_inventory_sha256": "60721e6c11f3e5fb421b58209ce90367c3e66ea260a90a87b625c43d81a53d16",
+  "evaluator": "current Codex LLM static review",
+  "human_review_claimed": false,
+  "reviewed_at": "2026-10-02T06:53:16.012627+00:00",
+  "requirements": [
+    {
+      "id": "DB-R001",
+      "verdict": "fully_covered",
+      "reason": "GPIO, ticks, transmission, and reception have observable state, rather than empty data stubs.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 29,
+          "line_end": 38,
+          "function": "globals"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 87,
+          "line_end": 113,
+          "function": "motor"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 180,
+          "line_end": 191,
+          "function": "tick"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 441,
+          "line_end": 474,
+          "function": "UART"
+        }
+      ]
+    },
+    {
+      "id": "DB-R002",
+      "verdict": "fully_covered",
+      "reason": "The 168MHz clock is divided by 1000 for reload, and each tick increments by one.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 52,
+          "line_end": 58,
+          "function": "clock"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 180,
+          "line_end": 181,
+          "function": "tick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R003",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R004",
+      "verdict": "partially_covered",
+      "reason": "Only baud and queues exist; PB6/7, 8N1, and NVIC configuration parameters are absent.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 428,
+          "line_end": 444,
+          "function": "UART_init_ISR"
+        }
+      ]
+    },
+    {
+      "id": "DB-R005",
+      "verdict": "partially_covered",
+      "reason": "All four pins are initially low; no push-pull, pull-up, or 25MHz configuration path exists.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 80,
+          "line_end": 85,
+          "function": "motor_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R006",
+      "verdict": "fully_covered",
+      "reason": "The four-LED array provides equivalent observable set/reset effects.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 238,
+          "line_end": 255,
+          "function": "LED"
+        }
+      ]
+    },
+    {
+      "id": "DB-R007",
+      "verdict": "fully_covered",
+      "reason": "PA0 is active-high and releases when low.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 173,
+          "line_end": 190,
+          "function": "button"
+        }
+      ]
+    },
+    {
+      "id": "DB-R008",
+      "verdict": "partially_covered",
+      "reason": "Three-axis data exists, but initialization does not express SPI1/2G/50Hz settings.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 258,
+          "line_end": 274,
+          "function": "accelerometer"
+        }
+      ]
+    },
+    {
+      "id": "DB-R009",
+      "verdict": "not_covered",
+      "reason": "Initialization is empty, lacking the ADC configuration parameters from R29 and 145-147.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 277,
+          "line_end": 278,
+          "function": "ADC_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R010",
+      "verdict": "partially_covered",
+      "reason": "DRDY is read, but AHB2 and RNG enablement paths are absent.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 294,
+          "line_end": 305,
+          "function": "RNG"
+        }
+      ]
+    },
+    {
+      "id": "DB-R011",
+      "verdict": "fully_covered",
+      "reason": "The nine modules are invoked in the specified order.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 66,
+          "line_end": 77,
+          "function": "init_system"
+        }
+      ]
+    },
+    {
+      "id": "DB-R012",
+      "verdict": "fully_covered",
+      "reason": "The exact startup string is sent after UART initialization.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 75,
+          "line_end": 76,
+          "function": "banner"
+        }
+      ]
+    },
+    {
+      "id": "DB-R013",
+      "verdict": "partially_covered",
+      "reason": "Reload is assigned directly; the Update and Config calls required by R42 are absent.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 56,
+          "line_end": 58,
+          "function": "init_systick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R014",
+      "verdict": "not_covered",
+      "reason": "No configuration return value or controlled failure state.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 56,
+          "line_end": 58,
+          "function": "init_systick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R015",
+      "verdict": "partially_covered",
+      "reason": "PA0 and debounce state are cleared; clock and input mode are not recorded.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 60,
+          "line_end": 64,
+          "function": "init_button"
+        }
+      ]
+    },
+    {
+      "id": "DB-R016",
+      "verdict": "fully_covered",
+      "reason": "Enum values 0/1/2 are correct.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.h",
+          "line_start": 22,
+          "line_end": 26,
+          "function": "Directions"
+        }
+      ]
+    },
+    {
+      "id": "DB-R017",
+      "verdict": "fully_covered",
+      "reason": "Forward, reverse, stop, and invalid directions all follow the truth table.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 87,
+          "line_end": 99,
+          "function": "left"
+        }
+      ]
+    },
+    {
+      "id": "DB-R018",
+      "verdict": "fully_covered",
+      "reason": "Forward, reverse, stop, and invalid directions all follow the truth table.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 101,
+          "line_end": 113,
+          "function": "right"
+        }
+      ]
+    },
+    {
+      "id": "DB-R019",
+      "verdict": "fully_covered",
+      "reason": "Speed is explicitly unused.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 88,
+          "line_end": 102,
+          "function": "speed"
+        }
+      ]
+    },
+    {
+      "id": "DB-R020",
+      "verdict": "fully_covered",
+      "reason": "Both sides run forward: 1010.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 115,
+          "line_end": 118,
+          "function": "forward"
+        }
+      ]
+    },
+    {
+      "id": "DB-R021",
+      "verdict": "fully_covered",
+      "reason": "Both sides run in reverse: 0101.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 120,
+          "line_end": 123,
+          "function": "backward"
+        }
+      ]
+    },
+    {
+      "id": "DB-R022",
+      "verdict": "fully_covered",
+      "reason": "The left side stops and the right runs forward: 0010.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 125,
+          "line_end": 128,
+          "function": "softleft"
+        }
+      ]
+    },
+    {
+      "id": "DB-R023",
+      "verdict": "fully_covered",
+      "reason": "The left runs forward and the right stops: 1000.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 130,
+          "line_end": 133,
+          "function": "softright"
+        }
+      ]
+    },
+    {
+      "id": "DB-R024",
+      "verdict": "fully_covered",
+      "reason": "The left stops and the right runs in reverse: 0001.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 135,
+          "line_end": 138,
+          "function": "backleft"
+        }
+      ]
+    },
+    {
+      "id": "DB-R025",
+      "verdict": "fully_covered",
+      "reason": "The left runs in reverse and the right stops: 0100.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 140,
+          "line_end": 143,
+          "function": "backright"
+        }
+      ]
+    },
+    {
+      "id": "DB-R026",
+      "verdict": "fully_covered",
+      "reason": "The left runs forward and the right in reverse: 1001.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 145,
+          "line_end": 148,
+          "function": "spinright"
+        }
+      ]
+    },
+    {
+      "id": "DB-R027",
+      "verdict": "fully_covered",
+      "reason": "The left runs in reverse and the right forward: 0110.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 150,
+          "line_end": 153,
+          "function": "spinleft"
+        }
+      ]
+    },
+    {
+      "id": "DB-R028",
+      "verdict": "fully_covered",
+      "reason": "Both sides stop: 0000.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 155,
+          "line_end": 158,
+          "function": "stop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R029",
+      "verdict": "partially_covered",
+      "reason": "All pins are initially low, but GPIO configuration required by R74 is absent.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 80,
+          "line_end": 85,
+          "function": "motor_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R030",
+      "verdict": "fully_covered",
+      "reason": "Each completed branch produces only 10/01/00.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 87,
+          "line_end": 113,
+          "function": "motor"
+        }
+      ]
+    },
+    {
+      "id": "DB-R031",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R032",
+      "verdict": "fully_covered",
+      "reason": "The nine IDs and function-table order are consistent.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.h",
+          "line_start": 8,
+          "line_end": 20,
+          "function": "IDs"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 17,
+          "line_end": 27,
+          "function": "flookup"
+        }
+      ]
+    },
+    {
+      "id": "DB-R033",
+      "verdict": "fully_covered",
+      "reason": "Values 0..8 directly invoke the pointer table.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 161,
+          "line_end": 171,
+          "function": "dispatch"
+        }
+      ]
+    },
+    {
+      "id": "DB-R034",
+      "verdict": "fully_covered",
+      "reason": "Invalid input leaves callme unchanged; empty queues are not read.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 161,
+          "line_end": 171,
+          "function": "dispatch"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 227,
+          "line_end": 232,
+          "function": "main"
+        }
+      ]
+    },
+    {
+      "id": "DB-R035",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R036",
+      "verdict": "partially_covered",
+      "reason": "Indices 0..3 and greater than 3 are handled correctly; negative indices cause undefined shifts.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 173,
+          "line_end": 178,
+          "function": "read_buttonc"
+        }
+      ]
+    },
+    {
+      "id": "DB-R037",
+      "verdict": "fully_covered",
+      "reason": "The counter advances each tick; a high level for 250 ticks enters Pressed.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 180,
+          "line_end": 186,
+          "function": "tick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R038",
+      "verdict": "fully_covered",
+      "reason": "A low level immediately clears the count and releases the button.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 187,
+          "line_end": 190,
+          "function": "tick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R039",
+      "verdict": "fully_covered",
+      "reason": "Only changed-state branches run, with break and history updates.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 193,
+          "line_end": 204,
+          "function": "checkbutton"
+        }
+      ]
+    },
+    {
+      "id": "DB-R040",
+      "verdict": "fully_covered",
+      "reason": "Roll uses atan2(y,z), converted to degrees.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 206,
+          "line_end": 209,
+          "function": "angles"
+        }
+      ]
+    },
+    {
+      "id": "DB-R041",
+      "verdict": "fully_covered",
+      "reason": "pitch atan2(-x,sqrt(y2+z2))。",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 210,
+          "line_end": 212,
+          "function": "angles"
+        }
+      ]
+    },
+    {
+      "id": "DB-R042",
+      "verdict": "partially_covered",
+      "reason": "Outputs are initially low, but GPIOD clock and output-mode parameters are absent.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 238,
+          "line_end": 243,
+          "function": "LED_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R043",
+      "verdict": "fully_covered",
+      "reason": "It correctly sets pin 12+i to 1.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 245,
+          "line_end": 249,
+          "function": "LED_On"
+        }
+      ]
+    },
+    {
+      "id": "DB-R044",
+      "verdict": "fully_covered",
+      "reason": "It correctly clears pin 12+i to 0.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 251,
+          "line_end": 255,
+          "function": "LED_Off"
+        }
+      ]
+    },
+    {
+      "id": "DB-R045",
+      "verdict": "fully_covered",
+      "reason": "Invalid positive and negative indices do not write the array.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 245,
+          "line_end": 255,
+          "function": "LED"
+        }
+      ]
+    },
+    {
+      "id": "DB-R046",
+      "verdict": "fully_covered",
+      "reason": "History updates strictly after 1000, while UART processing continues.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 223,
+          "line_end": 235,
+          "function": "main_loop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R047",
+      "verdict": "partially_covered",
+      "reason": "It returns 0 without invoking TM or setting 2G/50Hz.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 258,
+          "line_end": 260,
+          "function": "accel_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R048",
+      "verdict": "fully_covered",
+      "reason": "The three raw axes are divided by 1000 in floating point.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 262,
+          "line_end": 268,
+          "function": "read_accel"
+        }
+      ]
+    },
+    {
+      "id": "DB-R049",
+      "verdict": "not_covered",
+      "reason": "Internal temperature-channel, Vref, and sampling configuration are not represented.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 277,
+          "line_end": 278,
+          "function": "ADC_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R050",
+      "verdict": "not_covered",
+      "reason": "It reads raw directly, without starting conversion or waiting for EOC.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 280,
+          "line_end": 287,
+          "function": "read_temperature"
+        }
+      ]
+    },
+    {
+      "id": "DB-R051",
+      "verdict": "fully_covered",
+      "reason": "The floating-point formula has the correct operation order and values.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 280,
+          "line_end": 287,
+          "function": "temperature_formula"
+        }
+      ]
+    },
+    {
+      "id": "DB-R052",
+      "verdict": "not_covered",
+      "reason": "No clock or enable calls or states.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 294,
+          "line_end": 295,
+          "function": "init_rng"
+        }
+      ]
+    },
+    {
+      "id": "DB-R053",
+      "verdict": "partially_covered",
+      "reason": "It waits for ready, but host false blocks permanently, violating D54-55.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 297,
+          "line_end": 301,
+          "function": "get_random"
+        }
+      ]
+    },
+    {
+      "id": "DB-R054",
+      "verdict": "fully_covered",
+      "reason": "Ready is independent of value, allowing both 0 and the maximum value to be returned.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 297,
+          "line_end": 305,
+          "function": "RNG"
+        }
+      ]
+    },
+    {
+      "id": "DB-R055",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R056",
+      "verdict": "fully_covered",
+      "reason": "It selects the first free slot among 25, multiplies seconds by 1000, and clears history and count.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 309,
+          "line_end": 319,
+          "function": "add_task"
+        }
+      ]
+    },
+    {
+      "id": "DB-R057",
+      "verdict": "fully_covered",
+      "reason": "A full array exits naturally, without overwriting or reporting an error.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 309,
+          "line_end": 319,
+          "function": "add_task"
+        }
+      ]
+    },
+    {
+      "id": "DB-R058",
+      "verdict": "fully_covered",
+      "reason": "Each slot is checked and executed, updating its current tick and count.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 321,
+          "line_end": 329,
+          "function": "execute"
+        }
+      ]
+    },
+    {
+      "id": "DB-R059",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R060",
+      "verdict": "fully_covered",
+      "reason": "Only nonempty slots have their indices and counts printed.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 331,
+          "line_end": 337,
+          "function": "printtimes"
+        }
+      ]
+    },
+    {
+      "id": "DB-R061",
+      "verdict": "fully_covered",
+      "reason": "Execution is sequential and nonpreemptive; no deletion interface exists, and NULL entries are skipped.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 309,
+          "line_end": 337,
+          "function": "scheduler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R062",
+      "verdict": "partially_covered",
+      "reason": "Zero baud falls back to 9600 without a warning.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 428,
+          "line_end": 432,
+          "function": "UART_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R063",
+      "verdict": "not_covered",
+      "reason": "GPIO AF, electrical, 8N1, flow-control, and NVIC parameters are absent.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 428,
+          "line_end": 439,
+          "function": "UART_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R064",
+      "verdict": "partially_covered",
+      "reason": "Capacity 200 is present, but UART enablement is neither performed nor modeled.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 428,
+          "line_end": 439,
+          "function": "UART_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R065",
+      "verdict": "partially_covered",
+      "reason": "The injector filters RXNE, but the ISR itself does not check and unconditionally enqueues.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 441,
+          "line_end": 444,
+          "function": "ISR"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 469,
+          "line_end": 474,
+          "function": "inject"
+        }
+      ]
+    },
+    {
+      "id": "DB-R066",
+      "verdict": "partially_covered",
+      "reason": "A byte-by-byte log exists, without an SR 0x40 ready condition.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 446,
+          "line_end": 455,
+          "function": "send"
+        }
+      ]
+    },
+    {
+      "id": "DB-R067",
+      "verdict": "fully_covered",
+      "reason": "An empty read returns 0; a normal read consumes one byte.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 457,
+          "line_end": 459,
+          "function": "read"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 362,
+          "line_end": 369,
+          "function": "buffer_get"
+        }
+      ]
+    },
+    {
+      "id": "DB-R068",
+      "verdict": "fully_covered",
+      "reason": "The char conversion preserves the historical FF semantics.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 461,
+          "line_end": 463,
+          "function": "readc"
+        }
+      ]
+    },
+    {
+      "id": "DB-R069",
+      "verdict": "fully_covered",
+      "reason": "Returns n_w-n_r.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 465,
+          "line_end": 467,
+          "function": "available"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 385,
+          "line_end": 390,
+          "function": "buffer_available"
+        }
+      ]
+    },
+    {
+      "id": "DB-R070",
+      "verdict": "fully_covered",
+      "reason": "All five required fields are included.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.h",
+          "line_start": 108,
+          "line_end": 114,
+          "function": "CircArray"
+        }
+      ]
+    },
+    {
+      "id": "DB-R071",
+      "verdict": "partially_covered",
+      "reason": "calloc and field initialization exist, but allocation failure still leaves enabled set, and size is not validated.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 340,
+          "line_end": 351,
+          "function": "initCircArray"
+        }
+      ]
+    },
+    {
+      "id": "DB-R072",
+      "verdict": "fully_covered",
+      "reason": "A valid array is written modulo capacity with incrementing counters; full writes are rejected.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 353,
+          "line_end": 360,
+          "function": "put"
+        }
+      ]
+    },
+    {
+      "id": "DB-R073",
+      "verdict": "fully_covered",
+      "reason": "Reads use modulo indexing and increment the counter; empty reads return 0.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 362,
+          "line_end": 369,
+          "function": "get"
+        }
+      ]
+    },
+    {
+      "id": "DB-R074",
+      "verdict": "fully_covered",
+      "reason": "A valid array is empty when its counters are equal.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 371,
+          "line_end": 376,
+          "function": "empty"
+        }
+      ]
+    },
+    {
+      "id": "DB-R075",
+      "verdict": "fully_covered",
+      "reason": "A nonempty array with equal modulo positions is full.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 378,
+          "line_end": 383,
+          "function": "full"
+        }
+      ]
+    },
+    {
+      "id": "DB-R076",
+      "verdict": "fully_covered",
+      "reason": "The counter difference is returned.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 385,
+          "line_end": 390,
+          "function": "available"
+        }
+      ]
+    },
+    {
+      "id": "DB-R077",
+      "verdict": "partially_covered",
+      "reason": "Ordinary realloc failure preserves state; newSize 0 may free the original storage yet return failure, leaving a dangling pointer.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 392,
+          "line_end": 403,
+          "function": "resize"
+        }
+      ]
+    },
+    {
+      "id": "DB-R078",
+      "verdict": "fully_covered",
+      "reason": "It clears, frees, and resets all fields; NULL returns false.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 405,
+          "line_end": 419,
+          "function": "delete"
+        }
+      ]
+    },
+    {
+      "id": "DB-R079",
+      "verdict": "fully_covered",
+      "reason": "Only contents are cleared; counters remain unchanged.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 421,
+          "line_end": 425,
+          "function": "clear"
+        }
+      ]
+    },
+    {
+      "id": "DB-R080",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R081",
+      "verdict": "fully_covered",
+      "reason": "uint32 increment guarantees 32-bit wraparound.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 477,
+          "line_end": 479,
+          "function": "func2"
+        }
+      ]
+    },
+    {
+      "id": "DB-R082",
+      "verdict": "fully_covered",
+      "reason": "It transparently invokes func2; D72 permits a C equivalent.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 481,
+          "line_end": 483,
+          "function": "func1"
+        }
+      ]
+    },
+    {
+      "id": "DB-R083",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R084",
+      "verdict": "fully_covered",
+      "reason": "Constants are correct and raw bytes are used without GUI framing.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.h",
+          "line_start": 51,
+          "line_end": 57,
+          "function": "constants"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 161,
+          "line_end": 171,
+          "function": "dispatch"
+        }
+      ]
+    },
+    {
+      "id": "DB-R085",
+      "verdict": "fully_covered",
+      "reason": "The specified arrays retain binary outputs.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 29,
+          "line_end": 31,
+          "function": "arrays"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 87,
+          "line_end": 113,
+          "function": "motor"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 245,
+          "line_end": 255,
+          "function": "LED"
+        }
+      ]
+    },
+    {
+      "id": "DB-R086",
+      "verdict": "fully_covered",
+      "reason": "Only bit 0 changes.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 215,
+          "line_end": 221,
+          "function": "button_inject"
+        }
+      ]
+    },
+    {
+      "id": "DB-R087",
+      "verdict": "fully_covered",
+      "reason": "Three-axis injection feeds the normal read/conversion path.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 262,
+          "line_end": 274,
+          "function": "accel"
+        }
+      ]
+    },
+    {
+      "id": "DB-R088",
+      "verdict": "fully_covered",
+      "reason": "Raw injection feeds the correct temperature formula.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 280,
+          "line_end": 291,
+          "function": "ADC"
+        }
+      ]
+    },
+    {
+      "id": "DB-R089",
+      "verdict": "partially_covered",
+      "reason": "Ready and value can be injected, but false deadlocks the host.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 297,
+          "line_end": 305,
+          "function": "RNG"
+        }
+      ]
+    },
+    {
+      "id": "DB-R090",
+      "verdict": "partially_covered",
+      "reason": "DR is injected and the same ISR invoked, but RXNE state is absent and the ISR is unguarded.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 469,
+          "line_end": 474,
+          "function": "inject"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 441,
+          "line_end": 444,
+          "function": "ISR"
+        }
+      ]
+    },
+    {
+      "id": "DB-R091",
+      "verdict": "fully_covered",
+      "reason": "Ordered appends, length, and bounds are maintained.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 446,
+          "line_end": 455,
+          "function": "send"
+        }
+      ]
+    },
+    {
+      "id": "DB-R092",
+      "verdict": "fully_covered",
+      "reason": "Single stepping includes UART, buttons, tasks, and idle handling, without a main-based self-test.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 223,
+          "line_end": 235,
+          "function": "main_loop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R093",
+      "verdict": "partially_covered",
+      "reason": "Generic arrays can be freed; private UART msg has no reachable release call.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 41,
+          "line_end": 41,
+          "function": "private_msg"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 428,
+          "line_end": 439,
+          "function": "UART_init"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 405,
+          "line_end": 419,
+          "function": "delete"
+        }
+      ]
+    },
+    {
+      "id": "DB-R094",
+      "verdict": "partially_covered",
+      "reason": "Most NULL/full guards exist, but negative shifts and NULL-buffer access after allocation failure remain hazardous.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 173,
+          "line_end": 178,
+          "function": "button"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 340,
+          "line_end": 351,
+          "function": "array_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R095",
+      "verdict": "fully_covered",
+      "reason": "No PWM, framed protocol, or task deletion is added.",
+      "evidence": [
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 87,
+          "line_end": 113,
+          "function": "motor"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 161,
+          "line_end": 171,
+          "function": "dispatch"
+        },
+        {
+          "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\jobs\\discobot__gemini-3-flash-preview__C4_structured__r01\\initial\\6_generated_code.c",
+          "line_start": 309,
+          "line_end": 337,
+          "function": "scheduler"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "fully_covered": 61,
+    "unassessed": 7,
+    "partially_covered": 21,
+    "not_covered": 6
+  },
+  "denominator": 88,
+  "rate": 69.31818181818183,
+  "metric": "coverage of 88 statically reviewable requirement leaves; 7 preclassified leaves unassessed",
+  "all_project_requirements_assessed": false,
+  "code_modified": false,
+  "model_api_calls": 0,
+  "host_or_compiler_executed": false,
+  "prior_static_scores_used": false,
+  "note": "Both candidate files were read in full. Review follows static R+D+A semantics without referring to old static scores. Configuration stubs are allowed, but items lacking parameters explicitly required by R remain incomplete.",
+  "input_context": {
+    "requirement": {
+      "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\protocol\\discobot\\RE_req.txt",
+      "sha256": "0386b7323a917035fc1fcd21cafdd99aea562904d531126be06411af828c83bb",
+      "provided_to_generator": true
+    },
+    "device": {
+      "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\protocol\\discobot\\RE_device_interface.txt",
+      "sha256": "82e98267f500f08b2e54256b621795ae05b0884b56498f1bac2000cdc63366e0",
+      "provided_to_generator": true
+    },
+    "api": {
+      "path": "fse\\gemini_c4_rerun_20261001\\execution\\discobot__gemini-3-flash-preview__C4_structured__r01\\protocol\\discobot\\RE_api.txt",
+      "sha256": "9ef8f2d20200c0f43ee8752e08d60a6a07243eabc1e2f8438d3f9e347ab7cee0",
+      "provided_to_generator": true
+    }
+  },
+  "scope_review_complete": true,
+  "scope_review_policy": "R+D host-equivalent scope; configuration stubs allowed but required values and observable data paths must exist; Direct not penalized using unsupplied A; C equivalents for assembly accepted under D:72.",
+  "read_complete_candidate_files": true,
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/reviews/gemini/discobot/discobot__gemini-3-flash-preview__C4_structured__r01.json",
+    "original_sha256": "34602938934f3726d83ef6a4213016a420fe8c91a3e24a6bf7151efd9cc652a4",
+    "language": "Original Chinese evidence/rationales retained; no semantic translation.",
+    "initial_review_status": {
+      "evaluator": "current Codex LLM static review",
+      "human_review_claimed": false
+    },
+    "preservation": "Initial verdicts, reasons, historical rates and human-review flags retained. Path anonymization and export metadata do not constitute a new review.",
+    "current_aggregation": "(fully_covered + partially_covered) / preclassified static denominator; no fractional weighting of partial items.",
+    "checklist_export": {
+      "path": "data/rq1/requirement_coverage/checklists/discobot.json",
+      "sha256": "e731137141a0fc3c4d67258ff76e0fa635fbea1d88801da73c3edee10d1c66c6",
+      "original_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+      "leaf_count": 95,
+      "static_denominator": 88,
+      "source_requirement": {
+        "path": "data/rq1/requirement_coverage/source_requirements/discobot_RE_req.txt",
+        "sha256": "06306779a3ef8033f15aab14cc1701a809e8129513e2d5b77ea4ae7491cb91c9"
+      }
+    },
+    "candidate_bindings": [
+      {
+        "source": "fse/gemini_c4_rerun_20261001/execution/discobot__gemini-3-flash-preview__C4_structured__r01/jobs/discobot__gemini-3-flash-preview__C4_structured__r01/initial/6_generated_code.c",
+        "original_sha256": "ee7eac7f38d2b567ccec8d2b699c64599606d732434f41440db4ba5124f32689",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.c",
+        "path": "evidence/candidate_sources/ee7eac7f38d2b567ccec8d2b699c64599606d732434f41440db4ba5124f32689/6_generated_code.c",
+        "distributed_sha256": "ee7eac7f38d2b567ccec8d2b699c64599606d732434f41440db4ba5124f32689",
+        "transformation": "none"
+      },
+      {
+        "source": "fse/gemini_c4_rerun_20261001/execution/discobot__gemini-3-flash-preview__C4_structured__r01/jobs/discobot__gemini-3-flash-preview__C4_structured__r01/initial/6_generated_code.h",
+        "original_sha256": "41f0919010085c8272617d47886a712811af89ade20bf2c032bf455e9385fca4",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.h",
+        "path": "evidence/candidate_sources/41f0919010085c8272617d47886a712811af89ade20bf2c032bf455e9385fca4/6_generated_code.h",
+        "distributed_sha256": "41f0919010085c8272617d47886a712811af89ade20bf2c032bf455e9385fca4",
+        "transformation": "none"
+      }
+    ],
+    "evidence_line_numbers": "Original candidate lines; transformed candidate comments, where used, retain separately recorded original and distributed hashes."
+  }
+}

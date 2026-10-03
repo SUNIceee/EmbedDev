@@ -1,0 +1,8 @@
+GPIO Debounced Button and LED device/environment contract
+
+Language: ISO C11. One logical active-high input (true = pressed, false = released) and one active-high output (true = LED on). Electrical active-low inversion or pin mapping is outside this controller and performed by the platform.
+The platform supplies bool board_button_read(void), returning the input level currently set by the environment; and void board_led_write(bool on), recording the requested LED level. These callbacks return immediately and do not fail.
+The caller passes uint32_t millisecond times to initialization/poll. Time is monotonic modulo 2^32, consecutive chronological intervals are less than 2^31 ms. No OS delay, busy wait, real clock read, physical interrupt, vendor HAL, or direct register access is required.
+The first pressed sample after initialization starts a new candidate interval even if the physical button was already pressed at initialization. Initialization itself never reads the input.
+All API calls are single-threaded. Verification observes callback counts, logical levels, and public query results. It is a host simulation, not physical/electrical debounce timing validation.
+Candidate code/header must not include the private tests or reference fixtures.

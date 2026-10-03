@@ -1,0 +1,2163 @@
+{
+  "schema_version": 1,
+  "identity": "crazyflie__gpt-5.5__B_structgen__r03",
+  "project": "crazyflie",
+  "model": "gpt-5.5",
+  "method": "StructGen",
+  "status": "complete",
+  "candidate_files": [
+    {
+      "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+      "sha256": "40d1097cebe39409ffff3f2993c4a83aebc6594ecb037b102e4388908809622a",
+      "line_count": 1206,
+      "full_text_read": true
+    },
+    {
+      "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.h",
+      "sha256": "dfe8a07108ed37507fbd0818c7842468b2662ecabd946d0d2b5e20a4b22f6aa2",
+      "line_count": 4,
+      "full_text_read": true
+    }
+  ],
+  "candidate_inventory_sha256": "60721e6c11f3e5fb421b58209ce90367c3e66ea260a90a87b625c43d81a53d16",
+  "checklist_path": "fse\\requirement_coverage_review_20261002\\preparation\\crazyflie\\requirements_checklist.json",
+  "checklist_sha256": "a563bb2a705c6bb9bbb227607e886fb05babbf73e4c3f7e0b74e488033dd7e4f",
+  "review_standard_sha256": "c7a674149d447e07064b1f2b6095f9209b97c60a81cf2b18ca98c8463068beca",
+  "evaluator": "current Codex LLM static review",
+  "human_review": false,
+  "reviewed_at": "2026-10-02T07:24:32.211987+00:00",
+  "requirements": [
+    {
+      "id": "CF-R001",
+      "statement": "All public functions, macros, enumerations, and structure fields must conform to the frozen RE_api; equivalently functioning modules with different names are not substitutes.",
+      "verdict": "partially_covered",
+      "reason": "The source defines most functions with the same names, but the delivered header merely instructs users to use the header in the prompt; the macros, enums, and structure declarations are not actually delivered.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.h",
+          "line_start": 1,
+          "line_end": 4,
+          "function": "public header"
+        }
+      ]
+    },
+    {
+      "id": "CF-R002",
+      "statement": "Pure algorithms must be deterministic, repeatable standard C11 implementations, without dependencies on STM32/FreeRTOS headers.",
+      "verdict": "fully_covered",
+      "reason": "The implementation uses the C standard and math libraries, without an STM32 HAL dependency.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1,
+          "line_end": 9,
+          "function": "translation unit"
+        }
+      ]
+    },
+    {
+      "id": "CF-R003",
+      "statement": "Platform queues must use bounded memory. All observable timeouts, ages, and waits must use a monotonic 1ms tick, without mixing in divided scheduling-loop counters.",
+      "verdict": "partially_covered",
+      "reason": "The queues are bounded, but the private hostTick increments through task calls, and rateSupervisorTask directly adds 2000; this does not provide the externally advanceable millisecond clock allowed by D.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 38,
+          "line_end": 57,
+          "function": "platform state"
+        }
+      ]
+    },
+    {
+      "id": "CF-R004",
+      "statement": "All initialization functions must be idempotent when called repeatedly.",
+      "verdict": "partially_covered",
+      "reason": "Fusion, PID, stabilizer, and CRTP initialization have guards, but supervisorInit resets the current state and faults on every call, so initialization is not fully idempotent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 561,
+          "line_end": 567,
+          "function": "supervisorInit"
+        }
+      ]
+    },
+    {
+      "id": "CF-R005",
+      "statement": "All output pointers must be checked for null before use.",
+      "verdict": "fully_covered",
+      "reason": "Public output pointers are checked individually for NULL; array and structure outputs are checked before use.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 227,
+          "line_end": 240,
+          "function": "sensfusion6GetQuaternion"
+        }
+      ]
+    },
+    {
+      "id": "CF-R006",
+      "statement": "Division and normalization must be protected against zero denominators.",
+      "verdict": "fully_covered",
+      "reason": "Zero normalization inputs, torque denominators, voltage, and variance length are all guarded.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 123,
+          "line_end": 129,
+          "function": "invSqrt"
+        }
+      ]
+    },
+    {
+      "id": "CF-R007",
+      "statement": "Production implementations must not define main; self-tests belong in separate files.",
+      "verdict": "fully_covered",
+      "reason": "The complete source has no main entry point.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1,
+          "line_end": 1206,
+          "function": "translation unit"
+        }
+      ]
+    },
+    {
+      "id": "CF-R008",
+      "statement": "Motor-mixing intermediate values must use int32_t, avoiding overflow for values around 65535/70000 before clipping.",
+      "verdict": "fully_covered",
+      "reason": "Roll, pitch, and mixing quantities are computed in int32 before subsequent limiting.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 243,
+          "line_end": 251,
+          "function": "powerDistributionLegacy"
+        }
+      ]
+    },
+    {
+      "id": "CF-R009",
+      "statement": "saturateSignedInt16 clamps its input to [-32767,32767] and returns in-range values unchanged.",
+      "verdict": "fully_covered",
+      "reason": "Positive and negative extremes are strictly limited to 32767 and -32767.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 109,
+          "line_end": 114,
+          "function": "saturateSignedInt16"
+        }
+      ]
+    },
+    {
+      "id": "CF-R010",
+      "statement": "capAngle normalizes any number of complete revolutions into [-180,180], preserving both endpoints.",
+      "verdict": "fully_covered",
+      "reason": "Repeated addition or subtraction of 360 normalizes the angle to the closed interval of plus or minus 180 degrees.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 116,
+          "line_end": 121,
+          "function": "capAngle"
+        }
+      ]
+    },
+    {
+      "id": "CF-R011",
+      "statement": "On its first call, sensfusion6Init sets the identity quaternion, clears the integrators, and sets the initialization flag; repeated calls must not overwrite the running state.",
+      "verdict": "fully_covered",
+      "reason": "An initialization flag guards repeated calls; initialization sets the identity quaternion and clears the integrals.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 139,
+          "line_end": 147,
+          "function": "sensfusion6Init"
+        }
+      ]
+    },
+    {
+      "id": "CF-R012",
+      "statement": "sensfusion6Test returns the actual initialization flag.",
+      "verdict": "fully_covered",
+      "reason": "It directly reports the actual initialization flag.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 149,
+          "line_end": 149,
+          "function": "sensfusion6Test"
+        }
+      ]
+    },
+    {
+      "id": "CF-R013",
+      "statement": "The sensor/estimation base rate is 1kHz, from which control and power distribution at 500Hz, radio at 100Hz, and fusion filtering at 250Hz are divided.",
+      "verdict": "partially_covered",
+      "reason": "Estimation has 250/100 Hz dividers, but control and power execute on every step; 500 Hz control and 100 Hz radio scheduling are not implemented.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 901,
+          "line_end": 937,
+          "function": "stabilizerTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R014",
+      "verdict": "unassessed",
+      "reason": "Real-time, resource, physical-device, or statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "evidence": [],
+      "statement": "Acquisition, estimation, and control on real devices must achieve the specified 1kHz/500Hz/100Hz periods."
+    },
+    {
+      "id": "CF-R015",
+      "statement": "The environment must retain the MPU9250 acceleration, angular velocity, and magnetic-field inputs and the LPS25H pressure/temperature inputs with their stated units; devices must not be substituted or magnetic-field inputs removed.",
+      "verdict": "partially_covered",
+      "reason": "Gyroscope, acceleration, and barometer values enter the stored sample, but no magnetic-field input field or acquisition path is present.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 839,
+          "line_end": 862,
+          "function": "estimatorComplementary"
+        }
+      ]
+    },
+    {
+      "id": "CF-R016",
+      "statement": "sensfusion6UpdateQ updates the global quaternion using angular velocity, acceleration, and dt, and normalizes it.",
+      "verdict": "fully_covered",
+      "reason": "The quaternion is integrated using dt and normalized after the update; a degenerate value restores the identity quaternion.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 151,
+          "line_end": 207,
+          "function": "sensfusion6UpdateQ"
+        }
+      ]
+    },
+    {
+      "id": "CF-R017",
+      "statement": "Default Mahony correction uses twoKp=0.8 and twoKi=0.002, accumulating integral feedback on all three axes when twoKi>0.",
+      "verdict": "fully_covered",
+      "reason": "The defaults are twoKp=.8 and twoKi=.002; feedback integrals accumulate using dt and contribute to angular-rate correction.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 170,
+          "line_end": 181,
+          "function": "sensfusion6UpdateQ"
+        }
+      ]
+    },
+    {
+      "id": "CF-R018",
+      "statement": "When twoKi=0, all three integral-feedback states are cleared.",
+      "verdict": "partially_covered",
+      "reason": "Clearing the integrals when Ki is disabled occurs only in the valid-acceleration branch; zero acceleration leaves the old integrals uncleared.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 159,
+          "line_end": 188,
+          "function": "sensfusion6UpdateQ"
+        }
+      ]
+    },
+    {
+      "id": "CF-R019",
+      "statement": "When CONFIG_IMU_MADGWICK_QUATERNION is enabled, gradient correction uses beta=0.01 without integral feedback.",
+      "verdict": "not_covered",
+      "reason": "Only the Mahony feedback path exists; beta is defined, but there is no Madgwick gradient update or switching path.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 151,
+          "line_end": 207,
+          "function": "sensfusion6UpdateQ"
+        }
+      ]
+    },
+    {
+      "id": "CF-R020",
+      "statement": "A zero acceleration vector skips acceleration normalization and correction, while retaining gyro integration and avoiding division by zero.",
+      "verdict": "fully_covered",
+      "reason": "Zero acceleration skips feedback, while the subsequent gyroscope-based quaternion integration still executes.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 159,
+          "line_end": 207,
+          "function": "sensfusion6UpdateQ"
+        }
+      ]
+    },
+    {
+      "id": "CF-R021",
+      "statement": "The first valid update sets baseZacc and calibrated; subsequent updates do not recalibrate.",
+      "verdict": "partially_covered",
+      "reason": "The baseline is set only on the first valid sample, but it is computed from normalized acceleration, losing the original magnitude in g.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 159,
+          "line_end": 186,
+          "function": "sensfusion6UpdateQ"
+        }
+      ]
+    },
+    {
+      "id": "CF-R022",
+      "statement": "estimatedGravityDirection computes the gravity direction from the current quaternion, following the direction conventions for the identity quaternion and specified rotations.",
+      "verdict": "fully_covered",
+      "reason": "The three gravity components are computed from the quaternion formulas.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 132,
+          "line_end": 137,
+          "function": "estimatedGravityDirection"
+        }
+      ]
+    },
+    {
+      "id": "CF-R023",
+      "statement": "sensfusion6GetEulerRPY computes RPY in degrees from the quaternion current at the time of the call, without using a stale gravity cache.",
+      "verdict": "fully_covered",
+      "reason": "Euler angles are computed from the current quaternion and output in degrees.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 209,
+          "line_end": 225,
+          "function": "sensfusion6GetEulerRPY"
+        }
+      ]
+    },
+    {
+      "id": "CF-R024",
+      "statement": "Euler conversion clamps gravityX to [-1,1] before calling asinf.",
+      "verdict": "fully_covered",
+      "reason": "The asin input is limited to [-1,1] first.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 217,
+          "line_end": 220,
+          "function": "sensfusion6GetEulerRPY"
+        }
+      ]
+    },
+    {
+      "id": "CF-R025",
+      "statement": "sensfusion6GetQuaternion returns the current global quaternion.",
+      "verdict": "fully_covered",
+      "reason": "The current quaternion components are returned through individually checked pointers.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 227,
+          "line_end": 230,
+          "function": "sensfusion6GetQuaternion"
+        }
+      ]
+    },
+    {
+      "id": "CF-R026",
+      "statement": "sensfusion6GetAccZ returns the dot product of acceleration and the estimated gravity direction.",
+      "verdict": "fully_covered",
+      "reason": "Raw acceleration is dotted with the current gravity direction.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 232,
+          "line_end": 236,
+          "function": "sensfusion6GetAccZ"
+        }
+      ]
+    },
+    {
+      "id": "CF-R027",
+      "statement": "sensfusion6GetAccZWithoutGravity subtracts baseZacc from projected acceleration.",
+      "verdict": "fully_covered",
+      "reason": "The stored baseZacc is subtracted from the projected value.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 238,
+          "line_end": 241,
+          "function": "sensfusion6GetAccZWithoutGravity"
+        }
+      ]
+    },
+    {
+      "id": "CF-R028",
+      "statement": "invSqrt uses 0x5f3759df and one Newton-Raphson iteration.",
+      "verdict": "fully_covered",
+      "reason": "It uses the 0x5f3759df bit estimate and one Newton update.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 123,
+          "line_end": 129,
+          "function": "invSqrt"
+        }
+      ]
+    },
+    {
+      "id": "CF-R029",
+      "statement": "Legacy mixing uses int32_t roll/2 and pitch/2 and the specified signed formulas for the four channels, retaining results without premature clamping.",
+      "verdict": "fully_covered",
+      "reason": "The four combinations of roll/2, pitch/2, and yaw signs match the contract.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 243,
+          "line_end": 252,
+          "function": "powerDistributionLegacy"
+        }
+      ]
+    },
+    {
+      "id": "CF-R030",
+      "statement": "ForceTorque computes four X-frame forces using the 0.25 thrust factor, 0.707106781 arm-length factor, and torque-ratio formulas, and sets negative forces to zero.",
+      "verdict": "fully_covered",
+      "reason": "One quarter of total thrust, the 0.707 arm length, and yaw torque are allocated with the four required sign patterns; negative forces are cleared to zero.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 260,
+          "line_end": 279,
+          "function": "powerDistributionForceTorque"
+        }
+      ]
+    },
+    {
+      "id": "CF-R031",
+      "statement": "When armLength or thrustToTorque is zero, the corresponding component safely becomes zero.",
+      "verdict": "fully_covered",
+      "reason": "When the arm length or thrust-to-torque ratio is zero, only the corresponding torque component becomes zero; the other components are retained.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 265,
+          "line_end": 269,
+          "function": "powerDistributionForceTorque"
+        }
+      ]
+    },
+    {
+      "id": "CF-R032",
+      "statement": "The dispatcher uses default parameters of 0.0397m and 0.005964 and a dimensionally appropriate motorForceToPwm conversion, rather than multiplying newtons directly by 65535.",
+      "verdict": "fully_covered",
+      "reason": "Force in newtons is divided by the explicit maximum motor force before PWM conversion, and dispatch uses the frozen geometry constants.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 254,
+          "line_end": 258,
+          "function": "motorForceToPwm"
+        }
+      ]
+    },
+    {
+      "id": "CF-R033",
+      "statement": "Force mode clamps each normalized force to [0,1] before converting it to uint16_t PWM.",
+      "verdict": "fully_covered",
+      "reason": "Normalized force is limited to 0..1 before multiplication by 65535 and rounding.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 281,
+          "line_end": 287,
+          "function": "powerDistributionForce"
+        }
+      ]
+    },
+    {
+      "id": "CF-R034",
+      "statement": "powerDistribution routes the three modes by controlMode; unknown modes leave the output unchanged.",
+      "verdict": "fully_covered",
+      "reason": "All three modes are explicitly dispatched; an unknown mode leaves the existing output unchanged.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 289,
+          "line_end": 308,
+          "function": "powerDistribution"
+        }
+      ]
+    },
+    {
+      "id": "CF-R035",
+      "statement": "Only when the maximum strictly exceeds the limit does powerDistributionCap subtract the same excess from all four channels and set isCapped=true; equality with the limit does not clip.",
+      "verdict": "fully_covered",
+      "reason": "Only a maximum value strictly above the limit causes the excess to be subtracted from all four outputs and the status to be reported.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 315,
+          "line_end": 329,
+          "function": "powerDistributionCap"
+        }
+      ]
+    },
+    {
+      "id": "CF-R036",
+      "statement": "After clipping, capMinThrust clamps low values to idleThrust; negative values must not wrap around as unsigned integers.",
+      "verdict": "fully_covered",
+      "reason": "After the common excess is subtracted, capMinThrust is applied to each output to protect the idle level.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 323,
+          "line_end": 327,
+          "function": "powerDistributionCap"
+        }
+      ]
+    },
+    {
+      "id": "CF-R037",
+      "statement": "batteryCompensation updates using old+alpha*(supply-old), with standard alpha=0.01.",
+      "verdict": "partially_covered",
+      "reason": "The low-pass function is correct, but the main control path does not invoke voltage filtering with alpha=.01.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 332,
+          "line_end": 335,
+          "function": "batteryCompensation"
+        }
+      ]
+    },
+    {
+      "id": "CF-R038",
+      "statement": "motorsCompensateBatteryVoltage computes round(thrust*nominal/actual) and clamps to [0,65535]; when actual<=0, it returns the original value.",
+      "verdict": "fully_covered",
+      "reason": "The nominal-to-actual voltage ratio is applied, rounded, and limited; nonpositive actual voltage returns the input thrust directly.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 337,
+          "line_end": 341,
+          "function": "motorsCompensateBatteryVoltage"
+        }
+      ]
+    },
+    {
+      "id": "CF-R039",
+      "statement": "Explicit conversion boundaries separate int32_t mixing, normalized force, uint16_t PWM, and physical duty cycle.",
+      "verdict": "partially_covered",
+      "reason": "There is an int32 mixed-output to uint16 request conversion, but the endpoint only writes request logs; no 0%..100% device-PWM boundary is provided.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 915,
+          "line_end": 925,
+          "function": "stabilizerTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R040",
+      "statement": "All four physical PWM output commands are zero when disarmed, emergency-stopped, or in a safety-fault state.",
+      "verdict": "partially_covered",
+      "reason": "Disallowed operation and emergency stop clear the requests, but a physical or replaceable PWM output boundary is not implemented.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 920,
+          "line_end": 925,
+          "function": "stabilizerTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R041",
+      "statement": "Battery voltage is obtained from the ADC environment input and converted to V.",
+      "verdict": "not_covered",
+      "reason": "baroTemperature is used as voltage; there is no ADC or replaceable battery-voltage input.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1013,
+          "line_end": 1053,
+          "function": "healthRunTests"
+        }
+      ]
+    },
+    {
+      "id": "CF-R042",
+      "statement": "The low-voltage policy distinguishes warnings, maximum-thrust limiting, and controlled landing; thresholds come from the frozen configuration rather than hard-coded fixture values.",
+      "verdict": "not_covered",
+      "reason": "The three configurable levels of low-voltage warning, maximum-thrust limiting, and controlled landing are missing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 901,
+          "line_end": 937,
+          "function": "stabilizerTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R043",
+      "verdict": "unassessed",
+      "reason": "The requirements omit necessary parameters or contain conflicting wording; clarify a common contract first, rather than deriving it from the candidate implementation.",
+      "evidence": [],
+      "statement": "The four GPIO LEDs should indicate flight/warning states, but the particular colors and patterns require a subsequently frozen contract before the display policy can be assessed."
+    },
+    {
+      "id": "CF-R044",
+      "statement": "attitudeControllerInit initializes three attitude PIDs and three rate PIDs, with no side effects on repeated initialization.",
+      "verdict": "fully_covered",
+      "reason": "All six PIDs are initialized separately under an initialized guard.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 343,
+          "line_end": 371,
+          "function": "attitudeControllerInit"
+        }
+      ]
+    },
+    {
+      "id": "CF-R045",
+      "statement": "All three rate PID outputs are limited using saturateSignedInt16.",
+      "verdict": "fully_covered",
+      "reason": "The three rate-PID outputs pass through signed 16-bit limiting.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 373,
+          "line_end": 380,
+          "function": "attitudeControllerCorrectRatePID"
+        }
+      ]
+    },
+    {
+      "id": "CF-R046",
+      "statement": "The attitude-loop yaw update uses reset=true; roll/pitch updates do not reset.",
+      "verdict": "fully_covered",
+      "reason": "Roll and pitch use false, while yaw uses true for the reset parameter.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 382,
+          "line_end": 389,
+          "function": "attitudeControllerCorrectAttitudePID"
+        }
+      ]
+    },
+    {
+      "id": "CF-R047",
+      "statement": "ResetAll resets attitude PIDs to the current attitude and clears the three rate PIDs; a single-axis reset affects only its specified axis.",
+      "verdict": "partially_covered",
+      "reason": "Current attitude is used for attitude-PID reset, and single-axis resets are separate, but the old prevError values of the rate PIDs are not cleared.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 391,
+          "line_end": 410,
+          "function": "attitudeControllerResetAllPID"
+        }
+      ]
+    },
+    {
+      "id": "CF-R048",
+      "statement": "yaw modeVelocity accumulates desiredYaw using attitudeRate.yaw*attitudeUpdateDt.",
+      "verdict": "fully_covered",
+      "reason": "Persistent desiredYaw accumulates the target yaw rate multiplied by dt.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 444,
+          "line_end": 446,
+          "function": "controllerPid"
+        }
+      ]
+    },
+    {
+      "id": "CF-R049",
+      "statement": "A nonzero yawMaxDelta limits desiredYaw relative to current yaw to the corresponding positive/negative range; zero disables this limit.",
+      "verdict": "fully_covered",
+      "reason": "A nonzero yawMaxDelta limits the target yaw to current yaw plus or minus delta; a zero value disables limiting.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 458,
+          "line_end": 460,
+          "function": "controllerPid"
+        }
+      ]
+    },
+    {
+      "id": "CF-R050",
+      "statement": "yaw modeAbs uses the target yaw; quat modeAbs obtains yaw by converting the target quaternion to RPY.",
+      "verdict": "partially_covered",
+      "reason": "The absolute yaw target works, but absolute-quaternion mode additionally requires yaw to be modeAbs.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 444,
+          "line_end": 456,
+          "function": "controllerPid"
+        }
+      ]
+    },
+    {
+      "id": "CF-R051",
+      "statement": "roll/pitch modeVelocity directly uses the corresponding attitudeRate and resets that attitude PID.",
+      "verdict": "fully_covered",
+      "reason": "Roll/pitch rate modes directly take attitudeRate and reset their respective attitude PIDs.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 462,
+          "line_end": 477,
+          "function": "controllerPid"
+        }
+      ]
+    },
+    {
+      "id": "CF-R052",
+      "statement": "With z disabled, use manual thrust; with z enabled, use position-control thrust computed from current position/velocity and the z target, rather than copying the manual value.",
+      "verdict": "partially_covered",
+      "reason": "The normal path selects position output according to z mode, but raw thrust=0 returns early, preventing position-thrust calculation when altitude control has zero direct thrust.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 436,
+          "line_end": 480,
+          "function": "controllerPid"
+        }
+      ]
+    },
+    {
+      "id": "CF-R053",
+      "statement": "Retain a replaceable position-controller output boundary for injecting deterministic thrust.",
+      "verdict": "partially_covered",
+      "reason": "An independent position function exists, but its fixed strong-symbol implementation has no replaceable callback or weak boundary.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 419,
+          "line_end": 425,
+          "function": "positionControllerUpdate"
+        }
+      ]
+    },
+    {
+      "id": "CF-R054",
+      "statement": "When x/y modeDisable is selected, use manual attitude.",
+      "verdict": "fully_covered",
+      "reason": "When x/y are disabled, manual roll/pitch control is computed from the setpoint attitude.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 462,
+          "line_end": 477,
+          "function": "controllerPid"
+        }
+      ]
+    },
+    {
+      "id": "CF-R055",
+      "statement": "When thrust==0, clear all four control quantities, reset attitude/position PIDs, and synchronize desiredYaw.",
+      "verdict": "partially_covered",
+      "reason": "The check uses input thrust rather than final position thrust, and zero thrust resets only the attitude PIDs, not the position controller.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 436,
+          "line_end": 480,
+          "function": "controllerPid"
+        }
+      ]
+    },
+    {
+      "id": "CF-R056",
+      "statement": "The rate-loop pitchActual uses -sensors->gyro.y.",
+      "verdict": "fully_covered",
+      "reason": "The actual pitch rate explicitly uses negative gyro.y.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 482,
+          "line_end": 484,
+          "function": "controllerPid"
+        }
+      ]
+    },
+    {
+      "id": "CF-R057",
+      "statement": "After retrieving actuator outputs, the Legacy coordinate convention negates control->yaw.",
+      "verdict": "fully_covered",
+      "reason": "Legacy yaw is negated after actuator output is obtained.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 485,
+          "line_end": 486,
+          "function": "controllerPid"
+        }
+      ]
+    },
+    {
+      "id": "CF-R058",
+      "statement": "DISABLE priority sets thrustLocked=true; receiving raw thrust==0 releases the lock.",
+      "verdict": "fully_covered",
+      "reason": "DISABLE sets the lock; receiving raw thrust=0 releases it.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 504,
+          "line_end": 505,
+          "function": "crtpCommanderRpytDecodeSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R059",
+      "statement": "Outside AltHold, locking or raw<1000 produces zero thrust; otherwise thrust must not exceed 60000.",
+      "verdict": "partially_covered",
+      "reason": "The default branch applies the lock and the 1000/60000 range, but PosHold without AltHold returns early without determining final thrust.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 507,
+          "line_end": 558,
+          "function": "crtpCommanderRpytDecodeSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R060",
+      "statement": "AltHold selects z velocity mode, zero direct thrust, and vertical velocity (raw-32767)/32767.",
+      "verdict": "fully_covered",
+      "reason": "AltHold sets z to velocity mode, clears thrust to zero, and applies the (raw-32767)/32767 mapping.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 507,
+          "line_end": 510,
+          "function": "crtpCommanderRpytDecodeSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R061",
+      "statement": "First entry into AltHold resets the position PID/filter and sets modeSet; exit disables z and clears modeSet.",
+      "verdict": "partially_covered",
+      "reason": "commanderModeSet is maintained, but first entry does not reset the position PID/filter; early returns in some modes also skip exit-flag handling.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 507,
+          "line_end": 539,
+          "function": "crtpCommanderRpytDecodeSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R062",
+      "statement": "PosHold takes precedence over default mode, selects x/y velocity mode with the specified pitch/roll velocity mapping, and disables and zeros attitude roll/pitch.",
+      "verdict": "fully_covered",
+      "reason": "PosHold precedes the default branch; x/y velocity modes, positive pitch/30 and roll/30, and disabled, cleared attitude match the original statement.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 515,
+          "line_end": 522,
+          "function": "crtpCommanderRpytDecodeSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R063",
+      "statement": "Enter PosSet only when posSetMode is true and rawThrust is nonzero; set targets using the specified coordinate mapping and absolute modes, and clear direct thrust.",
+      "verdict": "fully_covered",
+      "reason": "PosSet runs only when its flag is set and raw thrust is nonzero; the coordinates, absolute yaw mode, and zero thrust are correct.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 524,
+          "line_end": 534,
+          "function": "crtpCommanderRpytDecodeSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R064",
+      "statement": "Default roll/pitch RATE uses velocity mode and attitudeRate; ANGLE uses absolute mode and attitude.",
+      "verdict": "fully_covered",
+      "reason": "Default roll/pitch RATE and ANGLE write attitudeRate and attitude, respectively, with their corresponding modes.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 548,
+          "line_end": 552,
+          "function": "crtpCommanderRpytDecodeSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R065",
+      "statement": "Default yaw RATE uses velocity mode and negative rawYaw; ANGLE uses absolute mode and target yaw.",
+      "verdict": "fully_covered",
+      "reason": "Default yaw RATE writes negative raw yaw; ANGLE writes the original yaw.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 554,
+          "line_end": 555,
+          "function": "crtpCommanderRpytDecodeSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R066",
+      "statement": "PLUSMODE rotates roll/pitch by 45 degrees, XMODE leaves values unchanged, and CAREFREE enters an observable error path.",
+      "verdict": "partially_covered",
+      "reason": "PLUS rotates by 45 degrees and X remains unchanged by default; CAREFREE only disables xy, without the required assert/error.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 541,
+          "line_end": 546,
+          "function": "crtpCommanderRpytDecodeSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R067",
+      "statement": "rotateYaw uses the standard two-dimensional rotation formula after converting to radians.",
+      "verdict": "fully_covered",
+      "reason": "It uses the standard two-dimensional yaw rotation matrix.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 489,
+          "line_end": 495,
+          "function": "rotateYaw"
+        }
+      ]
+    },
+    {
+      "id": "CF-R068",
+      "statement": "supervisorUpdate executes only when RATE_DO_EXECUTE(RATE_SUPERVISOR,stabilizerStep) is true.",
+      "verdict": "fully_covered",
+      "reason": "Entry is gated by the RATE_SUPERVISOR divider.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 783,
+          "line_end": 785,
+          "function": "supervisorUpdate"
+        }
+      ]
+    },
+    {
+      "id": "CF-R069",
+      "statement": "supervisorCanFly permits only ReadyToFly/Flying/WarningLevelOut/Landed; CanArm permits only PreFlChecksPassed.",
+      "verdict": "fully_covered",
+      "reason": "The four CanFly states and the PreFlChecksPassed condition for CanArm are correct.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 569,
+          "line_end": 577,
+          "function": "supervisorCanFly"
+        }
+      ]
+    },
+    {
+      "id": "CF-R070",
+      "statement": "IsArmed and IsCrashed return the current flags.",
+      "verdict": "fully_covered",
+      "reason": "It returns the stored armed/crashed states.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 578,
+          "line_end": 579,
+          "function": "supervisorIsArmed"
+        }
+      ]
+    },
+    {
+      "id": "CF-R071",
+      "statement": "RequestArming sets arming in an allowed state and enters Arming in the same call; repeated requests are idempotent, and disallowed states return false.",
+      "verdict": "partially_covered",
+      "reason": "When allowed, it sets armed and enters Arming in the same call, but if armedFlag is already true it first returns true in any state, bypassing the original requirement to return false in disallowed states.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 581,
+          "line_end": 590,
+          "function": "supervisorRequestArming"
+        }
+      ]
+    },
+    {
+      "id": "CF-R072",
+      "statement": "CrashRecovery refuses recovery while tumbled and otherwise permits clearing crash; doRecovery=false sets crash and returns true.",
+      "verdict": "fully_covered",
+      "reason": "Recovery is rejected when tumbled; otherwise, crash is cleared. The false branch always sets crash.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 592,
+          "line_end": 603,
+          "function": "supervisorRequestCrashRecovery"
+        }
+      ]
+    },
+    {
+      "id": "CF-R073",
+      "statement": "isFlyingCheck refreshes the flight tick whenever any motor exceeds idle and retains flying hysteresis for strictly less than 2000ms.",
+      "verdict": "fully_covered",
+      "reason": "Any motor above idle records the time, and flight hysteresis uses a strict less-than-threshold comparison.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 629,
+          "line_end": 644,
+          "function": "isFlyingCheck"
+        }
+      ]
+    },
+    {
+      "id": "CF-R074",
+      "statement": "Do not report flying if no motor above idle has ever been observed; use a separate seen flag to distinguish a valid tick=0 event.",
+      "verdict": "fully_covered",
+      "reason": "A separate seen flag supports the first observation of flight at tick 0.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 631,
+          "line_end": 643,
+          "function": "isFlyingCheck"
+        }
+      ]
+    },
+    {
+      "id": "CF-R075",
+      "statement": "When crashDetectionGs>0, detect crash from the acceleration-magnitude deviation; a zero threshold disables detection.",
+      "verdict": "partially_covered",
+      "reason": "Crash detection compares the norm deviation with a positive threshold, but enabled=false returns first, so disabling tumble detection also masks crash detection.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 652,
+          "line_end": 663,
+          "function": "isTumbledCheck"
+        }
+      ]
+    },
+    {
+      "id": "CF-R076",
+      "statement": "When the absolute values of all three axes are below freeFallThreshold, set free fall and reset the tumble timer, entering ExceptFreeFall rather than directly setting tumbled.",
+      "verdict": "partially_covered",
+      "reason": "Low values on all three axes report freefall, clear tumble timing, and return false, but do not enter the ExceptFreeFall state explicitly required by the original text.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 651,
+          "line_end": 655,
+          "function": "isTumbledCheck"
+        }
+      ]
+    },
+    {
+      "id": "CF-R077",
+      "statement": "Tilt starts the tumble timer; inversion uses a shorter timeout; returning upright clears the timer.",
+      "verdict": "partially_covered",
+      "reason": "Tilt/inversion duration checks and upright timer clearing exist, but tick 0 also serves as the not-started sentinel: an ongoing event starting at 0 restarts timing on the next call and cannot trigger according to its actual elapsed duration.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 666,
+          "line_end": 682,
+          "function": "isTumbledCheck"
+        }
+      ]
+    },
+    {
+      "id": "CF-R078",
+      "statement": "When tumbleCheckEnabled=false, do not report tumbled.",
+      "verdict": "fully_covered",
+      "reason": "Disabling tumble detection returns false.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 655,
+          "line_end": 656,
+          "function": "isTumbledCheck"
+        }
+      ]
+    },
+    {
+      "id": "CF-R079",
+      "statement": "The return value of isTumbledCheck represents only tumbling; crash alone is exposed through state or a condition bit.",
+      "verdict": "fully_covered",
+      "reason": "The return value represents tumbling; crash state is updated by a separate norm condition.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 658,
+          "line_end": 682,
+          "function": "isTumbledCheck"
+        }
+      ]
+    },
+    {
+      "id": "CF-R080",
+      "statement": "When AUTO_ARMING is enabled, initial entry into PreFlChecksPassed uses the same arming path as an explicit request; when disabled, do not arm automatically.",
+      "verdict": "fully_covered",
+      "reason": "When automatic arming is configured, it calls the same arming path as an explicit request.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 802,
+          "line_end": 803,
+          "function": "supervisorUpdate"
+        }
+      ]
+    },
+    {
+      "id": "CF-R081",
+      "statement": "Clear arming when leaving the five states allowed to retain it.",
+      "verdict": "not_covered",
+      "reason": "Leaving a state that permits remaining armed does not clear armedFlag.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 783,
+          "line_end": 819,
+          "function": "supervisorUpdate"
+        }
+      ]
+    },
+    {
+      "id": "CF-R082",
+      "statement": "Evaluate spinup timeout only in Arming, using the configured start/period; set timeout only on reaching the period, and clear the start and bit on exit.",
+      "verdict": "partially_covered",
+      "reason": "Arming timing and cleanup on exit are implemented, but use a private call-count clock, and the start time also lacks an external configuration input.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 805,
+          "line_end": 812,
+          "function": "supervisorUpdate"
+        }
+      ]
+    },
+    {
+      "id": "CF-R083",
+      "statement": "The Emergency-stop watchdog bool represents health: true if never notified or not over 1000ms, false on timeout; fault consumers explicitly negate it.",
+      "verdict": "partially_covered",
+      "reason": "The public helper has the correct healthy true/false polarity and 1000 ms boundary, but supervisorUpdate does not read and invert the actual watchdog notification result.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 685,
+          "line_end": 689,
+          "function": "checkEmergencyStopWatchdog"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 783,
+          "line_end": 819,
+          "function": "supervisorUpdate"
+        }
+      ]
+    },
+    {
+      "id": "CF-R084",
+      "statement": "Commander setpoint age strictly over 500ms sets WARNING; strictly over 2000ms sets TIMEOUT.",
+      "verdict": "not_covered",
+      "reason": "It does not compute commander age or set the 500 ms WARNING and 2000 ms TIMEOUT conditions.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 783,
+          "line_end": 819,
+          "function": "supervisorUpdate"
+        }
+      ]
+    },
+    {
+      "id": "CF-R085",
+      "statement": "The ReadyToFly preflight timeout and landing timeout update their respective conditions, which are returned by the corresponding public functions.",
+      "verdict": "partially_covered",
+      "reason": "The landing elapsed-time function exists, but preflight is incorrectly restricted to PreFlChecksPassed rather than ReadyToFly, and the corresponding condition bits are not updated.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 691,
+          "line_end": 700,
+          "function": "supervisorIsPreflightTimeout"
+        }
+      ]
+    },
+    {
+      "id": "CF-R086",
+      "statement": "CRTP stop, parameter stop, and watchdog stop each update their corresponding condition bit.",
+      "verdict": "partially_covered",
+      "reason": "The public helper combines three stop inputs, but actual supervisorUpdate does not call it or connect those stop inputs, leaving condition propagation incomplete.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 702,
+          "line_end": 709,
+          "function": "updateAndPopulateConditions"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 783,
+          "line_end": 819,
+          "function": "supervisorUpdate"
+        }
+      ]
+    },
+    {
+      "id": "CF-R087",
+      "statement": "DShot arming checks require all four RPMs to remain within range for the required qualifying duration.",
+      "verdict": "partially_covered",
+      "reason": "A closed-interval check for all four motors exists, but no state tracks a sustained qualifying duration.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 731,
+          "line_end": 736,
+          "function": "isRPMatArmingValid"
+        }
+      ]
+    },
+    {
+      "id": "CF-R088",
+      "statement": "RPM below the not-responding threshold for the specified duration sets a fault; CanFly=false clears the corresponding check state.",
+      "verdict": "partially_covered",
+      "reason": "Low-RPM duration tracking and state clearing when CanFly=false exist, but no fault condition is set after the function returns, and supervisorUpdate does not call it.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 738,
+          "line_end": 750,
+          "function": "isMotorsNotResponding"
+        }
+      ]
+    },
+    {
+      "id": "CF-R089",
+      "statement": "Sensor, motor-ratio, RPM, and safety-configuration injection functions supply actual inputs to supervisorUpdate rather than permanent zero placeholders.",
+      "verdict": "partially_covered",
+      "reason": "Sensors and motor ratios enter Update, but RPM is only stored and never participates in update checks.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 752,
+          "line_end": 819,
+          "function": "supervisorSetMotorRPMs"
+        }
+      ]
+    },
+    {
+      "id": "CF-R090",
+      "statement": "WarningLevelOut setpoint override disables x/y, zeros horizontal absolute attitude and yaw velocity, and preserves z.",
+      "verdict": "fully_covered",
+      "reason": "Warning disables xy, levels roll/pitch, and sets yaw rate to 0 while preserving z fields.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 721,
+          "line_end": 724,
+          "function": "supervisorOverrideSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R091",
+      "statement": "Setpoint overrides in Arming/ReadyToFly/Flying/Landed leave the targets unchanged.",
+      "verdict": "fully_covered",
+      "reason": "Without a fault, Arming/Ready/Flying/Landed leave the setpoint unchanged.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 725,
+          "line_end": 728,
+          "function": "supervisorOverrideSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R092",
+      "statement": "Other Supervisor states use an all-zero setpoint.",
+      "verdict": "fully_covered",
+      "reason": "Safety conditions and disallowed states clear the entire setpoint to zero.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 715,
+          "line_end": 728,
+          "function": "supervisorOverrideSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R093",
+      "verdict": "unassessed",
+      "reason": "The requirements omit necessary parameters or contain conflicting wording; clarify a common contract first, rather than deriving it from the candidate implementation.",
+      "evidence": [],
+      "statement": "Emergency/WDT/tumble/free-fall/motor faults must also produce the zeroing or limiting effects stated by external tests, but this line does not specify additional per-state limits and rules."
+    },
+    {
+      "id": "CF-R094",
+      "statement": "supervisorAreMotorsAllowedToRun permits only the specified five states.",
+      "verdict": "fully_covered",
+      "reason": "Only the five specified states permit motor operation.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 605,
+          "line_end": 612,
+          "function": "supervisorAreMotorsAllowedToRun"
+        }
+      ]
+    },
+    {
+      "id": "CF-R095",
+      "statement": "supervisorGetInfoBitfield encodes live state using the specified bit0-bit11 layout.",
+      "verdict": "partially_covered",
+      "reason": "Some info bits exist, but bit 6 uses Locked and the required state bits 8..10 are missing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 614,
+          "line_end": 627,
+          "function": "supervisorGetInfoBitfield"
+        }
+      ]
+    },
+    {
+      "id": "CF-R096",
+      "statement": "Estimator uses a FIFO of capacity 16; enqueue on full and dequeue on empty return false.",
+      "verdict": "fully_covered",
+      "reason": "The 16-slot FIFO wraps its head and tail, and correctly returns false when full or empty.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 821,
+          "line_end": 837,
+          "function": "estimatorEnqueue"
+        }
+      ]
+    },
+    {
+      "id": "CF-R097",
+      "statement": "estimatorComplementary drains the queue on every call and retains the latest value of each measurement type.",
+      "verdict": "fully_covered",
+      "reason": "Each call drains the queue and updates persistent estSensors by type, retaining the latest sample of each type.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 839,
+          "line_end": 852,
+          "function": "estimatorComplementary"
+        }
+      ]
+    },
+    {
+      "id": "CF-R098",
+      "statement": "On the 250Hz divider, update fusion, Euler/Quaternion, gravity-compensated Z acceleration, and vertical velocity; otherwise leave those outputs unchanged.",
+      "verdict": "fully_covered",
+      "reason": "The 250 Hz path updates the quaternion/Euler angles and gravity-compensated Z velocity; these states remain unchanged when the divider does not match.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 854,
+          "line_end": 862,
+          "function": "estimatorComplementary"
+        }
+      ]
+    },
+    {
+      "id": "CF-R099",
+      "statement": "On the 100Hz divider, update position; otherwise leave position output unchanged.",
+      "verdict": "fully_covered",
+      "reason": "At 100 Hz, velocity multiplied by 0.01 is accumulated into all three position components.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 864,
+          "line_end": 868,
+          "function": "estimatorComplementary"
+        }
+      ]
+    },
+    {
+      "id": "CF-R100",
+      "statement": "For ordinary priorities, Commander replaces its sole active setpoint and writes the current tick only when newPriority>=current; lower priority is rejected.",
+      "verdict": "partially_covered",
+      "reason": "Priority comparison and a single setpoint exist, but time comes from task-call counts rather than an injectable current millisecond tick.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 871,
+          "line_end": 881,
+          "function": "commanderSetSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R101",
+      "statement": "DISABLE emergency override is accepted regardless of its numeric value and becomes the active priority.",
+      "verdict": "fully_covered",
+      "reason": "A dedicated DISABLE exception bypasses ordinary priority comparison, accepts targets, and stores active priority, matching R220–222 emergency override.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 874,
+          "line_end": 878,
+          "function": "commanderSetSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R102",
+      "statement": "A new priority above HIGHLEVEL stops the high-level trajectory.",
+      "verdict": "not_covered",
+      "reason": "After a command above HIGHLEVEL is accepted, there is no path to stop the high-level trajectory.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 871,
+          "line_end": 881,
+          "function": "commanderSetSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R103",
+      "statement": "RelaxPriority sets the current priority to LOWEST=1.",
+      "verdict": "fully_covered",
+      "reason": "The current priority is lowered to the frozen LOWEST value.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 883,
+          "line_end": 883,
+          "function": "commanderRelaxPriority"
+        }
+      ]
+    },
+    {
+      "id": "CF-R104",
+      "statement": "InactivityTime returns currentTick-lastUpdate; GetActivePriority returns the current priority.",
+      "verdict": "partially_covered",
+      "reason": "It returns the current priority and time difference, but the current clock does not use the independent millisecond source specified by D.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 884,
+          "line_end": 885,
+          "function": "commanderGetInactivityTime"
+        }
+      ]
+    },
+    {
+      "id": "CF-R105",
+      "statement": "stabilizerInit initializes sensors->estimator->controller->powerDistribution->motors->collisionAvoidance in order, creates the task, and is idempotent.",
+      "verdict": "partially_covered",
+      "reason": "Fusion/PID/CRTP initialization is idempotent, but initialization of the sensor, power, motor, and collision submodules is missing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 887,
+          "line_end": 894,
+          "function": "stabilizerInit"
+        }
+      ]
+    },
+    {
+      "id": "CF-R106",
+      "statement": "stabilizerTask waits until the system has started and sensor calibration is complete.",
+      "verdict": "not_covered",
+      "reason": "It starts work immediately, without waiting for system startup or sensor calibration.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 901,
+          "line_end": 908,
+          "function": "stabilizerTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R107",
+      "statement": "The normal control loop follows the specified order: sensor wait/read->estimation->commander->supervisor->collision avoidance->override->control->distribution->battery compensation->clipping->motor output.",
+      "verdict": "partially_covered",
+      "reason": "The estimation, supervision, override, control, and power chain exists, but acquisition, collision handling, voltage compensation, and an actual setMotorRatios boundary are missing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 901,
+          "line_end": 925,
+          "function": "stabilizerTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R108",
+      "statement": "When CanFly=false, block new commands and zero control outputs.",
+      "verdict": "not_covered",
+      "reason": "CanFly=false does not block new commands or clear control; only the final output has a motorAllowed check.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 901,
+          "line_end": 925,
+          "function": "stabilizerTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R109",
+      "statement": "A submitted high-level setpoint actually calls commanderSetSetpoint with COMMANDER_PRIORITY_HIGHLEVEL on the next control step.",
+      "verdict": "partially_covered",
+      "reason": "It writes to commander immediately instead of saving a pending setpoint for submission on the next control step.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 896,
+          "line_end": 899,
+          "function": "stabilizerSubmitHighLevelSetpoint"
+        }
+      ]
+    },
+    {
+      "id": "CF-R110",
+      "statement": "When motorsAllowed=false, stop the motors.",
+      "verdict": "partially_covered",
+      "reason": "When motors are prohibited, logged requests are cleared, but there is no motor-stop interface or observable PWM output.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 920,
+          "line_end": 925,
+          "function": "stabilizerTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R111",
+      "statement": "When a Health test is requested, healthRunTests replaces the normal control branch.",
+      "verdict": "fully_covered",
+      "reason": "When health is active, only the test runs and the normal control branch is skipped.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 905,
+          "line_end": 907,
+          "function": "stabilizerTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R112",
+      "statement": "compressState multiplies position and velocity by 1000 to obtain mm and mm/s.",
+      "verdict": "fully_covered",
+      "reason": "All three position and velocity axes are multiplied by 1000 to produce integers in millimeter units.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 952,
+          "line_end": 957,
+          "function": "compressState"
+        }
+      ]
+    },
+    {
+      "id": "CF-R113",
+      "statement": "compressState multiplies acceleration x/y by 9810 and computes z as (acc.z+1)*9810.",
+      "verdict": "fully_covered",
+      "reason": "xy are multiplied by 9810; z is incremented by 1 and then multiplied by 9810. The original text does not require the values to come from sensor rather than state.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 958,
+          "line_end": 960,
+          "function": "compressState"
+        }
+      ]
+    },
+    {
+      "id": "CF-R114",
+      "statement": "compressState converts angular velocity from deg/s to mrad/s and negates the gyro.y pitch component.",
+      "verdict": "fully_covered",
+      "reason": "Degrees per second are converted to milliradians per second, with the y axis negated.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 961,
+          "line_end": 963,
+          "function": "compressState"
+        }
+      ]
+    },
+    {
+      "id": "CF-R115",
+      "statement": "compressState uses quatcompress to produce a 32-bit compressed quaternion.",
+      "verdict": "fully_covered",
+      "reason": "All four quaternion components are quantized and packed into a 32-bit value; the original item does not specify an encoding format or minimum precision.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 939,
+          "line_end": 965,
+          "function": "quatcompress_local"
+        }
+      ]
+    },
+    {
+      "id": "CF-R116",
+      "statement": "rateSupervisorValidate accepts only the closed interval [997,1003].",
+      "verdict": "fully_covered",
+      "reason": "Values from 997 through 1003 inclusive return true; other values return false.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 967,
+          "line_end": 970,
+          "function": "rateSupervisorValidate"
+        }
+      ]
+    },
+    {
+      "id": "CF-R117",
+      "statement": "The Supervisor task waits 2000ms; a timeout while sensors are active enters assert/error, whereas a timeout while suspended is allowed.",
+      "verdict": "not_covered",
+      "reason": "It only adds 2000 to hostTick, without waiting, distinguishing active/paused operation, or providing an assert/error path.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 972,
+          "line_end": 972,
+          "function": "rateSupervisorTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R118",
+      "statement": "healthShallWeRunTest consumes a test request, performs the corresponding initialization, clears the request, and returns true; with no request and tests complete, it returns false.",
+      "verdict": "fully_covered",
+      "reason": "It consumes a test request and keeps returning true while the test is not Done.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 977,
+          "line_end": 991,
+          "function": "healthShallWeRunTest"
+        }
+      ]
+    },
+    {
+      "id": "CF-R119",
+      "statement": "A propeller request initializes configureAcc; a battery request initializes testBattery and sets tick to zero.",
+      "verdict": "fully_covered",
+      "reason": "The propeller test enters configureAcc; the battery test enters testBattery and sets tick to 0.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 979,
+          "line_end": 987,
+          "function": "healthShallWeRunTest"
+        }
+      ]
+    },
+    {
+      "id": "CF-R120",
+      "statement": "healthRunTests advances an initialized test state without relying on the caller to modify private state.",
+      "verdict": "fully_covered",
+      "reason": "The request initializes the state and execution advances it automatically, without requiring the caller to write private state.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1013,
+          "line_end": 1075,
+          "function": "healthRunTests"
+        }
+      ]
+    },
+    {
+      "id": "CF-R121",
+      "statement": "configureAcc clears results, switches accelerometer mode, records idleVoltage, and stops the motors.",
+      "verdict": "partially_covered",
+      "reason": "Results are cleared and noise collection begins, but accelerometer-mode selection and motor stopping are absent, and idleVoltage is incorrectly taken from air temperature.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1018,
+          "line_end": 1024,
+          "function": "healthRunTests"
+        }
+      ]
+    },
+    {
+      "id": "CF-R122",
+      "statement": "The propeller test collects 100 acceleration samples to calculate noise variance.",
+      "verdict": "fully_covered",
+      "reason": "The specified number of acceleration samples is accumulated and noise variance is computed.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1026,
+          "line_end": 1031,
+          "function": "healthRunTests"
+        }
+      ]
+    },
+    {
+      "id": "CF-R123",
+      "statement": "The propeller test starts/stops motors 0..3 in order to measure vibration/voltage; after all finish, it restores flight sensor mode and evaluates the results.",
+      "verdict": "partially_covered",
+      "reason": "Evaluation is invoked for motors 0..3, but individual motor start/stop, vibration/voltage sampling, and restoration of the flight sensor mode are absent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1034,
+          "line_end": 1041,
+          "function": "healthRunTests"
+        }
+      ]
+    },
+    {
+      "id": "CF-R124",
+      "statement": "evaluatePropTest skips and passes when highThreshold==0; otherwise it passes only when low<=value<=high.",
+      "verdict": "fully_covered",
+      "reason": "A high value of 0 skips the check and returns true; otherwise, closed-interval thresholds are used.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1004,
+          "line_end": 1010,
+          "function": "evaluatePropTest"
+        }
+      ]
+    },
+    {
+      "id": "CF-R125",
+      "statement": "A failed propeller evaluation increments the failure count; a pass sets the corresponding motorPass bit.",
+      "verdict": "fully_covered",
+      "reason": "Actual success sets the motorPass bit; failure increments motorTestCount.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1007,
+          "line_end": 1010,
+          "function": "evaluatePropTest"
+        }
+      ]
+    },
+    {
+      "id": "CF-R126",
+      "statement": "The battery test loads all four motors at tick1, updates minimum voltage at tick2..49, and stops and evaluates at tick50.",
+      "verdict": "partially_covered",
+      "reason": "Minimum tracking during 2..49 and completion at 50 exist, but baroTemperature is used, and loading at time 1 and stopping the motor at 50 are not performed.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1043,
+          "line_end": 1053,
+          "function": "healthRunTests"
+        }
+      ]
+    },
+    {
+      "id": "CF-R127",
+      "statement": "batterySag=idle-minLoaded; strictly exceeding the threshold fails, otherwise it passes.",
+      "verdict": "partially_covered",
+      "reason": "It computes idle-minus-min and fails on a strict threshold, but the input is air temperature rather than voltage, and a battery-only request does not collect idle voltage.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1047,
+          "line_end": 1050,
+          "function": "healthRunTests"
+        }
+      ]
+    },
+    {
+      "id": "CF-R128",
+      "statement": "restartBatTest restarts after waiting 2000ms.",
+      "verdict": "partially_covered",
+      "reason": "Restart occurs after the call count reaches 2000, rather than after elapsed time from an independent millisecond clock.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1059,
+          "line_end": 1064,
+          "function": "healthRunTests"
+        }
+      ]
+    },
+    {
+      "id": "CF-R129",
+      "statement": "variance uses sumSq-sum*sum/n without dividing by n again, matching the given constant and [1,2,3] examples.",
+      "verdict": "fully_covered",
+      "reason": "It returns sumSq-sum²/length and guards a NULL input or nonpositive length.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 993,
+          "line_end": 1002,
+          "function": "variance"
+        }
+      ]
+    },
+    {
+      "id": "CF-R130",
+      "statement": "crtpInit idempotently creates a 200-slot TX queue and TX/RX tasks.",
+      "verdict": "fully_covered",
+      "reason": "It idempotently initializes a bounded TX queue and provides separate receive/transmit task steps; D permits bounded host-task implementations.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1077,
+          "line_end": 1087,
+          "function": "crtpInit"
+        }
+      ]
+    },
+    {
+      "id": "CF-R131",
+      "statement": "A valid port can create a capacity-16 RX queue; duplicate creation enters an error state.",
+      "verdict": "partially_covered",
+      "reason": "A queue can be created for a valid port, but repeated creation returns silently without the error state required by the original text.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1089,
+          "line_end": 1095,
+          "function": "crtpInitTaskQueue"
+        }
+      ]
+    },
+    {
+      "id": "CF-R132",
+      "statement": "SendPacket is nonblocking and returns false when full; SendPacketBlock succeeds when space is available on the host.",
+      "verdict": "fully_covered",
+      "reason": "Enqueue succeeds when the queue is not full and fails nonblockingly when full; Block likewise succeeds when space is available.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1097,
+          "line_end": 1106,
+          "function": "crtpSendPacketBlock"
+        }
+      ]
+    },
+    {
+      "id": "CF-R133",
+      "verdict": "unassessed",
+      "reason": "The requirements omit necessary parameters or contain conflicting wording; clarify a common contract first, rather than deriving it from the candidate implementation.",
+      "evidence": [],
+      "statement": "ReceivePacket/Block/Wait respectively provide immediate, waiting, and time-limited receive, but this line omits wait progression and timeout-return details when no data is available; clarification of the frozen API/contract is required."
+    },
+    {
+      "id": "CF-R134",
+      "statement": "RxTask both delivers to an existing port queue and invokes a registered callback; it discards the packet when neither exists.",
+      "verdict": "fully_covered",
+      "reason": "Reception first delivers to the port queue and independently invokes the registered callback, allowing both paths to occur.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1125,
+          "line_end": 1141,
+          "function": "crtpRxTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R135",
+      "statement": "TxTask retains the packet after a failed send and retries after 10ms.",
+      "verdict": "partially_covered",
+      "reason": "Failure retains the head packet for retry, but there is no 10 ms retry interval.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1143,
+          "line_end": 1151,
+          "function": "crtpTxTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R136",
+      "statement": "With nopLink, the send and receive tasks do not process packets.",
+      "verdict": "fully_covered",
+      "reason": "With nopLink, it returns immediately without transmit or receive I/O.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1127,
+          "line_end": 1145,
+          "function": "crtpRxTask/crtpTxTask"
+        }
+      ]
+    },
+    {
+      "id": "CF-R137",
+      "statement": "SetLink disables the old link, replaces NULL with nopLink, and then enables the new link.",
+      "verdict": "fully_covered",
+      "reason": "It disables the old link first, replaces NULL with nop, then enables the new link.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1153,
+          "line_end": 1158,
+          "function": "crtpSetLink"
+        }
+      ]
+    },
+    {
+      "id": "CF-R138",
+      "statement": "Reset clears the TX queue and calls link.reset.",
+      "verdict": "fully_covered",
+      "reason": "It clears the TX head, tail, and count, and invokes reset on the current link.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1160,
+          "line_end": 1164,
+          "function": "crtpReset"
+        }
+      ]
+    },
+    {
+      "id": "CF-R139",
+      "statement": "IsConnected returns the callback result when a callback exists, otherwise true.",
+      "verdict": "fully_covered",
+      "reason": "It returns the callback value when a callback exists, and defaults to true otherwise.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1166,
+          "line_end": 1169,
+          "function": "crtpIsConnected"
+        }
+      ]
+    },
+    {
+      "id": "CF-R140",
+      "statement": "GetFreeTxQueuePackets returns 200-currentCount.",
+      "verdict": "fully_covered",
+      "reason": "It returns the frozen queue capacity minus the current count.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1171,
+          "line_end": 1174,
+          "function": "crtpGetFreeTxQueuePackets"
+        }
+      ]
+    },
+    {
+      "id": "CF-R141",
+      "statement": "RegisterPortCB accepts only ports in [0,CRTP_NBR_OF_PORTS) and rejects out-of-range values.",
+      "verdict": "fully_covered",
+      "reason": "The callback table is written only for a valid port.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1176,
+          "line_end": 1179,
+          "function": "crtpRegisterPortCB"
+        }
+      ]
+    },
+    {
+      "id": "CF-R142",
+      "statement": "updateStats computes rx/tx rates every 500ms and clears the counters.",
+      "verdict": "not_covered",
+      "reason": "The function is empty, with no 500 ms statistics or counter reset.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1181,
+          "line_end": 1181,
+          "function": "updateStats"
+        }
+      ]
+    },
+    {
+      "id": "CF-R143",
+      "statement": "deckDiscovery scans known I2C addresses and OneWire ROMs, deduplicates entries, stays within capacity, and returns the number actually written.",
+      "verdict": "partially_covered",
+      "reason": "Capacity limiting and deduplication exist, but data comes from a fixed known table rather than replaceable I2C/1-wire scan inputs.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 1183,
+          "line_end": 1206,
+          "function": "deckDiscovery"
+        }
+      ]
+    },
+    {
+      "id": "CF-R144",
+      "statement": "Expose and maintain the eight precisely named log objects and frozen fields, reflecting actual estimator, sensor, motor, fusion, Supervisor, and Health states.",
+      "verdict": "partially_covered",
+      "reason": "The eight log objects and most state assignments exist, but the delivered header contains only comments and does not expose the frozen log types and field declarations; no additional fields not specified for StateEstimateLog are required.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.h",
+          "line_start": 1,
+          "line_end": 4,
+          "function": "public header"
+        }
+      ]
+    },
+    {
+      "id": "CF-R145",
+      "statement": "Extreme inputs and cross-module boundaries must use the same public API, without separate parallel functions written only for examples.",
+      "verdict": "fully_covered",
+      "reason": "Boundary branches use the same public function implementation, without parallel test functions created only for examples.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac\\raw\\6_generated_code.c",
+          "line_start": 243,
+          "line_end": 308,
+          "function": "public API paths"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "partially_covered": 45,
+    "fully_covered": 86,
+    "unassessed": 4,
+    "not_covered": 10
+  },
+  "denominator": 141,
+  "rate": 0.6099290780141844,
+  "rate_percent": 60.99290780141844,
+  "rate_scope": "141 preclassified static-evidence-reviewable requirement leaves; not all requirements proven satisfied",
+  "unassessed_requirement_count": 4,
+  "identical_code_reuse": null,
+  "old_static_scores_used": false,
+  "external_api_calls": 0,
+  "host_executions": 0,
+  "code_modifications": 0,
+  "limitations": [
+    "Original code read without repair; global build failure is not used to zero otherwise identifiable behavior.",
+    "Partial coverage receives no fractional credit.",
+    "Four preclassified hardware/contract leaves remain unassessed consistently across candidates.",
+    "LLM static evidence review, not human verification or executable-test pass rate."
+  ],
+  "input_context": {
+    "requirement": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\crazyflie\\RE_req.txt",
+      "sha256": "737c0b42c185a0313c09af1e21a6ad3ad3d866167371283edcd46ff98d574f92"
+    },
+    "device": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\crazyflie\\RE_device_interface.txt",
+      "sha256": "1522f54ce50d94825ca7df97abd56830cc87a714345820aa949be7fb445cef1e"
+    },
+    "api": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\crazyflie\\RE_api.txt",
+      "sha256": "431d1c5fc2452174f4e26aed2409b56965ccd05016083bbc39a2bb4b2f9468b0",
+      "supplied_to_generation": true
+    }
+  },
+  "scope_review_complete": true,
+  "input_context_note": "R and D define the project-derived host application scope. R explicitly references the frozen A contract; this shared-API candidate was supplied A. Missing header declarations are recorded as interface evidence, not used to zero identifiable function behavior.",
+  "source_lineage": [
+    {
+      "kind": "authoritative_current_selected_position",
+      "source": "fse\\rq_rebuild_20261001\\rq1\\three_model_retry_revision_20261002\\current_three_model_view.json",
+      "json_pointer": "/rows/101",
+      "identity": "crazyflie__gpt-5.5__B_structgen__r03"
+    },
+    {
+      "kind": "official_native_candidate_selection",
+      "source": "fse\\rq_rebuild_20261001\\rq1\\official_identity_rows.json",
+      "identity": "crazyflie__gpt-5.5__B_structgen__r03",
+      "whole_project_sha256": "37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac"
+    },
+    {
+      "kind": "generation_result",
+      "path": "fse\\official_baselines\\run_same81\\jobs\\327822d18c009b5d\\result.json",
+      "sha256": "4320e16e73ca41d940085fd7dc3ef807137d484aac2f2ac4b62868eefc41e566",
+      "expected_sha256": "4320e16e73ca41d940085fd7dc3ef807137d484aac2f2ac4b62868eefc41e566",
+      "sha256_verified": true
+    },
+    {
+      "kind": "crosscheck_host_failed_inventory",
+      "source": "fse\\host_zero_static_reassessment_20261001\\inventory.json",
+      "identity": "crazyflie__gpt-5.5__B_structgen__r03"
+    }
+  ],
+  "revision_history": [
+    {
+      "revision": "semantic_consistency_final_20261002",
+      "details": "fse\\requirement_coverage_review_20261002\\reviews\\gpt\\crazyflie\\semantic_consistency_final_20261002_corrections.json"
+    },
+    {
+      "revision": "leaf_scope_alignment_20261002",
+      "details": "fse\\requirement_coverage_review_20261002\\reviews\\gpt\\crazyflie\\leaf_scope_alignment_20261002_corrections.json"
+    }
+  ],
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/reviews/gpt/crazyflie/crazyflie__gpt-5.5__B_structgen__r03.json",
+    "original_sha256": "205f3f22ec6c1eab03e9d8bbcd4bafa6627052f8e464542f8eaf9b6b72c74338",
+    "language": "Original Chinese evidence/rationales retained; no semantic translation.",
+    "initial_review_status": {
+      "evaluator": "current Codex LLM static review",
+      "human_review": false
+    },
+    "preservation": "Initial verdicts, reasons, historical rates and human-review flags retained. Path anonymization and export metadata do not constitute a new review.",
+    "current_aggregation": "(fully_covered + partially_covered) / preclassified static denominator; no fractional weighting of partial items.",
+    "checklist_export": {
+      "path": "data/rq1/requirement_coverage/checklists/crazyflie.json",
+      "sha256": "7b146e750632e4a0e8a3970727f608d4020252f687283f2e804226cac0e5ddde",
+      "original_sha256": "a563bb2a705c6bb9bbb227607e886fb05babbf73e4c3f7e0b74e488033dd7e4f",
+      "leaf_count": 145,
+      "static_denominator": 141,
+      "source_requirement": {
+        "path": "data/rq1/requirement_coverage/source_requirements/crazyflie_RE_req.txt",
+        "sha256": "1022008e84745ec7f503c5249420ccb3cec5c50e80d297569e80086fd819ba65"
+      }
+    },
+    "candidate_bindings": [
+      {
+        "source": "fse/official_baselines/reassessment_host_20260921/code/37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac/raw/6_generated_code.c",
+        "original_sha256": "40d1097cebe39409ffff3f2993c4a83aebc6594ecb037b102e4388908809622a",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.c",
+        "path": "evidence/candidate_sources/40d1097cebe39409ffff3f2993c4a83aebc6594ecb037b102e4388908809622a/6_generated_code.c",
+        "distributed_sha256": "40d1097cebe39409ffff3f2993c4a83aebc6594ecb037b102e4388908809622a",
+        "transformation": "none"
+      },
+      {
+        "source": "fse/official_baselines/reassessment_host_20260921/code/37030d92d400d058ce789f78e4f11371928b29f133e7889135bfdac3b7e066ac/raw/6_generated_code.h",
+        "original_sha256": "dfe8a07108ed37507fbd0818c7842468b2662ecabd946d0d2b5e20a4b22f6aa2",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.h",
+        "path": "evidence/candidate_sources/dfe8a07108ed37507fbd0818c7842468b2662ecabd946d0d2b5e20a4b22f6aa2/6_generated_code.h",
+        "distributed_sha256": "dfe8a07108ed37507fbd0818c7842468b2662ecabd946d0d2b5e20a4b22f6aa2",
+        "transformation": "none"
+      }
+    ],
+    "evidence_line_numbers": "Original candidate lines; transformed candidate comments, where used, retain separately recorded original and distributed hashes."
+  }
+}

@@ -1,0 +1,37 @@
+[
+  {
+    "path": "baselines/native_chatdev.py",
+    "source": "fse/official_baselines/native_chatdev.py",
+    "sha256": "4cc86ea163a21c349dafdcc15bdb8d5370515b0c40aa6c8acf0d87e5b42a92bb",
+    "transformation": "none",
+    "purpose": "Historical adaptation source for inspection; external framework checkout and file-based transport service are not bundled."
+  },
+  {
+    "path": "baselines/native_metagpt.py",
+    "source": "fse/official_baselines/native_metagpt.py",
+    "sha256": "44aff18e3925e10c69d92ba6b83762acd1b6004c60057bd16be4a849c6519e11",
+    "transformation": "none",
+    "purpose": "Historical adaptation source for inspection; external framework checkout and file-based transport service are not bundled."
+  },
+  {
+    "path": "baselines/native_structgen.py",
+    "source": "fse/official_baselines/native_structgen.py",
+    "sha256": "bb6dba7247529a7e560bbdfefcefea53081f4bf0cf9547e99445af390c4b02a6",
+    "transformation": "none",
+    "purpose": "Historical adaptation source for inspection; external framework checkout and file-based transport service are not bundled."
+  },
+  {
+    "path": "baselines/c_project.py",
+    "source": "fse/official_baselines/c_project.py",
+    "sha256": "9b45ec3480526fc4ee83da6ea47b38594f10a09f9c6366fb4337157c68d40c81",
+    "transformation": "none",
+    "purpose": "Historical adaptation source for inspection; external framework checkout and file-based transport service are not bundled."
+  },
+  {
+    "path": "baselines/runtime_bridge.py",
+    "source": "fse/official_baselines/runtime_bridge.py",
+    "sha256": "6fd2fc1bc4e0830fc867e775bd19d49ad55f1a769fdd70040658d814a81ae578",
+    "transformation": "none",
+    "purpose": "Historical adaptation source for inspection; external framework checkout and file-based transport service are not bundled."
+  }
+]

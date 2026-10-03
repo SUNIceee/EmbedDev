@@ -1,0 +1,2 @@
+# Optional RQ3 PDF/SVG rendering; table reconstruction uses only the standard library.
+reportlab==4.4.9

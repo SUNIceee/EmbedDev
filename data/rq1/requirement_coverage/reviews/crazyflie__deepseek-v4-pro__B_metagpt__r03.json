@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "identity": "crazyflie__deepseek-v4-pro__B_metagpt__r03",
+  "project": "crazyflie",
+  "model": "deepseek-v4-pro",
+  "method": "MetaGPT",
+  "status": "no_code",
+  "candidate_files": [],
+  "candidate_inventory_sha256": "60721e6c11f3e5fb421b58209ce90367c3e66ea260a90a87b625c43d81a53d16",
+  "checklist_path": "fse\\requirement_coverage_review_20261002\\preparation\\crazyflie\\requirements_checklist.json",
+  "checklist_sha256": "a563bb2a705c6bb9bbb227607e886fb05babbf73e4c3f7e0b74e488033dd7e4f",
+  "evaluator": "current Codex LLM static review",
+  "human_review": false,
+  "reviewed_at": "2026-10-02T06:13:33.755751+00:00",
+  "requirements": [],
+  "counts": {},
+  "denominator": 141,
+  "rate": null,
+  "rate_percent": null,
+  "reason": "Authoritative current inventory binds no complete code to this position. No candidate code was read and no item-level semantic judgments were fabricated.",
+  "source_lineage": [
+    {
+      "kind": "authoritative_current_selected_position",
+      "source": "fse\\rq_rebuild_20261001\\rq1\\three_model_retry_revision_20261002\\current_three_model_view.json",
+      "json_pointer": "/rows/29",
+      "identity": "crazyflie__deepseek-v4-pro__B_metagpt__r03"
+    },
+    {
+      "kind": "official_native_candidate_selection",
+      "source": "fse\\rq_rebuild_20261001\\rq1\\official_identity_rows.json",
+      "identity": "crazyflie__deepseek-v4-pro__B_metagpt__r03",
+      "whole_project_sha256": null
+    },
+    {
+      "kind": "generation_result",
+      "path": "fse\\official_baselines\\run_same81\\jobs\\0a7e78f5fc2284f3\\result.json",
+      "sha256": "4e74b0f4c963e2f1ee432ace11bbb2e9f2d7a176c80da907f1c8593118fe0cb5",
+      "expected_sha256": "4e74b0f4c963e2f1ee432ace11bbb2e9f2d7a176c80da907f1c8593118fe0cb5",
+      "sha256_verified": true
+    }
+  ],
+  "old_static_scores_used": false,
+  "external_api_calls": 0,
+  "host_executions": 0,
+  "code_modifications": 0,
+  "input_context": {
+    "requirement": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\crazyflie\\RE_req.txt",
+      "sha256": "737c0b42c185a0313c09af1e21a6ad3ad3d866167371283edcd46ff98d574f92"
+    },
+    "device": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\crazyflie\\RE_device_interface.txt",
+      "sha256": "1522f54ce50d94825ca7df97abd56830cc87a714345820aa949be7fb445cef1e"
+    },
+    "api": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\crazyflie\\RE_api.txt",
+      "sha256": "431d1c5fc2452174f4e26aed2409b56965ccd05016083bbc39a2bb4b2f9468b0",
+      "supplied_to_generation": true
+    }
+  },
+  "scope_review_complete": false,
+  "input_context_note": "R and D define project-derived host application scope. A was supplied to shared-API methods; Direct-LLM receives no extra obligations beyond R+D merely from A.",
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/reviews/deepseek/crazyflie/crazyflie__deepseek-v4-pro__B_metagpt__r03.json",
+    "original_sha256": "c28b1271a76f413fcd4d1192cf62daedf224c7ea87080edb297882d5fdc05c63",
+    "language": "Original Chinese evidence/rationales retained; no semantic translation.",
+    "initial_review_status": {
+      "evaluator": "current Codex LLM static review",
+      "human_review": false
+    },
+    "preservation": "Initial verdicts, reasons, historical rates and human-review flags retained. Path anonymization and export metadata do not constitute a new review.",
+    "current_aggregation": "(fully_covered + partially_covered) / preclassified static denominator; no fractional weighting of partial items.",
+    "checklist_export": {
+      "path": "data/rq1/requirement_coverage/checklists/crazyflie.json",
+      "sha256": "7b146e750632e4a0e8a3970727f608d4020252f687283f2e804226cac0e5ddde",
+      "original_sha256": "a563bb2a705c6bb9bbb227607e886fb05babbf73e4c3f7e0b74e488033dd7e4f",
+      "leaf_count": 145,
+      "static_denominator": 141,
+      "source_requirement": {
+        "path": "data/rq1/requirement_coverage/source_requirements/crazyflie_RE_req.txt",
+        "sha256": "1022008e84745ec7f503c5249420ccb3cec5c50e80d297569e80086fd819ba65"
+      }
+    },
+    "candidate_bindings": [],
+    "evidence_line_numbers": "Original candidate lines; transformed candidate comments, where used, retain separately recorded original and distributed hashes."
+  }
+}

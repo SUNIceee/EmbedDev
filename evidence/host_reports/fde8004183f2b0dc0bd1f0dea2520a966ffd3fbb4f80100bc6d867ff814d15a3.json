@@ -1,0 +1,100 @@
+{
+  "candidate": {
+    "key": "d4b216545251a09ae4e9b0ad",
+    "project": "crazyflie",
+    "header": "<WORKSPACE>\\fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\07c84a5fe2db7093569b230d\\generated_code.h",
+    "source": "<WORKSPACE>\\fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\07c84a5fe2db7093569b230d\\generated_code.c",
+    "header_sha256": "c01cd6bcc011cf92aaae45bf3da7f93f38ce49568c4fe86758fbcbdbe5434ecc",
+    "source_sha256": "d8da21d58ce118e3183b2b87ffdbe49a5ede9e335fdc2464a497a25b919d1bc6",
+    "labels": [
+      {
+        "project": "crazyflie",
+        "model": "gpt-5.5",
+        "repeat": "repeat_03",
+        "phase": "raw",
+        "origin": "<WORKSPACE>\\fse\\artifacts\\direct_baseline\\crazyflie\\repeat_03\\crazyflie\\20260820_112524_177ad450\\gpt-5.5",
+        "notes": "",
+        "condition": "historical_direct"
+      },
+      {
+        "project": "crazyflie",
+        "model": "gpt-5.5",
+        "repeat": "repeat_03",
+        "phase": "syntax_start",
+        "origin": "<WORKSPACE>\\fse\\artifacts\\direct_baseline\\crazyflie\\repeat_03\\crazyflie\\20260820_112524_177ad450\\gpt-5.5",
+        "notes": "",
+        "condition": "historical_direct"
+      }
+    ]
+  },
+  "suite_sha256": "7b3ea083fc200084487ea77197bcd77fce7a340fbf147e2c3234652952a2a27f",
+  "complete": true,
+  "compile_returncode": 0,
+  "compile_timeout": false,
+  "source_changes": {
+    "header_include_alignment": [
+      "generated_code.h"
+    ],
+    "entrypoint_rename": "compile-time main=fse_candidate_main"
+  },
+  "cases": [
+    {
+      "id": "CF-B01",
+      "category": "state_lifecycle",
+      "anchor": "7 / isFlyingCheck",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "CF-B02",
+      "category": "state_lifecycle",
+      "anchor": "7 / tick zero",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "CF-B03",
+      "category": "timing_state",
+      "anchor": "7 / Emergency-stop watchdog",
+      "checks": 4,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "CF-B04",
+      "category": "safe_output",
+      "anchor": "7 / supervisorOverrideSetpoint",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "CF-B05",
+      "category": "state_lifecycle",
+      "anchor": "7 / canFly=false",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "CF-B06",
+      "category": "input_propagation",
+      "anchor": "7 / RPM",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    }
+  ],
+  "counts": {
+    "harness_build_failed": 5,
+    "pass": 1
+  }
+}

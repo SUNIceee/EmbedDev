@@ -1,0 +1,2781 @@
+{
+  "schema_version": 2,
+  "positions": [
+    {
+      "identity": "gpio_output__deepseek-v4-pro__Direct_LLM__r01",
+      "task": "gpio_output",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__Direct_LLM__r01.json",
+        "sha256": "756201361f2c8b4e9d4b2de991c621de50ddd44a9f19d91b572bda89a55966b2",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "generated_code.h": "c766290934e84878aa1f12ad78c93f591b62f7501c47028254656012887411a1",
+        "generated_code.c": "65f9416641850b40c2349a91507ad21d12e8a5e7733b9cf1d1992226538b1f64"
+      },
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__metagpt__r01",
+      "task": "gpio_output",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__metagpt__r01.json",
+        "sha256": "6033f2afa02195f09709318812613f49e3990f93c1c01d7fc3b08bfc432ebb73",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "8ec74fd444597511e26f36f9609f40252179189c708b630daab05a894ba81a73",
+        "6_generated_code.c": "f4ab5e5a50e23791d89a76edb321c194c821a2e2a4dbc86efe9861e6b28a9734"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__chatdev__r01",
+      "task": "gpio_output",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__chatdev__r01.json",
+        "sha256": "b5c39357611a4a4282d8b0ed84ad473e6228adf045e39b2676b8ddc390be64c1",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "dc9c7f03c7a10b65279c1cbeeb774ce9da8cc840df03ba50d4d40f9f18f081e9",
+        "6_generated_code.h": "87aca2977fbde6c0b1bb52fadfccd309cf93d376c1c54dbacaee77f52ddc8f06"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__structgen__r01",
+      "task": "gpio_output",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__structgen__r01.json",
+        "sha256": "703ace449ac14e4ce4b1c93f3e838a9a32b4d07394f2e155c999979aac26afbe",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "4470ff4ceeeff8804aa6b144f7f44cbb92fb14a94cc528ea0b1e5a0a15a7ec2a",
+        "6_generated_code.h": "91139abc694bef11cadb393265d9c3c72ac2152fb0dac0b2b7085f1a0a5efd0f"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__C4_structured__r01",
+      "task": "gpio_output",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__C4_structured__r01.json",
+        "sha256": "598c193d1028f407729bf0d8611e0f0fcb3c6d1f79eac9fc855e5ad0fb7f8e8b",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "2cf48912eead6654177432b7c595eddb3236ebe36380d7959d0e3379252b84d5",
+        "6_generated_code.c": "3d3034ea699076baa1027956c619a92386724680ad101b102b1fa9c8d3168c48"
+      },
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": true,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r01",
+      "task": "gpio_button_debounce",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r01.json",
+        "sha256": "52ad940878d611b628546959787b5e484608d69dcb925db2e2e099041ebfb311",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "generated_code.h": "e9268bcfab6fcdd2f35fb36d95f5eccd4fcc29b1434b2ba123bcae010fc269cc",
+        "generated_code.c": "13c50d1732a7f61b2bda054160bc169337590da19f6bd355c23bdac24be8e6e9"
+      },
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__metagpt__r01",
+      "task": "gpio_button_debounce",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__metagpt__r01.json",
+        "sha256": "3e9b42619cd3aec5fb84eb1e42b9d28ffc22e7618e9f8ecdea59dd975030aa04",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "dbb43e23b8b44df7eff7c5af91ecf5f5a8369a6f1d29000f18b4c0960d203349",
+        "6_generated_code.c": "614d1f6fc871fc12a80f310a17ad9248340671d944ea48df947c52c8ee2854b2"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__chatdev__r01",
+      "task": "gpio_button_debounce",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__chatdev__r01.json",
+        "sha256": "e2f9fc00d15f09579838c318d90f6b8ebd029b6add4b650efc8d9b36c9f9cb7a",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "525884186b6a458774128f4d5068f58555970d2c14047e643b2bae7dbeea2a33",
+        "6_generated_code.h": "2247069abd1ac6848cd7e7fe954b06d69d176b9b73b7dc495f7de13d16e5a277"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__structgen__r01",
+      "task": "gpio_button_debounce",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__structgen__r01.json",
+        "sha256": "aebc130bb069f328922998a4bf70c2b7039e3920b9322625e5c38727758e0987",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "580c61703283c39262dacbff8c828bb73f14bad6ce3f3deb0c9cdb2a99c94de6",
+        "6_generated_code.h": "245366b68b79bdf4388a1777ca8202fd795db0dab2e6fecc7e61dad0e207e957"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__C4_structured__r01",
+      "task": "gpio_button_debounce",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__C4_structured__r01.json",
+        "sha256": "f90bd6aa64303679d66c27151ac4af8588c2bcd91f011ec39052ad45573bf133",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "839b99084215903daac2718ccf95d8b7054c06f4ea9631ec598679ddf009ae13",
+        "6_generated_code.c": "b29dfb49242ddb0f529c8eb4feaa7403afe17dc189c41170f27610a0d397bbed"
+      },
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": true,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__Direct_LLM__r01",
+      "task": "balance_control",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__Direct_LLM__r01.json",
+        "sha256": "be6d821e614dd636432d7151873f4bc9a84486ce5f64b2a8bfc867304834c783",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "generated_code.h": "4e9c2fc68a7dfc890df8a6a3fa3204e4891c29dd6a3ca3b9120a09d56d4a7201",
+        "generated_code.c": "3b8619412bc252d627cfbb996131bac18a0e52b45a208ecb3b77b637bf8ad2a0"
+      },
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__metagpt__r01",
+      "task": "balance_control",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 57.14285714285714,
+      "local_record_score_percent": 57.14285714285714,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 4,
+        "U": 2,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__metagpt__r01.json",
+        "sha256": "54d208dea3b9d73002378429c65ac16659c61cea1e66dae59bc4bb5b85d0b5df",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "c7a8a80453da3af1ed301f028a465ff076e025dabafa10d20d55cb7bbe2df3ef",
+        "6_generated_code.c": "d1d4ed900dc69b53f19d1c70ca79c874fb82c4109f2a842db60188b1358e95ba"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__chatdev__r01",
+      "task": "balance_control",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__chatdev__r01.json",
+        "sha256": "7eb0e538646a8c0cac4bda762d1575d681cfeb42a433284e7d98277eedaf3182",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "balance_control.c": "4e12000ddb671717bc71483f6392b29ec62b68f41ab18143fbfaa097362bbaee",
+        "6_generated_code.h": "7b01ae006f3ad53835dec1d3e51ea4b582945b457a31afc7b2c0dbf1fad9d469"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__structgen__r01",
+      "task": "balance_control",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__structgen__r01.json",
+        "sha256": "05c90cd623173139900e360f6f0254825a79d00f14bf43df97ff589e027c0e63",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "297fbe3a32d9d1e0dcf4c8e47b21f4049a068c1374f2a31dc36c045eaa45abd0",
+        "6_generated_code.h": "877746db164afd0bcb69daa2ccd38dff894e543799003b71d35533906ddb1c8f"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__C4_structured__r01",
+      "task": "balance_control",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__C4_structured__r01.json",
+        "sha256": "e889fa2f467106bd3deb59b7c44875a9e74a3a0c070ee05d9298480523312410",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "9e7b2376388d509223c867cbd65a591e17abe94057551e97f79f10cd06ce6c18",
+        "6_generated_code.c": "91027d8ce9094f13ee8af8addb326928d9c55749fe41fd743ff0191c7945bac5"
+      },
+      "raw_generation_status": "provider_blocked",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": false,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__Direct_LLM__r02",
+      "task": "gpio_output",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__Direct_LLM__r02.json",
+        "sha256": "cddf16d409e9a6600baacf60e72af9e8a0d94f7128566327ce0bc3b055e1396e",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "generated_code.h": "f010a4a9fd9497199e87f9febd8619b95ff373bba8d507fa14764beadcb0e49c",
+        "generated_code.c": "960a1c75692f3785a750d62c20a0bfd3b42fb5a92f2bf95ac3921f6196100ff6"
+      },
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__metagpt__r02",
+      "task": "gpio_output",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__metagpt__r02.json",
+        "sha256": "5a5751da2ddc5822f97b7e827a71a5a662c9879282697e421e118349a0c74ddc",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "046392af8256634b364a4f4dc642e2d1669d11f5791661fc316a6308a1a9736f",
+        "6_generated_code.c": "7937d9b97cd0fafd498bbbe2e8eed1a02c0f47bfcf18e980433542a6d6b733b4"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__chatdev__r02",
+      "task": "gpio_output",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__chatdev__r02.json",
+        "sha256": "74b3706c7f80b5f10f2593caaa77d7d831b1ee421f52f5986559478ad58f7d98",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "3b20e9058c6fa8c65c006e03e5a163bb3102f40b8b384f32b1795a3c5a9b5e17",
+        "6_generated_code.h": "e0a4d3e4c7a5df4af3a78fb0da90f3a84f83e378774932148c15712b2265826c"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__structgen__r02",
+      "task": "gpio_output",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__structgen__r02.json",
+        "sha256": "3313f72ab2cc9283586a71869a591459b9cb0b3e055326a2d20075112995267d",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "a5999001579ee084f4a06af4c75c022324c21781ecf35a53974c8c3c378a77e0",
+        "6_generated_code.h": "1b6aede06060a43c46d7e3565a0f84c7ad3b1fd5bfb9f82390aaf7744a09c398"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__C4_structured__r02",
+      "task": "gpio_output",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__C4_structured__r02.json",
+        "sha256": "9c4fde2bb5a22a923e1a53aa3c2f0e825befd8af4ef2ff7a6fe786901716164b",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "2cf48912eead6654177432b7c595eddb3236ebe36380d7959d0e3379252b84d5",
+        "6_generated_code.c": "f287d2738fc710fcd9e03b0d598334a06ec6368b3a1abca346eae1dee80d4cab"
+      },
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": true,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r02",
+      "task": "gpio_button_debounce",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r02.json",
+        "sha256": "43a4664268cbed1b59184267d06a3b7554528e5b722a54c1aaf35a06db7ffb36",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "generated_code.h": "34b6cbee20d10bbc4482b30d4e46ae1107096c5af375fed2803d03c4722fe80b",
+        "generated_code.c": "4c3ba6a247814bf87e0e8fa68110cfbfdc55c2b84c5931ba2e8f272f0011285c"
+      },
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__metagpt__r02",
+      "task": "gpio_button_debounce",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__metagpt__r02.json",
+        "sha256": "286916966fd7bdbb5c2051c0b5f4f7b4795591457feab7b62a4a7f0ada56ed37",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "9281ab91a6fe9c910c3deffd636e79e163dcb15a8842be9bb1ea7144afbad3b3",
+        "6_generated_code.c": "afc4c23fe2a4ad6dcfdd0c7dcf67adac8ab1a1772bbabf474e3e032ce868545d"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__chatdev__r02",
+      "task": "gpio_button_debounce",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__chatdev__r02.json",
+        "sha256": "b0254ab3b78a571dae90a9cdf24176d8e25479fd33c290db1e1527299fd28a97",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "1bf9a0f98bfeb7c0a10fd3e36e7f551771637ed151b9c234eb6826d48eabc75a",
+        "6_generated_code.c": "09697875bc5d6c9c08268a3fb3a044c1a6450c29078b430b7a36a282fc5ba4b2"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__structgen__r02",
+      "task": "gpio_button_debounce",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__structgen__r02.json",
+        "sha256": "aa64f5e73b645d82f90bcb167ffc31fd37ad98bcebc9a882e85b4a4bba1ba1af",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "25e5b1ecd0c2b5d15d1bd5f8598c6bdca8db37a13264213d97f260ceaeb2d4ea",
+        "6_generated_code.h": "245366b68b79bdf4388a1777ca8202fd795db0dab2e6fecc7e61dad0e207e957"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__C4_structured__r02",
+      "task": "gpio_button_debounce",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__C4_structured__r02.json",
+        "sha256": "23b502c6c18703afdcb4da40ebd28aba744999b20acf3a826dd121495cacff33",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "a77bdadf52177ff350d18dd38c88aa843221006f476be03367a7ac5b34ca5676",
+        "6_generated_code.c": "95a227a993db8e22b3a23908adc82b98158112c9fde4c46084bbc610ca4cadb0"
+      },
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": true,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__Direct_LLM__r02",
+      "task": "balance_control",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__Direct_LLM__r02.json",
+        "sha256": "c22c684593f190c338031c9c7609e10e0d7638d270b7fec0b8f8e3ff7da0d3bf",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "generated_code.h": "0866515332df938880effa79aec5956bad8ec6a838b4d70c849a1fef830e2d31",
+        "generated_code.c": "24820df8d95cdf2ab61e897a72455cd1d1d636123eef82b6094857daa693a2e4"
+      },
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__metagpt__r02",
+      "task": "balance_control",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 28.57142857142857,
+      "local_record_score_percent": 28.57142857142857,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 4,
+        "F": 5,
+        "U": 5,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__metagpt__r02.json",
+        "sha256": "5dcbfefce85cba1b1c2b5a15ccc265d30658ceb08ff42aa9ff2be0436c974adc",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "5a5b3378c75daba7274ced5a270d2c9d183c876323c335227a58fcced5d2e911",
+        "6_generated_code.c": "668ed77512692a71a2431fa9a846ea9e75997e22aede549562cf60e8124082fb"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__chatdev__r02",
+      "task": "balance_control",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__chatdev__r02.json",
+        "sha256": "a29995e565f2e4fd6cb734805336590d0bddf95bfcb6150955220c7e7a730379",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "a231eaadc7e0eefa80f1567efc2dfbaff1fea5384dabbe3d854ee530628a1671",
+        "6_generated_code.c": "3b012f336d1ef5cc6ccbaddc0f00d7d94676520bafd4cd05b3750ebabbecf566"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__structgen__r02",
+      "task": "balance_control",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__structgen__r02.json",
+        "sha256": "831f4cde5103a83a54a55607a9f29f6ed9bef855df28e6d3e316e087e39ef107",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "8902fdd4290455f5d9d1ae4a42a5dfb9b772ab412f0b7ccbf5024c23f2b253f5",
+        "6_generated_code.h": "fa8bbcd54c3026b9cdf750135a3d471a2d26ebdea0944f53ff7f9ba968fa4715"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__C4_structured__r02",
+      "task": "balance_control",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__C4_structured__r02.json",
+        "sha256": "94fb7ec197b68c8c45ad7656ea7d0393201066f3ad0a5319e6b308af2b9ec6c6",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "47e26c5892dfe45f8b9eaaefd783e179cf72ba4a49c4057d0001de8a6f9e2c13",
+        "6_generated_code.c": "f17b66f6cfac146be99c87fbd5ede0a55556fb7e57fa2868072ed951fff4465f"
+      },
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": true,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__Direct_LLM__r03",
+      "task": "gpio_output",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__Direct_LLM__r03.json",
+        "sha256": "77f95aef65b3f0a6fb9fd35e7bb7de4baf6f5a7cec77856de0cc2194663f0236",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "generated_code.h": "9b6d28730ece0857924f25beede6e4eb90d33e2946b0b3384b5e652522786b95",
+        "generated_code.c": "8faa6e929026b0d995eadf04dbd004c384f9a769f08567f4387353191e1c9443"
+      },
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__metagpt__r03",
+      "task": "gpio_output",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__metagpt__r03.json",
+        "sha256": "fb6c9ef864945e0615de09872e76b96b7e32a3f356493407be6357ddd469d254",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "9e68a64c7cdbb296f4e9fe0bd83314eadd572c68c798b988c0f9af5c86a01808",
+        "6_generated_code.c": "238ab674f9d591877c00a56b483422fe71dc8cc55583e553834f9452e9db3608"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__chatdev__r03",
+      "task": "gpio_output",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__chatdev__r03.json",
+        "sha256": "c3ce05a87ce9cd5f9a6d455927e92c423b61fd7396a655ba2a23158c7b7ce56e",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "b8c26a79ba51cf3a7a8b9f4eebd19b348d73feb086335d3a754d31cfa5013217",
+        "6_generated_code.h": "076cb9a0117827317b7a1e944a209bf56b607e22f00f662cb9eab67e567597e4"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__structgen__r03",
+      "task": "gpio_output",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__structgen__r03.json",
+        "sha256": "5d27cbf725ad6baadc611a60a41c09e0c714e05b14d8d11c19efc74172625bc2",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "0e40d3921c38c218fee3cb0aec06a2bdb78279653a527fae3e55d89da1ef66b5",
+        "6_generated_code.h": "c13a44d23b87c79a9f735964bc8d16fc8403c233ad76426788817c9957bb0db7"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__C4_structured__r03",
+      "task": "gpio_output",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 0.0,
+      "source_type": "author_reported_rerun_score",
+      "locally_bound_review": false,
+      "counts": null,
+      "denominator": null,
+      "review_binding": null,
+      "candidate_code_sha256": {},
+      "raw_generation_status": "protocol_or_output_error",
+      "raw_code_delivery": false,
+      "artifact_available": false,
+      "internal_acceptance": false,
+      "evidence_protocol": "whole_numbered_requirements",
+      "author_report": {
+        "statement_english": "No annotation is needed. I reran it myself; it is 100 now.",
+        "statement_is_translation": true,
+        "reported_score_percent": 100.0,
+        "local_candidate_or_review_binding": null,
+        "local_verification_completed": false
+      },
+      "scope_note": "The displayed replacement is an author-reported score. The retained local no-code record remains unchanged; no code, item verdicts, Host outcome or independent verification is fabricated."
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r03",
+      "task": "gpio_button_debounce",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r03.json",
+        "sha256": "e0691202d655c66f8730e4e096adc345ac7cc9229075ff4c4dfb77ccbb2d1104",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "generated_code.h": "32440f426db814dcbd259bab348ac0249af661442a73d466063e5a59a31af682",
+        "generated_code.c": "d88fecb051c6d30cf346353fe56b05d811df942e4aee7103aadc9cc427451868"
+      },
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__metagpt__r03",
+      "task": "gpio_button_debounce",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__metagpt__r03.json",
+        "sha256": "ebd514fac8ebe4d01bacf303f072f9e174e3aeb1d065968ffcaeb39293dc57cb",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "13125bd97ad886443726475f496313804c0fe796c33692416ad797a6a710b0cc",
+        "6_generated_code.c": "42bd16f7d5404222f843225af8e04e60c6a501c9b4d00c0345327240170bd368"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__chatdev__r03",
+      "task": "gpio_button_debounce",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__chatdev__r03.json",
+        "sha256": "a3c97cb62a9bcd0db7170cd8bc8a39afe6d4b50d9117625074389c35b281ecf3",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "212e81cd9b018687f2ad8d1ef7ebb7a09e1e84ef44964bacc591273f26928e6d",
+        "6_generated_code.h": "8875e742d92f5898d50ef40dc12396d535befa6ea7619b63353e7832b5ac108c"
+      },
+      "raw_generation_status": "infrastructure_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__structgen__r03",
+      "task": "gpio_button_debounce",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__structgen__r03.json",
+        "sha256": "91217790ca849cf411382d06f640b7ccaf3f5dc8bc1cca17388c4cc2152e1223",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "101746f828b50314c0c85ec9c93bcb8f56d86b6cf2e1135834570b5974f8f43d",
+        "6_generated_code.h": "eca27d02b568ba8ccf9fb4505c63b2dc6b94cfc3a11ad99c2374973810b2d1a2"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__C4_structured__r03",
+      "task": "gpio_button_debounce",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__C4_structured__r03.json",
+        "sha256": "98ca671c412234bfec5a6aac1e71f73b603aa0d56c93d3b51fdde38399a9bbd9",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "b7924758d5da45e78671b384ed3938e70e5d1d7cd2573e0abb4ba98fffbdc07b",
+        "6_generated_code.c": "72f6cda47cce2b78c36e05cc850d6a08b64495a08fcbe0d2617b413833bd73df"
+      },
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": true,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__Direct_LLM__r03",
+      "task": "balance_control",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__Direct_LLM__r03.json",
+        "sha256": "9d19f9dcc0f4ee9c83b3eb24b7d650ce68bda80ccee2997b0461cfd5deea3514",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "generated_code.h": "d3005a27f7cd41ce439250c55601e4c20abf915cb2fd274d4ca90d2fbbb591a6",
+        "generated_code.c": "0333106eecfd92dc250ec893ab2f93a145477d1e5c894c1ba72fbc241f502a56"
+      },
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__metagpt__r03",
+      "task": "balance_control",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__metagpt__r03.json",
+        "sha256": "1f34e2b918656228c75ee34d41aed772e662449fa1e0f7c5da3bf380c61bd564",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "1cfb84e379459572a981f66b9acbea71fcc1cd23c8abbdadb4bc6233c27eb517",
+        "6_generated_code.c": "a5aaf1b3805e5c0ac35f280281921e2362ec8fb53a983e3612b679002de63150"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__chatdev__r03",
+      "task": "balance_control",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__chatdev__r03.json",
+        "sha256": "d803cef191df712dcdcf351dccaf4d54222f4307df3daa804014a6fa1d1ee734",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "13a44cab947a812c7e92768195c311e3ef69cbab99fd70772ab6f7980868eaa3",
+        "6_generated_code.c": "1e5741cfeb694902167db6931826f14b9d2e1ab36f1d64e846eb5a892b07e577"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__structgen__r03",
+      "task": "balance_control",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__structgen__r03.json",
+        "sha256": "71285a35f4e503df1e70ed963e0775f0df7989a435575d475b0089612e8227ce",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.c": "510fe85a9a8c271ef8d4b39dec4efbd75473d83077252c1072da3beee36a9e73",
+        "6_generated_code.h": "249b7ba08f4a6bead5902d081c7d99c4db7bffe9432f11b8058cbe2d2471b163"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": null,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__C4_structured__r03",
+      "task": "balance_control",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 100.0,
+      "local_record_score_percent": 100.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__C4_structured__r03.json",
+        "sha256": "933a75fc335fabecb241761e236d3f2caece6e934bdc2d863c58a7622ed73395",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "6_generated_code.h": "9e7b2376388d509223c867cbd65a591e17abe94057551e97f79f10cd06ce6c18",
+        "6_generated_code.c": "302eb7809e72901f0fc553b1e495ec3c7125957a09904eba56ccbd465853542c"
+      },
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "internal_acceptance": true,
+      "evidence_protocol": "whole_numbered_requirements"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__C4_structured__r01",
+      "task": "crazyflie",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 65.97938144329896,
+      "local_record_score_percent": 65.97938144329896,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 64,
+        "F": 29,
+        "U": 4,
+        "N/A": 3
+      },
+      "denominator": 97,
+      "review_binding": {
+        "original_repository_relative_path": "fse/artifacts/ds_review_v2_20260908/reports/0d973bcb56c88c6bc4e9dd1f.json",
+        "sha256": "fae1a6644ab639aeabf50ba3d19cb735d7692aee17952dfc0aa35304c1126a99",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "aa9c5f1978415f84363f2710c0f14aa9bb74cddba3671426aaab24a8f47efa70",
+        "candidate_header": "8b55ea13975a7169c59c774911ee56ccb76731f312628a0d77d4ca0c4e1f2d4d"
+      },
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__C4_structured__r02",
+      "task": "crazyflie",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 63.1578947368421,
+      "local_record_score_percent": 63.1578947368421,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 60,
+        "F": 34,
+        "U": 1,
+        "N/A": 5
+      },
+      "denominator": 95,
+      "review_binding": {
+        "original_repository_relative_path": "fse/artifacts/ds_review_v2_20260908/reports/f340b4c2ee1334322c89a560.json",
+        "sha256": "223abee52ef675c4ce0e420c756005363e3a607de456c8891bebb8a82353c2df",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "1c3ba3574994f4ab9a05c72ec1c88e9271584d9516612e0fc10bd5eac65650df",
+        "candidate_header": "c211fc892d5ea01386b58db448f57958224372e65cfddb836ec118c98e6c490f"
+      },
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__C4_structured__r03",
+      "task": "crazyflie",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 75.51020408163265,
+      "local_record_score_percent": 75.51020408163265,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 74,
+        "F": 20,
+        "U": 4,
+        "N/A": 2
+      },
+      "denominator": 98,
+      "review_binding": {
+        "original_repository_relative_path": "fse/artifacts/ds_review_v2_20260908/reports/d72f8f46ee22d3cbb72fc2e9.json",
+        "sha256": "22ca7edc07e98904fed9e7953665312f67b56ffdc8a7de67fadb6620d270d46c",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "49f607b2f90deb810a74907b6d896524a3e0d9f8294fe10db33b982bf7148796",
+        "candidate_header": "48518cd38acd861b941a01899d521eed8c843564e3c3f7d7fe3986f72ae62ed7"
+      },
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__C4_structured__r01",
+      "task": "discobot",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 98.38709677419355,
+      "local_record_score_percent": 98.38709677419355,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 122,
+        "F": 2,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/artifacts/ds_review_v2_20260908/reports/10464348e5051036d5f9db53.json",
+        "sha256": "1ae615e927762fe67ec729d951ea5565fad3535a27a5b1dbc4ce60115d07b3a1",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "172d99bf9333e0375e738a992b04930cb40a1a8d4e8d680cec1c4c765d817a6f",
+        "candidate_header": "c6e46715c0ff8de7f32eccd6ceacd5f2f1ee4b67aad949115ba9c8f3fe60177b"
+      },
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__C4_structured__r02",
+      "task": "discobot",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 89.51612903225806,
+      "local_record_score_percent": 89.51612903225806,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 111,
+        "F": 12,
+        "U": 1,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/artifacts/ds_review_v2_20260908/reports/64be60cd25491e731c8d9556.json",
+        "sha256": "0784768f415c4567d32fc9352eff09990001447fcb50605da96ccb6d18a2e37b",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "20cd73ac7f8b84e72ff2587e9d322fafae83ddc6a19a9e61bb7dc20a3cf3673f",
+        "candidate_header": "cd63a8acaebc8e3567824ee845212db7898207a6e8ffd2ce1407782f1b2f9527"
+      },
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__C4_structured__r03",
+      "task": "discobot",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 99.19354838709677,
+      "local_record_score_percent": 99.19354838709677,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 123,
+        "F": 1,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/static_testcase_completion_20261001/execution/reports/current_c4_20261001__discobot__deepseek-v4-pro__C4_structured__r03.json",
+        "sha256": "486fb48a502a12e1be7ec42c5e9e813ec5296e038ec941f1d93247ff70006e15",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "eb84bb4fa38b9f4ef4d91ff1f3214d665976d6c51a5e041ba36e26219980bce5",
+        "candidate_header": "cd63a8acaebc8e3567824ee845212db7898207a6e8ffd2ce1407782f1b2f9527"
+      },
+      "raw_generation_status": "repair_limit_reached",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__C4_structured__r01",
+      "task": "onstep",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 83.33333333333334,
+      "local_record_score_percent": 83.33333333333334,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 75,
+        "F": 15,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 90,
+      "review_binding": {
+        "original_repository_relative_path": "fse/static_testcase_completion_20261001/execution/reports/current_c4_20261001__onstep__deepseek-v4-pro__C4_structured__r01.json",
+        "sha256": "3bd4865dc039d887c32c62be276e3364bb8fe4c64d922ceeafb588c6d0071a7e",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "d4558c005e11c2715a77520bb642518ba83ca99d222cea73aced2c69b6a997c0",
+        "candidate_header": "826efb8a264020e11f28f5be784c8f5127fe111f00c504261f5821845ac6b75e"
+      },
+      "raw_generation_status": "protocol_or_output_error",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__C4_structured__r02",
+      "task": "onstep",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 81.11111111111111,
+      "local_record_score_percent": 81.11111111111111,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 73,
+        "F": 17,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 90,
+      "review_binding": {
+        "original_repository_relative_path": "fse/static_testcase_completion_20261001/execution/reports/current_c4_20261001__onstep__deepseek-v4-pro__C4_structured__r02.json",
+        "sha256": "b1d2cc6d5839804bf5a696a610f8023065dee82058fa0c6ff65e8af5e9fe0303",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "ac66ba252b42954fb6bae2cb1dc62dde2d24e450705d866c41ff762f2a8b9625",
+        "candidate_header": "826efb8a264020e11f28f5be784c8f5127fe111f00c504261f5821845ac6b75e"
+      },
+      "raw_generation_status": "protocol_or_output_error",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__C4_structured__r03",
+      "task": "onstep",
+      "method": "EmbedDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 84.44444444444444,
+      "local_record_score_percent": 84.44444444444444,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 76,
+        "F": 14,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 90,
+      "review_binding": {
+        "original_repository_relative_path": "fse/static_testcase_onstep_r03_new_20261001/execution/reports/onstep_r03_new_20261001__onstep__deepseek-v4-pro__C4_structured__r03.json",
+        "sha256": "223a6914a573622c8db58de72bb618421e8173033ec218d8179ca4e6e18e5a0d",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "e80f7071592491149438eed2a43e9e02dad7a9fb318a680bb077419189586528",
+        "candidate_header": "1758ffa92856ffd962461516a93a15386be701c99c2012ec2ec5c1d7cfc74ebd"
+      },
+      "raw_generation_status": "protocol_or_output_error",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__B_metagpt__r01",
+      "task": "crazyflie",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 0.0,
+      "local_record_score_percent": 0.0,
+      "source_type": "no_code_position",
+      "locally_bound_review": false,
+      "counts": null,
+      "denominator": null,
+      "review_binding": null,
+      "candidate_code_sha256": {},
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": false,
+      "artifact_available": false,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__B_metagpt__r02",
+      "task": "crazyflie",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 0.0,
+      "local_record_score_percent": 0.0,
+      "source_type": "no_code_position",
+      "locally_bound_review": false,
+      "counts": null,
+      "denominator": null,
+      "review_binding": null,
+      "candidate_code_sha256": {},
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": false,
+      "artifact_available": false,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__B_metagpt__r03",
+      "task": "crazyflie",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 0.0,
+      "local_record_score_percent": 0.0,
+      "source_type": "no_code_position",
+      "locally_bound_review": false,
+      "counts": null,
+      "denominator": null,
+      "review_binding": null,
+      "candidate_code_sha256": {},
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": false,
+      "artifact_available": false,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__B_metagpt__r01",
+      "task": "discobot",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 23.387096774193548,
+      "local_record_score_percent": 23.387096774193548,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 29,
+        "F": 93,
+        "U": 2,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/discobot/discobot__deepseek-v4-pro__B_metagpt__r01.json",
+        "sha256": "21e992d96119c0ce515cccad30a307a8c5fb0794d489342baa094d4831b3b10d",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "617e9b64f69f06c5827a76cad7a4646603aa4ec7dea41c648fd372431fbc6547",
+        "candidate_header": "ff9a11ce6c5eafc996f8bd2ed0fbd5164966da9c9d674d92a882d478f0f667d9"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__B_metagpt__r02",
+      "task": "discobot",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 16.93548387096774,
+      "local_record_score_percent": 16.93548387096774,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 21,
+        "F": 103,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/discobot/discobot__deepseek-v4-pro__B_metagpt__r02.json",
+        "sha256": "a5db6402708b740028919f4d9d1b88864cd83ce26c62fbe870d56a513d8b210b",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "f5b02387c25c1d5a705f08e0b25083819cedebedc53c7bdcc87410d44fa14d6a",
+        "candidate_header": "9c66398b6e87f3bf6f63d6bf5a28bbd5d5d1a7a4afe863b02d4c8dd2987a6ebb"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__B_metagpt__r03",
+      "task": "discobot",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 0.0,
+      "local_record_score_percent": 0.0,
+      "source_type": "no_code_position",
+      "locally_bound_review": false,
+      "counts": null,
+      "denominator": null,
+      "review_binding": null,
+      "candidate_code_sha256": {},
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": false,
+      "artifact_available": false,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__B_metagpt__r01",
+      "task": "onstep",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 0.0,
+      "local_record_score_percent": 0.0,
+      "source_type": "no_code_position",
+      "locally_bound_review": false,
+      "counts": null,
+      "denominator": null,
+      "review_binding": null,
+      "candidate_code_sha256": {},
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": false,
+      "artifact_available": false,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__B_metagpt__r02",
+      "task": "onstep",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 0.0,
+      "local_record_score_percent": 0.0,
+      "source_type": "no_code_position",
+      "locally_bound_review": false,
+      "counts": null,
+      "denominator": null,
+      "review_binding": null,
+      "candidate_code_sha256": {},
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": false,
+      "artifact_available": false,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__B_metagpt__r03",
+      "task": "onstep",
+      "method": "MetaGPT",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 0.0,
+      "local_record_score_percent": 0.0,
+      "source_type": "no_code_position",
+      "locally_bound_review": false,
+      "counts": null,
+      "denominator": null,
+      "review_binding": null,
+      "candidate_code_sha256": {},
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": false,
+      "artifact_available": false,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__B_chatdev__r01",
+      "task": "crazyflie",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 66.66666666666666,
+      "local_record_score_percent": 66.66666666666666,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 64,
+        "F": 30,
+        "U": 2,
+        "N/A": 4
+      },
+      "denominator": 96,
+      "review_binding": {
+        "original_repository_relative_path": "fse/paper/build/20260912_data_audit_agent/audited_metrics.json",
+        "sha256": "342eee287a249ad1b225dd95d9aa8fabcf3b14998e9c71468315d911a96a29b8",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_header": "dfeeb2d473f1d11fb05fbcaf1d2d7894bc3d140e8cd1f650902ecbbf00e7fed3",
+        "candidate_source": "d07aa37a9fafd1d448470b6b93dc4f33f8e409d4c9f5a63bff6f87390f97804c"
+      },
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__B_chatdev__r02",
+      "task": "crazyflie",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 46.0,
+      "local_record_score_percent": 46.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 46,
+        "F": 47,
+        "U": 7,
+        "N/A": 0
+      },
+      "denominator": 100,
+      "review_binding": {
+        "original_repository_relative_path": "fse/rq1_chatdev_deepseek_static_20261003/review.json",
+        "original_sha256": "7b729073073fb17766d7b6dced1e88dc80fd2c165da3a707fdde8521e0cf3c7d",
+        "path": "data/rq1/chatdev_crazyflie_r02/static_review.json",
+        "distributed_sha256": "98514fb0037c637182e6919d304e034c343c482f92486606f7bd81fff2f76e5c",
+        "file_included_in_plotting_subset": true
+      },
+      "candidate_code_sha256": {
+        "evidence/current_chatdev_crazyflie_r02/raw/6_generated_code.h": "184ff1eb838b6ccab6603f0defbbea9e3ff52f1e1abe8523443e23ce9341f523",
+        "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_commander_rpyt.c": "ae0ca7816275c538f6486b5431e13629cff233b6384bc8e0d9b3fec671639b80",
+        "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_control.c": "4cae64371934321ebb7d28924fb61cc686bd82a07ad5f158dfe4ec223527a127",
+        "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_crtp.c": "023ad7b7454529f0ef0fcb3a9264f7935ae29dafd70ba18cbf146629847a3c1d",
+        "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_deck_log.c": "6a61ed1b43391bbced533ec4f09fbd155394ba094530f18ff10ee5f57bd29a67",
+        "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_estimator_commander.c": "23bde9752f08e9cfe4ad27caf747eec2895d637d8e78751ad1f79cd0d198847b",
+        "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_health.c": "e4f7e389e306487ad6dd69014eef01bf4432eda73460f22214d2b7bd3aa9768e",
+        "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_internal.h": "99d9b3588c40001b56f8bbdc2997a0470c991f2e7bc11b2c621219f03ab5ac07",
+        "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_power.c": "91d48df025815d454f7b5f09fba84b381b1646ccd045619d1cfb91b81a8f6d34",
+        "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_sensfusion6.c": "e597fa3a6537ed2296f6a951a405654b5480c415c5a1026b879ac14e7906675a",
+        "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_stabilizer.c": "c05e092ceb0c07ba4a38edbddb0e4fdf56333628176bf6e068c5045dc4c1d623",
+        "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_supervisor.c": "4d1279f4c4b7a4f12cf27359ee577074e74d70b5af6d6ed9cc1a536f7407cc2f"
+      },
+      "raw_generation_status": "adapter_or_output_error: Code blocks need unambiguous C file names",
+      "raw_code_delivery": false,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases",
+      "native_adapter_accepted": false,
+      "selected_artifact_delivery": true,
+      "source_extraction": "Twelve complete file bodies losslessly extracted; no source repair.",
+      "candidate_key": "6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8",
+      "host_all_pass": false,
+      "human_review": {
+        "status": "author-attested",
+        "independently_witnessed_by_reproduction_script": false,
+        "attestation": "data/human_review_attestation.json"
+      },
+      "previous_position": {
+        "identity": "crazyflie__deepseek-v4-pro__B_chatdev__r02",
+        "task": "crazyflie",
+        "method": "ChatDev",
+        "model": "deepseek-v4-pro",
+        "repeat": 2,
+        "display_score_percent": 0.0,
+        "local_record_score_percent": 0.0,
+        "source_type": "no_code_position",
+        "locally_bound_review": false,
+        "counts": null,
+        "denominator": null,
+        "review_binding": null,
+        "candidate_code_sha256": {},
+        "raw_generation_status": "output_truncated",
+        "raw_code_delivery": false,
+        "artifact_available": false,
+        "evidence_protocol": "original_project_testcases"
+      }
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__B_chatdev__r03",
+      "task": "crazyflie",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 59.183673469387756,
+      "local_record_score_percent": 59.183673469387756,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 58,
+        "F": 36,
+        "U": 4,
+        "N/A": 2
+      },
+      "denominator": 98,
+      "review_binding": {
+        "original_repository_relative_path": "fse/paper/build/20260912_data_audit_agent/audited_metrics.json",
+        "sha256": "342eee287a249ad1b225dd95d9aa8fabcf3b14998e9c71468315d911a96a29b8",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "5087fc40759a9e3fa4a5467481b910eb9a73092d435ffad7d1400f7c8438a893",
+        "candidate_header": "357bb95e01b86a6f7374e0e0146e4b1c528e609569e133d35f71d1871501a51b"
+      },
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__B_chatdev__r01",
+      "task": "discobot",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 84.67741935483872,
+      "local_record_score_percent": 84.67741935483872,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 105,
+        "F": 17,
+        "U": 2,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/paper/build/20260912_data_audit_agent/audited_metrics.json",
+        "sha256": "342eee287a249ad1b225dd95d9aa8fabcf3b14998e9c71468315d911a96a29b8",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_header": "28500f605e266d2d435b983ce0b0d014654c4f69945665f1dcc8cc3ddd9dd9c5",
+        "candidate_source": "cd863bb5fe9f1c7ad6162c213c0e7f3db0a56378b8d7530f1611e465be9f4fd0"
+      },
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__B_chatdev__r02",
+      "task": "discobot",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 98.38709677419355,
+      "local_record_score_percent": 98.38709677419355,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 122,
+        "F": 2,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/paper/build/20260912_data_audit_agent/audited_metrics.json",
+        "sha256": "342eee287a249ad1b225dd95d9aa8fabcf3b14998e9c71468315d911a96a29b8",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "6b15b0df36f0f3d68f4eafb9cf1c446599e13e417783b118e06f81d0f4b2d382",
+        "candidate_header": "7f86b387ab117d57f5366a5c6138de736368dd8c4ce82b91072d98d23f2953e3"
+      },
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__B_chatdev__r03",
+      "task": "discobot",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 87.90322580645162,
+      "local_record_score_percent": 87.90322580645162,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 109,
+        "F": 15,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/paper/build/20260912_data_audit_agent/audited_metrics.json",
+        "sha256": "342eee287a249ad1b225dd95d9aa8fabcf3b14998e9c71468315d911a96a29b8",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_header": "36333c3c89de09aabd4e2c077191fd4e7fc95f647abc948450cf28ed0a2e5673",
+        "candidate_source": "1b5f289a1a9088b6eedf38f3fae7832b51037f2127c7a01d0fc897aadd119680"
+      },
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__B_chatdev__r01",
+      "task": "onstep",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 80.0,
+      "local_record_score_percent": 80.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 72,
+        "F": 18,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 90,
+      "review_binding": {
+        "original_repository_relative_path": "fse/paper/build/20260912_data_audit_agent/audited_metrics.json",
+        "sha256": "342eee287a249ad1b225dd95d9aa8fabcf3b14998e9c71468315d911a96a29b8",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "fd0930a1ed7e228e41ba6a72823218ebde592728c6dcd8d469379a69400908e1",
+        "candidate_header": "900aca3617320b2a9642db9afe93af92aaa948be97ada3fc032cf755cde8dc78"
+      },
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__B_chatdev__r02",
+      "task": "onstep",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 77.77777777777779,
+      "local_record_score_percent": 77.77777777777779,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 70,
+        "F": 19,
+        "U": 1,
+        "N/A": 0
+      },
+      "denominator": 90,
+      "review_binding": {
+        "original_repository_relative_path": "fse/paper/build/20260912_data_audit_agent/audited_metrics.json",
+        "sha256": "342eee287a249ad1b225dd95d9aa8fabcf3b14998e9c71468315d911a96a29b8",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "1e2de8c7fdaa0f5afbb290887baa90983d4451d2b787ae3417ee489c880f349d",
+        "candidate_header": "826edc8576b1fab62a573dc1685a9fa9497f1689ccdea045685db5fb6887cf13"
+      },
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__B_chatdev__r03",
+      "task": "onstep",
+      "method": "ChatDev",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 78.88888888888889,
+      "local_record_score_percent": 78.88888888888889,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 71,
+        "F": 19,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 90,
+      "review_binding": {
+        "original_repository_relative_path": "fse/paper/build/20260912_data_audit_agent/audited_metrics.json",
+        "sha256": "342eee287a249ad1b225dd95d9aa8fabcf3b14998e9c71468315d911a96a29b8",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "6f66f22287021c33857e9e94f3880abc274b1f1c932fcd8621bb26e10b86bd97",
+        "candidate_header": "5ccf5fc6e7167253581f79e16248994b21970257c27ae3868199fe45cd58c6e1"
+      },
+      "raw_generation_status": "budget_stopped",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__B_structgen__r01",
+      "task": "crazyflie",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 42.0,
+      "local_record_score_percent": 42.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 42,
+        "F": 51,
+        "U": 7,
+        "N/A": 0
+      },
+      "denominator": 100,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/crazyflie/crazyflie__deepseek-v4-pro__B_structgen__r01.json",
+        "sha256": "5b84623f439e3bffb16f152782d94a2071155655edfd7fbba3251b185700498f",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "3829995f7db92e3ac22a8e87833d8ebd8e75b35a6455f13af22ca86b067a364c",
+        "candidate_header": "fce28d1066e5ec34686233ddc006739285166b68dbb3c3d4366d27d84a59fdec"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__B_structgen__r02",
+      "task": "crazyflie",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 40.0,
+      "local_record_score_percent": 40.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 40,
+        "F": 53,
+        "U": 7,
+        "N/A": 0
+      },
+      "denominator": 100,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/crazyflie/crazyflie__deepseek-v4-pro__B_structgen__r02.json",
+        "sha256": "f5efb1ee19cec77e0a71cf6ef7134874cad66ae56c637c22b49f43c0291f70a3",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "8b97ba4c0dcb8c8e44f47397982bf1169078205c8b147eaeba5cc025767032cd",
+        "candidate_header": "fce28d1066e5ec34686233ddc006739285166b68dbb3c3d4366d27d84a59fdec"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__B_structgen__r03",
+      "task": "crazyflie",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 33.0,
+      "local_record_score_percent": 33.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 33,
+        "F": 60,
+        "U": 7,
+        "N/A": 0
+      },
+      "denominator": 100,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/crazyflie/crazyflie__deepseek-v4-pro__B_structgen__r03.json",
+        "sha256": "da38e62c99961eb187c02aba6a55575f58b88f2eec58ae811f61809e81eebf37",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "41e5991da88e4d4251486ae3cf801efe0c29aa33fee7f71b331a0459fe74125e",
+        "candidate_header": "fce28d1066e5ec34686233ddc006739285166b68dbb3c3d4366d27d84a59fdec"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__B_structgen__r01",
+      "task": "discobot",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 85.48387096774194,
+      "local_record_score_percent": 85.48387096774194,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 106,
+        "F": 18,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/paper/build/20260912_data_audit_agent/audited_metrics.json",
+        "sha256": "342eee287a249ad1b225dd95d9aa8fabcf3b14998e9c71468315d911a96a29b8",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "f072a05ed9cd25f1424083e8517388dca88ebfa2a9030f7590b6e480ccd3a056",
+        "candidate_header": "85de95bcfcf8ffad5c9ec079c4be7aed9793362e51277daa97b76945d76d3634"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__B_structgen__r02",
+      "task": "discobot",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 87.09677419354838,
+      "local_record_score_percent": 87.09677419354838,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 108,
+        "F": 16,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/paper/build/20260912_data_audit_agent/audited_metrics.json",
+        "sha256": "342eee287a249ad1b225dd95d9aa8fabcf3b14998e9c71468315d911a96a29b8",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "b82f27f31a5ad4c1d87f6e9444d2d404552744f00fd766a657b740fae9010cf5",
+        "candidate_header": "c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__B_structgen__r03",
+      "task": "discobot",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 87.09677419354838,
+      "local_record_score_percent": 87.09677419354838,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 108,
+        "F": 16,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/paper/build/20260912_data_audit_agent/audited_metrics.json",
+        "sha256": "342eee287a249ad1b225dd95d9aa8fabcf3b14998e9c71468315d911a96a29b8",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "2f2f4d97c84d17a2a0114d4f612536806c939ea99079a6842b8e9f7f757bf010",
+        "candidate_header": "c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__B_structgen__r01",
+      "task": "onstep",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 70.0,
+      "local_record_score_percent": 70.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 63,
+        "F": 20,
+        "U": 7,
+        "N/A": 0
+      },
+      "denominator": 90,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/onstep/onstep__deepseek-v4-pro__B_structgen__r01.json",
+        "sha256": "96f0b60fc93cc1e956678c5e144c915658a6275f5dff92e9c8559ac5dfb91d6e",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "89f94c1ac88c747d41510e09d1b83bd7646d18a20f9a5d799b46e525a83d4e94",
+        "candidate_header": "826efb8a264020e11f28f5be784c8f5127fe111f00c504261f5821845ac6b75e"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__B_structgen__r02",
+      "task": "onstep",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 63.33333333333333,
+      "local_record_score_percent": 63.33333333333333,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 57,
+        "F": 26,
+        "U": 7,
+        "N/A": 0
+      },
+      "denominator": 90,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/onstep/onstep__deepseek-v4-pro__B_structgen__r02.json",
+        "sha256": "713425e46974d44fca9b9e5163200009bfaba679d6cd26019d1e1ad862d08a4a",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "3c3c9b8cbdf50ee65d7f4a047b0e968b07d30f7680b00ed63cee65c9cc317d44",
+        "candidate_header": "a09a0df375a329e10ad5983581d47e4e7040c8e4c1a136220b337f1e2bdbefbd"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__B_structgen__r03",
+      "task": "onstep",
+      "method": "StructGen",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 63.33333333333333,
+      "local_record_score_percent": 63.33333333333333,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 57,
+        "F": 24,
+        "U": 9,
+        "N/A": 0
+      },
+      "denominator": 90,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/onstep/onstep__deepseek-v4-pro__B_structgen__r03.json",
+        "sha256": "8a2a8de336aefd8486906953632a018b983022cc23ad3458ea2ad104063e5652",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "ad99826d2c76de4fc1d11721e0e2ec3ef17a00c937b58c33cb005ab3d12ab832",
+        "candidate_header": "826efb8a264020e11f28f5be784c8f5127fe111f00c504261f5821845ac6b75e"
+      },
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__Direct_Raw__r01",
+      "task": "crazyflie",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 32.0,
+      "local_record_score_percent": 32.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 32,
+        "F": 61,
+        "U": 7,
+        "N/A": 0
+      },
+      "denominator": 100,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/crazyflie/crazyflie__deepseek-v4-pro__Direct_Raw__r01.json",
+        "sha256": "27324fa7a27c0d1ac5988fb2ce208bf61ea4201559a7355604881a3e2fdad893",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "1640ac81f899e236b498434ec345d3ee3bc94db1fba302204e750f6a8bb75047",
+        "candidate_header": "1ec0e28ff17ef4d8fa89b3c73079f05bd971163056d2ab853af68204f4c56266"
+      },
+      "raw_generation_status": "succeeded",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__Direct_Raw__r02",
+      "task": "crazyflie",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 33.0,
+      "local_record_score_percent": 33.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 33,
+        "F": 60,
+        "U": 7,
+        "N/A": 0
+      },
+      "denominator": 100,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/crazyflie/crazyflie__deepseek-v4-pro__Direct_Raw__r02.json",
+        "sha256": "d734dd012810b628dcc0a127ec3d1ee53c0550c1c84de8ed56b3cc33681cf449",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "7f6b6553e4323a2270330749f6e26319c48d52f51862ed3dd7cef1bedf3f9e95",
+        "candidate_header": "daf87cc198c24f9dc6ec12e2ef374a22b99e0d08465e374e7ff741e3a6e97889"
+      },
+      "raw_generation_status": "succeeded",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "crazyflie__deepseek-v4-pro__Direct_Raw__r03",
+      "task": "crazyflie",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 0.0,
+      "local_record_score_percent": 0.0,
+      "source_type": "no_code_position",
+      "locally_bound_review": false,
+      "counts": null,
+      "denominator": null,
+      "review_binding": null,
+      "candidate_code_sha256": {},
+      "raw_generation_status": "succeeded",
+      "raw_code_delivery": false,
+      "artifact_available": false,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__Direct_Raw__r01",
+      "task": "discobot",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 82.25806451612904,
+      "local_record_score_percent": 82.25806451612904,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 102,
+        "F": 20,
+        "U": 2,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/discobot/discobot__deepseek-v4-pro__Direct_Raw__r01.json",
+        "sha256": "a77aa856a75b478ba9336f624643f987dadedd30295d15c0f8d4a950e9ef389c",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "5fcee5f70da1aba363665347c5c42b46ce6bc093f3a0329309a44d90883cbf54",
+        "candidate_header": "8829fae9e42ab5fc966e9c50b1732941b876bea0bc68fc056a8f3a3c21622840"
+      },
+      "raw_generation_status": "succeeded",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__Direct_Raw__r02",
+      "task": "discobot",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 83.87096774193549,
+      "local_record_score_percent": 83.87096774193549,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 104,
+        "F": 19,
+        "U": 1,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/discobot/discobot__deepseek-v4-pro__Direct_Raw__r02.json",
+        "sha256": "31d73ec72253c37341ab577c51b43753394243d1823d6cc470fad5825326e8b4",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "958143cceb96e356100be7d77577e9d6a90613a20af8b123b77fba023e9ebd12",
+        "candidate_header": "3c1607bb6ed6ceac37629fa6062dddb7424f50125ecbb4ab6475b8c716c01ced"
+      },
+      "raw_generation_status": "succeeded",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "discobot__deepseek-v4-pro__Direct_Raw__r03",
+      "task": "discobot",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 80.64516129032258,
+      "local_record_score_percent": 80.64516129032258,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 100,
+        "F": 23,
+        "U": 1,
+        "N/A": 0
+      },
+      "denominator": 124,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/discobot/discobot__deepseek-v4-pro__Direct_Raw__r03.json",
+        "sha256": "3261f40ebc5777545faae16d5ff0571101666c6ac2dd61e2235e1d3422ef1bca",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "ad2d6aceeec96e5039477972bcf3faa2cac932c44c1edd896f9ce1db1768e572",
+        "candidate_header": "4c47567b29a5eee4b6237ddb1f289d5aab52b88a1f07f4f8710371ca7ce48f7a"
+      },
+      "raw_generation_status": "succeeded",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__Direct_Raw__r01",
+      "task": "onstep",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 1,
+      "display_score_percent": 40.0,
+      "local_record_score_percent": 40.0,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 36,
+        "F": 51,
+        "U": 3,
+        "N/A": 0
+      },
+      "denominator": 90,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/onstep/onstep__deepseek-v4-pro__Direct_Raw__r01.json",
+        "sha256": "b7d3dfd787e1d7bfc59f73c863e697420f3cafcf52b531d07fff765a37b9c8c4",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "f75a68fb94a9310b24e3a996531cdd9bbe4f653341cbf4d92eefb7a8f6e85eca",
+        "candidate_header": "9e0647d8c50c60985c6c4094ad52297494af916d5f7d0fd64a95be1092b7a44f"
+      },
+      "raw_generation_status": "succeeded",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__Direct_Raw__r02",
+      "task": "onstep",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 2,
+      "display_score_percent": 45.55555555555556,
+      "local_record_score_percent": 45.55555555555556,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 41,
+        "F": 46,
+        "U": 3,
+        "N/A": 0
+      },
+      "denominator": 90,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/onstep/onstep__deepseek-v4-pro__Direct_Raw__r02.json",
+        "sha256": "cb019ef0a654554c12352b1add264505fbab9bc9e8b70d4267ac8a114fb32b0f",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "25a809f7ccaf162fffa870432bd30e51ae14e422036c76d76e4e1040c54a24fa",
+        "candidate_header": "5b847bf28f41569769f0e700f73519ed1f39b820cb939cd696c040f1b13fc54d"
+      },
+      "raw_generation_status": "succeeded",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    },
+    {
+      "identity": "onstep__deepseek-v4-pro__Direct_Raw__r03",
+      "task": "onstep",
+      "method": "Direct-LLM",
+      "model": "deepseek-v4-pro",
+      "repeat": 3,
+      "display_score_percent": 45.55555555555556,
+      "local_record_score_percent": 45.55555555555556,
+      "source_type": "code_bound_static_review",
+      "locally_bound_review": true,
+      "counts": {
+        "P": 41,
+        "F": 47,
+        "U": 2,
+        "N/A": 0
+      },
+      "denominator": 90,
+      "review_binding": {
+        "original_repository_relative_path": "fse/host_zero_static_reassessment_20261001/reviews/onstep/onstep__deepseek-v4-pro__Direct_Raw__r03.json",
+        "sha256": "902aadb73445404167acd59fb413abd756a371bbacdf0d409be7e37dd574a349",
+        "file_included_in_plotting_subset": false
+      },
+      "candidate_code_sha256": {
+        "candidate_source": "a7a7cb6bc42eae9f6a5d8f8d88524d88d56b90c097dc566bc30e9ec254e726e1",
+        "candidate_header": "e19ca93b8809fb6cf9099db5ec05f9dc7d27ff635c57f3a9fc778cc8b72cdabf"
+      },
+      "raw_generation_status": "succeeded",
+      "raw_code_delivery": true,
+      "artifact_available": true,
+      "evidence_protocol": "original_project_testcases"
+    }
+  ]
+}

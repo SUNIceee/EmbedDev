@@ -1,0 +1,88 @@
+{
+  "candidate": {
+    "key": "5a1709873fa9fd6a192d8b0a67eb02c3e820f61d5f0b22c558e72ce4a735201e",
+    "project": "onstep",
+    "header": "<WORKSPACE>\\fse\\official_baselines\\reassessment_host_20260921\\code\\5a1709873fa9fd6a192d8b0a67eb02c3e820f61d5f0b22c558e72ce4a735201e\\raw\\6_generated_code.h",
+    "source": "<WORKSPACE>\\fse\\official_baselines\\reassessment_host_20260921\\code\\5a1709873fa9fd6a192d8b0a67eb02c3e820f61d5f0b22c558e72ce4a735201e\\raw\\onstep_align.c",
+    "header_sha256": "295b16d6b4316da8cffd3165b2a90571c59b5f81aa1783046b095cb59400cd89",
+    "source_sha256": "6a6e97305924aa2f170c72afc962e07df6ca03b2dce62a9031b674756f00c3c9",
+    "labels": [],
+    "whole_project_sha256": "5a1709873fa9fd6a192d8b0a67eb02c3e820f61d5f0b22c558e72ce4a735201e",
+    "all_file_sha256": {
+      "6_generated_code.h": "295b16d6b4316da8cffd3165b2a90571c59b5f81aa1783046b095cb59400cd89",
+      "onstep_internal.h": "291961e5e3056d017934481efba85984b49cc0723c75b017418c1b53508d3fee",
+      "onstep_core.c": "4cfc6606b61426e94e215ff4bd6b6f0cc41c298a8b5b6774b09aa326018bfb3f",
+      "onstep_motion.c": "6e8d1608a566f26680ebe6cddd5849486288a32e5ec6ecdddb3f99a4c0e2fb78",
+      "onstep_align.c": "6a6e97305924aa2f170c72afc962e07df6ca03b2dce62a9031b674756f00c3c9",
+      "onstep_query.c": "58e15b0920dc82ed15097eb133e78d706956d8dd762c438e2d2033df944a7d2c",
+      "onstep_command.c": "9793c0149d9b1994f3205d9896eacf9486543627e8de00b366e0c6016dbb8e11"
+    }
+  },
+  "suite_sha256": "7b3ea083fc200084487ea77197bcd77fce7a340fbf147e2c3234652952a2a27f",
+  "complete": true,
+  "compile_returncode": 0,
+  "compile_timeout": false,
+  "source_changes": {
+    "header_include_alignment": [],
+    "entrypoint_rename": "compile-time main=fse_candidate_main"
+  },
+  "cases": [
+    {
+      "id": "OS-B01",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-004",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B02",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-001 / runtime state reset",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B03",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-001 / runtime state reset",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B04",
+      "category": "persistent_storage",
+      "anchor": "5 / NVM",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B05",
+      "category": "input_propagation",
+      "anchor": "3.2 / RTC",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B06",
+      "category": "invalid_input_state",
+      "anchor": "REQ-FUNC-005",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    }
+  ],
+  "counts": {
+    "harness_build_failed": 6
+  }
+}

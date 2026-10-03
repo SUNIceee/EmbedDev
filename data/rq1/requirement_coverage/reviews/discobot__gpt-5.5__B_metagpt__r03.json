@@ -1,0 +1,1714 @@
+{
+  "identity": "discobot__gpt-5.5__B_metagpt__r03",
+  "project": "discobot",
+  "model": "gpt-5.5",
+  "method": "MetaGPT",
+  "repeat": 3,
+  "status": "complete_static_subset",
+  "candidate_files": [
+    {
+      "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+      "sha256": "585c2c7999f0f8fe0f49086ceeb15bbe2b76252d91872b5dd2acac2578602eb3"
+    },
+    {
+      "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+      "sha256": "b510109ccf4c1b479ff7d920ea5ef36f1a0f476833bc403ca2093aab7cfcf4b7"
+    },
+    {
+      "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+      "sha256": "1994c082a95f21df62e9beba4c11afc457e75c7ae3206d51981235b8eb5e6ceb"
+    },
+    {
+      "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_internal.h",
+      "sha256": "f83a2d38aa0c3ce6fa8ae340703b2f4f93f0d046df56f8deaa590c2951898a38"
+    },
+    {
+      "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+      "sha256": "719037f1579b90e3c6407813b386ba8bde05bacae2222c21b9b18491454dc873"
+    }
+  ],
+  "candidate_all_files_sha256_verified": true,
+  "checklist_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+  "candidate_inventory_sha256": "60721e6c11f3e5fb421b58209ce90367c3e66ea260a90a87b625c43d81a53d16",
+  "evaluator": "current Codex LLM static review",
+  "human_review_claimed": false,
+  "reviewed_at": "2026-10-02T06:49:07.767004+00:00",
+  "requirements": [
+    {
+      "id": "DB-R001",
+      "verdict": "partially_covered",
+      "reason": "Ticks and logs exist, but core calls a two-parameter masked GPIO function while the supplied adapter only provides a one-parameter full-register write, leaving the actual mask data path absent. Overall compilation failure was not scored as zero throughout.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 333,
+          "line_end": 381,
+          "function": "set_motor_raw"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 238,
+          "line_end": 257,
+          "function": "GPIO"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 465,
+          "line_end": 482,
+          "function": "UART"
+        }
+      ]
+    },
+    {
+      "id": "DB-R002",
+      "verdict": "fully_covered",
+      "reason": "168MHz/168000 and tick++ semantics are complete.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 25,
+          "line_end": 27,
+          "function": "clock_constant"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 225,
+          "line_end": 235,
+          "function": "systick"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 29,
+          "line_end": 31,
+          "function": "clock"
+        }
+      ]
+    },
+    {
+      "id": "DB-R003",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R004",
+      "verdict": "partially_covered",
+      "reason": "8N1/RXNE exist, but 115200 and PA9/10 are used and NVIC 0/0 is unspecified, violating R24.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 326,
+          "line_end": 357,
+          "function": "UART_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R005",
+      "verdict": "partially_covered",
+      "reason": "PA1-4 and PP exist, but use NOPULL/50MHz instead of pull-up/25MHz.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 91,
+          "line_end": 104,
+          "function": "motor_config"
+        }
+      ]
+    },
+    {
+      "id": "DB-R006",
+      "verdict": "partially_covered",
+      "reason": "Target PD12-15 set/clear exists, but core logical indices are not converted to 12+i and the masked adapter is absent, leaving the data path incomplete.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 411,
+          "line_end": 423,
+          "function": "LED"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 285,
+          "line_end": 302,
+          "function": "LED_write"
+        }
+      ]
+    },
+    {
+      "id": "DB-R007",
+      "verdict": "fully_covered",
+      "reason": "PA0 active-high semantics are consistent; simple symbol-linkage differences do not erase existing logic.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 193,
+          "line_end": 197,
+          "function": "button_level"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 430,
+          "line_end": 432,
+          "function": "button_read"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 308,
+          "line_end": 310,
+          "function": "button"
+        }
+      ]
+    },
+    {
+      "id": "DB-R008",
+      "verdict": "partially_covered",
+      "reason": "SPI1 and register access exist, but the specified TM 2G/50Hz parameter path is absent and raw values lack evidence of milli-g calibration.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 144,
+          "line_end": 188,
+          "function": "SPI1"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 428,
+          "line_end": 451,
+          "function": "LIS3DSH"
+        }
+      ]
+    },
+    {
+      "id": "DB-R009",
+      "verdict": "partially_covered",
+      "reason": "12-bit/144-cycle settings exist, but div4 replaces div8 and continuous mode is disabled.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 374,
+          "line_end": 425,
+          "function": "ADC"
+        }
+      ]
+    },
+    {
+      "id": "DB-R010",
+      "verdict": "partially_covered",
+      "reason": "Target clock/DRDY exist, but an empty host queue directly defaults to 0 without ready state.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 453,
+          "line_end": 463,
+          "function": "RNG"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 124,
+          "line_end": 137,
+          "function": "RNG_pop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R011",
+      "verdict": "not_covered",
+      "reason": "USART precedes ADC/accelerometer/RNG and SystemInit and other calls are absent, violating the specified order.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 237,
+          "line_end": 252,
+          "function": "discobot_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R012",
+      "verdict": "not_covered",
+      "reason": "The specified banner is not sent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 237,
+          "line_end": 252,
+          "function": "discobot_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R013",
+      "verdict": "partially_covered",
+      "reason": "168000 and Config exist, but Update and the core-clock-variable/1000 sequence are absent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 225,
+          "line_end": 227,
+          "function": "systick"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 312,
+          "line_end": 320,
+          "function": "systick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R014",
+      "verdict": "not_covered",
+      "reason": "The SysTick_Config result is discarded, so failure does not prevent startup.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 312,
+          "line_end": 320,
+          "function": "systick"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 237,
+          "line_end": 252,
+          "function": "init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R015",
+      "verdict": "partially_covered",
+      "reason": "Target input configuration exists, but core only reads current state; the configuration call and forced initial host low state are disconnected.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 121,
+          "line_end": 131,
+          "function": "button_config"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 425,
+          "line_end": 428,
+          "function": "button_init"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 259,
+          "line_end": 263,
+          "function": "button_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R016",
+      "verdict": "not_covered",
+      "reason": "The specified Directions 0/1/2 are absent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 55,
+          "line_end": 68,
+          "function": "command_enum"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 138,
+          "line_end": 147,
+          "function": "motors"
+        }
+      ]
+    },
+    {
+      "id": "DB-R017",
+      "verdict": "not_covered",
+      "reason": "No independent left direction function or invalid-direction-to-00 function.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 333,
+          "line_end": 405,
+          "function": "motors"
+        }
+      ]
+    },
+    {
+      "id": "DB-R018",
+      "verdict": "not_covered",
+      "reason": "No independent right direction function or invalid-direction-to-00 function.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 333,
+          "line_end": 405,
+          "function": "motors"
+        }
+      ]
+    },
+    {
+      "id": "DB-R019",
+      "verdict": "fully_covered",
+      "reason": "speedunused。",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 383,
+          "line_end": 401,
+          "function": "motors"
+        }
+      ]
+    },
+    {
+      "id": "DB-R020",
+      "verdict": "partially_covered",
+      "reason": "1010 is computed, but the two-parameter masked write implementation is missing; this is not merely a spelling error for an identical signature.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 333,
+          "line_end": 386,
+          "function": "forward"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 238,
+          "line_end": 240,
+          "function": "GPIO_adapter"
+        }
+      ]
+    },
+    {
+      "id": "DB-R021",
+      "verdict": "partially_covered",
+      "reason": "0101 is computed, but integration with masked output is missing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 333,
+          "line_end": 391,
+          "function": "backward"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 238,
+          "line_end": 240,
+          "function": "GPIO_adapter"
+        }
+      ]
+    },
+    {
+      "id": "DB-R022",
+      "verdict": "not_covered",
+      "reason": "No soft-left 0010 action.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 383,
+          "line_end": 405,
+          "function": "motors"
+        }
+      ]
+    },
+    {
+      "id": "DB-R023",
+      "verdict": "not_covered",
+      "reason": "No soft-right 1000 action.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 383,
+          "line_end": 405,
+          "function": "motors"
+        }
+      ]
+    },
+    {
+      "id": "DB-R024",
+      "verdict": "not_covered",
+      "reason": "No reverse soft-left 0001 action.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 383,
+          "line_end": 405,
+          "function": "motors"
+        }
+      ]
+    },
+    {
+      "id": "DB-R025",
+      "verdict": "not_covered",
+      "reason": "No reverse soft-right 0100 action.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 383,
+          "line_end": 405,
+          "function": "motors"
+        }
+      ]
+    },
+    {
+      "id": "DB-R026",
+      "verdict": "partially_covered",
+      "reason": "1001 is computed, but integration with the actual masked write is missing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 333,
+          "line_end": 381,
+          "function": "raw_motor"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 398,
+          "line_end": 401,
+          "function": "right"
+        }
+      ]
+    },
+    {
+      "id": "DB-R027",
+      "verdict": "partially_covered",
+      "reason": "0110 is computed, but integration with the actual masked write is missing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 333,
+          "line_end": 381,
+          "function": "raw_motor"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 393,
+          "line_end": 396,
+          "function": "left"
+        }
+      ]
+    },
+    {
+      "id": "DB-R028",
+      "verdict": "partially_covered",
+      "reason": "0000 is computed, but the two-parameter masked write implementation is missing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 333,
+          "line_end": 381,
+          "function": "raw_motor"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 403,
+          "line_end": 405,
+          "function": "stop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R029",
+      "verdict": "partially_covered",
+      "reason": "Configuration and low outputs partially exist, but parameters differ and core does not call GPIO initialization.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 91,
+          "line_end": 104,
+          "function": "motor_config"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 237,
+          "line_end": 252,
+          "function": "init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R030",
+      "verdict": "fully_covered",
+      "reason": "It explicitly changes 11 on each side to 00, and all commands pass through this safety logic.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 345,
+          "line_end": 362,
+          "function": "motor_safety"
+        }
+      ]
+    },
+    {
+      "id": "DB-R031",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R032",
+      "verdict": "not_covered",
+      "reason": "The original nine IDs/lookup table are absent; even the header's numeric enum disagrees with actual ASCII dispatch.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 55,
+          "line_end": 68,
+          "function": "commands"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 69,
+          "line_end": 110,
+          "function": "command_macros"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 266,
+          "line_end": 323,
+          "function": "dispatch"
+        }
+      ]
+    },
+    {
+      "id": "DB-R033",
+      "verdict": "not_covered",
+      "reason": "Only ASCII is actually accepted; 0 is skipped and original values 1..8 have no mapping.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 254,
+          "line_end": 323,
+          "function": "dispatch"
+        }
+      ]
+    },
+    {
+      "id": "DB-R034",
+      "verdict": "partially_covered",
+      "reason": "Empty/default inputs do nothing, but out-of-range ASCII can act, violating the original valid set.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 254,
+          "line_end": 323,
+          "function": "dispatch"
+        }
+      ]
+    },
+    {
+      "id": "DB-R035",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R036",
+      "verdict": "partially_covered",
+      "reason": "Only PA0 is read, without 0..3 indices or -1 for invalid indices.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 430,
+          "line_end": 432,
+          "function": "button_read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R037",
+      "verdict": "partially_covered",
+      "reason": "It samples only every 250 ticks and compares two samples, rather than accumulating 250 consecutive high ticks.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 229,
+          "line_end": 235,
+          "function": "tick"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 438,
+          "line_end": 446,
+          "function": "debounce"
+        }
+      ]
+    },
+    {
+      "id": "DB-R038",
+      "verdict": "not_covered",
+      "reason": "Low levels are likewise delayed by two samples; the count is not immediately cleared and released.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 229,
+          "line_end": 235,
+          "function": "tick"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 438,
+          "line_end": 446,
+          "function": "debounce"
+        }
+      ]
+    },
+    {
+      "id": "DB-R039",
+      "verdict": "partially_covered",
+      "reason": "Sample history exists, but the specified state-change switch/checkbutton is absent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 438,
+          "line_end": 446,
+          "function": "debounce"
+        }
+      ]
+    },
+    {
+      "id": "DB-R040",
+      "verdict": "not_covered",
+      "reason": "No roll formula.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 676,
+          "line_end": 718,
+          "function": "accel"
+        }
+      ]
+    },
+    {
+      "id": "DB-R041",
+      "verdict": "not_covered",
+      "reason": "No pitch formula.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 676,
+          "line_end": 718,
+          "function": "accel"
+        }
+      ]
+    },
+    {
+      "id": "DB-R042",
+      "verdict": "partially_covered",
+      "reason": "Target configuration and initial low state exist, but call names differ and the 25MHz requirement is not met.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 407,
+          "line_end": 409,
+          "function": "led_init"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 106,
+          "line_end": 119,
+          "function": "LED_config"
+        }
+      ]
+    },
+    {
+      "id": "DB-R043",
+      "verdict": "partially_covered",
+      "reason": "led is used directly as a physical pin rather than logical 12+i; the masked write implementation is absent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 411,
+          "line_end": 415,
+          "function": "led_on"
+        }
+      ]
+    },
+    {
+      "id": "DB-R044",
+      "verdict": "partially_covered",
+      "reason": "Bits are cleared directly using led as a physical pin, rather than 12+i.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 417,
+          "line_end": 419,
+          "function": "led_off"
+        }
+      ]
+    },
+    {
+      "id": "DB-R045",
+      "verdict": "partially_covered",
+      "reason": "Only indices >=32 are rejected; 4..31 can still change outputs.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 159,
+          "line_end": 165,
+          "function": "PinMask"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 411,
+          "line_end": 423,
+          "function": "LED"
+        }
+      ]
+    },
+    {
+      "id": "DB-R046",
+      "verdict": "partially_covered",
+      "reason": "Continuous UART and timing exist, but the threshold is >=1000 rather than strictly >1000.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 254,
+          "line_end": 264,
+          "function": "step"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 325,
+          "line_end": 331,
+          "function": "idle"
+        }
+      ]
+    },
+    {
+      "id": "DB-R047",
+      "verdict": "partially_covered",
+      "reason": "Initialization calls and register writes exist, but the specified TM 2G/50Hz call and success return 0 are absent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 672,
+          "line_end": 674,
+          "function": "LIS_init"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 428,
+          "line_end": 437,
+          "function": "LIS_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R048",
+      "verdict": "partially_covered",
+      "reason": "Raw three-axis values are read, but no floating-point /1000 conversion to g is performed.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 676,
+          "line_end": 718,
+          "function": "accel_read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R049",
+      "verdict": "partially_covered",
+      "reason": "A configuration path exists, but div4, noncontinuous mode, and a default external channel contradict R145-147.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 374,
+          "line_end": 425,
+          "function": "ADC_config"
+        }
+      ]
+    },
+    {
+      "id": "DB-R050",
+      "verdict": "partially_covered",
+      "reason": "Target start/EOC/read exist, but the host reads raw directly and rejects temperature channel 16 at its bounds check.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 404,
+          "line_end": 426,
+          "function": "ADC_read"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 303,
+          "line_end": 309,
+          "function": "ADC_read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R051",
+      "verdict": "partially_covered",
+      "reason": "Sign and slope are correct, but reference voltage is 3.0V rather than 3.3V.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 117,
+          "line_end": 130,
+          "function": "temperature_constants"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 660,
+          "line_end": 670,
+          "function": "temperature"
+        }
+      ]
+    },
+    {
+      "id": "DB-R052",
+      "verdict": "fully_covered",
+      "reason": "AHB2 clock followed by RNG enablement is fully implemented.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 453,
+          "line_end": 456,
+          "function": "RNG_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R053",
+      "verdict": "partially_covered",
+      "reason": "Target waiting exists, but an empty host queue returns 0 without observable not-ready status.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 458,
+          "line_end": 463,
+          "function": "RNG_read"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 124,
+          "line_end": 137,
+          "function": "RNG_pop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R054",
+      "verdict": "fully_covered",
+      "reason": "uint32 values including 0/MAX are preserved.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 113,
+          "line_end": 137,
+          "function": "RNG_FIFO"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 458,
+          "line_end": 463,
+          "function": "RNG_read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R055",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R056",
+      "verdict": "partially_covered",
+      "reason": "Only 16 slots exist, input is milliseconds, initial last is current time, and numcalls is absent; some timing semantics are present.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 553,
+          "line_end": 566,
+          "function": "task_init"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 611,
+          "line_end": 619,
+          "function": "scheduler_add"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 48,
+          "line_end": 48,
+          "function": "capacity"
+        }
+      ]
+    },
+    {
+      "id": "DB-R057",
+      "verdict": "fully_covered",
+      "reason": "A full array is silent and not overwritten.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 611,
+          "line_end": 619,
+          "function": "scheduler_add"
+        }
+      ]
+    },
+    {
+      "id": "DB-R058",
+      "verdict": "partially_covered",
+      "reason": "All due entries execute sequentially and update time, but numcalls is absent and updates occur before invocation.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 586,
+          "line_end": 598,
+          "function": "run_due"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 621,
+          "line_end": 634,
+          "function": "scheduler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R059",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R060",
+      "verdict": "not_covered",
+      "reason": "No printtimes or call counts.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 553,
+          "line_end": 634,
+          "function": "scheduler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R061",
+      "verdict": "fully_covered",
+      "reason": "The main loop is sequential and skips NULL, without priority, preemption, or removal.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 621,
+          "line_end": 634,
+          "function": "scheduler"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 229,
+          "line_end": 235,
+          "function": "tick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R062",
+      "verdict": "not_covered",
+      "reason": "No baud parameter or zero-value fallback warning; baud is fixed at 115200.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 448,
+          "line_end": 455,
+          "function": "UART_init"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 33,
+          "line_end": 35,
+          "function": "baud"
+        }
+      ]
+    },
+    {
+      "id": "DB-R063",
+      "verdict": "partially_covered",
+      "reason": "8N1 and bidirectional mode exist, but PA9/10, 50MHz, and missing 0/0 disagree with PB6/7 and 100MHz requirements.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 326,
+          "line_end": 357,
+          "function": "UART_config"
+        }
+      ]
+    },
+    {
+      "id": "DB-R064",
+      "verdict": "partially_covered",
+      "reason": "Target enablement exists, but queue capacity is 64 instead of 200.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 448,
+          "line_end": 455,
+          "function": "UART_init"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 44,
+          "line_end": 44,
+          "function": "capacity"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 352,
+          "line_end": 356,
+          "function": "enable"
+        }
+      ]
+    },
+    {
+      "id": "DB-R065",
+      "verdict": "partially_covered",
+      "reason": "Target RXNE-to-ring-buffer reading semantics exist; host readiness uses only FIFO, without DR/RXNE state.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 457,
+          "line_end": 463,
+          "function": "ISR"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 359,
+          "line_end": 365,
+          "function": "RX"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 283,
+          "line_end": 293,
+          "function": "RX"
+        }
+      ]
+    },
+    {
+      "id": "DB-R066",
+      "verdict": "partially_covered",
+      "reason": "The target waits for the TXE enum rather than the specified 0x40, and the host does not wait on a ready bit; string transmission exists.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 473,
+          "line_end": 482,
+          "function": "send_string"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_target_spl.c",
+          "line_start": 367,
+          "line_end": 372,
+          "function": "send_byte"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 274,
+          "line_end": 281,
+          "function": "send_byte"
+        }
+      ]
+    },
+    {
+      "id": "DB-R067",
+      "verdict": "fully_covered",
+      "reason": "Reading delegates to the queue, returning a byte or 0 when empty.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 469,
+          "line_end": 471,
+          "function": "UART_read"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 514,
+          "line_end": 527,
+          "function": "pop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R068",
+      "verdict": "not_covered",
+      "reason": "Only uint8 reading exists, without a char FF-to--1 entry point.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 469,
+          "line_end": 471,
+          "function": "UART_read"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 177,
+          "line_end": 180,
+          "function": "UART_API"
+        }
+      ]
+    },
+    {
+      "id": "DB-R069",
+      "verdict": "partially_covered",
+      "reason": "A generic count exists, but USARTavailable and the cumulative-counter difference are absent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 545,
+          "line_end": 551,
+          "function": "count"
+        }
+      ]
+    },
+    {
+      "id": "DB-R070",
+      "verdict": "partially_covered",
+      "reason": "data/capacity/head/tail/count are used, without enabled or cumulative n_r/n_w.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 87,
+          "line_end": 93,
+          "function": "CircArray"
+        }
+      ]
+    },
+    {
+      "id": "DB-R071",
+      "verdict": "partially_covered",
+      "reason": "Fields are initialized, but externally supplied static storage replaces calloc/content clearing, without enabled-state reinitialization warnings.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 488,
+          "line_end": 498,
+          "function": "queue_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R072",
+      "verdict": "partially_covered",
+      "reason": "Ring writes and full rejection exist, but return type is void and cumulative n_w is absent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 500,
+          "line_end": 512,
+          "function": "push"
+        }
+      ]
+    },
+    {
+      "id": "DB-R073",
+      "verdict": "partially_covered",
+      "reason": "Modulo reads and empty0 exist, but head/count replace cumulative n_r.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 514,
+          "line_end": 527,
+          "function": "pop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R074",
+      "verdict": "partially_covered",
+      "reason": "count==0 is a partial semantic equivalent, not equality of cumulative counters.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 529,
+          "line_end": 535,
+          "function": "empty"
+        }
+      ]
+    },
+    {
+      "id": "DB-R075",
+      "verdict": "partially_covered",
+      "reason": "Count-based fullness exists, but the specified nonempty-and-equal-modulo algorithm is absent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 537,
+          "line_end": 543,
+          "function": "full"
+        }
+      ]
+    },
+    {
+      "id": "DB-R076",
+      "verdict": "partially_covered",
+      "reason": "A count exists, but the cumulative-counter difference structure is missing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 545,
+          "line_end": 551,
+          "function": "count"
+        }
+      ]
+    },
+    {
+      "id": "DB-R077",
+      "verdict": "not_covered",
+      "reason": "No resize/realloc.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 186,
+          "line_end": 194,
+          "function": "queue_API"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 488,
+          "line_end": 551,
+          "function": "queues"
+        }
+      ]
+    },
+    {
+      "id": "DB-R078",
+      "verdict": "not_covered",
+      "reason": "No clear/free/reset/delete interface.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 186,
+          "line_end": 194,
+          "function": "queue_API"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 488,
+          "line_end": 551,
+          "function": "queues"
+        }
+      ]
+    },
+    {
+      "id": "DB-R079",
+      "verdict": "not_covered",
+      "reason": "No operation clears only contents while preserving counters.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 488,
+          "line_end": 551,
+          "function": "queues"
+        }
+      ]
+    },
+    {
+      "id": "DB-R080",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R081",
+      "verdict": "not_covered",
+      "reason": "The five complete files contain no single-argument func2 increment-by-one implementation.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 1,
+          "line_end": 285,
+          "function": "header"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 1,
+          "line_end": 726,
+          "function": "core"
+        }
+      ]
+    },
+    {
+      "id": "DB-R082",
+      "verdict": "not_covered",
+      "reason": "The five files contain no func1 implementation invoking func2.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 1,
+          "line_end": 285,
+          "function": "header"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 1,
+          "line_end": 726,
+          "function": "core"
+        }
+      ]
+    },
+    {
+      "id": "DB-R083",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R084",
+      "verdict": "partially_covered",
+      "reason": "168000/250 exist, but 200/25 become 64/16 and START/STOP are missing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+          "line_start": 25,
+          "line_end": 49,
+          "function": "constants"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 49,
+          "line_end": 62,
+          "function": "constants"
+        }
+      ]
+    },
+    {
+      "id": "DB-R085",
+      "verdict": "partially_covered",
+      "reason": "Register bitmasks exist rather than the specified 16-element binary arrays; the absent representation cannot be ignored as a syntax error.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 30,
+          "line_end": 33,
+          "function": "outputs"
+        }
+      ]
+    },
+    {
+      "id": "DB-R086",
+      "verdict": "partially_covered",
+      "reason": "The entire GPIOA_IDR is overwritten, without preserving bits other than bit 0.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 163,
+          "line_end": 165,
+          "function": "button_inject"
+        }
+      ]
+    },
+    {
+      "id": "DB-R087",
+      "verdict": "partially_covered",
+      "reason": "Raw three-axis injection and reading exist, but normal g conversion is missing; symbol-linkage errors are not blanket grounds for rejection.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 204,
+          "line_end": 208,
+          "function": "accel_inject"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 321,
+          "line_end": 336,
+          "function": "accel_read"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 676,
+          "line_end": 718,
+          "function": "accel"
+        }
+      ]
+    },
+    {
+      "id": "DB-R088",
+      "verdict": "not_covered",
+      "reason": "Temperature reads channel 16, but the host allows injection/reading only for 0..15, leaving a constant-0 path disconnected from injection; the 3.0V formula also differs.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 65,
+          "line_end": 67,
+          "function": "temp_channel"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 660,
+          "line_end": 670,
+          "function": "temperature"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 196,
+          "line_end": 202,
+          "function": "ADC_inject"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 303,
+          "line_end": 309,
+          "function": "ADC_read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R089",
+      "verdict": "partially_covered",
+      "reason": "The FIFO accepts injected uint32 values, but lacks an independent ready flag, so empty 0 cannot be distinguished from valid 0.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 97,
+          "line_end": 137,
+          "function": "RNG"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 210,
+          "line_end": 216,
+          "function": "RNG_inject"
+        }
+      ]
+    },
+    {
+      "id": "DB-R090",
+      "verdict": "partially_covered",
+      "reason": "It pushes directly into the host FIFO, without setting DR/RXNE or invoking the same ISR.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 175,
+          "line_end": 177,
+          "function": "RX_inject"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 457,
+          "line_end": 463,
+          "function": "ISR"
+        }
+      ]
+    },
+    {
+      "id": "DB-R091",
+      "verdict": "fully_covered",
+      "reason": "Log order, length, and bounds are complete and observable.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 179,
+          "line_end": 194,
+          "function": "TX_getters"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 274,
+          "line_end": 281,
+          "function": "TX_append"
+        }
+      ]
+    },
+    {
+      "id": "DB-R092",
+      "verdict": "fully_covered",
+      "reason": "UART/timing/scheduling single stepping exists, without main or embedded self-tests.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 254,
+          "line_end": 264,
+          "function": "main_loop_iteration"
+        }
+      ]
+    },
+    {
+      "id": "DB-R093",
+      "verdict": "fully_covered",
+      "reason": "All candidate storage is static or caller supplied, so no dynamic allocation requires release; the different design is not falsely recorded as a leak.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 150,
+          "line_end": 153,
+          "function": "static_queues"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_host_model.c",
+          "line_start": 35,
+          "line_end": 55,
+          "function": "storage"
+        }
+      ]
+    },
+    {
+      "id": "DB-R094",
+      "verdict": "partially_covered",
+      "reason": "Most NULL/full guards exist, but invalid logical LED indices can operate other pins.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 488,
+          "line_end": 598,
+          "function": "queue_task_guards"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 159,
+          "line_end": 165,
+          "function": "PinMask"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 411,
+          "line_end": 423,
+          "function": "LED"
+        }
+      ]
+    },
+    {
+      "id": "DB-R095",
+      "verdict": "partially_covered",
+      "reason": "No framing or PWM is added, but another ASCII control and sensor-command scheme replaces the original raw-ID protocol.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 69,
+          "line_end": 110,
+          "function": "command_macros"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 266,
+          "line_end": 323,
+          "function": "dispatch"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+          "line_start": 383,
+          "line_end": 401,
+          "function": "motors"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "partially_covered": 52,
+    "fully_covered": 12,
+    "unassessed": 7,
+    "not_covered": 24
+  },
+  "denominator": 88,
+  "rate": 13.636363636363635,
+  "metric": "coverage of 88 statically reviewable requirement leaves; 7 preclassified leaves unassessed",
+  "all_project_requirements_assessed": false,
+  "code_modified": false,
+  "model_api_calls": 0,
+  "host_or_compiler_executed": false,
+  "prior_static_scores_used": false,
+  "note": "All5 files completely read: public header285, internal105, core726, host379, target465 lines. Pure build/name inconsistencies do not zero unrelated implemented semantics; missing masked-write combination, channel16/host0..15 mismatch and changed protocol remain functional gaps. No hypothetical implementation added.",
+  "input_context": {
+    "requirement": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\discobot\\RE_req.txt",
+      "sha256": "0386b7323a917035fc1fcd21cafdd99aea562904d531126be06411af828c83bb",
+      "provided_to_generator": true
+    },
+    "device": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\discobot\\RE_device_interface.txt",
+      "sha256": "82e98267f500f08b2e54256b621795ae05b0884b56498f1bac2000cdc63366e0",
+      "provided_to_generator": true
+    },
+    "api": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\discobot\\RE_api.txt",
+      "sha256": "9ef8f2d20200c0f43ee8752e08d60a6a07243eabc1e2f8438d3f9e347ab7cee0",
+      "provided_to_generator": true
+    }
+  },
+  "scope_review_complete": true,
+  "scope_review_policy": "R+D host-equivalent scope; configuration stubs allowed but required values and observable data paths must exist; Direct not penalized using unsupplied A; C equivalents for assembly accepted under D:72.",
+  "read_complete_candidate_files": true,
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/reviews/gpt/discobot/discobot__gpt-5.5__B_metagpt__r03.json",
+    "original_sha256": "b6b06c97c4bcd84ad55bdc0e301bcf5961fe86978cdcdb9f7c682b805635e70f",
+    "language": "Original Chinese evidence/rationales retained; no semantic translation.",
+    "initial_review_status": {
+      "evaluator": "current Codex LLM static review",
+      "human_review_claimed": false
+    },
+    "preservation": "Initial verdicts, reasons, historical rates and human-review flags retained. Path anonymization and export metadata do not constitute a new review.",
+    "current_aggregation": "(fully_covered + partially_covered) / preclassified static denominator; no fractional weighting of partial items.",
+    "checklist_export": {
+      "path": "data/rq1/requirement_coverage/checklists/discobot.json",
+      "sha256": "e731137141a0fc3c4d67258ff76e0fa635fbea1d88801da73c3edee10d1c66c6",
+      "original_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+      "leaf_count": 95,
+      "static_denominator": 88,
+      "source_requirement": {
+        "path": "data/rq1/requirement_coverage/source_requirements/discobot_RE_req.txt",
+        "sha256": "06306779a3ef8033f15aab14cc1701a809e8129513e2d5b77ea4ae7491cb91c9"
+      }
+    },
+    "candidate_bindings": [
+      {
+        "source": "fse/official_baselines/reassessment_host_20260921/code/71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f/raw/6_generated_code.h",
+        "original_sha256": "585c2c7999f0f8fe0f49086ceeb15bbe2b76252d91872b5dd2acac2578602eb3",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.h",
+        "path": "evidence/candidate_sources/585c2c7999f0f8fe0f49086ceeb15bbe2b76252d91872b5dd2acac2578602eb3/6_generated_code.h",
+        "distributed_sha256": "585c2c7999f0f8fe0f49086ceeb15bbe2b76252d91872b5dd2acac2578602eb3",
+        "transformation": "none"
+      },
+      {
+        "source": "fse/official_baselines/reassessment_host_20260921/code/71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f/raw/discobot_core.c",
+        "original_sha256": "b510109ccf4c1b479ff7d920ea5ef36f1a0f476833bc403ca2093aab7cfcf4b7",
+        "kind": "candidate_source",
+        "original_name": "discobot_core.c",
+        "path": "evidence/candidate_sources/b510109ccf4c1b479ff7d920ea5ef36f1a0f476833bc403ca2093aab7cfcf4b7/discobot_core.c",
+        "distributed_sha256": "b510109ccf4c1b479ff7d920ea5ef36f1a0f476833bc403ca2093aab7cfcf4b7",
+        "transformation": "none"
+      },
+      {
+        "source": "fse/official_baselines/reassessment_host_20260921/code/71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f/raw/discobot_host_model.c",
+        "original_sha256": "1994c082a95f21df62e9beba4c11afc457e75c7ae3206d51981235b8eb5e6ceb",
+        "kind": "candidate_source",
+        "original_name": "discobot_host_model.c",
+        "path": "evidence/candidate_sources/1994c082a95f21df62e9beba4c11afc457e75c7ae3206d51981235b8eb5e6ceb/discobot_host_model.c",
+        "distributed_sha256": "1994c082a95f21df62e9beba4c11afc457e75c7ae3206d51981235b8eb5e6ceb",
+        "transformation": "none"
+      },
+      {
+        "source": "fse/official_baselines/reassessment_host_20260921/code/71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f/raw/discobot_internal.h",
+        "original_sha256": "f83a2d38aa0c3ce6fa8ae340703b2f4f93f0d046df56f8deaa590c2951898a38",
+        "kind": "candidate_source",
+        "original_name": "discobot_internal.h",
+        "path": "evidence/candidate_sources/f83a2d38aa0c3ce6fa8ae340703b2f4f93f0d046df56f8deaa590c2951898a38/discobot_internal.h",
+        "distributed_sha256": "f83a2d38aa0c3ce6fa8ae340703b2f4f93f0d046df56f8deaa590c2951898a38",
+        "transformation": "none"
+      },
+      {
+        "source": "fse/official_baselines/reassessment_host_20260921/code/71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f/raw/discobot_target_spl.c",
+        "original_sha256": "719037f1579b90e3c6407813b386ba8bde05bacae2222c21b9b18491454dc873",
+        "kind": "candidate_source",
+        "original_name": "discobot_target_spl.c",
+        "path": "evidence/candidate_sources/719037f1579b90e3c6407813b386ba8bde05bacae2222c21b9b18491454dc873/discobot_target_spl.c",
+        "distributed_sha256": "719037f1579b90e3c6407813b386ba8bde05bacae2222c21b9b18491454dc873",
+        "transformation": "none"
+      }
+    ],
+    "evidence_line_numbers": "Original candidate lines; transformed candidate comments, where used, retain separately recorded original and distributed hashes."
+  }
+}

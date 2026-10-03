@@ -1,0 +1,147 @@
+{
+  "task": "gpio_button_debounce",
+  "item_count": 9,
+  "original_checklist": {
+    "original_repository_relative_path": "fse/rq3_task_extension_20261002/measurement_preparation/gpio_button_debounce_checklist.json",
+    "sha256": "62ade103358f7836c6c4583126776ab2290793d1d400484572df4d9abebc7100"
+  },
+  "items": [
+    {
+      "id": "GB-R01",
+      "ordinal": 1,
+      "requirement_original_text": "GB-R01 Initialization: button_led_init(now_ms) establishes LED off, accepted/debounced button released, candidate input released, and candidate start timestamp now_ms. It calls board_led_write(false) exactly once and does not read the button. Reinitialization resets all these values regardless of previous state.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_button_debounce/RE_req.txt",
+        "original_sha256": "3f98e36210fb9028635524a0958804295eed1dcc9876ff7c16fde08b0b3e2ce7",
+        "line_start_1based": 5,
+        "line_end_1based_inclusive": 5,
+        "byte_start_0based": 316,
+        "byte_end_0based_exclusive": 630,
+        "original_slice_sha256": "a2a095bb718895980ae4c568de9d1eb9c38c6c7ce9fd8d1192651db120d3fa7c"
+      }
+    },
+    {
+      "id": "GB-R02",
+      "ordinal": 2,
+      "requirement_original_text": "GB-R02 Before initialization, button_led_poll returns without platform reads or writes. Both query functions return false.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_button_debounce/RE_req.txt",
+        "original_sha256": "3f98e36210fb9028635524a0958804295eed1dcc9876ff7c16fde08b0b3e2ce7",
+        "line_start_1based": 6,
+        "line_end_1based_inclusive": 6,
+        "byte_start_0based": 630,
+        "byte_end_0based_exclusive": 753,
+        "original_slice_sha256": "fe94bbcfbd26892f6fd00bb0c75a69f70fd121334d9bdde0605f47a6c49c3965"
+      }
+    },
+    {
+      "id": "GB-R03",
+      "ordinal": 3,
+      "requirement_original_text": "GB-R03 Nonblocking sampling: every poll after initialization calls board_button_read() exactly once and returns without waiting, sleeping, or making repeated samples. The caller controls the polling times.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_button_debounce/RE_req.txt",
+        "original_sha256": "3f98e36210fb9028635524a0958804295eed1dcc9876ff7c16fde08b0b3e2ce7",
+        "line_start_1based": 7,
+        "line_end_1based_inclusive": 7,
+        "byte_start_0based": 753,
+        "byte_end_0based_exclusive": 959,
+        "original_slice_sha256": "da4eb67839c449a79f6b7e4c03ea69395451779d620e419b575aaf421a088c35"
+      }
+    },
+    {
+      "id": "GB-R04",
+      "ordinal": 4,
+      "requirement_original_text": "GB-R04 Candidate tracking: if the sample differs from the previous candidate value, store the new candidate and current now_ms as its start time. A single differing sample never changes the accepted button state.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_button_debounce/RE_req.txt",
+        "original_sha256": "3f98e36210fb9028635524a0958804295eed1dcc9876ff7c16fde08b0b3e2ce7",
+        "line_start_1based": 8,
+        "line_end_1based_inclusive": 8,
+        "byte_start_0based": 959,
+        "byte_end_0based_exclusive": 1172,
+        "original_slice_sha256": "c306e7a3d03428ee25e0e1e7186f2e8b545830b2348ebb7d3ae6ec7b777c975d"
+      }
+    },
+    {
+      "id": "GB-R05",
+      "ordinal": 5,
+      "requirement_original_text": "GB-R05 Debounce threshold: a candidate that differs from the accepted state is accepted only on a subsequent poll observing the same value with unsigned elapsed time at least BUTTON_DEBOUNCE_MS = 20. Each candidate change restarts this interval. No acceptance occurs at elapsed 19 ms; acceptance occurs at elapsed 20 ms.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_button_debounce/RE_req.txt",
+        "original_sha256": "3f98e36210fb9028635524a0958804295eed1dcc9876ff7c16fde08b0b3e2ce7",
+        "line_start_1based": 9,
+        "line_end_1based_inclusive": 9,
+        "byte_start_0based": 1172,
+        "byte_end_0based_exclusive": 1493,
+        "original_slice_sha256": "56f74ae584037149e50a6dc61acf7c8333afc7b35de92be54599316ed89aa824"
+      }
+    },
+    {
+      "id": "GB-R06",
+      "ordinal": 6,
+      "requirement_original_text": "GB-R06 Press action: when the accepted state changes from released to pressed, negate the current LED state and call board_led_write once with the new LED state.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_button_debounce/RE_req.txt",
+        "original_sha256": "3f98e36210fb9028635524a0958804295eed1dcc9876ff7c16fde08b0b3e2ce7",
+        "line_start_1based": 10,
+        "line_end_1based_inclusive": 10,
+        "byte_start_0based": 1493,
+        "byte_end_0based_exclusive": 1655,
+        "original_slice_sha256": "e28ca446acbaab796114919355e7bba76ec422f9fa0b5ec6a5b868383da6b685"
+      }
+    },
+    {
+      "id": "GB-R07",
+      "ordinal": 7,
+      "requirement_original_text": "GB-R07 Hold and release: continued pressed samples cause no additional LED writes. A release is accepted using the same 20 ms rule; accepting a release does not change or write the LED. Only a later separately accepted press toggles again.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_button_debounce/RE_req.txt",
+        "original_sha256": "3f98e36210fb9028635524a0958804295eed1dcc9876ff7c16fde08b0b3e2ce7",
+        "line_start_1based": 11,
+        "line_end_1based_inclusive": 11,
+        "byte_start_0based": 1655,
+        "byte_end_0based_exclusive": 1895,
+        "original_slice_sha256": "e0f707709fdf7b6f3ddcab2ca7da7b0d04ba090e1cbc428d2d4f7afb521e5e89"
+      }
+    },
+    {
+      "id": "GB-R08",
+      "ordinal": 8,
+      "requirement_original_text": "GB-R08 Queries: button_led_is_on() and button_led_is_pressed() report the stored LED and accepted button states, respectively, without sampling, writing, or changing any state.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_button_debounce/RE_req.txt",
+        "original_sha256": "3f98e36210fb9028635524a0958804295eed1dcc9876ff7c16fde08b0b3e2ce7",
+        "line_start_1based": 12,
+        "line_end_1based_inclusive": 12,
+        "byte_start_0based": 1895,
+        "byte_end_0based_exclusive": 2072,
+        "original_slice_sha256": "507543b5641bd4bf5e3951e5679f7267bfc5e29b30a372fd10d75a88ff996fde"
+      }
+    },
+    {
+      "id": "GB-R09",
+      "ordinal": 9,
+      "requirement_original_text": "GB-R09 Timer rollover: compute elapsed time as (uint32_t)(now_ms - candidate_start_ms), so a candidate interval crossing UINT32_MAX is handled identically to any other interval. Calls are in chronological order modulo uint32_t and successive elapsed intervals are less than 2^31 ms. Sparse polling accepts at the first qualifying observed poll, not at an unobserved instant.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_button_debounce/RE_req.txt",
+        "original_sha256": "3f98e36210fb9028635524a0958804295eed1dcc9876ff7c16fde08b0b3e2ce7",
+        "line_start_1based": 13,
+        "line_end_1based_inclusive": 13,
+        "byte_start_0based": 2072,
+        "byte_end_0based_exclusive": 2447,
+        "original_slice_sha256": "348b45f5cf1f8f2e64b52f314f5c25e9a02ad9a22e6d6c55514cb4fa6f57903a"
+      }
+    }
+  ],
+  "judgments_not_regenerated": true,
+  "source_text_and_item_order_preserved": true
+}

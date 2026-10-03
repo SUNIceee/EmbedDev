@@ -1,0 +1,84 @@
+Track-aware differential motor control: project-derived application task.
+
+This contract is adapted from the supplied motor.c/SRS, not a complete reconstruction of its upstream hardware project. Only these R/D/API files and their declarations are generation inputs. Original/reference implementations and final tests are not generation inputs.
+
+MT-R01. Application scope and stages.
+Implement the six declared application functions and owned globals. The application owns speed planning and actuation only, not camera recognition, laser drivers, encoders, physical PWM timers or PID helper internals. The caller may invoke speed_control() then motor_control(); motor_control() consumes the stored wheel targets/modes and must not implicitly run speed_control(). This explicit stage boundary makes the four declared modes independently usable.
+
+MT-R02. PWM initialization.
+motor_init initializes exactly the four declared channels once each at 17000 Hz with zero duty. It does not perform control or write a nonzero duty. Do not require a particular order among these four initialization calls.
+
+MT-R03. Initial application state.
+At process start all wheel numeric state, target_speed and clk are zero; both wheel modes are MODE_NORMAL. Initialize motor_pid_l/r to kp=7021, ki=10, kd=0, integral=0, previous error=0, maximum output/integral=50000. Initialize target_speed_pid to kp=5,ki=0,kd=30 and output/integral limits 5; posloop_pid to kp=200,ki=0,kd=0 and limits50000. Wheel brake/soft helper state starts zero. motor_init need not reset running controller state.
+
+MT-R04. Three-point geometry.
+radius_3pts returns the circumcircle radius of the three input points, in the coordinate unit, without modifying the arrays or application state. Inputs are finite noncollinear points whose determinant magnitude is at least 1e-6. Collinear/duplicate/NULL inputs are outside this task; no new error API is required.
+
+MT-R05. Encoder aggregation.
+get_total_encoder returns the mathematical average of the two cumulative encoder counts, truncated toward zero. Counts are signed 64-bit values in [-2^60,2^60], so their sum cannot overflow. It does not modify counts or control state.
+
+MT-R06. Square signal.
+Each square_signal invocation first increments clk by one. If the resulting value exceeds10000, set clk=0. Set both wheel target speeds to20 for clk<2000,0 for2000<=clk<4000,15 for4000<=clk<6000,28 for6000<=clk<8000,0 for8000<=clk<10000. At exactly clk=10000 retain the previous two wheel target speeds. This preserves the supplied code boundary; clk counts invocations rather than proving elapsed hardware milliseconds. Do not change scalar target_speed, wheel modes or PWM.
+
+MT-R07. Planning defaults and differential mapping.
+Every speed_control call starts by assigning MODE_NORMAL to both wheels and diff=15.8*tan(angle*PI*2.4/180)/40/2. Apply the first matching decision in R08-R18 in the stated order, then the unconditional safety override R19, then assign left target=target_speed-diff*target_speed and right target=target_speed+diff*target_speed. diff is a local calculation, not an extra public API.
+
+MT-R08. Animal stop and priority.
+Highest decision priority: when fa_type==ANIMAL and unsigned32(now_ms-animal_time_ms)<2500, set target_speed=0 and diff=0. The timestamp subtraction is modulo2^32; exactly2500 is expired. Other decisions cannot override this branch, except the equivalent final stop policy.
+
+MT-R09. Fruit/laser reverse.
+Otherwise, if fruit_delta<0 and (laser_angle<5 or laser_angle>175), set target_speed=-1. Boundaries5 and175 do not trigger. Retain the angular diff; this decision precedes tag, garage and ramp decisions.
+
+MT-R10. Tag search and stop.
+Otherwise TAG_SEARCH sets speed1. Otherwise TAG_STOP or TAG_SHOOTING sets speed0. These decisions precede AprilTag, garage, ramp and track decisions; retain the current differential ratio.
+
+MT-R11. AprilTag behavior.
+Otherwise APRILTAG_FOUND sets speed0.5 and diff0. Otherwise APRILTAG_MAYBE sets speed1 with normal modes. A confirmed target is not a zero-speed stop.
+
+MT-R12. Garage behavior.
+Otherwise either GARAGE_OUT direction sets speed14 and MODE_SOFT on both wheels. Otherwise either GARAGE_IN direction sets speed10 with normal modes. Garage decisions precede ramp and track decisions.
+
+MT-R13. Ramp mode.
+Otherwise enable_adc!=0 sets speed9 and both modes MODE_BANGBANG. It precedes Y-road, circle and geometry branches.
+
+MT-R14. Y-road behavior.
+Otherwise YROAD_NEAR sets speed3. Otherwise YROAD_FOUND sets speed3. Both retain angular differential and normal modes.
+
+MT-R15. Persistent circle ramp.
+Otherwise a left/right circle-begin state sets target_speed=clamp(previous target_speed-0.02,11,17). Preserve target_speed between calls so repeated circle calls decelerate. Both modes remain normal.
+
+MT-R16. Lookahead curve.
+Otherwise, if rptsn_num>20, choose id=min(70,rptsn_num-1), compute error=abs((rptsn[id][0]-rptsn[0][0])/(rptsn[id][1]-rptsn[0][1])), call pid_solve(&target_speed_pid,error) once and set target_speed=clamp(17-returned_value,9,17). The domain guarantees a nonzero denominator. Use the specified point, not always the last point.
+
+MT-R17. Degraded lookahead.
+Otherwise, if5<rptsn_num<=20 set speed9. The constants NORMAL_SPEED=17 and NORMAL_MIN_SPEED=-8 are fixed for this task.
+
+MT-R18. No matching decision.
+If no earlier decision matches and rptsn_num<=5, retain the previous scalar target_speed while recomputing differential distribution and resetting modes to normal. Do not invent a new fallback motion decision.
+
+MT-R19. Final safety override.
+After all branch selection, if garage==GARAGE_STOP OR (garage is neither OUT direction AND elec_data[0]+elec_data[1]<60), force target_speed=0,diff=0,and both modes normal. Exactly60 does not trigger. Both OUT directions are exempt from only the low-inductance condition; GARAGE_STOP always stops. This sets a braking target, not necessarily zero physical PWM when encoder feedback is nonzero.
+
+MT-R20. Normal actuation.
+motor_control computes each wheel error as its stored target_speed minus encoder_speed. MODE_NORMAL assigns duty=pid_solve(the corresponding motor_pid_l/r,error); preserve each controller integral/previous-error state across calls. It does not overwrite wheel targets or modes.
+
+MT-R21. Bang-bang actuation.
+For MODE_BANGBANG clear the corresponding normal PID out_i, and add bangbang_pid_solve(&wheel.brake_pid,error) to that wheel previous duty.
+
+MT-R22. Soft actuation.
+For MODE_SOFT clear the corresponding normal PID out_i, and add changable_pid_solve(&wheel.pid,error) to that wheel previous duty.
+
+MT-R23. Position-loop actuation.
+For MODE_POSLOOP clear the corresponding normal PID out_i and assign duty=pid_solve(&posloop_pid,float(target_encoder-total_encoder)). The shared position helper has zero integral/derivative gains, so evaluation order between wheels does not change output. Caller-provided encoder differences remain in [-1000000,1000000].
+
+MT-R24. Base duty saturation.
+After mode calculation clamp each signed duty to[-50000,50000]. Each wheel uses its own feedback and stored duty.
+
+MT-R25. Angle protection.
+If abs(angle)>10 and scalar target_speed-(left encoder_speed+right encoder_speed)/2<0, clamp each duty to[-50000,40000]. Otherwise if abs(angle)>10, clamp to[-40000,40000]. At exactly abs(angle)==10 apply only the base saturation. Preserve signed duty as the public observable.
+
+MT-R26. Complementary PWM observables.
+After saturation write both direction channels for each wheel. Nonnegative duty d writes forward=(uint32_t)d and reverse0; negative duty d writes forward0 and reverse=(uint32_t)(-d). Every control call writes all four channels, so stale reverse/forward values cannot survive a direction change. Finite fractional magnitudes truncate toward zero. Do not drive both direction channels with nonzero final values; no additional transient dead-time timing requirement is imposed.
+
+MT-R27. Stage ownership.
+speed_control and the three utilities do not initialize or write PWM. motor_control does not read or modify planning flags/timestamps/points, nor call speed_control. The fixed application scheduler owns invocation timing; this is sequential host behavior, not concurrent race or real-time verification.

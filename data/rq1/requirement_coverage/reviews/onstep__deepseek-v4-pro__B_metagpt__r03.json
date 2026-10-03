@@ -1,0 +1,43 @@
+{
+  "identity": "onstep__deepseek-v4-pro__B_metagpt__r03",
+  "project": "onstep",
+  "model": "deepseek-v4-pro",
+  "method": "MetaGPT",
+  "repeat": 3,
+  "status": "no_code",
+  "evaluator": "current Codex LLM static review",
+  "reviewed_at": "2026-10-02T06:08:35.896249+00:00",
+  "candidate_files": [],
+  "inventory_sha256": "60721e6c11f3e5fb421b58209ce90367c3e66ea260a90a87b625c43d81a53d16",
+  "checklist_sha256": "a2880041a7e76892abd2a08dc18f5a770e7459d7389b7fbceeefbb41bcf22c8b",
+  "requirements": [],
+  "counts": {},
+  "denominator": null,
+  "rate": null,
+  "reason": "This position in the fixed current inventory has no complete code. No per-leaf code reading or default-zero scores for 89 leaves are fabricated in place of review.",
+  "external_api_calls": 0,
+  "code_changed": false,
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/reviews/deepseek/onstep/MetaGPT_r03.json",
+    "original_sha256": "0291cd463ee7cd9ae0701e858d81230a524093c3d24f3280e3accd0fb15a334d",
+    "language": "Original Chinese evidence/rationales retained; no semantic translation.",
+    "initial_review_status": {
+      "evaluator": "current Codex LLM static review"
+    },
+    "preservation": "Initial verdicts, reasons, historical rates and human-review flags retained. Path anonymization and export metadata do not constitute a new review.",
+    "current_aggregation": "(fully_covered + partially_covered) / preclassified static denominator; no fractional weighting of partial items.",
+    "checklist_export": {
+      "path": "data/rq1/requirement_coverage/checklists/onstep.json",
+      "sha256": "3bc5956a5a777839b0dd09924f226359b0a7be433c080d786d302c32c0e2d6eb",
+      "original_sha256": "a2880041a7e76892abd2a08dc18f5a770e7459d7389b7fbceeefbb41bcf22c8b",
+      "leaf_count": 102,
+      "static_denominator": 89,
+      "source_requirement": {
+        "path": "data/rq1/requirement_coverage/source_requirements/onstep_RE_req.txt",
+        "sha256": "c2605bee501c346f48bc63c9f607ba4da242dbe8547a93d3934fac580185734a"
+      }
+    },
+    "candidate_bindings": [],
+    "evidence_line_numbers": "Original candidate lines; transformed candidate comments, where used, retain separately recorded original and distributed hashes."
+  }
+}

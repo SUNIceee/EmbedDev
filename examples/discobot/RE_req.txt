@@ -1,0 +1,301 @@
+DiscoBot Test-Compatible Software Requirements Specification
+Version: Test-Compatible v3 (Comprehensive Host-Verifiable)
+Based on: DiscoBot-test-comprehensive.json (DB-001 through DB-125)
+
+================================================================================
+1. Goals and acceptance principles
+================================================================================
+
+This firmware runs on STM32F407 Discovery using the STM32 Standard Peripheral Library (SPL). It receives single-byte movement commands through USART1/XBee, drives two DC motors on PA1 through PA4 via L293D, acquires acceleration, internal temperature, and hardware random numbers, and provides buttons, LEDs, a circular buffer, a task scheduler, and interrupt handling.
+
+DiscoBot-test-comprehensive.json is an input/answer table, not an executable test program. This document converts its 125
+valid cases into deterministic C11 calling contracts. The host version must expose hardware effects through GPIOA_output, GPIOD_output,
+GPIOA_IDR, SysTick_reload, USART TX log, and related state; empty comments must not replace initialization,
+GPIO writes, interrupt transmission/reception, or the startup sequence.
+
+Covered modules: car (motor control) / main (command dispatch + button debounce + attitude calculation + LEDs) / accelerometers (LIS3DSH) / temperature (ADC1) / RNG / Task (timed_task 25-slot scheduler) / usart (USART1 + circular buffer + interrupt) / circarray (complete circular-array API) / funcs1.s (ARM assembly)
+
+================================================================================
+2. Hardware configuration
+================================================================================
+
+- MCU：STM32F407VG，SystemCoreClock=168000000 Hz
+- SysTick: SysTick_Config(SystemCoreClock/1000)=168000 ticks, exactly 1ms, msTicks++
+- USART1: PB6=TX, PB7=RX, 9600-8N1, RXNE interrupt, NVIC preempt=0/sub=0
+- Motors: PA1~PA4, push-pull outputs, pull-up, 25MHz; direct L293D connection (no PWM, full speed)
+- LEDs: PD12~PD15 (orange/green/red/blue), controlled by BSRRL/BSRRH
+- Button: PA0 input (active-high logic in this experiment: high=pressed, low=released; the target adapter handles external pull-ups/pull-downs)
+- Accelerometer: onboard LIS3DSH, TM-library wrapper, +/-2G sensitivity with 50Hz filter, SPI1
+- Temperature: STM32F4 internal sensor, ADC1 12bit/continuous/prescaler8/sample144cycles
+- RNG: STM32F4 hardware RNG (AHB2 clock), DRDY polling
+
+================================================================================
+3. System initialization (DB-111~115)
+================================================================================
+
+main() startup order (strictly required):
+SystemInit() → init_systick() → init_LED_pins() → init_button() →
+init_accelerometers() → init_rng() → init_temperature_sensor() →
+init_GPIO_A1A2A3A4_output() → init_usart1(9600) →
+usart1_send("UART1 Initialized. @9600bps\r\n") -> while(1) main loop
+
+- init_systick calls SystemCoreClockUpdate() and then SysTick_Config(SystemCoreClock/1000)=168000
+- Nonzero SysTick_Config return value (error) -> infinite while(1){} loop
+- init_button: enable GPIOA clock and configure PA0 as INPUT (floating input; initialize host input low/released)
+
+================================================================================
+4. Car -- motor control (DB-001~018)
+================================================================================
+
+4.1 Directions enumeration
+typedef enum { FORWARD=0, BACKWARD=1, STOP=2 } Directions;
+
+4.2 Low-level motor-direction control
+void set_left_motor_direc(int direc, float speed);
+  // speed is declared but unused (no PWM). Set PA1/PA2 according to direc.
+  // FORWARD->PA1=1,PA2=0. BACKWARD->PA1=0,PA2=1. STOP->PA1=0,PA2=0. Otherwise all 0.
+
+void set_right_motor_direc(int direc, float speed);
+  // FORWARD->PA3=1,PA4=0. BACKWARD->PA3=0,PA4=1. STOP->PA3=0,PA4=0. Otherwise all 0.
+
+4.3 High-level movement commands (GPIO truth table: PA1,PA2,PA3,PA4)
+void move_forward(void);             // 1,0,1,0 (both motors forward)
+void move_backward(void);            // 0,1,0,1 (both motors reverse)
+void move_forward_soft_left(void);   // 0,0,1,0 (left stopped, right forward)
+void move_forward_soft_right(void);  // 1,0,0,0 (left forward, right stopped)
+void move_backward_soft_left(void);  // 0,0,0,1 (left stopped, right reverse)
+void move_backward_soft_right(void); // 0,1,0,0 (left reverse, right stopped)
+void move_spin_right(void);          // 1,0,0,1 (left forward, right reverse = clockwise)
+void move_spin_left(void);           // 0,1,1,0 (left reverse, right forward = counterclockwise)
+void stop(void);                     // 0,0,0,0 (coast to a stop)
+
+4.4 GPIO initialization
+void init_GPIO_A1A2A3A4_output(void);
+  // Enable RCC AHB1 GPIOA. PA1-4: MODER=OUTPUT, OType=Push-Pull, PuPd=Up, Speed=25MHz. Initially all low.
+
+4.5 L293D safety
+  // Emit only 01/10/00 patterns (safe). Do not emit 11 (braking/shoot-through).
+
+================================================================================
+5. Main -- command dispatch and button debounce (DB-019~046)
+================================================================================
+
+5.1 Command ID enumeration
+typedef enum _ID {
+    FWD=0, BWD=1, FWDLEFT=2, FWDRIGHT=3,
+    BCKLEFT=4, BCKRIGHT=5, SPINRIGHT=6, SPINLEFT=7, STOPCAR=8
+} _ID;
+MAXIDSIZE=9。
+
+5.2 Function-pointer table
+motor_command_fn flookup[9] = {move_forward, move_backward, move_forward_soft_left, move_forward_soft_right, move_backward_soft_left, move_backward_soft_right, move_spin_right, move_spin_left, stop};
+
+5.3 Command dispatch (main loop)
+  // Call usart1_readc(). If c is in [0,8] -> callme=flookup[c] -> callme().
+  // c=-1 (char conversion of an empty buffer) or c>8 -> ignore; leave callme unchanged.
+  // No framing protocol: bare bytes 0-8 trigger commands immediately. No ACK/NAK.
+
+5.4 Button debounce
+int read_buttonc(int i);
+  // Read (GPIOA->IDR >> i) & 1. i>3 -> return -1. 0 -> PA0.
+
+void SysTick_Handler(void);
+  // Every 1ms: msTicks++. PA0-read debounce:
+  //   read_buttonc(0)==1→b_i++。b_i>=250→buttstate=ButtonIsPressed。
+  //   read_buttonc(0)==0→b_i=0→buttstate=ButtonIsReleased。
+
+void checkbutton(void);
+  // Track changes in laststate vs buttstate. Transition-handling switch (break only).
+
+5.5 calc_pitch_roll
+void calc_pitch_roll(float acc_x, float acc_y, float acc_z, float *pitch, float *roll);
+  // roll = atan2(acc_y, acc_z)*180/PI
+  // pitch = atan2(-acc_x, sqrt(acc_y²+acc_z²))*180/PI
+  // Cases: (0,0,1)->(0,0). (1,0,0)->pitch=-90,roll=0. (0,0.707,0.707)->pitch=0,roll=45.
+  // (0,-0.707,0.707)→roll=-45。(0,0,-1)→|roll|=180,pitch=0。
+
+5.6 LED control
+void init_LED_pins(void);
+  // Enable RCC AHB1 GPIOD. PD12~15 push-pull outputs. Initially low.
+
+void LED_On(int i);    // i in [0,3] -> write (1<<(12+i)) to BSRRL
+void LED_Off(int i);   // i in [0,3] -> write (1<<(12+i)) to BSRRH
+  // Invalid index (>=4) -> no operation
+
+5.7 Main loop
+while(1):
+  // Check each msTicks: msTicks-t_prev>1000 -> t_prev=msTicks (1-second timer, currently no action).
+  // Read and dispatch UART bytes (see 5.3).
+
+================================================================================
+6. Accelerometers — LIS3DSH (DB-047~051)
+================================================================================
+
+int init_accelerometers(void);
+  // TM_LIS302DL_LIS3DSH_Init(TM_LIS3DSH_Sensitivity_2G, TM_LIS3DSH_Filter_50Hz). Success -> 0.
+
+void read_accelerometers(float *acc[3]);
+  // TM_LIS302DL_LIS3DSH_ReadAxes() -> struct{X,Y,Z} (integer milli-g).
+  // acc_x = raw.X/1000.0f (g). Approximate range +/-2000 milli-g -> +/-2.0g.
+
+================================================================================
+7. Temperature — ADC1 (DB-052~058)
+================================================================================
+
+void init_temperature_sensor(void);
+  // ADC1: APB2 clock/Independent/12bit/Prescaler8/ContinuousConv/NoExtTrig/RightAlign.
+  // NbrOfConversion=1/Channel=TempSensor/SampleTime=144Cycles。
+  // Enable TempSensor and Vrefint. Enable ADC1.
+
+float read_temperature_sensor(void);
+  // Steps (strict order): 1)ADC_SoftwareStartConv 2)while(ADC_FLAG_EOC==RESET) 3)temp=GetConversionValue
+  // 4)temp/=4095 5)temp*=3.3 6)temp-=0.760 7)temp/=0.0025 8)temp+=25.0
+  // Divide before multiplying (avoid integer truncation).
+  // raw=943→~25°C。raw=866→~0°C。raw=1129→~85°C。raw=0→~-279°C。raw=4095→~1041°C。
+
+================================================================================
+8. RNG (DB-059~062)
+================================================================================
+
+void init_rng(void);
+  // RCC_AHB2PeriphClockCmd(RCC_AHB2Periph_RNG,ENABLE)→RNG_Cmd(ENABLE)。
+
+uint32_t get_random_number(void);
+  // while(RNG_GetFlagStatus(RNG_FLAG_DRDY)==RESET){}→RNG_GetRandomNumber()。
+  // Block while waiting for DRDY, with no timeout. RNG failure -> infinite loop.
+  // Two consecutive calls should very likely differ. Both 0x00000000 and 0xFFFFFFFF are valid random outputs.
+
+================================================================================
+9. Timed Task Scheduler (DB-063~072)
+================================================================================
+
+#define MAXNUMTASKS 25
+
+void add_timed_task(void (*myfunc)(void), float interval_sec);
+  // Scan timed_tasks[0..24] for the first NULL slot. Set task=myfunc, msinterval=(long)(interval*1000), last_called=0, numcalls=0.
+  // All 25 slots full -> fail silently (no addition, no error).
+
+void execute_tasks(void);
+  // Scan 25 slots: if task!=NULL and msTicks>=last_called+msinterval -> task() -> last_called=msTicks -> numcalls++.
+  // Several tasks may trigger on the same tick; execute in slot order. Skip NULL slots.
+  // BUG: when msTicks (uint32_t) overflows, msTicks<last_called+msinterval may cause missed triggers.
+
+void printtimes(void);
+  // Scan 25 slots: non-NULL -> printf("t{i}=%d", numcalls).
+
+  // No remove_timed_task() function. Manually setting task=NULL effectively removes it.
+
+================================================================================
+10. USART -- interrupt-driven USART1 (DB-073~090)
+================================================================================
+
+void init_usart1(int baud);
+  // baud==0 -> baud=9600 plus warning. GPIOB6(TX AF)+PB7(RX AF): push-pull/pull-up/100MHz.
+  // USART: 8N1, no flow, TX+RX. Enable USART_IT_RXNE interrupt. NVIC preempt=0/sub=0.
+  // initCircArray(&msg, 200) creates the receive buffer. USART_Cmd(USART1,ENABLE).
+  // A comment says "Enable clock for GPIOA" but GPIOB is actually enabled (documentation bug; code is correct).
+
+void USART1_IRQHandler(void);
+  // RXNE -> c=USART1->DR -> buf_putbyte(&msg,c). Buffer full -> return 0 -> data lost.
+  // TXE and others -> ignored (TX is performed by polling).
+
+void usart1_send(volatile char *s);
+  // while(*s): while(!(USART1->SR&0x40)){} wait TXE→USART_SendData(*s++)。
+  // No timeout: USART1 disabled -> infinite loop.
+
+uint8_t usart1_read(void);
+  // = buf_getbyte(&msg). Empty -> 0. Note: 0 is indistinguishable from actual 0x00 data.
+
+char usart1_readc(void);
+  // = (char)buf_getbyte(&msg). 0xFF -> -1 (signed overflow). In main, read>=0 rejects valid 0xFF.
+
+uint32_t usart1_available(void);
+  // = buf_available(&msg) = n_w - n_r。
+
+================================================================================
+11. CircArray -- circular array (DB-091~105)
+================================================================================
+
+typedef struct CircArray {
+    char *buf; uint32_t size; bool enabled; uint32_t n_r, n_w;
+} CircArray;
+
+void initCircArray(CircArray *arr, int size);
+  // calloc(size,1). Set size/enabled/n_r=0/n_w=0. Already enabled -> print error and skip.
+
+int buf_putbyte(CircArray *arr, char c);
+  // !full→arr->buf[n_w%size]=c→n_w++→return1。full→return0。
+
+char buf_getbyte(CircArray *arr);
+  // !empty→return arr->buf[n_r%size]→n_r++。empty→return0。
+
+bool buf_empty(CircArray *arr);   // n_r==n_w
+bool buf_full(CircArray *arr);    // !empty && (n_r%size)==(n_w%size)
+int buf_available(CircArray *arr);  // n_w-n_r
+
+bool buf_resize(CircArray *arr, int newSize);
+  // realloc(arr->buf,newSize). Failure -> false. Success -> size=newSize -> true.
+
+bool buf_delete(CircArray *arr);
+  // buf_clear -> free(arr->buf) -> zero fields -> enabled=false. arr==NULL -> false.
+
+void buf_clear(CircArray *arr);
+  // memset all bytes to 0. Do not change n_r/n_w/size/enabled.
+
+================================================================================
+12. ARM assembly -- funcs1.s (DB-106~110)
+================================================================================
+(Only declarations are needed in the C header; implementation is in .s)
+
+int func2(int R0);
+  // ADD R0, R0, #1; BX LR. R0_out=R0+1. 5->6. 0->1. 0xFFFFFFFF->0 (wraparound).
+
+int func1(int R0);
+  // PUSH {LR} -> BL func2 -> POP {LR} -> BX LR. Transparently call func2.
+  // AAPCS: R0-R3 are caller-saved. func1 passes R0-R3 unchanged to func2.
+
+================================================================================
+13. Boundary cases and stress points (DB-116~125)
+================================================================================
+
+- L293D: never emit IN1=IN2=1 (safety).
+- Instant motor reversal has no dead time (~ns scale) and is generally safe.
+- UART has no framing/checksum: noise may trigger random commands.
+- UART has no ACK/NAK feedback.
+- ADC continuous mode: SoftwareStartConv in read_temperature_sensor is redundant but harmless.
+- buf_full remains correct when uint32_t n_w overflows (modulo behavior unchanged).
+- usart1_send TXE wait has no timeout -> USART1 disabled -> infinite loop.
+- RNG DRDY wait has no timeout -> RNG failure -> infinite loop.
+- timed_task has no task-removal API, priority, or preemption; a long task blocks later ones.
+- usart1_readc 0xFF->-1 is a signed-overflow pitfall.
+
+================================================================================
+14. Constants
+================================================================================
+
+START_BYTE=0x24, STOP_BYTE=0x2A (used by the Java GUI; firmware has no framing protocol)
+UART_BAUD=9600, BUTTON_DEBOUNCE_MS=250
+SYSTICK_PERIOD_TICKS=168000
+CIRC_BUFFER_MIN_SIZE=200
+MAXNUMTASKS=25
+
+================================================================================
+15. Host verification and deterministic inputs
+================================================================================
+
+When DISCOBOT_TARGET is undefined, provide the following deterministic models:
+- GPIOA_output[1..4] stores motor pins, GPIOD_output[12..15] stores LEDs; pin values may only be 0 or 1;
+- GPIOA_IDR stores button input; discobot_set_button_level modifies only bit0;
+- discobot_set_accelerometer_raw sets three raw milli-g values; read_accelerometers divides them by 1000;
+- discobot_set_adc_raw sets the next temperature ADC value; follow the formula in Section 7 exactly;
+- discobot_set_rng sets DRDY and the return value; ready=false represents hardware blocking, but host tests must not actually deadlock;
+- discobot_usart1_inject_rx sets DR/RXNE, then executes the same USART1_IRQHandler logic;
+- usart1_send appends characters in order to usart1_tx_log and maintains usart1_tx_length;
+- dispatch_uart_command calls flookup immediately for 0..8; invalid, negative, and empty reads never change motor state;
+- main_loop_iteration is the single-step host equivalent of while(1); production code must not define main();
+- init_system strictly follows the DB-114 order and sends the exact string
+  "UART1 Initialized. @9600bps\r\n"; do not change the text.
+
+Emit independent self-tests in a separate file, not within the production implementation. All allocated memory must be releasable; null pointers, invalid
+indices, and full buffers must return safely. Preserve historical behavior explicitly described by the tests (such as no UART framing protocol, no task-
+removal API, and unused speed arguments); do not 'improve' it into a different protocol or PWM architecture.

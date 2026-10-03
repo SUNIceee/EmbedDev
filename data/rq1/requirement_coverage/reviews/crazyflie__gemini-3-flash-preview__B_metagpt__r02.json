@@ -1,0 +1,44 @@
+{
+  "identity": "crazyflie__gemini-3-flash-preview__B_metagpt__r02",
+  "project": "crazyflie",
+  "model": "gemini-3-flash-preview",
+  "method": "MetaGPT",
+  "repeat": 2,
+  "status": "no_code",
+  "evaluator": "current Codex LLM static review",
+  "reviewed_at": "2026-10-02T07:15:35.085497+00:00",
+  "candidate_files": [],
+  "inventory_sha256": "60721e6c11f3e5fb421b58209ce90367c3e66ea260a90a87b625c43d81a53d16",
+  "checklist_sha256": "a563bb2a705c6bb9bbb227607e886fb05babbf73e4c3f7e0b74e488033dd7e4f",
+  "requirements": [],
+  "counts": {},
+  "denominator": null,
+  "rate": null,
+  "reason": "Fixed inventory contains no complete candidate; no fabricated per-leaf reading or zero verdicts.",
+  "external_api_calls": 0,
+  "host_or_generation_calls": 0,
+  "code_changed": false,
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/reviews/gemini/crazyflie/MetaGPT_r02.json",
+    "original_sha256": "744c8a8be39c27835a4be5aeeec1f7685cb8503164d0d06040c4b7c5ebd5d1e2",
+    "language": "Original Chinese evidence/rationales retained; no semantic translation.",
+    "initial_review_status": {
+      "evaluator": "current Codex LLM static review"
+    },
+    "preservation": "Initial verdicts, reasons, historical rates and human-review flags retained. Path anonymization and export metadata do not constitute a new review.",
+    "current_aggregation": "(fully_covered + partially_covered) / preclassified static denominator; no fractional weighting of partial items.",
+    "checklist_export": {
+      "path": "data/rq1/requirement_coverage/checklists/crazyflie.json",
+      "sha256": "7b146e750632e4a0e8a3970727f608d4020252f687283f2e804226cac0e5ddde",
+      "original_sha256": "a563bb2a705c6bb9bbb227607e886fb05babbf73e4c3f7e0b74e488033dd7e4f",
+      "leaf_count": 145,
+      "static_denominator": 141,
+      "source_requirement": {
+        "path": "data/rq1/requirement_coverage/source_requirements/crazyflie_RE_req.txt",
+        "sha256": "1022008e84745ec7f503c5249420ccb3cec5c50e80d297569e80086fd819ba65"
+      }
+    },
+    "candidate_bindings": [],
+    "evidence_line_numbers": "Original candidate lines; transformed candidate comments, where used, retain separately recorded original and distributed hashes."
+  }
+}

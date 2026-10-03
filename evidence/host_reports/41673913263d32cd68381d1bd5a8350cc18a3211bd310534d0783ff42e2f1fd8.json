@@ -1,0 +1,85 @@
+{
+  "candidate": {
+    "key": "c18634a7bda7eae8fa92f65916605e28c38fe45a7b26e3c0976f096870b17a1e",
+    "project": "onstep",
+    "header": "<WORKSPACE>\\fse\\official_baselines\\rq2_unlimited_host_20261001\\code\\c18634a7bda7eae8fa92f65916605e28c38fe45a7b26e3c0976f096870b17a1e\\raw\\6_generated_code.h",
+    "source": "<WORKSPACE>\\fse\\official_baselines\\rq2_unlimited_host_20261001\\code\\c18634a7bda7eae8fa92f65916605e28c38fe45a7b26e3c0976f096870b17a1e\\raw\\6_generated_code.c",
+    "header_sha256": "50cb3c9b0513c7bb78e6506499d05ae15e385e4a9adc21b42294148aaef704de",
+    "source_sha256": "8833317050be9eb09a5eee6cac61c33aafdf949a00ee1599de396b4de5a2c7d8",
+    "labels": [],
+    "whole_project_sha256": "c18634a7bda7eae8fa92f65916605e28c38fe45a7b26e3c0976f096870b17a1e",
+    "all_file_sha256": {
+      "6_generated_code.h": "50cb3c9b0513c7bb78e6506499d05ae15e385e4a9adc21b42294148aaef704de",
+      "6_generated_code.c": "8833317050be9eb09a5eee6cac61c33aafdf949a00ee1599de396b4de5a2c7d8"
+    }
+  },
+  "suite_sha256": "7b3ea083fc200084487ea77197bcd77fce7a340fbf147e2c3234652952a2a27f",
+  "complete": true,
+  "compile_returncode": 0,
+  "compile_timeout": false,
+  "source_changes": {
+    "header_include_alignment": [
+      "6_generated_code.h"
+    ],
+    "entrypoint_rename": "compile-time main=fse_candidate_main"
+  },
+  "cases": [
+    {
+      "id": "OS-B01",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-004",
+      "checks": 7,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "OS-B02",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-001 / runtime state reset",
+      "checks": 8,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "OS-B03",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-001 / runtime state reset",
+      "checks": 7,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "OS-B04",
+      "category": "persistent_storage",
+      "anchor": "5 / NVM",
+      "checks": 12,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "OS-B05",
+      "category": "input_propagation",
+      "anchor": "3.2 / RTC",
+      "checks": 7,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "OS-B06",
+      "category": "invalid_input_state",
+      "anchor": "REQ-FUNC-005",
+      "checks": 5,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    }
+  ],
+  "counts": {
+    "pass": 6
+  }
+}

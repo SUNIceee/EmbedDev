@@ -1,0 +1,101 @@
+{
+  "candidate": {
+    "key": "896e1a24dc80fbaabb29acee",
+    "project": "onstep",
+    "header": "<WORKSPACE>\\fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\182d712e3981df206ed96490\\generated_code.h",
+    "source": "<WORKSPACE>\\fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\182d712e3981df206ed96490\\generated_code.c",
+    "header_sha256": "dcbeb4024aba786006631003b5c26eb33c117b71c3ae873ac31d7846875b8719",
+    "source_sha256": "0a52da7743496ef99984286871e195776cf20470494d54db587c49fd839fe935",
+    "labels": [
+      {
+        "project": "onstep",
+        "model": "gpt-5.5",
+        "repeat": "repeat_01",
+        "phase": "raw",
+        "origin": "<WORKSPACE>\\fse\\artifacts\\direct_baseline\\onstep\\repeat_01\\onstep\\20260901_100049_3c905134\\gpt-5.5",
+        "notes": "",
+        "condition": "historical_direct"
+      },
+      {
+        "project": "onstep",
+        "model": "gpt-5.5",
+        "repeat": "repeat_01",
+        "phase": "syntax_start",
+        "origin": "<WORKSPACE>\\fse\\artifacts\\direct_baseline\\onstep\\repeat_01\\onstep\\20260901_100049_3c905134\\gpt-5.5",
+        "notes": "",
+        "condition": "historical_direct"
+      }
+    ]
+  },
+  "suite_sha256": "7b3ea083fc200084487ea77197bcd77fce7a340fbf147e2c3234652952a2a27f",
+  "complete": true,
+  "compile_returncode": 0,
+  "compile_timeout": false,
+  "source_changes": {
+    "header_include_alignment": [
+      "generated_code.h"
+    ],
+    "entrypoint_rename": "compile-time main=fse_candidate_main"
+  },
+  "cases": [
+    {
+      "id": "OS-B01",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-004",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B02",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-001 / runtime state reset",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B03",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-001 / runtime state reset",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B04",
+      "category": "persistent_storage",
+      "anchor": "5 / NVM",
+      "checks": 12,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "OS-B05",
+      "category": "input_propagation",
+      "anchor": "3.2 / RTC",
+      "checks": 7,
+      "failures": 2,
+      "status": "fail",
+      "returncode": 1
+    },
+    {
+      "id": "OS-B06",
+      "category": "invalid_input_state",
+      "anchor": "REQ-FUNC-005",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    }
+  ],
+  "counts": {
+    "harness_build_failed": 4,
+    "pass": 1,
+    "fail": 1
+  }
+}

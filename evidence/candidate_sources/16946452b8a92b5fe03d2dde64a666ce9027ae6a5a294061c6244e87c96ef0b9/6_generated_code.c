@@ -1,0 +1,142 @@
+#include "6_generated_code.h"
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#define AXES 2u
+#define CHANNELS 4u
+#define NVM_SIZE 2048u
+#define CAL_OFF 0u
+#define PEC_OFF 512u
+#define REC_OFF 1024u
+#define STEPS_DEG 1000.0
+#define STEPS_RA_HOUR 15000.0
+#define MAX_FREQ ((uint32_t)(OS_GOTO_SPEED_MAX_DEG_PER_SEC*STEPS_DEG))
+#define TICK_MS 10u
+#define MAGIC_CAL 0x4f534341u
+#define MAGIC_PEC 0x4f535045u
+#define MAGIC_REC 0x4f535245u
+
+typedef struct { bool initialized, enabled, forward; uint32_t frequency_hz; int32_t position_steps; os_error_t fault; } motor_t;
+typedef struct { os_equatorial_coord_t c; os_motor_position_t p; } sample_t;
+typedef struct { uint32_t magic; uint16_t size, version; uint32_t checksum; } header_t;
+typedef struct { os_motor_position_t position; os_equatorial_coord_t park; os_site_info_t site; uint32_t marker; } recovery_t;
+
+static motor_t motor[AXES];
+static sample_t samples[OS_CALIBRATION_MAX_STARS];
+static os_state_t state;
+static os_site_info_t site;
+static os_calibration_t calibration;
+static os_pec_table_t pec;
+static os_guide_pulse_t guide;
+static os_equatorial_coord_t target, park_position, pending_target;
+static os_track_rate_t track_rate;
+static os_align_mode_t align_mode;
+static os_direction_t move_direction;
+static uint8_t sample_count;
+static float custom_track=1.0f, guide_rate=0.5f, custom_move=60.0f, residual;
+static uint32_t guide_left, rtc_epoch;
+static bool residual_valid, tracking, goto_active, park_active, moving, pec_enabled, gps_locked, rtc_ok, timer_ok, nvm_ok;
+static bool limits[AXES];
+static uint8_t rx[CHANNELS][OS_MAX_COMMAND_LENGTH+1u];
+static size_t rxlen[CHANNELS];
+static bool receiving[CHANNELS];
+static char comm_rx[CHANNELS][256], comm_tx[CHANNELS][512];
+static size_t comm_rx_len[CHANNELS], comm_tx_len[CHANNELS];
+static uint8_t nvm[NVM_SIZE];
+
+static bool axis_ok(uint8_t a){return a<AXES;}
+static bool channel_ok(uint8_t c){return c<CHANNELS;}
+static bool finitef(float x){return isfinite((double)x)!=0;}
+static bool dir_ok(os_direction_t d){return d>=OS_DIRECTION_NORTH&&d<=OS_DIRECTION_WEST;}
+static bool speed_ok(os_speed_level_t s){return s>=OS_SPEED_SLOW&&s<=OS_SPEED_CUSTOM;}
+static bool coord_ok(os_equatorial_coord_t c){return finitef(c.ra_hours)&&finitef(c.dec_degrees)&&c.ra_hours>=0.0f&&c.ra_hours<=24.0f&&c.dec_degrees>=-90.0f&&c.dec_degrees<=90.0f;}
+static bool horiz_ok(os_horizontal_coord_t c){return finitef(c.azimuth_degrees)&&finitef(c.altitude_degrees)&&c.azimuth_degrees>=0.0f&&c.azimuth_degrees<=360.0f&&c.altitude_degrees>=-90.0f&&c.altitude_degrees<=90.0f;}
+static float wrap_ra(float x){while(x<0)x+=24.0f;while(x>=24.0f)x-=24.0f;return x;}
+static int32_t round_i32(double x){if(x>2147483647.0)return 2147483647;if(x<-2147483648.0)return (-2147483647-1);return (int32_t)(x>=0?x+0.5:x-0.5);}
+static double ra_arcsec(os_equatorial_coord_t c){return (double)c.ra_hours*54000.0;}
+static double dec_arcsec(os_equatorial_coord_t c){return (double)c.dec_degrees*3600.0;}
+static uint32_t checksum(const void *p,size_t n){const uint8_t *b=p;uint32_t h=2166136261u;while(n--)h=(h^*b++)*16777619u;return h;}
+static void default_calibration(void){memset(&calibration,0,sizeof calibration);calibration.matrix_ra_to_ra=1.0f;calibration.matrix_dec_to_dec=1.0f;}
+static os_motor_position_t coord_steps(os_equatorial_coord_t c){os_motor_position_t p;if(calibration.valid){double x=ra_arcsec(c),y=dec_arcsec(c);p.ra_steps=round_i32((double)calibration.matrix_ra_to_ra*x+(double)calibration.matrix_dec_to_ra*y+calibration.offset_ra_arcsec);p.dec_steps=round_i32((double)calibration.matrix_ra_to_dec*x+(double)calibration.matrix_dec_to_dec*y+calibration.offset_dec_arcsec);}else{p.ra_steps=round_i32(c.ra_hours*STEPS_RA_HOUR);p.dec_steps=round_i32(c.dec_degrees*STEPS_DEG);}return p;}
+static os_equatorial_coord_t steps_coord(os_motor_position_t p){os_equatorial_coord_t c={0,0};if(calibration.valid){double d=(double)calibration.matrix_ra_to_ra*calibration.matrix_dec_to_dec-(double)calibration.matrix_ra_to_dec*calibration.matrix_dec_to_ra;if(fabs(d)>1e-18){double x=p.ra_steps-calibration.offset_ra_arcsec,y=p.dec_steps-calibration.offset_dec_arcsec;c.ra_hours=wrap_ra((float)(((double)calibration.matrix_dec_to_dec*x-(double)calibration.matrix_dec_to_ra*y)/d/54000.0));c.dec_degrees=(float)((-(double)calibration.matrix_ra_to_dec*x+(double)calibration.matrix_ra_to_ra*y)/d/3600.0);}}else{c.ra_hours=wrap_ra((float)(p.ra_steps/STEPS_RA_HOUR));c.dec_degrees=(float)(p.dec_steps/STEPS_DEG);}if(c.dec_degrees>90)c.dec_degrees=90;if(c.dec_degrees<-90)c.dec_degrees=-90;return c;}
+static void stop_axis(uint8_t a){if(axis_ok(a)){(void)os_hal_motor_set_frequency(a,0);(void)os_hal_motor_enable(a,false);}}
+static void stop_all(void){stop_axis(0);stop_axis(1);}
+static void clear_motion(void){goto_active=false;park_active=false;moving=false;stop_all();}
+static os_error_t drive(uint8_t a,bool forward,uint32_t f){os_error_t e;if(!axis_ok(a))return OS_ERR_INVALID_ARGUMENT;if(motor[a].fault!=OS_ERR_NONE)return motor[a].fault;if(f>MAX_FREQ)f=MAX_FREQ;if(f&&os_hal_limit_is_triggered(a)){stop_axis(a);return OS_ERR_LIMIT_TRIGGERED;}e=os_hal_motor_set_direction(a,forward);if(e)return e;e=os_hal_motor_set_frequency(a,f);if(e)return e;return os_hal_motor_enable(a,f!=0);}
+static bool save_record(uint16_t off,uint32_t magic,const void *payload,uint16_t size){header_t h;if(!payload||(size_t)off+sizeof h+size>NVM_SIZE)return false;h.magic=magic;h.size=size;h.version=1;h.checksum=checksum(payload,size);return os_hal_nvm_write(off,(uint8_t*)&h,sizeof h)==OS_ERR_NONE&&os_hal_nvm_write((uint16_t)(off+sizeof h),payload,size)==OS_ERR_NONE;}
+static bool load_record(uint16_t off,uint32_t magic,void *payload,uint16_t size){header_t h;if(!payload||(size_t)off+sizeof h+size>NVM_SIZE)return false;if(os_hal_nvm_read(off,(uint8_t*)&h,sizeof h)!=OS_ERR_NONE||h.magic!=magic||h.size!=size||h.version!=1)return false;if(os_hal_nvm_read((uint16_t)(off+sizeof h),payload,size)!=OS_ERR_NONE)return false;return h.checksum==checksum(payload,size);}
+static void update_site(void){os_site_info_t g;uint32_t t;if(os_hal_gps_poll(&g)==OS_ERR_NONE&&g.valid&&g.latitude_degrees>=-90&&g.latitude_degrees<=90&&g.longitude_degrees>=-180&&g.longitude_degrees<=180){site=g;gps_locked=true;rtc_epoch=g.utc_epoch_seconds;(void)os_hal_rtc_set(rtc_epoch);return;}gps_locked=false;if(os_hal_rtc_read(&t)==OS_ERR_NONE){rtc_ok=true;site.utc_epoch_seconds=t;site.valid=true;}else rtc_ok=false;}
+static uint32_t tracking_frequency(void){double f=1.0;if(track_rate==OS_TRACK_RATE_LUNAR)f=OS_LUNAR_RATE_FACTOR;else if(track_rate==OS_TRACK_RATE_SOLAR)f=OS_SOLAR_RATE_FACTOR;else if(track_rate==OS_TRACK_RATE_CUSTOM)f=custom_track;if(pec_enabled&&pec.valid){uint32_t i=site.utc_epoch_seconds%360u;f+=(double)pec.corrections[i]/3600000.0;}if(f<0)f=0;return (uint32_t)(OS_SIDEREAL_RATE_ARCSEC_PER_SEC*f*STEPS_DEG/3600.0+0.5);}
+static void advance_virtual_motor(void){uint8_t a;for(a=0;a<AXES;a++)if(motor[a].enabled&&motor[a].frequency_hz){int64_t step=((int64_t)motor[a].frequency_hz*TICK_MS+500)/1000;if(step<1)step=1;if(!motor[a].forward)step=-step;if(step>2147483647LL-motor[a].position_steps)motor[a].position_steps=2147483647;else if(step<-2147483648LL-motor[a].position_steps)motor[a].position_steps=(-2147483647-1);else motor[a].position_steps+=(int32_t)step;}}
+static void update_motion(void){os_motor_position_t goal;int32_t cur[2];uint8_t a;bool parking=park_active;if(!(goto_active||park_active))return;goal=coord_steps(parking?park_position:target);for(a=0;a<2;a++){cur[a]=os_hal_motor_get_position(a);int32_t want=a?goal.dec_steps:goal.ra_steps;int64_t d=(int64_t)want-cur[a];if(d==0){if(drive(a,true,0)!=OS_ERR_NONE){state=OS_STATE_FAULT;clear_motion();return;}continue;}bool f=d>0;uint64_t ad=d>0?d:-d;uint32_t hz=ad>1000?MAX_FREQ:ad>100?MAX_FREQ/2:MAX_FREQ/10;if(hz==0)hz=1;os_error_t e=drive(a,f,hz);if(e!=OS_ERR_NONE){clear_motion();state=OS_STATE_FAULT;return;}}cur[0]=os_hal_motor_get_position(0);cur[1]=os_hal_motor_get_position(1);if(cur[0]==goal.ra_steps&&cur[1]==goal.dec_steps){clear_motion();if(parking){tracking=false;state=OS_STATE_PARKED;}else{tracking=true;state=OS_STATE_IDLE_TRACKING;(void)os_hal_buzzer_beep(100,1);}}}
+static void update_tracking(void){uint32_t base,gf;int32_t ra=0,dec=0;if(guide.active){if(guide_left>TICK_MS)guide_left-=TICK_MS;else{guide_left=0;guide.active=false;}}if(!tracking||state!=OS_STATE_IDLE_TRACKING)return;base=tracking_frequency();if(guide.active){gf=(uint32_t)(OS_SIDEREAL_RATE_ARCSEC_PER_SEC*guide.rate_fraction*STEPS_DEG/3600.0+0.5);if(gf==0)gf=1;if(guide.dec_priority)dec=guide.direction_north?(int32_t)gf:-(int32_t)gf;else ra=guide.direction_east?(int32_t)gf:-(int32_t)gf;}if(drive(0,ra>=0, (uint32_t)llabs((long long)base+ra))!=OS_ERR_NONE||drive(1,dec>=0,(uint32_t)llabs((long long)dec))!=OS_ERR_NONE){clear_motion();state=OS_STATE_FAULT;}}
+static void process_channel(uint8_t ch){while(os_hal_comm_available(ch)>0){char c=os_hal_comm_read(ch),out[OS_MAX_REPLY_LENGTH];size_t n=0;os_error_t e;if(!receiving[ch]){if(c==':'){receiving[ch]=true;rxlen[ch]=0;rx[ch][rxlen[ch]++]=(uint8_t)c;}continue;}if(rxlen[ch]>=OS_MAX_COMMAND_LENGTH){receiving[ch]=false;rxlen[ch]=0;(void)os_hal_comm_write(ch,"?#",2);continue;}rx[ch][rxlen[ch]++]=(uint8_t)c;if(c=='#'){e=os_command_parse((char*)rx[ch],rxlen[ch],ch,out,sizeof out,&n);if(e!=OS_ERR_NONE){out[0]='?';out[1]='#';n=2;}(void)os_hal_comm_write(ch,out,n);receiving[ch]=false;rxlen[ch]=0;}}}
+
+os_error_t os_init(void){uint8_t i;recovery_t rec;memset(motor,0,sizeof motor);memset(samples,0,sizeof samples);memset(&site,0,sizeof site);memset(&pec,0,sizeof pec);memset(&guide,0,sizeof guide);memset(rx,0,sizeof rx);memset(rxlen,0,sizeof rxlen);memset(receiving,0,sizeof receiving);memset(comm_rx,0,sizeof comm_rx);memset(comm_tx,0,sizeof comm_tx);memset(comm_rx_len,0,sizeof comm_rx_len);memset(comm_tx_len,0,sizeof comm_tx_len);state=OS_STATE_INITIALIZING;track_rate=OS_TRACK_RATE_SIDEREAL;custom_track=1;guide_rate=.5f;custom_move=60;sample_count=0;align_mode=OS_ALIGN_1STAR;residual=0;residual_valid=false;tracking=false;goto_active=false;park_active=false;moving=false;pec_enabled=false;gps_locked=false;rtc_ok=false;timer_ok=false;guide_left=0;park_position.ra_hours=0;park_position.dec_degrees=90;default_calibration();nvm_ok=os_hal_nvm_init()==OS_ERR_NONE;if(!nvm_ok){state=OS_STATE_FAULT;return OS_ERR_NVM_FAULT;} (void)load_record(CAL_OFF,MAGIC_CAL,&calibration,sizeof calibration);(void)load_record(PEC_OFF,MAGIC_PEC,&pec,sizeof pec);if(load_record(REC_OFF,MAGIC_REC,&rec,sizeof rec)){park_position=rec.park;site=rec.site;motor[0].position_steps=rec.position.ra_steps;motor[1].position_steps=rec.position.dec_steps;}for(i=0;i<CHANNELS;i++)if(os_hal_comm_init(i)!=OS_ERR_NONE){state=OS_STATE_FAULT;return OS_ERR_NOT_SUPPORTED;}for(i=0;i<AXES;i++){if(os_hal_motor_init(i)!=OS_ERR_NONE){state=OS_STATE_FAULT;return OS_ERR_MOTOR_DRIVER_FAULT;}if(os_hal_motor_set_frequency(i,0)!=OS_ERR_NONE||os_hal_motor_enable(i,false)!=OS_ERR_NONE){state=OS_STATE_FAULT;return OS_ERR_MOTOR_DRIVER_FAULT;}}if(os_hal_gps_init()!=OS_ERR_NONE||os_hal_rtc_init()!=OS_ERR_NONE||os_hal_limit_init()!=OS_ERR_NONE||os_hal_timer_motor_init()!=OS_ERR_NONE){state=OS_STATE_FAULT;return OS_ERR_MOTOR_DRIVER_FAULT;}timer_ok=true;update_site();tracking=site.valid;state=OS_STATE_IDLE_TRACKING;return OS_ERR_NONE;}
+void os_loop_iteration(void){uint8_t i;if(state==OS_STATE_FAULT)return;for(i=0;i<CHANNELS;i++)process_channel(i);update_site();for(i=0;i<AXES;i++)if(os_hal_limit_is_triggered(i)){stop_axis(i);if(goto_active||park_active||moving||tracking){clear_motion();tracking=false;state=OS_STATE_FAULT;return;}}update_motion();if(moving)return;update_tracking();advance_virtual_motor();}
+
+static os_error_t start_goto(os_equatorial_coord_t c,bool park){os_motor_position_t p;uint8_t a;p=coord_steps(c);for(a=0;a<2;a++){int32_t now=os_hal_motor_get_position(a),want=a?p.dec_steps:p.ra_steps;if(want!=now&&os_hal_limit_is_triggered(a))return OS_ERR_LIMIT_TRIGGERED;}target=c;goto_active=!park;park_active=park;moving=false;tracking=false;state=OS_STATE_GOTO;stop_all();return OS_ERR_NONE;}
+os_error_t os_goto_equatorial(os_equatorial_coord_t c){if(!coord_ok(c))return OS_ERR_INVALID_ARGUMENT;if(state==OS_STATE_PARKED||state==OS_STATE_FAULT||state==OS_STATE_ALIGNMENT)return OS_ERR_INVALID_STATE;return start_goto(c,false);}
+os_error_t os_goto_horizontal(os_horizontal_coord_t c){os_equatorial_coord_t e;if(!horiz_ok(c))return OS_ERR_INVALID_ARGUMENT;e.ra_hours=wrap_ra(c.azimuth_degrees/15.0f);e.dec_degrees=c.altitude_degrees;return os_goto_equatorial(e);}
+os_error_t os_goto_abort(void){if(!goto_active||state!=OS_STATE_GOTO)return OS_ERR_INVALID_STATE;clear_motion();tracking=true;state=OS_STATE_IDLE_TRACKING;return OS_ERR_NONE;}
+os_error_t os_tracking_set_rate(os_track_rate_t r,float f){if(r<OS_TRACK_RATE_SIDEREAL||r>OS_TRACK_RATE_CUSTOM||!finitef(f)||(r==OS_TRACK_RATE_CUSTOM&&(f<=0||f>2)))return OS_ERR_INVALID_ARGUMENT;track_rate=r;custom_track=f;return OS_ERR_NONE;}
+os_error_t os_tracking_get_rate(os_track_rate_t *r,float *f){if(!r||!f)return OS_ERR_INVALID_ARGUMENT;*r=track_rate;*f=custom_track;return OS_ERR_NONE;}
+os_error_t os_tracking_enable(void){if(state==OS_STATE_PARKED||state==OS_STATE_FAULT||state==OS_STATE_ALIGNMENT)return OS_ERR_INVALID_STATE;tracking=true;state=OS_STATE_IDLE_TRACKING;return OS_ERR_NONE;}
+os_error_t os_tracking_disable(void){tracking=false;if(state==OS_STATE_IDLE_TRACKING)stop_all();return OS_ERR_NONE;}
+os_error_t os_guide_pulse(os_direction_t d,uint32_t ms){if(!dir_ok(d)||ms==0)return OS_ERR_INVALID_ARGUMENT;if(state==OS_STATE_PARKED||state==OS_STATE_FAULT)return OS_ERR_INVALID_STATE;guide.active=true;guide.duration_ms=ms;guide.rate_fraction=guide_rate;guide.direction_east=d==OS_DIRECTION_EAST;guide.direction_north=d==OS_DIRECTION_NORTH;guide.dec_priority=d==OS_DIRECTION_NORTH||d==OS_DIRECTION_SOUTH;guide_left=ms;return OS_ERR_NONE;}
+os_error_t os_guide_set_rate(float f){if(!finitef(f)||f<OS_GUIDE_RATE_MIN||f>OS_GUIDE_RATE_MAX)return OS_ERR_INVALID_ARGUMENT;guide_rate=f;return OS_ERR_NONE;}
+os_error_t os_guide_get_state(os_guide_pulse_t *p){if(!p)return OS_ERR_INVALID_ARGUMENT;*p=guide;return OS_ERR_NONE;}
+os_error_t os_align_begin(os_align_mode_t m){if(m<OS_ALIGN_1STAR||m>OS_ALIGN_NSTAR)return OS_ERR_INVALID_ARGUMENT;if(state==OS_STATE_GOTO||state==OS_STATE_PARKED||state==OS_STATE_FAULT||moving)return OS_ERR_INVALID_STATE;stop_all();tracking=false;sample_count=0;residual_valid=false;align_mode=m;state=OS_STATE_ALIGNMENT;return OS_ERR_NONE;}
+os_error_t os_align_accept_star(os_equatorial_coord_t c,os_motor_position_t p){if(!coord_ok(c))return OS_ERR_INVALID_ARGUMENT;if(state!=OS_STATE_ALIGNMENT||sample_count>=OS_CALIBRATION_MAX_STARS)return OS_ERR_INVALID_STATE;samples[sample_count].c=c;samples[sample_count].p=p;sample_count++;return OS_ERR_NONE;}
+static bool qr_fit(bool dec,double out[3]){double q[OS_CALIBRATION_MAX_STARS][3],r[3][3],v[OS_CALIBRATION_MAX_STARS],b[3];int i,j,k,n=sample_count;memset(r,0,sizeof r);for(i=0;i<n;i++)q[i][0]=ra_arcsec(samples[i].c);for(i=0;i<n;i++)q[i][1]=dec_arcsec(samples[i].c);for(i=0;i<n;i++)q[i][2]=1.0;for(j=0;j<3;j++){double norm=0;for(i=0;i<n;i++)norm+=q[i][j]*q[i][j];norm=sqrt(norm);if(norm<1e-12)return false;r[j][j]=norm;for(i=0;i<n;i++)q[i][j]/=norm;for(k=j+1;k<3;k++){double dot=0;for(i=0;i<n;i++)dot+=q[i][j]*q[i][k];r[j][k]=dot;for(i=0;i<n;i++)q[i][k]-=dot*q[i][j];}}for(i=0;i<n;i++)v[i]=dec?(double)samples[i].p.dec_steps:(double)samples[i].p.ra_steps;for(j=0;j<3;j++){b[j]=0;for(i=0;i<n;i++)b[j]+=q[i][j]*v[i];}for(i=2;i>=0;i--){double z=b[i];for(j=i+1;j<3;j++)z-=r[i][j]*out[j];if(fabs(r[i][i])<1e-12)return false;out[i]=z/r[i][i];}return true;}
+os_error_t os_align_compute(void){double a[3],d[3],maxr=0;os_calibration_t next,old=calibration;uint8_t i;if(state!=OS_STATE_ALIGNMENT)return OS_ERR_INVALID_STATE;if((align_mode==OS_ALIGN_1STAR&&sample_count<1)||(align_mode==OS_ALIGN_2STAR&&sample_count<2)||(align_mode>=OS_ALIGN_3STAR&&sample_count<3))return OS_ERR_INVALID_STATE;if(sample_count>=3){double x0=ra_arcsec(samples[0].c),y0=dec_arcsec(samples[0].c),x1=ra_arcsec(samples[1].c),y1=dec_arcsec(samples[1].c),x2=ra_arcsec(samples[2].c),y2=dec_arcsec(samples[2].c);if(fabs((x1-x0)*(y2-y0)-(y1-y0)*(x2-x0))<1e-8)return OS_ERR_CALIBRATION_FAILED;}if(sample_count==1){a[0]=1;a[1]=0;a[2]=samples[0].p.ra_steps-ra_arcsec(samples[0].c);d[0]=0;d[1]=1;d[2]=samples[0].p.dec_steps-dec_arcsec(samples[0].c);}else if(sample_count==2){double xr=ra_arcsec(samples[1].c)-ra_arcsec(samples[0].c),yd=dec_arcsec(samples[1].c)-dec_arcsec(samples[0].c);if(align_mode==OS_ALIGN_2STAR&&fabs(xr)<1e-12&&fabs(yd)<1e-12)return OS_ERR_CALIBRATION_FAILED;a[0]=fabs(xr)>1e-12?(samples[1].p.ra_steps-samples[0].p.ra_steps)/xr:1;a[1]=0;a[2]=samples[0].p.ra_steps-a[0]*ra_arcsec(samples[0].c);d[0]=0;d[1]=fabs(yd)>1e-12?(samples[1].p.dec_steps-samples[0].p.dec_steps)/yd:1;d[2]=samples[0].p.dec_steps-d[1]*dec_arcsec(samples[0].c);}else if(!qr_fit(false,a)||!qr_fit(true,d))return OS_ERR_CALIBRATION_FAILED;memset(&next,0,sizeof next);next.matrix_ra_to_ra=(float)a[0];next.matrix_dec_to_ra=(float)a[1];next.offset_ra_arcsec=(float)a[2];next.matrix_ra_to_dec=(float)d[0];next.matrix_dec_to_dec=(float)d[1];next.offset_dec_arcsec=(float)d[2];next.valid=true;for(i=0;i<sample_count;i++){double x=ra_arcsec(samples[i].c),y=dec_arcsec(samples[i].c),er=a[0]*x+a[1]*y+a[2]-samples[i].p.ra_steps,ed=d[0]*x+d[1]*y+d[2]-samples[i].p.dec_steps,rr=hypot(er,ed)*3600.0/STEPS_DEG;if(rr>maxr)maxr=rr;}if(sample_count>=4&&maxr>360){calibration=old;return OS_ERR_CALIBRATION_FAILED;}if(!save_record(CAL_OFF,MAGIC_CAL,&next,sizeof next)){calibration=old;return OS_ERR_NVM_FAULT;}calibration=next;residual=(float)maxr;residual_valid=true;tracking=true;state=OS_STATE_IDLE_TRACKING;return OS_ERR_NONE;}
+os_error_t os_align_get_residual(float *r){if(!r)return OS_ERR_INVALID_ARGUMENT;if(!residual_valid)return OS_ERR_INVALID_STATE;*r=residual;return OS_ERR_NONE;}
+os_error_t os_align_abort(void){if(state!=OS_STATE_ALIGNMENT)return OS_ERR_INVALID_STATE;sample_count=0;residual_valid=false;tracking=true;state=OS_STATE_IDLE_TRACKING;return OS_ERR_NONE;}
+os_error_t os_park(void){if(state==OS_STATE_PARKED||state==OS_STATE_FAULT||state==OS_STATE_ALIGNMENT)return OS_ERR_INVALID_STATE;if(!coord_ok(park_position))return OS_ERR_INVALID_ARGUMENT;return start_goto(park_position,true);}
+os_error_t os_unpark(void){uint8_t i;if(state!=OS_STATE_PARKED)return OS_ERR_INVALID_STATE;for(i=0;i<CHANNELS;i++)if(os_hal_comm_init(i)!=OS_ERR_NONE)return OS_ERR_NOT_SUPPORTED;for(i=0;i<AXES;i++){if(os_hal_motor_init(i)!=OS_ERR_NONE)return OS_ERR_MOTOR_DRIVER_FAULT;if(os_hal_motor_enable(i,false)!=OS_ERR_NONE)return OS_ERR_MOTOR_DRIVER_FAULT;}if(os_hal_limit_init()!=OS_ERR_NONE||os_hal_timer_motor_init()!=OS_ERR_NONE)return OS_ERR_MOTOR_DRIVER_FAULT;update_site();tracking=true;state=OS_STATE_IDLE_TRACKING;return OS_ERR_NONE;}
+os_error_t os_park_set_position(os_equatorial_coord_t p){if(!coord_ok(p))return OS_ERR_INVALID_ARGUMENT;park_position=p;return OS_ERR_NONE;}
+os_error_t os_move_start(os_direction_t d,os_speed_level_t s){uint8_t a;if(!dir_ok(d)||!speed_ok(s))return OS_ERR_INVALID_ARGUMENT;if(state==OS_STATE_PARKED||state==OS_STATE_FAULT||state==OS_STATE_ALIGNMENT||goto_active||park_active)return OS_ERR_INVALID_STATE;a=(d==OS_DIRECTION_NORTH||d==OS_DIRECTION_SOUTH);bool f=d==OS_DIRECTION_NORTH||d==OS_DIRECTION_EAST;if(os_hal_limit_is_triggered(a))return OS_ERR_LIMIT_TRIGGERED;uint32_t hz=s==OS_SPEED_CUSTOM?(uint32_t)(custom_move*STEPS_DEG/3600.0+0.5):(s==OS_SPEED_SLOW?100:(s==OS_SPEED_MEDIUM?500:MAX_FREQ));if(hz==0)hz=1;os_error_t e=drive(a,f,hz);if(e!=OS_ERR_NONE)return e;move_direction=d;moving=true;tracking=false;state=OS_STATE_MANUAL_MOTION;return OS_ERR_NONE;}
+os_error_t os_move_stop(void){if(!moving)return OS_ERR_INVALID_STATE;moving=false;stop_all();tracking=true;state=OS_STATE_IDLE_TRACKING;return OS_ERR_NONE;}
+os_error_t os_move_set_custom_speed(float s){if(!finitef(s)||s<=0||s>OS_GOTO_SPEED_MAX_DEG_PER_SEC*3600)return OS_ERR_INVALID_ARGUMENT;custom_move=s;return OS_ERR_NONE;}
+os_error_t os_query_state(os_state_t *p){if(!p)return OS_ERR_INVALID_ARGUMENT;*p=state;return OS_ERR_NONE;}
+os_error_t os_query_coordinates(os_equatorial_coord_t *p){os_motor_position_t m;if(!p)return OS_ERR_INVALID_ARGUMENT;m.ra_steps=os_hal_motor_get_position(0);m.dec_steps=os_hal_motor_get_position(1);*p=steps_coord(m);return OS_ERR_NONE;}
+os_error_t os_query_site(os_site_info_t *p){if(!p)return OS_ERR_INVALID_ARGUMENT;*p=site;return OS_ERR_NONE;}
+os_error_t os_query_motor_position(os_motor_position_t *p){if(!p)return OS_ERR_INVALID_ARGUMENT;p->ra_steps=os_hal_motor_get_position(0);p->dec_steps=os_hal_motor_get_position(1);return OS_ERR_NONE;}
+os_error_t os_query_firmware_version(uint8_t *a,uint8_t *b,uint8_t *c){if(!a||!b||!c)return OS_ERR_INVALID_ARGUMENT;*a=OS_FIRMWARE_VERSION_MAJOR;*b=OS_FIRMWARE_VERSION_MINOR;*c=OS_FIRMWARE_VERSION_PATCH;return OS_ERR_NONE;}
+os_error_t os_query_is_moving(bool *p){if(!p)return OS_ERR_INVALID_ARGUMENT;*p=goto_active||park_active||moving;return OS_ERR_NONE;}
+os_error_t os_query_gps_locked(bool *p){if(!p)return OS_ERR_INVALID_ARGUMENT;*p=gps_locked;return OS_ERR_NONE;}
+os_error_t os_pec_enable(bool e){if(e&&!pec.valid)return OS_ERR_INVALID_STATE;pec_enabled=e;return OS_ERR_NONE;}
+os_error_t os_pec_load_table(const os_pec_table_t *p){if(!p)return OS_ERR_INVALID_ARGUMENT;pec=*p;return save_record(PEC_OFF,MAGIC_PEC,&pec,sizeof pec)?OS_ERR_NONE:OS_ERR_NVM_FAULT;}
+os_error_t os_pec_get_table(os_pec_table_t *p){if(!p)return OS_ERR_INVALID_ARGUMENT;*p=pec;return OS_ERR_NONE;}
+os_error_t os_pec_record_phase(float phase,int16_t error){if(!finitef(phase)||phase<0||phase>360)return OS_ERR_INVALID_ARGUMENT;size_t i=phase>=360?359:(size_t)phase;pec.corrections[i]=error;pec.valid=true;return save_record(PEC_OFF,MAGIC_PEC,&pec,sizeof pec)?OS_ERR_NONE:OS_ERR_NVM_FAULT;}
+os_error_t os_calibration_get(os_calibration_t *p){if(!p)return OS_ERR_INVALID_ARGUMENT;*p=calibration;return OS_ERR_NONE;}
+os_error_t os_calibration_clear(void){uint8_t z[sizeof(header_t)+sizeof(os_calibration_t)];default_calibration();residual_valid=false;memset(z,0,sizeof z);return os_hal_nvm_write(CAL_OFF,z,sizeof z)==OS_ERR_NONE?OS_ERR_NONE:OS_ERR_NVM_FAULT;}
+
+static bool parse_ra(const char *s,float *v){int h,m,sec;char tail;if(sscanf(s,":Sr%d:%d:%d%c",&h,&m,&sec,&tail)!=4||tail!='#'||m<0||m>59||sec<0||sec>59)return false;*v=h+m/60.0f+sec/3600.0f;return true;}
+static bool parse_dec(const char *s,float *v){char sign,tail;int d,m,sec;if(sscanf(s,":Sd%c%d*%d:%d%c",&sign,&d,&m,&sec,&tail)!=5||tail!='#'||(sign!='+'&&sign!='-')||m<0||m>59||sec<0||sec>59)return false;*v=d+m/60.0f+sec/3600.0f;if(sign=='-')*v=-*v;return true;}
+static os_error_t put_reply(char *b,size_t cap,size_t *n,const char *s){size_t z;if(!b||!n)return OS_ERR_INVALID_ARGUMENT;z=strlen(s);if(z>=cap)return OS_ERR_INVALID_ARGUMENT;memcpy(b,s,z+1);*n=z;return OS_ERR_NONE;}
+os_error_t os_command_parse(const char *cmd,size_t len,uint8_t ch,char *reply,size_t cap,size_t *out){char text[OS_MAX_REPLY_LENGTH];float v;os_error_t e;if(!cmd||!reply||!out||!channel_ok(ch)||cap<2||len<3||len>OS_MAX_COMMAND_LENGTH)return OS_ERR_INVALID_ARGUMENT;*out=0;if(cmd[0]!=':'||cmd[len-1]!='#')return OS_ERR_COMMAND_FORMAT;if(len==5&&!memcmp(cmd,":GVP#",5))snprintf(text,sizeof text,"OnStep %u.%u.%u#",OS_FIRMWARE_VERSION_MAJOR,OS_FIRMWARE_VERSION_MINOR,OS_FIRMWARE_VERSION_PATCH);else if(len==4&&!memcmp(cmd,":GR#",4)){os_equatorial_coord_t c;os_query_coordinates(&c);snprintf(text,sizeof text,"%02d:%02d:%02d#",(int)c.ra_hours,(int)(c.ra_hours*60)%60,(int)(c.ra_hours*3600)%60);}else if(len==4&&!memcmp(cmd,":GD#",4)){os_equatorial_coord_t c;os_query_coordinates(&c);snprintf(text,sizeof text,"%+03d*%02d:%02d#",(int)c.dec_degrees,abs((int)(c.dec_degrees*60)%60),abs((int)(c.dec_degrees*3600)%60));}else if(!memcmp(cmd,":Sr",3)){if(!parse_ra(cmd,&v))return OS_ERR_COMMAND_FORMAT;pending_target.ra_hours=v;snprintf(text,sizeof text,"%c#",coord_ok(pending_target)?'1':'0');}else if(!memcmp(cmd,":Sd",3)){if(!parse_dec(cmd,&v))return OS_ERR_COMMAND_FORMAT;pending_target.dec_degrees=v;snprintf(text,sizeof text,"%c#",coord_ok(pending_target)?'1':'0');}else if(len==4&&!memcmp(cmd,":MS#",4)){e=os_goto_equatorial(pending_target);snprintf(text,sizeof text,"%c#",e==OS_ERR_NONE?'0':'1');}else if(len==4&&!memcmp(cmd,":Me#",4)){e=os_move_start(OS_DIRECTION_EAST,OS_SPEED_MEDIUM);snprintf(text,sizeof text,"%c#",e==OS_ERR_NONE?'1':'0');}else if(len==4&&!memcmp(cmd,":Mw#",4)){e=os_move_start(OS_DIRECTION_WEST,OS_SPEED_MEDIUM);snprintf(text,sizeof text,"%c#",e==OS_ERR_NONE?'1':'0');}else if(len==4&&!memcmp(cmd,":Mn#",4)){e=os_move_start(OS_DIRECTION_NORTH,OS_SPEED_MEDIUM);snprintf(text,sizeof text,"%c#",e==OS_ERR_NONE?'1':'0');}else if(len==4&&!memcmp(cmd,":Ms#",4)){e=os_move_start(OS_DIRECTION_SOUTH,OS_SPEED_MEDIUM);snprintf(text,sizeof text,"%c#",e==OS_ERR_NONE?'1':'0');}else if(len==4&&!memcmp(cmd,":Q#",4)){if(goto_active)os_goto_abort();else if(moving)os_move_stop();strcpy(text,"0#");}else if(len==4&&!memcmp(cmd,":hP#",4)){e=os_park();snprintf(text,sizeof text,"%c#",e==OS_ERR_NONE?'0':'1');}else if(len==4&&!memcmp(cmd,":hO#",4)){e=os_unpark();snprintf(text,sizeof text,"%c#",e==OS_ERR_NONE?'0':'1');}else return OS_ERR_COMMAND_FORMAT;return put_reply(reply,cap,out,text);}
+
+os_error_t os_hal_motor_init(uint8_t a){if(!axis_ok(a))return OS_ERR_INVALID_ARGUMENT;motor[a].initialized=true;motor[a].enabled=false;motor[a].frequency_hz=0;motor[a].forward=true;motor[a].fault=OS_ERR_NONE;return OS_ERR_NONE;}
+os_error_t os_hal_motor_set_frequency(uint8_t a,uint32_t f){if(!axis_ok(a))return OS_ERR_INVALID_ARGUMENT;if(motor[a].fault)return motor[a].fault;if(f>MAX_FREQ)f=MAX_FREQ;motor[a].frequency_hz=f;if(!f)motor[a].enabled=false;return OS_ERR_NONE;}
+os_error_t os_hal_motor_set_direction(uint8_t a,bool f){if(!axis_ok(a))return OS_ERR_INVALID_ARGUMENT;motor[a].forward=f;return OS_ERR_NONE;}
+os_error_t os_hal_motor_enable(uint8_t a,bool e){if(!axis_ok(a))return OS_ERR_INVALID_ARGUMENT;if(e&&!motor[a].initialized)return OS_ERR_INVALID_STATE;if(e&&motor[a].fault)return motor[a].fault;motor[a].enabled=e;if(!e)motor[a].frequency_hz=0;return OS_ERR_NONE;}
+int32_t os_hal_motor_get_position(uint8_t a){return axis_ok(a)?motor[a].position_steps:0;}
+os_error_t os_hal_gps_init(void){return OS_ERR_NONE;}
+os_error_t os_hal_gps_poll(os_site_info_t *p){if(!p)return OS_ERR_INVALID_ARGUMENT;p->valid=false;return OS_ERR_GPS_NO_SIGNAL;}
+os_error_t os_hal_rtc_init(void){rtc_ok=true;return OS_ERR_NONE;}
+os_error_t os_hal_rtc_read(uint32_t *p){if(!p)return OS_ERR_INVALID_ARGUMENT;if(!rtc_ok)return OS_ERR_TIMEOUT;*p=rtc_epoch;return OS_ERR_NONE;}
+os_error_t os_hal_rtc_set(uint32_t t){rtc_epoch=t;rtc_ok=true;return OS_ERR_NONE;}
+os_error_t os_hal_limit_init(void){limits[0]=limits[1]=false;return OS_ERR_NONE;}
+bool os_hal_limit_is_triggered(uint8_t a){return !axis_ok(a)||limits[a];}
+os_error_t os_hal_nvm_init(void){if(!nvm_ok)memset(nvm,0,sizeof nvm);nvm_ok=true;return OS_ERR_NONE;}
+os_error_t os_hal_nvm_read(uint16_t o,uint8_t *p,uint16_t n){if(!p||(size_t)o+n>NVM_SIZE)return OS_ERR_INVALID_ARGUMENT;if(!nvm_ok)return OS_ERR_INVALID_STATE;memcpy(p,nvm+o,n);return OS_ERR_NONE;}
+os_error_t os_hal_nvm_write(uint16_t o,const uint8_t *p,uint16_t n){if(!p||(size_t)o+n>NVM_SIZE)return OS_ERR_INVALID_ARGUMENT;if(!nvm_ok)return OS_ERR_INVALID_STATE;memcpy(nvm+o,p,n);return OS_ERR_NONE;}
+os_error_t os_hal_comm_init(uint8_t c){return channel_ok(c)?OS_ERR_NONE:OS_ERR_INVALID_ARGUMENT;}
+int16_t os_hal_comm_available(uint8_t c){return channel_ok(c)?(int16_t)comm_rx_len[c]:0;}
+char os_hal_comm_read(uint8_t c){char x=0;if(channel_ok(c)&&comm_rx_len[c]){x=comm_rx[c][0];memmove(comm_rx[c],comm_rx[c]+1,--comm_rx_len[c]);}return x;}
+os_error_t os_hal_comm_write(uint8_t c,const char *p,size_t n){if(!channel_ok(c)||!p||n==0||n>sizeof(comm_tx[c])-comm_tx_len[c])return OS_ERR_INVALID_ARGUMENT;memcpy(comm_tx[c]+comm_tx_len[c],p,n);comm_tx_len[c]+=n;return OS_ERR_NONE;}
+os_error_t os_hal_buzzer_beep(uint16_t d,uint8_t n){return d&&n?OS_ERR_NONE:OS_ERR_INVALID_ARGUMENT;}
+os_error_t os_hal_timer_motor_init(void){timer_ok=true;return OS_ERR_NONE;}

@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "checks": [
+    "all release Python modules parse",
+    "all active agents import without initializing clients or loading keys",
+    "state/interface/behavior schemas construct",
+    "design policy and release iteration defaults construct",
+    "English API preparation, one-pass fields and unknown-field rejection",
+    "help/inspect/dry-run/API preparation work outside the source directory",
+    "optional context and notebook are disabled by default"
+  ],
+  "model_requests": 0,
+  "credential_files_read": 0,
+  "compiler_invocations": 0,
+  "host_tests": 0,
+  "executed_at_utc": "2026-10-02T16:08:46.218963+00:00",
+  "python_version": "3.12.14",
+  "current_source_hashes_unchanged": 44
+}

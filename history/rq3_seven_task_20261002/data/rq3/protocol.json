@@ -1,0 +1,62 @@
+{
+  "metric": "Static requirement/testcase support",
+  "formula": "P / (P + F + U); N/A is excluded",
+  "aggregation": "Equal-weight mean of three planned positions within each task and method. Retained no-code positions contribute zero unless an explicitly recorded author-reported replacement score is used.",
+  "standard_deviation": "Sample standard deviation across three position scores, ddof=1. This is not a confidence interval.",
+  "tasks": [
+    {
+      "id": "gpio_output",
+      "label": "GPIO output",
+      "review_protocol": "whole_numbered_requirements",
+      "original_review_item_count": 8
+    },
+    {
+      "id": "gpio_button_debounce",
+      "label": "Button debounce",
+      "review_protocol": "whole_numbered_requirements",
+      "original_review_item_count": 9
+    },
+    {
+      "id": "balance_control",
+      "label": "Balance control",
+      "review_protocol": "whole_numbered_requirements",
+      "original_review_item_count": 14
+    },
+    {
+      "id": "motor_track",
+      "label": "Motor tracking",
+      "review_protocol": "whole_numbered_requirements",
+      "original_review_item_count": 27
+    },
+    {
+      "id": "discobot",
+      "label": "DiscoBot",
+      "review_protocol": "original_project_testcases",
+      "original_review_item_count": 124
+    },
+    {
+      "id": "onstep",
+      "label": "OnStep",
+      "review_protocol": "original_project_testcases",
+      "original_review_item_count": 90
+    },
+    {
+      "id": "crazyflie",
+      "label": "Crazyflie",
+      "review_protocol": "original_project_testcases",
+      "original_review_item_count": 100
+    }
+  ],
+  "method_order": [
+    "Direct-LLM",
+    "MetaGPT",
+    "ChatDev",
+    "StructGen",
+    "EmbedDev"
+  ],
+  "model": "deepseek-v4-pro",
+  "input_difference": "Direct-LLM did not receive the supplied application API. The other methods did.",
+  "interpretation": "New tasks use whole numbered requirements; legacy tasks use original testcase reviews. Compare methods within a task. Do not pool denominators or interpret the seven tasks as an equally spaced scale. Static support is not executable testcase success or hardware correctness.",
+  "author_reported_value": "The third GPIO output / EmbedDev score is 100 percent from a direct author statement. Its candidate and review were not provided in the local evidence. The retained local result is not overwritten.",
+  "review_judgments_regenerated": false
+}

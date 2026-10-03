@@ -1,0 +1,85 @@
+{
+  "candidate": {
+    "key": "c3f195720650db82a2b1a4a002bcac94445d45f6c79e60acadecf3f2f7deebf3",
+    "project": "crazyflie",
+    "header": "<WORKSPACE>\\fse\\official_baselines\\paired_repair_20260916\\code\\c3f195720650db82a2b1a4a002bcac94445d45f6c79e60acadecf3f2f7deebf3\\raw\\6_generated_code.h",
+    "source": "<WORKSPACE>\\fse\\official_baselines\\paired_repair_20260916\\code\\c3f195720650db82a2b1a4a002bcac94445d45f6c79e60acadecf3f2f7deebf3\\raw\\6_generated_code.c",
+    "header_sha256": "408ec0a19660db73cb14ee731f276226269fa9b699a47389fe0a17b784b8b807",
+    "source_sha256": "1ae79e98667b60be6b10a40f9b8f43deed85096b6164bdc6927e60aa2429962d",
+    "labels": [],
+    "whole_project_sha256": "c3f195720650db82a2b1a4a002bcac94445d45f6c79e60acadecf3f2f7deebf3",
+    "all_file_sha256": {
+      "6_generated_code.h": "408ec0a19660db73cb14ee731f276226269fa9b699a47389fe0a17b784b8b807",
+      "6_generated_code.c": "1ae79e98667b60be6b10a40f9b8f43deed85096b6164bdc6927e60aa2429962d"
+    }
+  },
+  "suite_sha256": "7b3ea083fc200084487ea77197bcd77fce7a340fbf147e2c3234652952a2a27f",
+  "complete": true,
+  "compile_returncode": 0,
+  "compile_timeout": false,
+  "source_changes": {
+    "header_include_alignment": [
+      "6_generated_code.h"
+    ],
+    "entrypoint_rename": "compile-time main=fse_candidate_main"
+  },
+  "cases": [
+    {
+      "id": "CF-B01",
+      "category": "state_lifecycle",
+      "anchor": "7 / isFlyingCheck",
+      "checks": 5,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "CF-B02",
+      "category": "state_lifecycle",
+      "anchor": "7 / tick zero",
+      "checks": 3,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "CF-B03",
+      "category": "timing_state",
+      "anchor": "7 / Emergency-stop watchdog",
+      "checks": 4,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "CF-B04",
+      "category": "safe_output",
+      "anchor": "7 / supervisorOverrideSetpoint",
+      "checks": 2,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "CF-B05",
+      "category": "state_lifecycle",
+      "anchor": "7 / canFly=false",
+      "checks": 5,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "CF-B06",
+      "category": "input_propagation",
+      "anchor": "7 / RPM",
+      "checks": 6,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    }
+  ],
+  "counts": {
+    "pass": 6
+  }
+}

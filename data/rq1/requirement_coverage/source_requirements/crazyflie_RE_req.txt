@@ -1,0 +1,294 @@
+Crazyflie Software Requirements Specification
+Version: Test-Compatible v4 (SRS-v5 environment baseline)
+Test baseline: Crazyflie-test-comprehensive.json (257 valid cases, TC-001 through TC-257)
+Environment baseline: Crazyflie-SRS-v5.docx and RE_device_interface.txt
+
+===============================================================================
+1. Scope and acceptance rules
+===============================================================================
+
+The system implements the Crazyflie core algorithms and observable state machines in a standard C11 host environment. The test JSON is a table of inputs and expected
+results, not an executable test program; this document converts that table into explicit, callable requirements.
+
+Source precedence: Crazyflie-SRS-v5.docx defines the project's device, interface, performance, and FDIR baseline; this document
+refines it into implementable behavior. RE_device_interface.txt records only known device/environment facts; RE_api.txt finally freezes
+the public C types, functions, and environment adapters. If SRS-v5 conflicts with other external Crazyflie hardware documentation, the project baseline must first be
+changed and versioned. Two hardware versions must not be mixed in a single generation run.
+
+Acceptance must prioritize the following constraints:
+1) All function names, macro names, enumeration values, and structure fields must exactly match RE_api.txt;
+2) Differently named 'equivalent modules' must not replace the specified test points;
+3) Pure algorithms must be deterministic and repeatable, without depending on STM32/FreeRTOS headers;
+4) Platform behavior is simulated using bounded in-memory queues, ticks, and callback stubs. All host-visible timeouts, ages, and waits
+   use monotonic millisecond ticks: 1 tick = 1ms. Scheduler loop divisors must not be mixed directly with millisecond thresholds;
+5) All initialization functions are idempotent; all output pointers are checked for null first; division and normalization require zero guards;
+6) Production files do not contain main; self-test code is generated separately;
+7) Motor mixing intermediates use int32_t to prevent values such as 65535/70000 from overflowing before capping.
+
+===============================================================================
+2. Numerical functions (TC-001 through TC-019)
+===============================================================================
+
+saturateSignedInt16(value) restricts values to [-32767,32767]. The negative limit is -INT16_MAX, not
+INT16_MIN. Thus 45000->32767, -50000->-32767, -32768->-32767; values inside the range are returned unchanged.
+
+capAngle(angle) must repeatedly normalize into the closed interval [-180,180]: repeatedly subtract 360 above 180 and
+repeatedly add 360 below -180. The boundaries +/-180 remain unchanged; 1000->-80 and -1000->80.
+
+===============================================================================
+3. Sensfusion6（TC-020～TC-035、TC-251）
+===============================================================================
+
+sensfusion6Init sets the quaternion to the identity quaternion, clears the integral terms, and sets the initialization flag; repeated calls do not overwrite
+the running state. sensfusion6Test returns the initialization flag.
+
+The sensor environment follows SRS-v5: the MPU9250 provides acceleration (g), angular velocity (deg/s), and magnetic field
+(microtesla) each sampling cycle; the LPS25H provides pressure (hPa) and temperature (degrees Celsius). The system base rate for sensor acquisition and estimation is
+1kHz; 500Hz control/power distribution and 100Hz radio tasks are scheduled from that base. The current 250Hz Sensfusion
+update is a filter-rate divisor within the 1kHz schedule; it must not be described as a 250Hz rate for the entire estimation task.
+
+Magnetic field is a known environmental input and must be represented in the next frozen API through `SensorData` or explicit platform sensor-sample fields.
+Attitude estimation may temporarily omit magnetometer-based yaw correction outside the current test scope, but must neither remove this device input from
+the environment model nor substitute an invented IMU model.
+
+sensfusion6UpdateQ updates the global qw/qx/qy/qz using angular velocity, acceleration, and dt, then normalizes the quaternion:
+- Default Mahony: twoKp=0.8, twoKi=0.002; accumulate integralFBx/y/z when twoKi>0; when twoKi=0,
+  clear all three integral terms;
+- CONFIG_IMU_MADGWICK_QUATERNION mode uses gradient correction with beta=0.01 and no integral feedback;
+- If all three acceleration axes are zero, skip acceleration normalization and correction and perform only gyroscope integration; division by zero is prohibited;
+- The first valid update stores the projection of acc onto the estimated gravity direction as baseZacc and sets calibrated; subsequent
+  updates must not recalibrate.
+
+estimatedGravityDirection computes the gravity direction from the quaternion. The identity quaternion yields (0,0,1); the test's
+90-degree rotation quaternion yields approximately (0,1,0). sensfusion6GetEulerRPY must derive RPY in degrees from the current global
+qw/qx/qy/qz at call time; stale gravityX/Y/Z caches must not produce results inconsistent with the current quaternion.
+The implementation may synchronize gravityX/Y/Z from the current quaternion before reading them, or compute directly from that quaternion;
+clamp gravityX to [-1,1] before calling asinf. sensfusion6GetQuaternion returns the current global quaternion.
+sensfusion6GetAccZ returns the dot product of acc and estimated gravity; sensfusion6GetAccZWithoutGravity additionally subtracts
+baseZacc. invSqrt uses 0x5f3759df and one Newton-Raphson iteration; the result for 4.0 is approximately 0.5.
+
+===============================================================================
+4. Power distribution and battery (TC-036 through TC-065, TC-249 through TC-250)
+===============================================================================
+
+Legacy mode first computes r=roll/2 and p=pitch/2 using int32_t:
+M1=thrust-r+p+yaw；M2=thrust-r-p-yaw；
+M3=thrust+r-p+yaw；M4=thrust+r+p-yaw。
+This function does not clamp early, so powerDistributionCap can handle negative values and values above 65535.
+
+ForceTorque mode: thrustPart=0.25*thrustSi; arm=0.707106781*armLength;
+rollPart=0.25/arm*torqueX；pitchPart=0.25/arm*torqueY；
+yawPart=0.25/thrustToTorque*torqueZ. Combine the four motor forces using the X-frame signs; replace each negative force with 0.
+If armLength or thrustToTorque is zero, safely set the corresponding component to 0.
+The scheduler uses the Crazyflie 2 defaults armLength=0.0397m and thrustToTorque=0.005964, and converts to PWM through
+the dimensioned mapping in motorForceToPwm; multiplying values in newtons directly by 65535 is prohibited.
+
+Force mode clamps each normalizedForces[i] to [0,1], multiplies by 65535, and converts to uint16_t.
+powerDistribution must route exactly to Legacy, ForceTorque, or Force according to control->controlMode;
+unknown modes leave the output unchanged.
+
+powerDistributionCap finds the maximum of the four motor values. Only if that maximum exceeds maxAllowedThrust, compute
+reduction=max-maxAllowed, subtract that value from all four motors, then use capMinThrust to enforce
+the idleThrust lower bound and return isCapped=true. Equality with the upper bound does not count as capping. The difference between 70000 and the limit 65535
+must be 4465; a low value reduced below zero becomes idleThrust (0 when idle=0).
+
+batteryCompensation returns old + alpha*(supply-old), with standard alpha=0.01.
+motorsCompensateBatteryVoltage returns round(thrust*nominal/actual), returning the input unchanged if actual<=0;
+clamp the result to [0,65535].
+
+The final four motor outputs correspond to device-side PWM duty cycles of 0% through 100%. `int32_t` mixing values, normalized force,
+uint16_t PWM representations, and physical PWM duty cycles must be related by explicit conversion boundaries, not treated as the same quantity. When the system
+is disarmed, emergency-stopped, or in a safety-fault state, all four physical PWM outputs must be zero.
+
+Battery voltage is an ADC environment input, expressed in V after conversion. The low-voltage policy must distinguish at least warning, maximum-thrust limitation, and
+controlled landing. Thresholds come from frozen configuration; a test-fixture value must not be treated as a device fact. The four GPIO LEDs
+are observable device outputs for flight/warning indication. Their display policy is software behavior; specific colors or patterns must be
+specified by subsequent frozen API/requirements, not invented by the generator.
+
+===============================================================================
+5. Cascaded PID and controllerPid (TC-066 through TC-084, TC-252, TC-256)
+===============================================================================
+
+attitudeControllerInit creates and initializes the six objects pidRoll/pidPitch/pidYaw and pidRollRate/pidPitchRate/
+pidYawRate; repeated calls have no side effects. All three rate-PID outputs pass through
+saturateSignedInt16. The attitude-loop yaw update uses reset=true semantics; roll/pitch are not reset.
+ResetAll resets the attitude PIDs using the current attitude and clears the three rate PIDs; a single-axis reset affects only the specified axis.
+
+controllerPid must implement:
+- yaw modeVelocity：desiredYaw += attitudeRate.yaw*attitudeUpdateDt；
+- When yawMaxDelta!=0, limit desiredYaw relative to state.attitude.yaw to +/-yawMaxDelta; disable this limit when it is 0;
+- yaw modeAbs directly uses setpoint.attitude.yaw; quat modeAbs converts the quaternion to RPY and uses its yaw;
+- roll/pitch modeVelocity directly uses attitudeRate and resets the corresponding attitude PID;
+- z modeDisable uses manual thrust; otherwise use position-control thrust. x/y modeDisable uses manual attitude.
+  Position-control thrust is the position-control submodule's output computed from current State.position / State.velocity and the setpoint z
+  target; it must not degenerate into a direct copy of setpoint.thrust. This submodule is an internal implementation in the current frozen API,
+  but must retain a replaceable position-controller output boundary so host tests can inject deterministic thrust values;
+  do not misinterpret 'z mode enabled' as manual-throttle mode;
+- When thrust==0, clear roll/pitch/yaw/thrust, reset the attitude and position PIDs, and synchronize desiredYaw;
+- Rate-loop pitchActual must use -sensors->gyro.y;
+- After obtaining actuator outputs, negate control->yaw for the legacy coordinate system.
+
+===============================================================================
+6. CRTP Commander RPYT（TC-085～TC-108、TC-254～TC-255）
+===============================================================================
+
+crtpCommanderRpytDecodeSetpoint must use exactly that name and respect branch precedence:
+- When activePriority==DISABLE, set thrustLocked=true; unlock upon receiving raw thrust==0;
+- Outside AltHold, output thrust=0 if locked or raw<1000; otherwise cap thrust at 60000;
+- AltHold: mode.z=modeVelocity, thrust=0, velocity.z=(raw-32767)/32767; on first entry,
+  call position PID/filter reset and set modeSet=true; on exit, set mode.z=modeDisable and modeSet=false;
+- PosHold takes precedence over default stabilization: x/y=modeVelocity, roll/pitch=modeDisable,
+  velocity.x=pitch/30, velocity.y=roll/30, and attitude roll/pitch=0;
+- PosSet executes only when posSetMode && rawThrust!=0: x/y/z=modeAbs, roll/pitch=modeDisable,
+  yaw=modeAbs, position=(-pitch,roll,thrust/1000), attitude.yaw=raw yaw, and final thrust=0;
+- Default Roll/Pitch RATE->modeVelocity+attitudeRate; ANGLE->modeAbs+attitude;
+- Default Yaw RATE->modeVelocity with attitudeRate.yaw=-rawYaw; ANGLE->modeAbs+attitude.yaw;
+- PLUSMODE rotates roll/pitch by 45 degrees; XMODE does not rotate; CAREFREE takes an observable error path;
+- rotateYaw uses the standard 2D rotation formula, first converting the angle input to radians.
+
+===============================================================================
+7. Supervisor（TC-109～TC-162、TC-253）
+===============================================================================
+
+supervisorUpdate executes only when RATE_DO_EXECUTE(RATE_SUPERVISOR,stabilizerStep) is true.
+supervisorCanFly returns true only for ReadyToFly/Flying/WarningLevelOut/Landed; CanArm returns true only for
+PreFlChecksPassed. IsArmed/IsCrashed return the current flags. RequestArming sets
+arming in an allowed state and changes supervisorState to Arming during that successful call; repeated requests are idempotent; disallowed states return
+false. RequestCrashRecovery rejects recovery while tumbled and allows clearing crash otherwise; doRecovery=false
+sets crash and returns true (the request was accepted and the crash state took effect).
+
+isFlyingCheck: any motorRatio>idleThrust refreshes the recent-flight tick. Flight remains true for less than 2000ms
+since that tick and becomes false at or beyond the threshold. An initial recent-flight tick of 0 denotes 'never flown',
+so return false until a motor has been observed above idleThrust; do not mistake currentTick-0 for
+a hysteresis window. If tick=0 can itself be a valid flight event, use a separate seen flag to distinguish that event from
+'never flown'.
+
+isTumbledCheck implements all three safety checks:
+- Detect a crash when crashDetectionGs>0 and |sqrt(ax²+ay²+az²)-1| exceeds the threshold; disable this check when the threshold is 0;
+- If absolute values on all three axes are below freeFallThreshold, set isFreeFalling and reset tumble timing;
+- Start timing when accZ falls below the tilt threshold; use a shorter timeout below the inverted threshold; clear timing when upright again;
+- Do not report tumbled when tumbleCheckEnabled=false.
+Free fall only sets isFreeFalling and enters ExceptFreeFall; it must not directly set isTumbled=true.
+The function's bool return value means 'is tumbled'. Crash-only detection must set the crash state, but need not
+change that return value to true. Callers observe crash through IsCrashed or the Supervisor condition bit.
+
+Arming after state transitions: when build configuration enables AUTO_ARMING and the state has just entered PreFlChecksPassed,
+invoke the same arming path used by an explicit request. Clear arming upon leaving the states Arming, ReadyToFly, Flying, WarningLevelOut, and
+Landed, which permit arming to persist. AUTO_ARMING is a build/configuration input; do not
+arm automatically and unconditionally when it is disabled.
+
+Evaluate spinup timeout only in Arming. Both its start tick and timeout period are configurable inputs. A start tick of 0
+means not started. Do not set a timeout when elapsed time is strictly below the configured period; at or above it, set
+SUPERVISOR_CB_SPINUP_TIMEOUT. Clear the start tick and this condition bit when leaving Arming. Do not hard-code a particular
+period (such as the 500ms used in one test fixture) as a product constant.
+
+Emergency-stop watchdog: never notified (last=0) is healthy; within the 1000ms window is healthy; timeout is unhealthy.
+The return value of `checkEmergencyStopWatchdog(currentTick,lastNotificationTick)` specifically means 'healthy': normal operation
+or last=0 returns true; timeout returns false. Callers that need a failure condition must explicitly negate it; do not infer
+bool semantics from the function name.
+Set WARNING when Commander setpoint age exceeds 500ms, and TIMEOUT when it exceeds 2000ms. The ReadyToFly
+preflight timeout, landing timeout based on landing tick, CRTP stop, parameter stop, and watchdog stop
+each update their corresponding condition bit. Implement spinup timeout in Arming. DShot checks require all four motor RPMs to stay
+within [min,max] for the specified qualifying duration; set a fault after RPM stays below the not-responding threshold for the specified time; clear when CanFly=false.
+Expose these behaviors through the public functions named exactly supervisorIsPreflightTimeout, supervisorIsLandingTimeout,
+updateAndPopulateConditions, and isRPMatArmingValid.
+supervisorSetSensorData, supervisorSetMotorRatios, supervisorSetMotorRPMs, and
+supervisorConfigureSafety inject actual inputs before supervisorUpdate; permanently using zero-valued placeholders is prohibited.
+
+supervisorOverrideSetpoint：
+- WarningLevelOut: disable x/y; roll/pitch=modeAbs with angle 0; yaw=modeVelocity with rate 0;
+  leave z unchanged;
+- Arming/ReadyToFly/Flying/Landed leave the setpoint unchanged;
+- Other states copy an all-zero setpoint; emergency, WDT, tumbled/freefall/motor fault must also produce the zeroing or
+  limiting effects described by the tests.
+
+supervisorAreMotorsAllowedToRun is true only in Arming/ReadyToFly/Flying/WarningLevelOut/Landed.
+supervisorGetInfoBitfield uses the test-specified layout: bit0 canArm, bit1 isArmed, bit2 autoArming,
+bit3 canFly、bit4 isFlying、bit5 isTumbled、bit6 isLocked、bit7 isCrashed、bit8 trajectoryFlying、
+bit9 trajectoryFinished、bit10 trajectoryDisabled、bit11 deckFault。
+
+===============================================================================
+8. Estimator and Commander arbitration (TC-163 through TC-178)
+===============================================================================
+
+Estimator uses a FIFO of capacity 16. A 17th enqueue without dequeue returns false; dequeue on an empty queue returns false.
+estimatorComplementary drains the queue in one call and retains the last value for each measurement type.
+When RATE_DO_EXECUTE(RATE_250_HZ,step) is true, call sensfusion6UpdateQ, update Euler/Quaternion, remove
+Z gravity, and update vertical velocity. Update position when RATE_DO_EXECUTE(RATE_100_HZ,step) is true. Do not
+change the corresponding outputs when their rate conditions are not met.
+
+Commander retains one active setpoint and priority. Except for `COMMANDER_PRIORITY_DISABLE`,
+overwrite only when newPriority>=current, also recording the current tick; reject lower priority. DISABLE is an emergency override and must be
+accepted and become the active priority even if numerically below current. Stop the high-level trajectory when priority exceeds HIGHLEVEL.
+RelaxPriority sets LOWEST=1. InactivityTime
+returns currentTick-lastUpdate; GetActivePriority returns the current priority.
+
+===============================================================================
+9. Stabilizer, state compression, and rate supervision (TC-179 through TC-194, TC-231 through TC-232, TC-257)
+===============================================================================
+
+The observable stabilizerInit order must be sensorsInit->stateEstimatorInit->controllerInit->
+powerDistributionInit->motorsInit->collisionAvoidanceInit; create the task and remain idempotent.
+
+stabilizerTask waits for system startup and sensor calibration. The normal loop order is strictly: sensorsWaitDataReady,
+sensorsAcquire、stateEstimator、commanderGetSetpoint、supervisorUpdate、
+collisionAvoidanceUpdateSetpoint、supervisorOverrideSetpoint、controller、powerDistribution、
+batteryCompensation, powerDistributionCap, setMotorRatios. When CanFly=false, prevent new commands and zero outputs;
+submit an available high-level setpoint with HIGHLEVEL priority; stop motors when motorsAllowed=false. If a Health test
+request exists, run healthRunTests in place of the normal control branch.
+The host injects a high-level setpoint through stabilizerSubmitHighLevelSetpoint; the next control step must actually call
+commanderSetSetpoint(..., COMMANDER_PRIORITY_HIGHLEVEL), not merely mention it in a comment.
+
+compressState: position*1000->mm, velocity*1000->mm/s; acc x/y*9810; acc z uses
+(acc.z+1)*9810; gyro deg/s*PI/180*1000->mrad/s, with gyro.y negated for the pitch component; call
+quatcompress for the quaternion to obtain a 32-bit value.
+
+rateSupervisorValidate returns true for [997,1003], inclusive, and false otherwise. The Supervisor task
+waits 2000ms; a timeout while sensors are active must enter an assert/error state; a timeout while sensors are suspended is acceptable.
+
+===============================================================================
+10. Health（TC-195～TC-212）
+===============================================================================
+
+startPropTest triggers configureAcc and clears its request; startBatTest triggers testBattery, sets tick=0, and clears its request;
+requests are consumed in healthShallWeRunTest: on either request, it performs the corresponding state initialization and request clearing,
+then returns true. healthRunTests only advances an initialized test state; it must not require callers to manually change private state first.
+When testDone and no request is pending, ShallWeRunTest=false.
+
+Propeller procedure: configureAcc clears results, changes accelerometer mode, records idleVoltage, and stops motors; then collect
+100 acceleration samples to compute noise variance. Start/stop motors 0..3 in turn and measure vibration and voltage; after all finish, restore
+flight-sensor mode and evaluate. evaluatePropTest skips the check and returns true when highThreshold==0; otherwise,
+low<=value<=high passes. Increment the count on failure; set the corresponding motorPass bit on success.
+
+Battery procedure: load all four motors at tick=1; update minLoadedVoltage during ticks 2..49; stop and evaluate at tick=50;
+batterySag=idle-minLoaded; exceeding the threshold fails, otherwise passes. restartBatTest restarts after waiting 2000ms.
+variance uses sumSq-(sum*sum/n), without another division by n; a constant array has variance 0, and [1,2,3] yields 2.
+
+===============================================================================
+11. CRTP transport (TC-213 through TC-230)
+===============================================================================
+
+crtpInit creates a 200-slot TX queue and TX/RX tasks and is idempotent. Each valid port may create one 16-slot RX
+queue; duplicate creation enters an error state. SendPacket is nonblocking and returns false when full; in the host model, SendPacketBlock
+succeeds whenever space is available. ReceivePacket/Block/Wait respectively simulate immediate, waiting, and time-bounded packet retrieval.
+
+After receiving from link, RxTask both delivers to the existing port queue and calls the registered callback; if neither exists,
+discard the packet. TxTask retains a packet on send failure and retries every 10ms. Tasks do not process packets with nopLink. SetLink disables the old link,
+maps NULL to nopLink, then enables the new link. Reset clears the TX queue and calls link.reset. IsConnected returns the callback result
+when provided, otherwise true. GetFreeTxQueuePackets=200-currentCount.
+RegisterPortCB accepts only `0 <= port < CRTP_NBR_OF_PORTS`; when `CRTP_NBR_OF_PORTS=16`,
+reject port 16 and above without out-of-bounds access. updateStats computes rx/tx rates every 500ms and clears the counters.
+
+===============================================================================
+12. Deck, logging, and final boundaries (TC-233 through TC-248)
+===============================================================================
+
+deckDiscovery scans known I2C addresses and OneWire ROMs, deduplicates within capacity, and returns the number actually written.
+
+Expose and maintain logging objects with the exact names: stateEstimate, gyro, acc, baro, motor,
+sensfusion6Log, supervisorLog, healthLog. Fields must match RE_api.txt and include at least the test-listed
+Euler/Quaternion, three-axis sensor values, pressure, motor requests, fusion state, Supervisor info/accNorm,
+Health motorPass/batteryPass/batterySag/motorTestCount。
+
+All boundary cases (extreme roll, maximum thrust, zero acceleration, altitude retention in warning state, PosHold branch precedence, and Health
+replacing the control loop) must use the same public API above; do not create parallel functions solely for examples.

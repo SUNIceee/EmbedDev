@@ -1,0 +1,17 @@
+[
+  {
+    "name": "MetaGPT",
+    "url": "https://github.com/FoundationAgents/MetaGPT.git",
+    "commit": "335d972f4601b2c37614aa8129dd890ef6ad3dbe"
+  },
+  {
+    "name": "ChatDev",
+    "url": "https://github.com/OpenBMB/ChatDev.git",
+    "commit": "31fd994416a251ecdeb1f0a73c329271743bfb56"
+  },
+  {
+    "name": "StructGen",
+    "url": "https://github.com/SEDevSys/StructGen.git",
+    "commit": "0237cd22242fcb01ad26266179a2b240b42e30e6"
+  }
+]

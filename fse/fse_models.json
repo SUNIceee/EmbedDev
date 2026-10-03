@@ -1,0 +1,35 @@
+{
+  "description": "Release examples only. Set a model ID and key in your environment. No author credentials or relay endpoints are included.",
+  "models": [
+    {
+      "name": "openai",
+      "provider": "openai_compatible",
+      "model_env": "OPENAI_MODEL",
+      "base_url": "https://api.openai.com/v1",
+      "api_key_env": "OPENAI_API_KEY",
+      "max_tokens": 65536,
+      "temperature": 0.0,
+      "enabled": true
+    },
+    {
+      "name": "deepseek-v4-pro",
+      "provider": "openai_compatible",
+      "model_env": "DEEPSEEK_MODEL",
+      "base_url": "https://api.deepseek.com",
+      "api_key_env": "DEEPSEEK_API_KEY",
+      "max_tokens": 65536,
+      "temperature": 0.0,
+      "enabled": true
+    },
+    {
+      "name": "gemini-3-flash-preview",
+      "provider": "openai_compatible",
+      "model_env": "GEMINI_MODEL",
+      "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
+      "api_key_env": "GEMINI_API_KEY",
+      "max_tokens": 65536,
+      "temperature": 0.0,
+      "enabled": true
+    }
+  ]
+}

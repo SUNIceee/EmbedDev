@@ -1,0 +1,432 @@
+{
+  "cells": [
+    {
+      "task": "gpio_output",
+      "method": "Direct-LLM",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "gpio_output",
+      "method": "MetaGPT",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "gpio_output",
+      "method": "ChatDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "gpio_output",
+      "method": "StructGen",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "gpio_output",
+      "method": "EmbedDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 1
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "Direct-LLM",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "MetaGPT",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "ChatDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "StructGen",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "EmbedDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "balance_control",
+      "method": "Direct-LLM",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "balance_control",
+      "method": "MetaGPT",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 57.14285714285714,
+      "repeat_2_percent": 28.57142857142857,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 61.904761904761905,
+      "population_sd_percentage_points": 29.354352395090366,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "balance_control",
+      "method": "ChatDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "balance_control",
+      "method": "StructGen",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "balance_control",
+      "method": "EmbedDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "repeat_1_percent": 100.0,
+      "repeat_2_percent": 100.0,
+      "repeat_3_percent": 100.0,
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "discobot",
+      "method": "Direct-LLM",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 82.25806451612904,
+      "repeat_2_percent": 83.87096774193549,
+      "repeat_3_percent": 80.64516129032258,
+      "mean_percent": 82.25806451612904,
+      "population_sd_percentage_points": 1.316929969238271,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "discobot",
+      "method": "MetaGPT",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 23.387096774193548,
+      "repeat_2_percent": 16.93548387096774,
+      "repeat_3_percent": 0.0,
+      "mean_percent": 13.440860215053762,
+      "population_sd_percentage_points": 9.86233135905599,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "discobot",
+      "method": "ChatDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 84.67741935483872,
+      "repeat_2_percent": 98.38709677419355,
+      "repeat_3_percent": 87.90322580645162,
+      "mean_percent": 90.3225806451613,
+      "population_sd_percentage_points": 5.852564800289579,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "discobot",
+      "method": "StructGen",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 85.48387096774194,
+      "repeat_2_percent": 87.09677419354838,
+      "repeat_3_percent": 87.09677419354838,
+      "mean_percent": 86.55913978494624,
+      "population_sd_percentage_points": 0.7603298722435979,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "discobot",
+      "method": "EmbedDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 98.38709677419355,
+      "repeat_2_percent": 89.51612903225806,
+      "repeat_3_percent": 99.19354838709677,
+      "mean_percent": 95.6989247311828,
+      "population_sd_percentage_points": 4.384275922123679,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "onstep",
+      "method": "Direct-LLM",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 40.0,
+      "repeat_2_percent": 45.55555555555556,
+      "repeat_3_percent": 45.55555555555556,
+      "mean_percent": 43.7037037037037,
+      "population_sd_percentage_points": 2.6189140043946213,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "onstep",
+      "method": "MetaGPT",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 0.0,
+      "repeat_2_percent": 0.0,
+      "repeat_3_percent": 0.0,
+      "mean_percent": 0.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "onstep",
+      "method": "ChatDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 80.0,
+      "repeat_2_percent": 77.77777777777779,
+      "repeat_3_percent": 78.88888888888889,
+      "mean_percent": 78.88888888888889,
+      "population_sd_percentage_points": 0.9072184232530257,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "onstep",
+      "method": "StructGen",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 70.0,
+      "repeat_2_percent": 63.33333333333333,
+      "repeat_3_percent": 63.33333333333333,
+      "mean_percent": 65.55555555555556,
+      "population_sd_percentage_points": 3.142696805273547,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "onstep",
+      "method": "EmbedDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 83.33333333333334,
+      "repeat_2_percent": 81.11111111111111,
+      "repeat_3_percent": 84.44444444444444,
+      "mean_percent": 82.96296296296296,
+      "population_sd_percentage_points": 1.3857990321384956,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "crazyflie",
+      "method": "Direct-LLM",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 32.0,
+      "repeat_2_percent": 33.0,
+      "repeat_3_percent": 0.0,
+      "mean_percent": 21.666666666666668,
+      "population_sd_percentage_points": 15.326085243430198,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "crazyflie",
+      "method": "MetaGPT",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 0.0,
+      "repeat_2_percent": 0.0,
+      "repeat_3_percent": 0.0,
+      "mean_percent": 0.0,
+      "population_sd_percentage_points": 0.0,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "crazyflie",
+      "method": "ChatDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 66.66666666666666,
+      "repeat_2_percent": 46.0,
+      "repeat_3_percent": 59.183673469387756,
+      "mean_percent": 57.28344671201814,
+      "population_sd_percentage_points": 8.543454573525679,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "crazyflie",
+      "method": "StructGen",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 42.0,
+      "repeat_2_percent": 40.0,
+      "repeat_3_percent": 33.0,
+      "mean_percent": 38.333333333333336,
+      "population_sd_percentage_points": 3.858612300930075,
+      "author_reported_positions": 0
+    },
+    {
+      "task": "crazyflie",
+      "method": "EmbedDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "repeat_1_percent": 65.97938144329896,
+      "repeat_2_percent": 63.1578947368421,
+      "repeat_3_percent": 75.51020408163265,
+      "mean_percent": 68.21582675392457,
+      "population_sd_percentage_points": 5.2849567805179785,
+      "author_reported_positions": 0
+    }
+  ],
+  "protocol": {
+    "metric": "Static requirement/testcase support",
+    "formula": "P / (P + F + U); N/A is excluded",
+    "aggregation": "Equal-weight mean of three planned positions within each task and method. Retained no-code positions contribute zero unless an explicitly recorded author-reported replacement score is used.",
+    "standard_deviation": "Population standard deviation across the three position scores, divisor 3. Retained as a descriptive table field; not plotted or interpreted as a confidence interval.",
+    "tasks": [
+      {
+        "id": "gpio_output",
+        "label": "GPIO output",
+        "review_protocol": "whole_numbered_requirements",
+        "original_review_item_count": 8
+      },
+      {
+        "id": "gpio_button_debounce",
+        "label": "Button debounce",
+        "review_protocol": "whole_numbered_requirements",
+        "original_review_item_count": 9
+      },
+      {
+        "id": "balance_control",
+        "label": "Balance control",
+        "review_protocol": "whole_numbered_requirements",
+        "original_review_item_count": 14
+      },
+      {
+        "id": "discobot",
+        "label": "DiscoBot",
+        "review_protocol": "original_project_testcases",
+        "original_review_item_count": 124
+      },
+      {
+        "id": "onstep",
+        "label": "OnStep",
+        "review_protocol": "original_project_testcases",
+        "original_review_item_count": 90
+      },
+      {
+        "id": "crazyflie",
+        "label": "Crazyflie",
+        "review_protocol": "original_project_testcases",
+        "original_review_item_count": 100
+      }
+    ],
+    "method_order": [
+      "Direct-LLM",
+      "MetaGPT",
+      "ChatDev",
+      "StructGen",
+      "EmbedDev"
+    ],
+    "model": "deepseek-v4-pro",
+    "input_difference": "Direct-LLM did not receive the supplied application API. The other methods did.",
+    "interpretation": "New tasks use whole numbered requirements; legacy tasks use original testcase reviews. Compare methods within a task. Do not pool denominators or interpret the six tasks as an equally spaced scale. Static support is not executable testcase success or hardware correctness.",
+    "author_reported_value": "The third GPIO output / EmbedDev score is 100 percent from a direct author statement. Its candidate and review were not provided in the local evidence. The retained local result is not overwritten.",
+    "review_judgments_regenerated": false,
+    "current_replacement": "Crazyflie / ChatDev / DeepSeek r02 uses the selected unchanged rerun artifact and its fixed 46/100 static review. Host remains compilation-failing. Human review was attested by the author; the offline scripts do not independently witness it.",
+    "plot": {
+      "type": "line_means_only",
+      "tasks": 6,
+      "series": 5,
+      "points": 30,
+      "error_bars": 0,
+      "confidence_bands": 0,
+      "footer": false,
+      "EmbedDev_color": "#D62728"
+    },
+    "excluded_from_current_display": "Motor tracking remains preserved in the historical export and source archive."
+  }
+}

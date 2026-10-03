@@ -1,0 +1,222 @@
+{
+  "task": "balance_control",
+  "item_count": 14,
+  "original_checklist": {
+    "original_repository_relative_path": "fse/rq3_task_extension_20261002/measurement_preparation/balance_control_checklist.json",
+    "sha256": "e29f6229f8698717bb5f98e08264352ca64ac3856aacecd296efebecd81bff2a"
+  },
+  "items": [
+    {
+      "id": "BC-R01",
+      "ordinal": 1,
+      "requirement_original_text": "BC-R01 Reset: control_init() sets all public sensor/output globals to zero and all private loop state to zero: velocity error history e1/e2, int32 accumulator, old/new interpolation endpoints and counter; direction filtered-history value, old/new endpoints and counter. It performs no platform callbacks. All other API calls require control_init first. Reinitialization has identical effects.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 5,
+        "line_end_1based_inclusive": 5,
+        "byte_start_0based": 463,
+        "byte_end_0based_exclusive": 856,
+        "original_slice_sha256": "f9240877d53e271a1e10ee33fa4e52e9d02e940563cca377d499c70246d5b50e"
+      }
+    },
+    {
+      "id": "BC-R02",
+      "ordinal": 2,
+      "requirement_original_text": "BC-R02 Parameters and arithmetic: use the constants in the shared public declarations unchanged, float arithmetic for PID/filter expressions, and int32_t persistent velocity accumulator. Conversion float to integer truncates toward zero. Integer interpolation divides only after multiplication, also truncating toward zero. Input assumptions and ranges are in the device contract.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 6,
+        "line_end_1based_inclusive": 6,
+        "byte_start_0based": 856,
+        "byte_end_0based_exclusive": 1237,
+        "original_slice_sha256": "6d910a20f198525bb56ca55b24acab7e9b0dab014695b93b8fb4191e73724964"
+      }
+    },
+    {
+      "id": "BC-R03",
+      "ordinal": 3,
+      "requirement_original_text": "BC-R03 IMU acquisition: get_mpu() calls board_read_imu exactly once and refreshes pitch/roll/yaw and gyrox/gyroy/gyroz from that observation. It does not advance a control-loop counter or drive a motor.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 7,
+        "line_end_1based_inclusive": 7,
+        "byte_start_0based": 1237,
+        "byte_end_0based_exclusive": 1440,
+        "original_slice_sha256": "5ec425e9b1e0e46ffcc994457fad190a65ad3f9c6e252ca4e1871f05b951e8be"
+      }
+    },
+    {
+      "id": "BC-R04",
+      "ordinal": 4,
+      "requirement_original_text": "BC-R04 Encoder acquisition: get_speed() reads channel 0 then channel 1, clears channel 0 then channel 1 exactly once each, and returns (abs(left_count)+abs(right_count))/2 using non-overflowing arithmetic. Count -32768 is valid. It does not itself assign the public speed global; get_pwm performs that assignment.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 8,
+        "line_end_1based_inclusive": 8,
+        "byte_start_0based": 1440,
+        "byte_end_0based_exclusive": 1754,
+        "original_slice_sha256": "7ca44a52259dff106851763d76f6b90575f55fdde6340b674bd5f6966b10dd29"
+      }
+    },
+    {
+      "id": "BC-R05",
+      "ordinal": 5,
+      "requirement_original_text": "BC-R05 Angle loop: angle_proc() returns -(int32_t)(550.0f*(0.0f-pitch)-2.0f*(float)gyroy). It has no integral/history state, no callbacks, and does not alter public sensor variables.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 9,
+        "line_end_1based_inclusive": 9,
+        "byte_start_0based": 1754,
+        "byte_end_0based_exclusive": 1937,
+        "original_slice_sha256": "f34a2f02d8364310b88defe55ce0af25767835ae01cec4b76fc7b61ffbff24d6"
+      }
+    },
+    {
+      "id": "BC-R06",
+      "ordinal": 6,
+      "requirement_original_text": "BC-R06 Velocity update recurrence: an actual PID update uses e=0.0f-(float)measured_speed, P=8.0f*(e-e1), I=0.1f*e, D=0.5f*(e-2.0f*e1+e2). If I>10.0f or I< -10.0f, replace I by 0; I exactly +10 or -10 is retained. Compute the updated accumulator from the float expression ((float)accumulator+P+I+D), truncate toward zero to int32, then clamp the accumulator itself to [-4500,4500]. Finally set e2=e1 and e1=e. The clamped accumulator is the new velocity endpoint. Do not retain an unclamped hidden accumulator.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 10,
+        "line_end_1based_inclusive": 10,
+        "byte_start_0based": 1937,
+        "byte_end_0based_exclusive": 2448,
+        "original_slice_sha256": "81ed3b74da35bc0d9556ecfd782839bc22d0e09417e1a97eb595e7074c3c1a64"
+      }
+    },
+    {
+      "id": "BC-R07",
+      "ordinal": 7,
+      "requirement_original_text": "BC-R07 Velocity schedule: velocity_proc owns a counter initially 0 and old/new endpoints initially 0. At entry, if count>=5, first reset count to 0, old=new, then update PID and new. Always increment count once before returning old+(new-old)*count/5. Thus calls 1..5 after reset return 0 and the first PID update occurs on call 6; following updates occur on calls 11,16,... . The measured_speed of the update call is used; samples on other calls do not update PID history.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 11,
+        "line_end_1based_inclusive": 11,
+        "byte_start_0based": 2448,
+        "byte_end_0based_exclusive": 2921,
+        "original_slice_sha256": "5d45a9a6e66b90807e3b823329d87fe7f3686b1c4905da06f16e1eba4ffdcfa2"
+      }
+    },
+    {
+      "id": "BC-R08",
+      "ordinal": 8,
+      "requirement_original_text": "BC-R08 Direction filtering: every direction_proc call, including a non-update call, computes filtered=(int16_t)(0.9f*(float)gyroz+0.1f*(float)previous_filtered), stores it in both public gyroz and the private previous_filtered. The history is the previous filtered value, not the previous raw sample. A caller that wants a fresh sample invokes get_mpu before direction_proc, as get_pwm does.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 12,
+        "line_end_1based_inclusive": 12,
+        "byte_start_0based": 2921,
+        "byte_end_0based_exclusive": 3313,
+        "original_slice_sha256": "5db17ba129d90938e3abcf474674224bbc818769ef33c22f8f98dc5e6b148edc"
+      }
+    },
+    {
+      "id": "BC-R09",
+      "ordinal": 9,
+      "requirement_original_text": "BC-R09 Direction update: when its own independent counter is at least 5 at entry, read board_direction_error exactly once into public state. Dynamic P is always enabled in this profile: Pgain=clamp(0.6f*(float)measured_speed,50.0f,500.0f). Compute Pterm=(int32_t)(Pgain*(float)state/25.0f) and Dterm=(int32_t)(1.5f*(float)gyroz/100.0f) separately, then clamp Pterm+Dterm to [-3000,3000] as the new direction endpoint. No direction-error read occurs on non-update calls.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 13,
+        "line_end_1based_inclusive": 13,
+        "byte_start_0based": 3313,
+        "byte_end_0based_exclusive": 3783,
+        "original_slice_sha256": "4c262349b1fa504bc6b8bf40021c4ac1ef92f5939ff7995b02136bd5b21afeec"
+      }
+    },
+    {
+      "id": "BC-R10",
+      "ordinal": 10,
+      "requirement_original_text": "BC-R10 Direction schedule: use its own count and endpoints, all initially zero. Filter first; then if count>=5 reset count=0, old=new and update the new endpoint using BC-R09; finally increment count and return old+(new-old)*count/5. First update is call 6, then 11,16,... . Velocity calls do not advance direction state and vice versa.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 14,
+        "line_end_1based_inclusive": 14,
+        "byte_start_0based": 3783,
+        "byte_end_0based_exclusive": 4120,
+        "original_slice_sha256": "722c0a297198b7adba146692d6e4ede06d3552e0a1283b37a92b19dcc70bde46"
+      }
+    },
+    {
+      "id": "BC-R11",
+      "ordinal": 11,
+      "requirement_original_text": "BC-R11 Fusion: get_pwm() performs get_mpu acquisition, get_speed acquisition and assignment to public speed, then one angle calculation, one velocity step and one direction step, in that order. Store these three results in ac_pwm/vc_pwm/dc_pwm. Set left_pwm=ac_pwm-vc_pwm+dc_pwm and right_pwm=ac_pwm-vc_pwm-dc_pwm. Use the current acquisitions, not stale global values. This API computes outputs but does not write a motor; caller separately invokes motor_proc(left_pwm,right_pwm).\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 15,
+        "line_end_1based_inclusive": 15,
+        "byte_start_0based": 4120,
+        "byte_end_0based_exclusive": 4602,
+        "original_slice_sha256": "f8bf14a5294a5922db3e6d96c518bb922d69b4d53a7dbbc9aa11497799efd62d"
+      }
+    },
+    {
+      "id": "BC-R12",
+      "ordinal": 12,
+      "requirement_original_text": "BC-R12 Motor argument isolation: motor_proc(left,right) uses its passed arguments, independently clamped to [-7200,7200]. It does not read stale left_pwm/right_pwm to choose duty, does not change public output globals, and performs exactly one board_motor_write for channel 0 followed by one for channel 1. Full int32 argument range, including INT32_MIN, is accepted by clamping before taking magnitude.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 16,
+        "line_end_1based_inclusive": 16,
+        "byte_start_0based": 4602,
+        "byte_end_0based_exclusive": 5006,
+        "original_slice_sha256": "e3c1cf4f676348ae68ca3794c7558aaf100ca36272893ceb903efa6c6cf61f2d"
+      }
+    },
+    {
+      "id": "BC-R13",
+      "ordinal": 13,
+      "requirement_original_text": "BC-R13 Motor polarity: for a clamped argument >=0, write in_a=false, in_b=true and duty=argument; for a negative argument, write in_a=true, in_b=false and duty=-argument. For zero, forward polarity with zero duty is required. channel 0 maps to PC6/PC7 + TIM3 CH1; channel 1 maps to PC8/PC9 + TIM3 CH2. Never write both direction bits high or a duty above 7200.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 17,
+        "line_end_1based_inclusive": 17,
+        "byte_start_0based": 5006,
+        "byte_end_0based_exclusive": 5367,
+        "original_slice_sha256": "d4fcb55d60711ada8813a6415f4b04abd3b48f35e54b5107a928148c8e2ad608"
+      }
+    },
+    {
+      "id": "BC-R14",
+      "ordinal": 14,
+      "requirement_original_text": "BC-R14 State and side-effect ownership: only get_mpu refreshes IMU values; direction_proc may additionally filter gyroz and refresh state at its update. Only get_pwm assigns public speed and ac_pwm/vc_pwm/dc_pwm/left_pwm/right_pwm except control_init reset. Neither direct angle/velocity/direction calls nor motor_proc should overwrite these public output snapshots. Only motor_proc emits board_motor_write calls. All entry points return without waits or retry loops.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/balance_control/RE_req.txt",
+        "original_sha256": "cbd3e7cc9a5b8b3c54fb0b11b4a8a6338c4cb1e5bd54934c0a8e971f3471f15e",
+        "line_start_1based": 18,
+        "line_end_1based_inclusive": 18,
+        "byte_start_0based": 5367,
+        "byte_end_0based_exclusive": 5835,
+        "original_slice_sha256": "0088ef397bae7eaf6c0d77be5fe8ac5ad4ab1aaaafe12f3e3b492b1d697eefcf"
+      }
+    }
+  ],
+  "judgments_not_regenerated": true,
+  "source_text_and_item_order_preserved": true
+}

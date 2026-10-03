@@ -1,0 +1,2175 @@
+{
+  "schema_version": 1,
+  "identity": "crazyflie__gpt-5.5__C4_structured__r02",
+  "project": "crazyflie",
+  "model": "gpt-5.5",
+  "method": "EmbedDev",
+  "status": "complete",
+  "candidate_files": [
+    {
+      "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+      "sha256": "fb4d3c2f84323b4f892c52c5ee77100347e867ebc23aa4b993516cf782a0b728",
+      "line_count": 27,
+      "full_text_read": true
+    },
+    {
+      "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.h",
+      "sha256": "cdc4d82e9d8b2dc179c4c68313de103f2e09e606f06e49e7eff10700469615f4",
+      "line_count": 75,
+      "full_text_read": true
+    }
+  ],
+  "candidate_inventory_sha256": "60721e6c11f3e5fb421b58209ce90367c3e66ea260a90a87b625c43d81a53d16",
+  "checklist_path": "fse\\requirement_coverage_review_20261002\\preparation\\crazyflie\\requirements_checklist.json",
+  "checklist_sha256": "a563bb2a705c6bb9bbb227607e886fb05babbf73e4c3f7e0b74e488033dd7e4f",
+  "review_standard_sha256": "c7a674149d447e07064b1f2b6095f9209b97c60a81cf2b18ca98c8463068beca",
+  "evaluator": "current Codex LLM static review",
+  "human_review": false,
+  "reviewed_at": "2026-10-02T07:24:32.192757+00:00",
+  "requirements": [
+    {
+      "id": "CF-R001",
+      "verdict": "fully_covered",
+      "reason": "Required named public entry points and shared types are declared and implemented.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.h",
+          "line_start": 55,
+          "line_end": 74,
+          "function": "public declarations"
+        }
+      ],
+      "statement": "All public functions, macros, enumerations, and structure fields must conform to the frozen RE_api; equivalently functioning modules with different names are not substitutes."
+    },
+    {
+      "id": "CF-R002",
+      "verdict": "fully_covered",
+      "reason": "Uses standard C headers and bounded in-memory device representations; no compulsory MCU HAL.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 1,
+          "line_end": 27,
+          "function": "translation unit"
+        }
+      ],
+      "statement": "Pure algorithms must be deterministic, repeatable standard C11 implementations, without dependencies on STM32/FreeRTOS headers."
+    },
+    {
+      "id": "CF-R003",
+      "verdict": "partially_covered",
+      "reason": "Queues are bounded but private tickMs is incremented by task calls, not supplied monotonic milliseconds.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 6,
+          "line_end": 6,
+          "function": "tickMs"
+        }
+      ],
+      "statement": "Platform queues must use bounded memory. All observable timeouts, ages, and waits must use a monotonic 1ms tick, without mixing in divided scheduling-loop counters."
+    },
+    {
+      "id": "CF-R004",
+      "verdict": "fully_covered",
+      "reason": "Fusion, attitude, supervisor, stabilizer and CRTP initializers have guards.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 11,
+          "line_end": 11,
+          "function": "sensfusion6Init"
+        }
+      ],
+      "statement": "All initialization functions must be idempotent when called repeatedly."
+    },
+    {
+      "id": "CF-R005",
+      "verdict": "fully_covered",
+      "reason": "Public pointer outputs and packet/setpoint inputs have null guards.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 9,
+          "line_end": 27,
+          "function": "public outputs"
+        }
+      ],
+      "statement": "All output pointers must be checked for null before use."
+    },
+    {
+      "id": "CF-R006",
+      "verdict": "fully_covered",
+      "reason": "Zero arm length and torque ratio are checked before division.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 14,
+          "line_end": 14,
+          "function": "powerDistributionForceTorque"
+        }
+      ],
+      "statement": "Division and normalization must be protected against zero denominators."
+    },
+    {
+      "id": "CF-R007",
+      "verdict": "fully_covered",
+      "reason": "No main function is defined.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 1,
+          "line_end": 27,
+          "function": "translation unit"
+        }
+      ],
+      "statement": "Production implementations must not define main; self-tests belong in separate files."
+    },
+    {
+      "id": "CF-R008",
+      "verdict": "fully_covered",
+      "reason": "Motor mixtures and cap arithmetic retain int32_t intermediates.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 14,
+          "line_end": 15,
+          "function": "powerDistributionLegacy"
+        }
+      ],
+      "statement": "Motor-mixing intermediate values must use int32_t, avoiding overflow for values around 65535/70000 before clipping."
+    },
+    {
+      "id": "CF-R009",
+      "verdict": "fully_covered",
+      "reason": "Symmetric limits are -32767 and 32767.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 9,
+          "line_end": 9,
+          "function": "saturateSignedInt16"
+        }
+      ],
+      "statement": "saturateSignedInt16 clamps its input to [-32767,32767] and returns in-range values unchanged."
+    },
+    {
+      "id": "CF-R010",
+      "verdict": "fully_covered",
+      "reason": "Repeated subtraction/addition bounds degrees to [-180,180].",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 9,
+          "line_end": 9,
+          "function": "capAngle"
+        }
+      ],
+      "statement": "capAngle normalizes any number of complete revolutions into [-180,180], preserving both endpoints."
+    },
+    {
+      "id": "CF-R011",
+      "verdict": "fully_covered",
+      "reason": "Unit quaternion, integral reset and base calibration reset are guarded once.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 11,
+          "line_end": 11,
+          "function": "sensfusion6Init"
+        }
+      ],
+      "statement": "On its first call, sensfusion6Init sets the identity quaternion, clears the integrators, and sets the initialization flag; repeated calls must not overwrite the running state."
+    },
+    {
+      "id": "CF-R012",
+      "verdict": "fully_covered",
+      "reason": "Returns the fusion initialization flag.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 11,
+          "line_end": 11,
+          "function": "sensfusion6Test"
+        }
+      ],
+      "statement": "sensfusion6Test returns the actual initialization flag."
+    },
+    {
+      "id": "CF-R013",
+      "verdict": "partially_covered",
+      "reason": "Fusion has a 250-Hz branch, but stabilizer step calls do not implement the complete 1k/500/100 scheduling contract.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 21,
+          "line_end": 23,
+          "function": "estimatorComplementary/stabilizerTask"
+        }
+      ],
+      "statement": "The sensor/estimation base rate is 1kHz, from which control and power distribution at 500Hz, radio at 100Hz, and fusion filtering at 250Hz are divided."
+    },
+    {
+      "id": "CF-R014",
+      "verdict": "unassessed",
+      "reason": "Real-time, resource, physical-device, or statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "evidence": [],
+      "statement": "Acquisition, estimation, and control on real devices must achieve the specified 1kHz/500Hz/100Hz periods."
+    },
+    {
+      "id": "CF-R015",
+      "verdict": "partially_covered",
+      "reason": "Acceleration, gyro and barometer are represented; no magnetometer samples appear in the sensor path.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.h",
+          "line_start": 50,
+          "line_end": 50,
+          "function": "SensorData"
+        }
+      ],
+      "statement": "The environment must retain the MPU9250 acceleration, angular velocity, and magnetic-field inputs and the LPS25H pressure/temperature inputs with their stated units; devices must not be substituted or magnetic-field inputs removed."
+    },
+    {
+      "id": "CF-R016",
+      "verdict": "fully_covered",
+      "reason": "Integrates quaternion derivatives using dt and normalizes nonzero resulting quaternion.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 12,
+          "line_end": 12,
+          "function": "sensfusion6UpdateQ"
+        }
+      ],
+      "statement": "sensfusion6UpdateQ updates the global quaternion using angular velocity, acceleration, and dt, and normalizes it."
+    },
+    {
+      "id": "CF-R017",
+      "verdict": "fully_covered",
+      "reason": "Kp=.8, Ki=.002, gravity cross-product feedback and integral accumulation are implemented.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 5,
+          "line_end": 12,
+          "function": "Mahony feedback"
+        }
+      ],
+      "statement": "Default Mahony correction uses twoKp=0.8 and twoKi=0.002, accumulating integral feedback on all three axes when twoKi>0."
+    },
+    {
+      "id": "CF-R018",
+      "verdict": "partially_covered",
+      "reason": "Ki zero clears feedback only inside the valid-acceleration branch, leaving stored integrals with zero acceleration.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 12,
+          "line_end": 12,
+          "function": "sensfusion6UpdateQ"
+        }
+      ],
+      "statement": "When twoKi=0, all three integral-feedback states are cleared."
+    },
+    {
+      "id": "CF-R019",
+      "verdict": "not_covered",
+      "reason": "beta is declared but no selectable Madgwick gradient update is implemented.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 5,
+          "line_end": 12,
+          "function": "sensfusion6UpdateQ"
+        }
+      ],
+      "statement": "When CONFIG_IMU_MADGWICK_QUATERNION is enabled, gradient correction uses beta=0.01 without integral feedback."
+    },
+    {
+      "id": "CF-R020",
+      "verdict": "fully_covered",
+      "reason": "Zero acceleration bypasses feedback while gyro quaternion integration still proceeds.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 12,
+          "line_end": 12,
+          "function": "sensfusion6UpdateQ"
+        }
+      ],
+      "statement": "A zero acceleration vector skips acceleration normalization and correction, while retaining gyro integration and avoiding division by zero."
+    },
+    {
+      "id": "CF-R021",
+      "verdict": "partially_covered",
+      "reason": "The first valid acceleration is normalized before base vertical acceleration is recorded, losing its original amplitude.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 12,
+          "line_end": 12,
+          "function": "base calibration"
+        }
+      ],
+      "statement": "The first valid update sets baseZacc and calibrated; subsequent updates do not recalibrate."
+    },
+    {
+      "id": "CF-R022",
+      "verdict": "fully_covered",
+      "reason": "Quaternion gravity projection contains the required components.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 10,
+          "line_end": 10,
+          "function": "getGravity"
+        }
+      ],
+      "statement": "estimatedGravityDirection computes the gravity direction from the current quaternion, following the direction conventions for the identity quaternion and specified rotations."
+    },
+    {
+      "id": "CF-R023",
+      "verdict": "fully_covered",
+      "reason": "Computes roll, pitch and yaw in degrees from current quaternion.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 13,
+          "line_end": 13,
+          "function": "sensfusion6GetEulerRPY"
+        }
+      ],
+      "statement": "sensfusion6GetEulerRPY computes RPY in degrees from the quaternion current at the time of the call, without using a stale gravity cache."
+    },
+    {
+      "id": "CF-R024",
+      "verdict": "fully_covered",
+      "reason": "Pitch asin argument is clamped to [-1,1].",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 13,
+          "line_end": 13,
+          "function": "sensfusion6GetEulerRPY"
+        }
+      ],
+      "statement": "Euler conversion clamps gravityX to [-1,1] before calling asinf."
+    },
+    {
+      "id": "CF-R025",
+      "verdict": "fully_covered",
+      "reason": "Copies all four current quaternion components.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 13,
+          "line_end": 13,
+          "function": "sensfusion6GetQuaternion"
+        }
+      ],
+      "statement": "sensfusion6GetQuaternion returns the current global quaternion."
+    },
+    {
+      "id": "CF-R026",
+      "verdict": "fully_covered",
+      "reason": "Computes acceleration dot estimated gravity.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 13,
+          "line_end": 13,
+          "function": "sensfusion6GetAccZ"
+        }
+      ],
+      "statement": "sensfusion6GetAccZ returns the dot product of acceleration and the estimated gravity direction."
+    },
+    {
+      "id": "CF-R027",
+      "verdict": "fully_covered",
+      "reason": "Subtracts calibrated base acceleration from vertical projection.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 13,
+          "line_end": 13,
+          "function": "sensfusion6GetAccZWithoutGravity"
+        }
+      ],
+      "statement": "sensfusion6GetAccZWithoutGravity subtracts baseZacc from projected acceleration."
+    },
+    {
+      "id": "CF-R028",
+      "verdict": "fully_covered",
+      "reason": "Uses the bit approximation and Newton refinement.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 10,
+          "line_end": 10,
+          "function": "invSqrt"
+        }
+      ],
+      "statement": "invSqrt uses 0x5f3759df and one Newton-Raphson iteration."
+    },
+    {
+      "id": "CF-R029",
+      "verdict": "fully_covered",
+      "reason": "Implements the four specified X-mix expressions with roll and pitch halving.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 14,
+          "line_end": 14,
+          "function": "powerDistributionLegacy"
+        }
+      ],
+      "statement": "Legacy mixing uses int32_t roll/2 and pitch/2 and the specified signed formulas for the four channels, retaining results without premature clamping."
+    },
+    {
+      "id": "CF-R030",
+      "verdict": "fully_covered",
+      "reason": "Uses quarter thrust and arm*0.70710678 geometry with alternating yaw torque.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 14,
+          "line_end": 14,
+          "function": "powerDistributionForceTorque"
+        }
+      ],
+      "statement": "ForceTorque computes four X-frame forces using the 0.25 thrust factor, 0.707106781 arm-length factor, and torque-ratio formulas, and sets negative forces to zero."
+    },
+    {
+      "id": "CF-R031",
+      "verdict": "fully_covered",
+      "reason": "When arm or thrustToTorque is zero, the corresponding torque component is zero while the other components are computed normally.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 14,
+          "line_end": 14,
+          "function": "powerDistributionForceTorque"
+        }
+      ],
+      "statement": "When armLength or thrustToTorque is zero, the corresponding component safely becomes zero."
+    },
+    {
+      "id": "CF-R032",
+      "verdict": "fully_covered",
+      "reason": "The specified default geometry and torque ratio are used; force is divided by maximum motor force to form a dimensionless PWM mapping.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 14,
+          "line_end": 14,
+          "function": "forcePwm"
+        }
+      ],
+      "statement": "The dispatcher uses default parameters of 0.0397m and 0.005964 and a dimensionally appropriate motorForceToPwm conversion, rather than multiplying newtons directly by 65535."
+    },
+    {
+      "id": "CF-R033",
+      "verdict": "fully_covered",
+      "reason": "Clamps negative force and normalized command to the supported range.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 14,
+          "line_end": 14,
+          "function": "forcePwm"
+        }
+      ],
+      "statement": "Force mode clamps each normalized force to [0,1] before converting it to uint16_t PWM."
+    },
+    {
+      "id": "CF-R034",
+      "verdict": "fully_covered",
+      "reason": "Unsupported control mode leaves supplied motor structure unchanged.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 14,
+          "line_end": 14,
+          "function": "powerDistribution"
+        }
+      ],
+      "statement": "powerDistribution routes the three modes by controlMode; unknown modes leave the output unchanged."
+    },
+    {
+      "id": "CF-R035",
+      "verdict": "fully_covered",
+      "reason": "Strict over-limit condition applies a shared maximum excess subtraction.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 15,
+          "line_end": 15,
+          "function": "powerDistributionCap"
+        }
+      ],
+      "statement": "Only when the maximum strictly exceeds the limit does powerDistributionCap subtract the same excess from all four channels and set isCapped=true; equality with the limit does not clip."
+    },
+    {
+      "id": "CF-R036",
+      "verdict": "fully_covered",
+      "reason": "The original text requires low-value protection only after clipping. Subtracting a common excess and clamping to idle when above the upper limit is correct; no extra protection is required on the unclipped path.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 15,
+          "line_end": 15,
+          "function": "powerDistributionCap"
+        }
+      ],
+      "statement": "After clipping, capMinThrust clamps low values to idleThrust; negative values must not wrap around as unsigned integers."
+    },
+    {
+      "id": "CF-R037",
+      "verdict": "partially_covered",
+      "reason": "Filter helper exists but the flight path does not feed a real/mock battery measurement at alpha=.01.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 15,
+          "line_end": 15,
+          "function": "battery filter"
+        }
+      ],
+      "statement": "batteryCompensation updates using old+alpha*(supply-old), with standard alpha=0.01."
+    },
+    {
+      "id": "CF-R038",
+      "verdict": "fully_covered",
+      "reason": "It clamps round(thrust*nominal/actual), retaining the original value when actual<=0.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 15,
+          "line_end": 15,
+          "function": "powerDistributionBatteryCompensation"
+        }
+      ],
+      "statement": "motorsCompensateBatteryVoltage computes round(thrust*nominal/actual) and clamps to [0,65535]; when actual<=0, it returns the original value."
+    },
+    {
+      "id": "CF-R039",
+      "verdict": "partially_covered",
+      "reason": "Requested motor log values are assigned, but no PWM duty output/update path is provided.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "stabilizerTask motor output"
+        }
+      ],
+      "statement": "Explicit conversion boundaries separate int32_t mixing, normalized force, uint16_t PWM, and physical duty cycle."
+    },
+    {
+      "id": "CF-R040",
+      "verdict": "partially_covered",
+      "reason": "Disallowed motors zero local/output request values; no observable PWM device sink is maintained.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "stabilizerTask"
+        }
+      ],
+      "statement": "All four physical PWM output commands are zero when disarmed, emergency-stopped, or in a safety-fault state."
+    },
+    {
+      "id": "CF-R041",
+      "verdict": "not_covered",
+      "reason": "No external ADC or injectable mock battery voltage acquisition is connected.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 6,
+          "line_end": 27,
+          "function": "battery input path"
+        }
+      ],
+      "statement": "Battery voltage is obtained from the ADC environment input and converted to V."
+    },
+    {
+      "id": "CF-R042",
+      "verdict": "not_covered",
+      "reason": "The three-stage policy of low-voltage warning, maximum-thrust limiting, and controlled landing is not implemented; the original text does not require an additional hard-cutoff stage.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 6,
+          "line_end": 27,
+          "function": "battery safety"
+        }
+      ],
+      "statement": "The low-voltage policy distinguishes warnings, maximum-thrust limiting, and controlled landing; thresholds come from the frozen configuration rather than hard-coded fixture values."
+    },
+    {
+      "id": "CF-R043",
+      "verdict": "unassessed",
+      "reason": "The requirements omit necessary parameters or contain conflicting wording; clarify a common contract first, rather than deriving it from the candidate implementation.",
+      "evidence": [],
+      "statement": "The four GPIO LEDs should indicate flight/warning states, but the particular colors and patterns require a subsequently frozen contract before the display policy can be assessed."
+    },
+    {
+      "id": "CF-R044",
+      "verdict": "fully_covered",
+      "reason": "All six PID structures initialize once under the guard.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 16,
+          "line_end": 16,
+          "function": "attitudeControllerInit"
+        }
+      ],
+      "statement": "attitudeControllerInit initializes three attitude PIDs and three rate PIDs, with no side effects on repeated initialization."
+    },
+    {
+      "id": "CF-R045",
+      "verdict": "fully_covered",
+      "reason": "Three angular-rate errors update PID state and use saturating actuator outputs.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 16,
+          "line_end": 16,
+          "function": "attitudeControllerCorrectRatePID"
+        }
+      ],
+      "statement": "All three rate PID outputs are limited using saturateSignedInt16."
+    },
+    {
+      "id": "CF-R046",
+      "verdict": "fully_covered",
+      "reason": "Yaw uses the reset-integral flag, roll and pitch do not.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 16,
+          "line_end": 16,
+          "function": "attitudeControllerCorrectAttitudePID"
+        }
+      ],
+      "statement": "The attitude-loop yaw update uses reset=true; roll/pitch updates do not reset."
+    },
+    {
+      "id": "CF-R047",
+      "verdict": "fully_covered",
+      "reason": "Reset helpers clear integrals and align attitude/rate history with required values.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 16,
+          "line_end": 16,
+          "function": "attitudeControllerResetAllPID"
+        }
+      ],
+      "statement": "ResetAll resets attitude PIDs to the current attitude and clears the three rate PIDs; a single-axis reset affects only its specified axis."
+    },
+    {
+      "id": "CF-R048",
+      "verdict": "fully_covered",
+      "reason": "Persistent desired yaw integrates yaw velocity with dt.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 17,
+          "line_end": 17,
+          "function": "controllerPid"
+        }
+      ],
+      "statement": "yaw modeVelocity accumulates desiredYaw using attitudeRate.yaw*attitudeUpdateDt."
+    },
+    {
+      "id": "CF-R049",
+      "verdict": "fully_covered",
+      "reason": "A nonzero value limits target yaw to the positive/negative range around current yaw; the contract does not additionally require capAngle.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 17,
+          "line_end": 17,
+          "function": "controllerPid yawMaxDelta"
+        }
+      ],
+      "statement": "A nonzero yawMaxDelta limits desiredYaw relative to current yaw to the corresponding positive/negative range; zero disables this limit."
+    },
+    {
+      "id": "CF-R050",
+      "verdict": "fully_covered",
+      "reason": "Absolute yaw and target-quaternion conversion paths are implemented.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 17,
+          "line_end": 17,
+          "function": "controllerPid"
+        }
+      ],
+      "statement": "yaw modeAbs uses the target yaw; quat modeAbs obtains yaw by converting the target quaternion to RPY."
+    },
+    {
+      "id": "CF-R051",
+      "verdict": "fully_covered",
+      "reason": "Velocity-mode roll/pitch reset corresponding attitude controller and select directly commanded rates.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 17,
+          "line_end": 17,
+          "function": "controllerPid"
+        }
+      ],
+      "statement": "roll/pitch modeVelocity directly uses the corresponding attitudeRate and resets that attitude PID."
+    },
+    {
+      "id": "CF-R052",
+      "verdict": "fully_covered",
+      "reason": "Selects direct thrust for disabled z and positionControllerUpdate output otherwise.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 17,
+          "line_end": 17,
+          "function": "controllerPid"
+        }
+      ],
+      "statement": "With z disabled, use manual thrust; with z enabled, use position-control thrust computed from current position/velocity and the z target, rather than copying the manual value."
+    },
+    {
+      "id": "CF-R053",
+      "verdict": "partially_covered",
+      "reason": "A strong fixed implementation is present without a callback, weak symbol or injected-output mechanism.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 16,
+          "line_end": 16,
+          "function": "positionControllerUpdate"
+        }
+      ],
+      "statement": "Retain a replaceable position-controller output boundary for injecting deterministic thrust."
+    },
+    {
+      "id": "CF-R054",
+      "verdict": "fully_covered",
+      "reason": "When x/y are disabled, attitude targets remain the supplied manual angles.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 17,
+          "line_end": 17,
+          "function": "controllerPid"
+        }
+      ],
+      "statement": "When x/y modeDisable is selected, use manual attitude."
+    },
+    {
+      "id": "CF-R055",
+      "verdict": "partially_covered",
+      "reason": "Clears control and attitude PID history and synchronizes yaw; position-controller reset is absent.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 17,
+          "line_end": 17,
+          "function": "controllerPid zero thrust"
+        }
+      ],
+      "statement": "When thrust==0, clear all four control quantities, reset attitude/position PIDs, and synchronize desiredYaw."
+    },
+    {
+      "id": "CF-R056",
+      "verdict": "fully_covered",
+      "reason": "Pitch actual angular rate is -gyro.y.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 17,
+          "line_end": 17,
+          "function": "controllerPid"
+        }
+      ],
+      "statement": "The rate-loop pitchActual uses -sensors->gyro.y."
+    },
+    {
+      "id": "CF-R057",
+      "verdict": "fully_covered",
+      "reason": "Legacy mode applies the required output yaw sign inversion.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 17,
+          "line_end": 17,
+          "function": "controllerPid"
+        }
+      ],
+      "statement": "After retrieving actuator outputs, the Legacy coordinate convention negates control->yaw."
+    },
+    {
+      "id": "CF-R058",
+      "verdict": "fully_covered",
+      "reason": "DISABLE locks thrust and zero raw thrust releases the lock.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 18,
+          "line_end": 18,
+          "function": "commanderDecodeRPYT"
+        }
+      ],
+      "statement": "DISABLE priority sets thrustLocked=true; receiving raw thrust==0 releases the lock."
+    },
+    {
+      "id": "CF-R059",
+      "verdict": "fully_covered",
+      "reason": "Non-altitude thrust respects lock, minimum cutoff and maximum 60000.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 18,
+          "line_end": 18,
+          "function": "commanderDecodeRPYT"
+        }
+      ],
+      "statement": "Outside AltHold, locking or raw<1000 produces zero thrust; otherwise thrust must not exceed 60000."
+    },
+    {
+      "id": "CF-R060",
+      "verdict": "fully_covered",
+      "reason": "Altitude hold selects z velocity, zero thrust and normalized vertical command.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 18,
+          "line_end": 18,
+          "function": "commanderDecodeRPYT"
+        }
+      ],
+      "statement": "AltHold selects z velocity mode, zero direct thrust, and vertical velocity (raw-32767)/32767."
+    },
+    {
+      "id": "CF-R061",
+      "verdict": "partially_covered",
+      "reason": "Sets modeSet and disables z on exit but does not reset position control/filter on entry.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 18,
+          "line_end": 18,
+          "function": "commanderDecodeRPYT"
+        }
+      ],
+      "statement": "First entry into AltHold resets the position PID/filter and sets modeSet; exit disables z and clears modeSet."
+    },
+    {
+      "id": "CF-R062",
+      "verdict": "fully_covered",
+      "reason": "Position hold returns before default angles and maps pitch/30 and roll/30 to velocities with disabled zero roll/pitch.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 18,
+          "line_end": 18,
+          "function": "commanderDecodeRPYT"
+        }
+      ],
+      "statement": "PosHold takes precedence over default mode, selects x/y velocity mode with the specified pitch/roll velocity mapping, and disables and zeros attitude roll/pitch."
+    },
+    {
+      "id": "CF-R063",
+      "verdict": "fully_covered",
+      "reason": "Position-set branch maps absolute xyz and sets absolute yaw command as required.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 18,
+          "line_end": 18,
+          "function": "commanderDecodeRPYT"
+        }
+      ],
+      "statement": "Enter PosSet only when posSetMode is true and rawThrust is nonzero; set targets using the specified coordinate mapping and absolute modes, and clear direct thrust."
+    },
+    {
+      "id": "CF-R064",
+      "verdict": "fully_covered",
+      "reason": "Default roll/pitch RATE selects velocity mode and attitudeRate; ANGLE selects absolute mode and attitude.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 18,
+          "line_end": 18,
+          "function": "commanderDecodeRPYT"
+        }
+      ],
+      "statement": "Default roll/pitch RATE uses velocity mode and attitudeRate; ANGLE uses absolute mode and attitude."
+    },
+    {
+      "id": "CF-R065",
+      "verdict": "fully_covered",
+      "reason": "Default yaw RATE uses negative rawYaw; ANGLE uses the target angle.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 18,
+          "line_end": 18,
+          "function": "commanderDecodeRPYT"
+        }
+      ],
+      "statement": "Default yaw RATE uses velocity mode and negative rawYaw; ANGLE uses absolute mode and target yaw."
+    },
+    {
+      "id": "CF-R066",
+      "verdict": "partially_covered",
+      "reason": "PLUS45 and X work, but CAREFREE only returns silently with a cleared setpoint, without a distinguishable error flag or error return.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 18,
+          "line_end": 18,
+          "function": "commanderDecodeRPYT"
+        }
+      ],
+      "statement": "PLUSMODE rotates roll/pitch by 45 degrees, XMODE leaves values unchanged, and CAREFREE enters an observable error path."
+    },
+    {
+      "id": "CF-R067",
+      "verdict": "fully_covered",
+      "reason": "Implements the standard planar rotation with degree conversion.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 18,
+          "line_end": 18,
+          "function": "rotateXY"
+        }
+      ],
+      "statement": "rotateYaw uses the standard two-dimensional rotation formula after converting to radians."
+    },
+    {
+      "id": "CF-R068",
+      "verdict": "fully_covered",
+      "reason": "Uses the specified RATE_DO_EXECUTE supervisor gate.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorUpdate"
+        }
+      ],
+      "statement": "supervisorUpdate executes only when RATE_DO_EXECUTE(RATE_SUPERVISOR,stabilizerStep) is true."
+    },
+    {
+      "id": "CF-R069",
+      "verdict": "fully_covered",
+      "reason": "CanFly has the four allowed states; CanArm is preflight-passed only.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 19,
+          "line_end": 19,
+          "function": "supervisorCanFly/supervisorCanArm"
+        }
+      ],
+      "statement": "supervisorCanFly permits only ReadyToFly/Flying/WarningLevelOut/Landed; CanArm permits only PreFlChecksPassed."
+    },
+    {
+      "id": "CF-R070",
+      "verdict": "fully_covered",
+      "reason": "Armed, locked, crashed and tumbled flags are exposed.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 19,
+          "line_end": 19,
+          "function": "supervisor accessors"
+        }
+      ],
+      "statement": "IsArmed and IsCrashed return the current flags."
+    },
+    {
+      "id": "CF-R071",
+      "verdict": "fully_covered",
+      "reason": "Immediate transition and already-armed-in-Arming idempotence are implemented.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 19,
+          "line_end": 19,
+          "function": "supervisorRequestArming"
+        }
+      ],
+      "statement": "RequestArming sets arming in an allowed state and enters Arming in the same call; repeated requests are idempotent, and disallowed states return false."
+    },
+    {
+      "id": "CF-R072",
+      "verdict": "fully_covered",
+      "reason": "False always records crash; true rejects ongoing tumble before clearing crash and entering preflight.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 19,
+          "line_end": 19,
+          "function": "supervisorRequestCrashRecovery"
+        }
+      ],
+      "statement": "CrashRecovery refuses recovery while tumbled and otherwise permits clearing crash; doRecovery=false sets crash and returns true."
+    },
+    {
+      "id": "CF-R073",
+      "verdict": "fully_covered",
+      "reason": "Uses strictly greater-than idle samples and the strict two-second freshness window.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorIsFlying"
+        }
+      ],
+      "statement": "isFlyingCheck refreshes the flight tick whenever any motor exceeds idle and retains flying hysteresis for strictly less than 2000ms."
+    },
+    {
+      "id": "CF-R074",
+      "verdict": "fully_covered",
+      "reason": "A separate recent-thrust flag preserves valid time-zero observations.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorIsFlying"
+        }
+      ],
+      "statement": "Do not report flying if no motor above idle has ever been observed; use a separate seen flag to distinguish a valid tick=0 event."
+    },
+    {
+      "id": "CF-R075",
+      "verdict": "fully_covered",
+      "reason": "Positive crash threshold is compared to acceleration magnitude and sets crash.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorIsTumbled"
+        }
+      ],
+      "statement": "When crashDetectionGs>0, detect crash from the acceleration-magnitude deviation; a zero threshold disables detection."
+    },
+    {
+      "id": "CF-R076",
+      "verdict": "partially_covered",
+      "reason": "Free-fall detection clears timers, but does not enter the required exception state.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorIsTumbled"
+        }
+      ],
+      "statement": "When the absolute values of all three axes are below freeFallThreshold, set free fall and reset the tumble timer, entering ExceptFreeFall rather than directly setting tumbled."
+    },
+    {
+      "id": "CF-R077",
+      "verdict": "fully_covered",
+      "reason": "Tilt/inversion use corresponding durations and upright clears timing flags. Inversion remains below the tilt threshold; the source does not require clearing the other timer when changing type.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorIsTumbled"
+        }
+      ],
+      "statement": "Tilt starts the tumble timer; inversion uses a shorter timeout; returning upright clears the timer."
+    },
+    {
+      "id": "CF-R078",
+      "verdict": "fully_covered",
+      "reason": "Disabled tumble handling clears the returned tumble flag.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorIsTumbled"
+        }
+      ],
+      "statement": "When tumbleCheckEnabled=false, do not report tumbled."
+    },
+    {
+      "id": "CF-R079",
+      "verdict": "fully_covered",
+      "reason": "Tumble return and crash side effect are represented separately.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorIsTumbled"
+        }
+      ],
+      "statement": "The return value of isTumbledCheck represents only tumbling; crash alone is exposed through state or a condition bit."
+    },
+    {
+      "id": "CF-R080",
+      "verdict": "fully_covered",
+      "reason": "Auto-arm calls the same arming request entry point.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorUpdate"
+        }
+      ],
+      "statement": "When AUTO_ARMING is enabled, initial entry into PreFlChecksPassed uses the same arming path as an explicit request; when disabled, do not arm automatically."
+    },
+    {
+      "id": "CF-R081",
+      "verdict": "not_covered",
+      "reason": "No rule clears armed when state leaves the five specified armed states.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorUpdate"
+        }
+      ],
+      "statement": "Clear arming when leaving the five states allowed to retain it."
+    },
+    {
+      "id": "CF-R082",
+      "verdict": "partially_covered",
+      "reason": "Arming-period comparison exists, but leaving Arming only clears spinStart, not the timeout condition; this gap is independent of sustained RPM qualification and start=0 semantics.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorUpdate spinup"
+        },
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 6,
+          "line_end": 6,
+          "function": "tickMs"
+        }
+      ],
+      "statement": "Evaluate spinup timeout only in Arming, using the configured start/period; set timeout only on reaching the period, and clear the start and bit on exit."
+    },
+    {
+      "id": "CF-R083",
+      "verdict": "partially_covered",
+      "reason": "Health predicate is available, but supervisorUpdate does not consume its negation into conditions.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorWatchdogCheck"
+        }
+      ],
+      "statement": "The Emergency-stop watchdog bool represents health: true if never notified or not over 1000ms, false on timeout; fault consumers explicitly negate it."
+    },
+    {
+      "id": "CF-R084",
+      "verdict": "partially_covered",
+      "reason": "Threshold logic exists but stale opposing age bits remain and the main supervisor step never calls the updater.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorUpdateConditions"
+        }
+      ],
+      "statement": "Commander setpoint age strictly over 500ms sets WARNING; strictly over 2000ms sets TIMEOUT."
+    },
+    {
+      "id": "CF-R085",
+      "verdict": "partially_covered",
+      "reason": "Query helpers exist but their start times/state transitions are not maintained by supervisorUpdate and zero timestamps are treated as absent.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "timeout helpers"
+        }
+      ],
+      "statement": "The ReadyToFly preflight timeout and landing timeout update their respective conditions, which are returned by the corresponding public functions."
+    },
+    {
+      "id": "CF-R086",
+      "verdict": "partially_covered",
+      "reason": "Three emergency sources are ORed in a helper that is not integrated into supervisorUpdate.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorUpdateConditions"
+        }
+      ],
+      "statement": "CRTP stop, parameter stop, and watchdog stop each update their corresponding condition bit."
+    },
+    {
+      "id": "CF-R087",
+      "verdict": "partially_covered",
+      "reason": "A range-AND check across all four RPMs exists, but sustained qualification is not implemented; one successful Arming check is enough to enter Ready.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorMotorsInRange"
+        }
+      ],
+      "statement": "DShot arming checks require all four RPMs to remain within range for the required qualifying duration."
+    },
+    {
+      "id": "CF-R088",
+      "verdict": "fully_covered",
+      "reason": "Any low RPM is timed and CanFly false clears timing.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorMotorsNotResponding"
+        }
+      ],
+      "statement": "RPM below the not-responding threshold for the specified duration sets a fault; CanFly=false clears the corresponding check state."
+    },
+    {
+      "id": "CF-R089",
+      "verdict": "partially_covered",
+      "reason": "Values are stored, but flight supervisor does not consume timeout/watchdog/nonresponse inputs through a complete update path.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorSetMotorRpm and setters"
+        }
+      ],
+      "statement": "Sensor, motor-ratio, RPM, and safety-configuration injection functions supply actual inputs to supervisorUpdate rather than permanent zero placeholders."
+    },
+    {
+      "id": "CF-R090",
+      "verdict": "fully_covered",
+      "reason": "Normal Warning disables xy, zeros RP/yaw velocity, and preserves z. R202–203 separately requires emergency/safety zeroing/limiting, so fault overrides do not violate this normal-state leaf.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorOverrideSetpoint"
+        }
+      ],
+      "statement": "WarningLevelOut setpoint override disables x/y, zeros horizontal absolute attitude and yaw velocity, and preserves z."
+    },
+    {
+      "id": "CF-R091",
+      "verdict": "fully_covered",
+      "reason": "Normal Arming/ReadyToFly/Flying/Landed paths preserve targets. R202–203 separately requires emergency/safety-fault zeroing/limiting, so fault overrides do not violate the normal-state leaf.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorOverrideSetpoint"
+        }
+      ],
+      "statement": "Setpoint overrides in Arming/ReadyToFly/Flying/Landed leave the targets unchanged."
+    },
+    {
+      "id": "CF-R092",
+      "verdict": "fully_covered",
+      "reason": "Remaining states clear the setpoint.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorOverrideSetpoint"
+        }
+      ],
+      "statement": "Other Supervisor states use an all-zero setpoint."
+    },
+    {
+      "id": "CF-R093",
+      "verdict": "unassessed",
+      "reason": "The requirements omit necessary parameters or contain conflicting wording; clarify a common contract first, rather than deriving it from the candidate implementation.",
+      "evidence": [],
+      "statement": "Emergency/WDT/tumble/free-fall/motor faults must also produce the zeroing or limiting effects stated by external tests, but this line does not specify additional per-state limits and rules."
+    },
+    {
+      "id": "CF-R094",
+      "verdict": "fully_covered",
+      "reason": "Implements the five allowed motor states including Warning.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 19,
+          "line_end": 19,
+          "function": "supervisorAreMotorsAllowedToRun"
+        }
+      ],
+      "statement": "supervisorAreMotorsAllowedToRun permits only the specified five states."
+    },
+    {
+      "id": "CF-R095",
+      "verdict": "partially_covered",
+      "reason": "Several flags are composed but bits8/9 are missing and bit10 is hard-coded true.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "supervisorGetInfo"
+        }
+      ],
+      "statement": "supervisorGetInfoBitfield encodes live state using the specified bit0-bit11 layout."
+    },
+    {
+      "id": "CF-R096",
+      "verdict": "fully_covered",
+      "reason": "Bounded 16-entry FIFO rejects overflow and preserves order. Ignoring its surrounding malformed declaration does not invent queue semantics.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 21,
+          "line_end": 21,
+          "function": "estimatorEnqueue/Dequeue"
+        }
+      ],
+      "statement": "Estimator uses a FIFO of capacity 16; enqueue on full and dequeue on empty return false."
+    },
+    {
+      "id": "CF-R097",
+      "verdict": "fully_covered",
+      "reason": "Drains the FIFO and retains the last sample for each known type.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 21,
+          "line_end": 21,
+          "function": "estimatorComplementary"
+        }
+      ],
+      "statement": "estimatorComplementary drains the queue on every call and retains the latest value of each measurement type."
+    },
+    {
+      "id": "CF-R098",
+      "verdict": "partially_covered",
+      "reason": "Updates fusion and Euler at250Hz, but does not update state quaternion, world acceleration or vertical velocity.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 21,
+          "line_end": 21,
+          "function": "estimatorComplementary"
+        }
+      ],
+      "statement": "On the 250Hz divider, update fusion, Euler/Quaternion, gravity-compensated Z acceleration, and vertical velocity; otherwise leave those outputs unchanged."
+    },
+    {
+      "id": "CF-R099",
+      "verdict": "not_covered",
+      "reason": "No100Hz position-estimation branch is present.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 21,
+          "line_end": 21,
+          "function": "estimatorComplementary"
+        }
+      ],
+      "statement": "On the 100Hz divider, update position; otherwise leave position output unchanged."
+    },
+    {
+      "id": "CF-R100",
+      "verdict": "partially_covered",
+      "reason": "The ordinary >= rule and a single target exist, and tickMs is recorded, but the clock increments with task calls rather than D's independent milliseconds; no additional assignment to setpoint.timestamp is required.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 22,
+          "line_end": 22,
+          "function": "commanderSetSetpoint"
+        }
+      ],
+      "statement": "For ordinary priorities, Commander replaces its sole active setpoint and writes the current tick only when newPriority>=current; lower priority is rejected."
+    },
+    {
+      "id": "CF-R101",
+      "verdict": "fully_covered",
+      "reason": "DISABLE priority is accepted unconditionally.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 22,
+          "line_end": 22,
+          "function": "commanderSetSetpoint"
+        }
+      ],
+      "statement": "DISABLE emergency override is accepted regardless of its numeric value and becomes the active priority."
+    },
+    {
+      "id": "CF-R102",
+      "verdict": "not_covered",
+      "reason": "Accepting priority above HIGHLEVEL does not stop high-level trajectory execution.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 22,
+          "line_end": 22,
+          "function": "commanderSetSetpoint"
+        }
+      ],
+      "statement": "A new priority above HIGHLEVEL stops the high-level trajectory."
+    },
+    {
+      "id": "CF-R103",
+      "verdict": "fully_covered",
+      "reason": "Restores LOWEST priority without clearing the accepted command.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 22,
+          "line_end": 22,
+          "function": "commanderRelaxPriority"
+        }
+      ],
+      "statement": "RelaxPriority sets the current priority to LOWEST=1."
+    },
+    {
+      "id": "CF-R104",
+      "verdict": "partially_covered",
+      "reason": "Returns age and priority, but age derives from private call-count tickMs.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 22,
+          "line_end": 22,
+          "function": "commanderGetInactivityTime"
+        }
+      ],
+      "statement": "InactivityTime returns currentTick-lastUpdate; GetActivePriority returns the current priority."
+    },
+    {
+      "id": "CF-R105",
+      "verdict": "partially_covered",
+      "reason": "Guarded setup calls fusion, attitude, supervisor and CRTP only; required six-subsystem initialization sequence is incomplete.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "stabilizerInit"
+        }
+      ],
+      "statement": "stabilizerInit initializes sensors->estimator->controller->powerDistribution->motors->collisionAvoidance in order, creates the task, and is idempotent."
+    },
+    {
+      "id": "CF-R106",
+      "verdict": "not_covered",
+      "reason": "No system-start or sensor-calibration wait is implemented.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "stabilizerTask"
+        }
+      ],
+      "statement": "stabilizerTask waits until the system has started and sensor calibration is complete."
+    },
+    {
+      "id": "CF-R107",
+      "verdict": "partially_covered",
+      "reason": "Runs supervisor/control/mix, but never acquires sensors or estimates state; controller receives a zero local state.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "stabilizerTask"
+        }
+      ],
+      "statement": "The normal control loop follows the specified order: sensor wait/read->estimation->commander->supervisor->collision avoidance->override->control->distribution->battery compensation->clipping->motor output."
+    },
+    {
+      "id": "CF-R108",
+      "verdict": "partially_covered",
+      "reason": "Disallowed flight zeroes a local setpoint but pending high-level commands are accepted before this check.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "stabilizerTask"
+        }
+      ],
+      "statement": "When CanFly=false, block new commands and zero control outputs."
+    },
+    {
+      "id": "CF-R109",
+      "verdict": "fully_covered",
+      "reason": "Stores pending input and consumes it on the next step at HIGHLEVEL priority.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "stabilizerSubmitHighLevelSetpoint"
+        }
+      ],
+      "statement": "A submitted high-level setpoint actually calls commanderSetSetpoint with COMMANDER_PRIORITY_HIGHLEVEL on the next control step."
+    },
+    {
+      "id": "CF-R110",
+      "verdict": "fully_covered",
+      "reason": "Disallowed motor state zeroes all four final motor request values.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "stabilizerTask"
+        }
+      ],
+      "statement": "When motorsAllowed=false, stop the motors."
+    },
+    {
+      "id": "CF-R111",
+      "verdict": "fully_covered",
+      "reason": "Health-test branch runs health tests and returns before the normal flight path.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "stabilizerTask"
+        }
+      ],
+      "statement": "When a Health test is requested, healthRunTests replaces the normal control branch."
+    },
+    {
+      "id": "CF-R112",
+      "verdict": "fully_covered",
+      "reason": "Position and velocity scale by1000.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "compressState"
+        }
+      ],
+      "statement": "compressState multiplies position and velocity by 1000 to obtain mm and mm/s."
+    },
+    {
+      "id": "CF-R113",
+      "verdict": "fully_covered",
+      "reason": "Acceleration scales by9810 and adds one g on z.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "compressState"
+        }
+      ],
+      "statement": "compressState multiplies acceleration x/y by 9810 and computes z as (acc.z+1)*9810."
+    },
+    {
+      "id": "CF-R114",
+      "verdict": "fully_covered",
+      "reason": "Gyro converts degrees to milliradians with negative y.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "compressState"
+        }
+      ],
+      "statement": "compressState converts angular velocity from deg/s to mrad/s and negates the gyro.y pitch component."
+    },
+    {
+      "id": "CF-R115",
+      "verdict": "fully_covered",
+      "reason": "Packs current quaternion components into32 bits and returns/writes them through compressState. The source prescribes no encoding, precision, reversibility, or fidelity, so lossiness, overlapping bits, or omitted signs alone do not reduce coverage; this leaf does not assess decoding quality.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "qcomp"
+        }
+      ],
+      "statement": "compressState uses quatcompress to produce a 32-bit compressed quaternion."
+    },
+    {
+      "id": "CF-R116",
+      "verdict": "fully_covered",
+      "reason": "Accepts the inclusive997–1003Hz interval.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "rateSupervisorValidate"
+        }
+      ],
+      "statement": "rateSupervisorValidate accepts only the closed interval [997,1003]."
+    },
+    {
+      "id": "CF-R117",
+      "verdict": "not_covered",
+      "reason": "Only adds2000 to tickMs; no rate measurement or out-of-range error is produced.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 23,
+          "line_end": 23,
+          "function": "rateSupervisorTask"
+        }
+      ],
+      "statement": "The Supervisor task waits 2000ms; a timeout while sensors are active enters assert/error, whereas a timeout while suspended is allowed."
+    },
+    {
+      "id": "CF-R118",
+      "verdict": "fully_covered",
+      "reason": "Consumes request flags and returns false in testDone.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 24,
+          "line_end": 24,
+          "function": "healthShallWeRunTest"
+        }
+      ],
+      "statement": "healthShallWeRunTest consumes a test request, performs the corresponding initialization, clears the request, and returns true; with no request and tests complete, it returns false."
+    },
+    {
+      "id": "CF-R119",
+      "verdict": "partially_covered",
+      "reason": "Requests select the correct states, but battery request does not immediately reset its test tick.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 24,
+          "line_end": 24,
+          "function": "healthShallWeRunTest"
+        }
+      ],
+      "statement": "A propeller request initializes configureAcc; a battery request initializes testBattery and sets tick to zero."
+    },
+    {
+      "id": "CF-R120",
+      "verdict": "fully_covered",
+      "reason": "Each supported state advances internally to the next or testDone.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 24,
+          "line_end": 24,
+          "function": "healthRunTests"
+        }
+      ],
+      "statement": "healthRunTests advances an initialized test state without relying on the caller to modify private state."
+    },
+    {
+      "id": "CF-R121",
+      "verdict": "partially_covered",
+      "reason": "Clears local counters but does not restore idle thrust, stop motors or capture idle voltage.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 24,
+          "line_end": 24,
+          "function": "configureAcc branch"
+        }
+      ],
+      "statement": "configureAcc clears results, switches accelerometer mode, records idleVoltage, and stops the motors."
+    },
+    {
+      "id": "CF-R122",
+      "verdict": "partially_covered",
+      "reason": "It collects 100 combined acceleration values, but neither invokes variance computation nor retains noise variance; no extra per-axis variance not explicitly required in the original text is imposed.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 24,
+          "line_end": 24,
+          "function": "measureNoiseFloor"
+        }
+      ],
+      "statement": "The propeller test collects 100 acceleration samples to calculate noise variance."
+    },
+    {
+      "id": "CF-R123",
+      "verdict": "not_covered",
+      "reason": "No per-motor drive/stop/voltage/vibration sequence; it calls evaluation with hard-coded passing inputs.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 24,
+          "line_end": 24,
+          "function": "measureProp"
+        }
+      ],
+      "statement": "The propeller test starts/stops motors 0..3 in order to measure vibration/voltage; after all finish, it restores flight sensor mode and evaluates the results."
+    },
+    {
+      "id": "CF-R124",
+      "verdict": "fully_covered",
+      "reason": "When high==0, it skips the check and passes; otherwise, it uses the closed interval low<=value<=high specified in the original text.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 24,
+          "line_end": 24,
+          "function": "evaluatePropTest"
+        }
+      ],
+      "statement": "evaluatePropTest skips and passes when highThreshold==0; otherwise it passes only when low<=value<=high."
+    },
+    {
+      "id": "CF-R125",
+      "verdict": "fully_covered",
+      "reason": "Success sets the corresponding motorPass bit; failure increments healthLog.motorTestCount.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 24,
+          "line_end": 24,
+          "function": "evaluatePropTest"
+        }
+      ],
+      "statement": "A failed propeller evaluation increments the failure count; a pass sets the corresponding motorPass bit."
+    },
+    {
+      "id": "CF-R126",
+      "verdict": "not_covered",
+      "reason": "No tick1 load, ticks2–49 minimum-voltage observation or tick50 motor stop.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 24,
+          "line_end": 24,
+          "function": "battery states"
+        }
+      ],
+      "statement": "The battery test loads all four motors at tick1, updates minimum voltage at tick2..49, and stops and evaluates at tick50."
+    },
+    {
+      "id": "CF-R127",
+      "verdict": "not_covered",
+      "reason": "Writes sag=0 and pass=1 without measuring voltage drop or testing threshold.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 24,
+          "line_end": 24,
+          "function": "evaluateBatResult"
+        }
+      ],
+      "statement": "batterySag=idle-minLoaded; strictly exceeding the threshold fails, otherwise it passes."
+    },
+    {
+      "id": "CF-R128",
+      "verdict": "not_covered",
+      "reason": "No2000ms restart transition is implemented.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 24,
+          "line_end": 24,
+          "function": "healthRunTests"
+        }
+      ],
+      "statement": "restartBatTest restarts after waiting 2000ms."
+    },
+    {
+      "id": "CF-R129",
+      "verdict": "fully_covered",
+      "reason": "Returns sumsq-sum*sum/n without a second division.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 24,
+          "line_end": 24,
+          "function": "variance"
+        }
+      ],
+      "statement": "variance uses sumSq-sum*sum/n without dividing by n again, matching the given constant and [1,2,3] examples."
+    },
+    {
+      "id": "CF-R130",
+      "verdict": "fully_covered",
+      "reason": "Guarded200-entry TX queue and bounded task-step entry points meet the allowed host task contract.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 25,
+          "line_end": 26,
+          "function": "crtpInit"
+        }
+      ],
+      "statement": "crtpInit idempotently creates a 200-slot TX queue and TX/RX tasks."
+    },
+    {
+      "id": "CF-R131",
+      "verdict": "fully_covered",
+      "reason": "Creates per-port16-entry queues and detects duplicate creation.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 25,
+          "line_end": 26,
+          "function": "crtpInitTaskQueue"
+        }
+      ],
+      "statement": "A valid port can create a capacity-16 RX queue; duplicate creation enters an error state."
+    },
+    {
+      "id": "CF-R132",
+      "verdict": "fully_covered",
+      "reason": "Ordinary sending returns false for a full queue; SendPacketBlock also enqueues successfully when the host has space, satisfying this leaf item's scope.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 26,
+          "line_end": 26,
+          "function": "crtpSendPacketBlock"
+        }
+      ],
+      "statement": "SendPacket is nonblocking and returns false when full; SendPacketBlock succeeds when space is available on the host."
+    },
+    {
+      "id": "CF-R133",
+      "verdict": "unassessed",
+      "reason": "The requirements omit necessary parameters or contain conflicting wording; clarify a common contract first, rather than deriving it from the candidate implementation.",
+      "evidence": [],
+      "statement": "ReceivePacket/Block/Wait respectively provide immediate, waiting, and time-limited receive, but this line omits wait progression and timeout-return details when no data is available; clarification of the frozen API/contract is required."
+    },
+    {
+      "id": "CF-R134",
+      "verdict": "fully_covered",
+      "reason": "Queue delivery and callback are independent for valid ports.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 26,
+          "line_end": 26,
+          "function": "crtpRxTask"
+        }
+      ],
+      "statement": "RxTask both delivers to an existing port queue and invokes a registered callback; it discards the packet when neither exists."
+    },
+    {
+      "id": "CF-R135",
+      "verdict": "partially_covered",
+      "reason": "Retains failed packet but time-zero failure bypasses the10ms check and private tick is not a clock.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 26,
+          "line_end": 26,
+          "function": "crtpTxTask"
+        }
+      ],
+      "statement": "TxTask retains the packet after a failed send and retries after 10ms."
+    },
+    {
+      "id": "CF-R136",
+      "verdict": "fully_covered",
+      "reason": "Null link maps to a nop object and tasks avoid device I/O.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 25,
+          "line_end": 26,
+          "function": "nop link"
+        }
+      ],
+      "statement": "With nopLink, the send and receive tasks do not process packets."
+    },
+    {
+      "id": "CF-R137",
+      "verdict": "fully_covered",
+      "reason": "Disables old link, chooses nop for null and enables the new link.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 26,
+          "line_end": 26,
+          "function": "crtpSetLink"
+        }
+      ],
+      "statement": "SetLink disables the old link, replaces NULL with nopLink, and then enables the new link."
+    },
+    {
+      "id": "CF-R138",
+      "verdict": "fully_covered",
+      "reason": "Clears TX indexes/count and calls link reset.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 26,
+          "line_end": 26,
+          "function": "crtpReset"
+        }
+      ],
+      "statement": "Reset clears the TX queue and calls link.reset."
+    },
+    {
+      "id": "CF-R139",
+      "verdict": "fully_covered",
+      "reason": "Uses the callback when available and true otherwise.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 26,
+          "line_end": 26,
+          "function": "crtpIsConnected"
+        }
+      ],
+      "statement": "IsConnected returns the callback result when a callback exists, otherwise true."
+    },
+    {
+      "id": "CF-R140",
+      "verdict": "fully_covered",
+      "reason": "Returns200 minus current TX count.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 26,
+          "line_end": 26,
+          "function": "crtpGetFreeTxQueuePackets"
+        }
+      ],
+      "statement": "GetFreeTxQueuePackets returns 200-currentCount."
+    },
+    {
+      "id": "CF-R141",
+      "verdict": "fully_covered",
+      "reason": "Rejects invalid port indexes before callback assignment.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 26,
+          "line_end": 26,
+          "function": "crtpRegisterPortCB"
+        }
+      ],
+      "statement": "RegisterPortCB accepts only ports in [0,CRTP_NBR_OF_PORTS) and rejects out-of-range values."
+    },
+    {
+      "id": "CF-R142",
+      "verdict": "partially_covered",
+      "reason": "Computes and resets500ms-window rates, but private tick advances by unrelated task calls.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 26,
+          "line_end": 26,
+          "function": "updateStats"
+        }
+      ],
+      "statement": "updateStats computes rx/tx rates every 500ms and clears the counters."
+    },
+    {
+      "id": "CF-R143",
+      "verdict": "not_covered",
+      "reason": "Always invents one I2C device; no I2C/1-Wire/mock scan inputs or deduplication.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 27,
+          "line_end": 27,
+          "function": "deckDiscovery"
+        }
+      ],
+      "statement": "deckDiscovery scans known I2C addresses and OneWire ROMs, deduplicates entries, stays within capacity, and returns the number actually written."
+    },
+    {
+      "id": "CF-R144",
+      "verdict": "partially_covered",
+      "reason": "Required groups exist, but many members never track acquisition/controller state; target-quaternion conversion can also overwrite current-gravity logs.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.c",
+          "line_start": 5,
+          "line_end": 27,
+          "function": "log groups"
+        }
+      ],
+      "statement": "Expose and maintain the eight precisely named log objects and frozen fields, reflecting actual estimator, sensor, motor, fusion, Supervisor, and Health states."
+    },
+    {
+      "id": "CF-R145",
+      "verdict": "fully_covered",
+      "reason": "Named shared public entry points form the implementation, not a parallel example API.",
+      "evidence": [
+        {
+          "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\jobs\\crazyflie__gpt-5.5__C4_structured__r02\\initial\\6_generated_code.h",
+          "line_start": 55,
+          "line_end": 74,
+          "function": "public API"
+        }
+      ],
+      "statement": "Extreme inputs and cross-module boundaries must use the same public API, without separate parallel functions written only for examples."
+    }
+  ],
+  "counts": {
+    "fully_covered": 95,
+    "partially_covered": 33,
+    "unassessed": 4,
+    "not_covered": 13
+  },
+  "denominator": 141,
+  "rate": 0.6737588652482269,
+  "rate_percent": 67.37588652482269,
+  "rate_scope": "141 preclassified static-evidence-reviewable requirement leaves; not all requirements proven satisfied",
+  "unassessed_requirement_count": 4,
+  "identical_code_reuse": null,
+  "old_static_scores_used": false,
+  "external_api_calls": 0,
+  "host_executions": 0,
+  "code_modifications": 0,
+  "limitations": [
+    "Original code read without repair; global build failure is not used to zero otherwise identifiable behavior.",
+    "Partial coverage receives no fractional credit.",
+    "Four preclassified hardware/contract leaves remain unassessed consistently across candidates.",
+    "LLM static evidence review, not human verification or executable-test pass rate."
+  ],
+  "input_context": {
+    "requirement": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\crazyflie\\RE_req.txt",
+      "sha256": "737c0b42c185a0313c09af1e21a6ad3ad3d866167371283edcd46ff98d574f92"
+    },
+    "device": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\crazyflie\\RE_device_interface.txt",
+      "sha256": "1522f54ce50d94825ca7df97abd56830cc87a714345820aa949be7fb445cef1e"
+    },
+    "api": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\crazyflie\\RE_api.txt",
+      "sha256": "431d1c5fc2452174f4e26aed2409b56965ccd05016083bbc39a2bb4b2f9468b0",
+      "supplied_to_generation": true
+    }
+  },
+  "scope_review_complete": true,
+  "input_context_note": "R and D define project-derived host application scope. A was supplied to shared-API methods; Direct-LLM receives no extra obligations beyond R+D merely from A.",
+  "source_lineage": [
+    {
+      "kind": "authoritative_current_selected_position",
+      "source": "fse\\rq_rebuild_20261001\\rq1\\three_model_retry_revision_20261002\\current_three_model_view.json",
+      "json_pointer": "/rows/19",
+      "identity": "crazyflie__gpt-5.5__C4_structured__r02"
+    },
+    {
+      "kind": "rq1_current_artifact_evidence",
+      "source": "fse\\rq_rebuild_20261001\\rq1\\rq1_data.json",
+      "identity": "crazyflie__gpt-5.5__C4_structured__r02"
+    },
+    {
+      "kind": "source_summary",
+      "path": "fse\\gpt_connection_retry2_fix_20261001\\execution\\evaluation_summary.json",
+      "sha256": "6d833baa50242aafe81c914033cf58a4d5a52d5720046e008a591e99de2a58b3",
+      "expected_sha256": "6d833baa50242aafe81c914033cf58a4d5a52d5720046e008a591e99de2a58b3",
+      "sha256_verified": true
+    },
+    {
+      "kind": "generation_result",
+      "path": "fse\\gpt_connection_retry2_fix_20261001\\gpt\\execution\\crazyflie__gpt-5.5__C4_structured__r02\\subscription_result.json",
+      "sha256": "4802d0773fbcdbd0dbe9a81fe2b32bbd03fdf3720d338a55016ee3505d624b01",
+      "expected_sha256": "4802d0773fbcdbd0dbe9a81fe2b32bbd03fdf3720d338a55016ee3505d624b01",
+      "sha256_verified": true
+    }
+  ],
+  "revision_history": [
+    {
+      "reason": "Remove requirements not present in R and correct function-level descriptions after rereading original clauses",
+      "previous_file": "fse\\requirement_coverage_review_20261002\\reviews\\gpt\\crazyflie\\history\\before_contract_consistency_20261002\\crazyflie__gpt-5.5__C4_structured__r02.json",
+      "previous_sha256": "9409f7dc2eacf01a6c7f9e21c088e867cc9e2f7565daab4ccd0a7cc212c4377e"
+    },
+    {
+      "at": "2026-10-02T07:02:08.669469+00:00",
+      "reason": "Original R/D/A boundary audit; remove unstated duties while retaining real missing behavior.",
+      "previous_file": "fse\\requirement_coverage_review_20261002\\reviews\\gpt\\crazyflie\\history\\before_source_boundary_audit_20261002\\crazyflie__gpt-5.5__C4_structured__r02.json",
+      "previous_sha256": "7f61f23d1f4562ea9820f0a827933815420e9eed7eef3b0271386ed628803e85"
+    },
+    {
+      "at": "2026-10-02T07:06:55.754726+00:00",
+      "reason": "Final wording consistency audit of all current negative Crazyflie judgments.",
+      "previous_file": "fse\\requirement_coverage_review_20261002\\reviews\\gpt\\crazyflie\\history\\before_final_wording_audit_20261002\\crazyflie__gpt-5.5__C4_structured__r02.json",
+      "previous_sha256": "661e8a694d548fc26dc373fe913e8344a4717803973513ca2d831756dfd612a8"
+    },
+    {
+      "revision": "semantic_consistency_final_20261002",
+      "details": "fse\\requirement_coverage_review_20261002\\reviews\\gpt\\crazyflie\\semantic_consistency_final_20261002_corrections.json"
+    },
+    {
+      "revision": "leaf_scope_alignment_20261002",
+      "details": "fse\\requirement_coverage_review_20261002\\reviews\\gpt\\crazyflie\\leaf_scope_alignment_20261002_corrections.json"
+    }
+  ],
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/reviews/gpt/crazyflie/crazyflie__gpt-5.5__C4_structured__r02.json",
+    "original_sha256": "db966483fd1a07856227e1f9c3aac63c07e7107211a603d6dca791aceed53c29",
+    "language": "Original Chinese evidence/rationales retained; no semantic translation.",
+    "initial_review_status": {
+      "evaluator": "current Codex LLM static review",
+      "human_review": false
+    },
+    "preservation": "Initial verdicts, reasons, historical rates and human-review flags retained. Path anonymization and export metadata do not constitute a new review.",
+    "current_aggregation": "(fully_covered + partially_covered) / preclassified static denominator; no fractional weighting of partial items.",
+    "checklist_export": {
+      "path": "data/rq1/requirement_coverage/checklists/crazyflie.json",
+      "sha256": "7b146e750632e4a0e8a3970727f608d4020252f687283f2e804226cac0e5ddde",
+      "original_sha256": "a563bb2a705c6bb9bbb227607e886fb05babbf73e4c3f7e0b74e488033dd7e4f",
+      "leaf_count": 145,
+      "static_denominator": 141,
+      "source_requirement": {
+        "path": "data/rq1/requirement_coverage/source_requirements/crazyflie_RE_req.txt",
+        "sha256": "1022008e84745ec7f503c5249420ccb3cec5c50e80d297569e80086fd819ba65"
+      }
+    },
+    "candidate_bindings": [
+      {
+        "source": "fse/gpt_connection_retry2_fix_20261001/gpt/execution/crazyflie__gpt-5.5__C4_structured__r02/jobs/crazyflie__gpt-5.5__C4_structured__r02/initial/6_generated_code.c",
+        "original_sha256": "fb4d3c2f84323b4f892c52c5ee77100347e867ebc23aa4b993516cf782a0b728",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.c",
+        "path": "evidence/candidate_sources/fb4d3c2f84323b4f892c52c5ee77100347e867ebc23aa4b993516cf782a0b728/6_generated_code.c",
+        "distributed_sha256": "fb4d3c2f84323b4f892c52c5ee77100347e867ebc23aa4b993516cf782a0b728",
+        "transformation": "none"
+      },
+      {
+        "source": "fse/gpt_connection_retry2_fix_20261001/gpt/execution/crazyflie__gpt-5.5__C4_structured__r02/jobs/crazyflie__gpt-5.5__C4_structured__r02/initial/6_generated_code.h",
+        "original_sha256": "cdc4d82e9d8b2dc179c4c68313de103f2e09e606f06e49e7eff10700469615f4",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.h",
+        "path": "evidence/candidate_sources/cdc4d82e9d8b2dc179c4c68313de103f2e09e606f06e49e7eff10700469615f4/6_generated_code.h",
+        "distributed_sha256": "cdc4d82e9d8b2dc179c4c68313de103f2e09e606f06e49e7eff10700469615f4",
+        "transformation": "none"
+      }
+    ],
+    "evidence_line_numbers": "Original candidate lines; transformed candidate comments, where used, retain separately recorded original and distributed hashes."
+  }
+}

@@ -1,0 +1,252 @@
+OnStep Device Interface Contract
+Version: Frozen v1.0.0
+Status: Frozen hardware-boundary input for the FSE Direct-Raw / Direct+API experiments
+Sources: OnStep-SRS-v5.docx (system interfaces, hardware requirements, and FDIR) and official OnStep configuration documentation
+Target language: C11; target platforms: Arduino Mega2560, Teensy 3.x/4.x, or an equivalent host-test adapter
+
+===============================================================================
+0. Purpose and boundary
+===============================================================================
+
+This file defines the adapter boundary between OnStep domain logic and board-level hardware. It is not a public
+software API and does not add production symbols beyond RE_api.txt. Generated implementations must access
+devices through the os_hal_* platform adapters in Section 3 of RE_api.txt; domain logic must not directly
+access GPIO registers, SPI/I2C/UART registers, Arduino Serial objects, or delay functions.
+
+The base system consists of two main axes:
+  - axis 0: right ascension RA (equatorial mount) or azimuth AZ (altazimuth mount);
+  - axis 1: declination Dec (equatorial mount) or altitude ALT (altazimuth mount).
+
+Axes 2 and above may serve rotators or focusers, but the Goto, tracking, guiding, parking,
+calibration, and limit acceptance checks in this experiment require only axis 0 and axis 1.
+
+All adapter calls must be deterministic, replaceable on the host, and bounded in their waiting time.
+GPS positioning, serial reception, and motor pulses are driven by polling/interrupts; any device that is not ready
+must indicate this through a return status, empty input, or valid=false, rather than blocking the main loop.
+
+===============================================================================
+1. Fixed channels and general conventions
+===============================================================================
+
+1.1 Command channels
+
+The following identifiers are consistent with RE_api.txt:
+  - OS_CHANNEL_USB (0): USB or wired UART command channel;
+  - OS_CHANNEL_BLUETOOTH (1): Bluetooth serial command channel;
+  - OS_CHANNEL_WIFI (2): WiFi/TCP stream command channel;
+  - OS_CHANNEL_ETHERNET (3): Ethernet/TCP stream command channel.
+
+Each enabled channel is an independent bidirectional byte stream. Commands start with the LX200 ':' and end with '#';
+their maximum lengths are constrained by OS_MAX_COMMAND_LENGTH and OS_MAX_REPLY_LENGTH. A reply to a received command
+must be written back to the same source_channel and must not be forwarded to another channel.
+
+1.2 Error and safety conventions
+
+  - An optional device that is disabled, disconnected, or fails initialization should return OS_ERR_NOT_SUPPORTED,
+    OS_ERR_TIMEOUT, or the corresponding device error; the caller must be able to continue in a degraded mode.
+  - A limit trigger, driver fault, or emergency stop on any axis must take priority in stopping pulses on that axis
+    and rejecting further movement in the dangerous direction.
+  - All length, offset, axis, and channel parameters must be range-checked before use; out-of-bounds access is forbidden.
+  - Adapters must not silently change astronomical coordinates, calibration matrices, tracking rates, or command text; these belong
+    to the higher-level domain logic.
+
+1.3 Host-test conventions
+
+A host adapter does not require real GPIO, SPI, I2C, GPS, or network devices. It must allow tests to
+inject inputs, read outputs, and advance virtual time; the same domain code should compile for both the host and the board.
+Motor positions, limit states, NVM contents, GPS/RTC data, command byte streams, buzzer events, and
+motor frequency/direction/enable states must all be observable.
+
+===============================================================================
+2. Motor and stepper-driver interface (IF-MOT)
+===============================================================================
+
+2.1 Physical boundary
+
+Each main axis connects to a stepper motor and driver. Compatible drivers include TMC2130, TMC5160,
+TMC2209, LV8729, DRV8825, or equivalent STEP/DIR drivers. TMC configuration may use SPI;
+actual motion uses STEP/DIR/ENABLE signals and timer pulses.
+
+Configuration inputs include motor step angle, gear ratio, steps per degree, microstep subdivision, direction polarity, maximum
+Goto speed, tracking speed, current limit, and driver model. Configuration belongs to startup; runtime code
+must not assume a particular TMC model or register layout.
+
+2.2 RE_api.txt mapping
+
+  - os_hal_motor_init(axis): configure STEP, DIR, ENABLE, and the optional driver bus for the axis;
+  - os_hal_motor_set_frequency(axis, frequency_hz): set the frequency of subsequent step pulses;
+  - os_hal_motor_set_direction(axis, forward): set the direction level;
+  - os_hal_motor_enable(axis, enable): enable or safely disable the driver;
+  - os_hal_motor_get_position(axis): return the accumulated, consistently readable position of the axis;
+  - os_hal_timer_motor_init(): configure the hardware timer that provides precise pulse scheduling.
+
+2.3 Behavioral contract
+
+  - After initialization, axis 0 and axis 1 must be in known, safe states, either disabled or at zero frequency;
+    os_init() must not produce motion that has not been authorized by a command.
+  - frequency_hz=0 must stop new pulses on that axis; nonzero frequencies must respect platform and configuration limits.
+  - The direction must be set and stable before pulses in that direction begin; changing direction must not produce extra steps.
+  - Disabling a motor must stop pulse output. Re-enabling it must not reset the accumulated position.
+  - get_position uses accumulated microsteps as its unit, with sign/zero conventions standardized by higher-level configuration; each
+    read must be consistent and must not return a partially updated multibyte value.
+  - Timer interrupts are responsible only for pulse timing and position counting; they must not parse LX200, perform floating-point astronomical calculations,
+    or perform blocking bus access.
+  - If TMC status/fault detection is enabled, communication timeouts, fault pins, or status-register faults must be reported as
+    diagnosable errors and must place the affected axis in a safe stop.
+
+2.4 Host observability
+
+The host implementation must record each axis's initialized, enabled, direction, frequency_hz,
+position_steps, and most recent fault. Tests may advance the virtual timer to generate a deterministic number of steps
+and verify Goto acceleration/deceleration, tracking, guiding, parking, and limit-stop behavior.
+
+===============================================================================
+3. Time, location, and sensor interfaces
+===============================================================================
+
+3.1 GPS（IF-GPS）
+
+Physical interface: a UART/NMEA 0183 receiver providing latitude, longitude, elevation, UTC time, and
+a position-valid flag; optional PPS may calibrate the tracking timer.
+
+RE_api.txt mapping:
+  - os_hal_gps_init(): initialize the serial port and parser;
+  - os_hal_gps_poll(os_site_info_t *site): read the latest complete data without blocking.
+
+Contract:
+  - poll must not wait for a complete NMEA frame; if no new valid data is available, it should return a manageable not-ready status
+    or write valid=false.
+  - When valid=true, latitude_degrees must be within [-90,90], longitude_degrees within
+    [-180,180], elevation_metres must be the actual observed elevation, and utc_epoch_seconds must use UTC.
+  - No valid position/time may be fabricated when GPS is unlocked, the checksum is invalid, data is stale, or communication fails.
+    Higher-level logic must be able to fall back to the RTC and preset site and reflect the unlocked GPS state in status queries.
+
+3.2 RTC（IF-RTC）
+
+Physical interface: an I2C RTC (such as DS3231) or equivalent real-time clock. It provides the date
+and time reference when GPS is unavailable.
+
+RE_api.txt mapping:
+  - os_hal_rtc_init()；
+  - os_hal_rtc_read(uint32_t *utc_epoch_seconds)；
+  - os_hal_rtc_set(uint32_t utc_epoch_seconds)。
+
+Contract:
+  - read/set use UTC epoch seconds; the HAL must not add time-zone or daylight-saving conversions.
+  - Higher-level logic may write valid GPS UTC to the RTC; without GPS, readable RTC values must support sidereal-time
+    and tracking calculations.
+  - I2C failures or invalid data must return explicit errors, never uninitialized memory.
+
+3.3 Limit, homing, and guiding inputs (IF-LIMIT / optional ST4)
+
+Physical interface: GPIO limit or homing switches for axis 0/1; optional ST4 inputs for guiding in four directions.
+
+RE_api.txt mapping:
+  - os_hal_limit_init()；
+  - os_hal_limit_is_triggered(axis)。
+
+Contract:
+  - Adapters must handle configured normally-open/normally-closed polarity and debouncing, but expose only triggered/not-triggered states to higher-level logic.
+  - When either main-axis limit is triggered, Goto, manual motion, and tracking on that axis must stop immediately in the dangerous direction;
+    the system must enter a reportable fault/safe state.
+  - ST4 RA+/RA-/DEC+/DEC- signals may map to os_guide_pulse directions and durations;
+    when conflicting directions arrive simultaneously, use deterministic priority or reject the input, and never produce pulses
+    in both directions simultaneously.
+
+3.4 Optional status outputs
+
+Status LEDs may indicate initialization, tracking, Goto, or faults; the buzzer signals Goto completion and error warnings.
+In RE_api.txt, os_hal_buzzer_beep(duration_ms, count) must be a nonblocking request: it records or
+schedules tones and must not pause the main loop, GPS polling, or the motor timer.
+
+===============================================================================
+4. Communication interface (IF-CMD)
+===============================================================================
+
+Physical interfaces: USB/UART, Bluetooth serial, WiFi, or Ethernet. They provide the same
+command byte stream to higher-level logic; transport differences must not leak into LX200 parsing logic.
+
+RE_api.txt mapping:
+  - os_hal_comm_init(channel)；
+  - os_hal_comm_available(channel)；
+  - os_hal_comm_read(channel)；
+  - os_hal_comm_write(channel, data, length)。
+
+Contract:
+  - available returns the number of bytes currently readable without blocking; a disabled channel should return a recognizable
+    not-supported status or zero available bytes.
+  - read is called only when available>0; it returns one byte in arrival order and must not swallow ':' or '#'
+    or reorder data across channels.
+  - write must preserve the data, length, and channel; it may queue output but must not interpret a string as an untrusted
+    format string.
+  - Temporary disconnections, partial frames, overlong frames, and invalid characters must not stop motor servicing or block the main loop.
+    Higher-level APIs perform parsing, length enforcement, and LX200 error replies.
+
+The host implementation must provide independent injectable RX buffers and readable TX buffers for each channel
+to verify that the reply channel matches the input channel.
+
+===============================================================================
+5. Nonvolatile-storage interface
+===============================================================================
+
+Physical interface: EEPROM, Flash-emulated EEPROM, or equivalent nonvolatile storage. It stores calibration transforms,
+site/parking configuration, PEC tables, and necessary recovery information.
+
+RE_api.txt mapping:
+  - os_hal_nvm_init()；
+  - os_hal_nvm_read(offset, data, length)；
+  - os_hal_nvm_write(offset, data, length)。
+
+Contract:
+  - NVM must at least meet the logical capacity requirements of OS_NVM_CALIBRATION_SIZE_BYTES and OS_NVM_CONFIG_SIZE_BYTES;
+    calibration and configuration regions must not overlap.
+  - The offset+length of read/write must remain within configured capacity; an out-of-range operation returns an error and must not partially
+    corrupt adjacent records.
+  - Write failures, checksum failures, or incomplete records recovered after power loss must be detectable; higher-level logic should fall back to safe
+    defaults rather than interpret random bytes as calibration or position data.
+  - The host adapter uses a zero-initialized memory image and supports test injection of read/write failures or corrupted records.
+
+===============================================================================
+6. Startup, loop, and fault-recovery order
+===============================================================================
+
+Platform interactions in os_init() must follow this safe sequence:
+   1. Read/validate configuration and NVM;
+   2. Initialize command channels;
+   3. Initialize axis 0/1 drivers and keep them safely stopped;
+   4. Initialize GPS, RTC, and limit inputs;
+   5. Initialize the motor timer;
+   6. Select valid GPS, or fall back to the RTC and preset site;
+   7. Enter os_loop_iteration() only after all mandatory devices are in safe states.
+
+os_loop_iteration() must poll communication, update time/location, advance higher-level motion decisions, and check
+limits and device faults. It should not busy-wait for GPS, RTC, serial input, NVM, or the buzzer.
+
+Fault-handling requirements:
+  - Limit trigger: stop the affected axis and reject further out-of-range motion;
+  - No GPS signal: continue with the RTC/preset site and report unlocked status;
+  - RTC failure: continue if GPS is valid; otherwise disable automatic tracking that depends on accurate time or report an error;
+  - Motor-driver fault: disable the affected axis, stop Goto/tracking, and preserve diagnostics;
+  - Watchdog reset: restore the most recent valid configuration/calibration from NVM; by default, do not automatically resume unconfirmed motion;
+  - Communication failure: preserve an existing safe motion state, but do not accept incomplete commands.
+
+===============================================================================
+7. Nonfunctional requirements and test constraints
+===============================================================================
+
+  - The normal target time from command reception to a response visible at the higher layer is less than 50 ms; adapters must not introduce unbounded blocking.
+  - Hardware timers handle motor-pulse timing; main-loop jitter must not directly change a stable tracking frequency.
+  - All peripherals must be scriptable in tests: valid/invalid GPS, RTC faults, limit triggers,
+    driver faults, NVM corruption, and byte streams on every channel.
+  - Generated code may depend only on abstractions declared in this file, RE_req.txt, and (under the Direct+API condition) RE_api.txt;
+    it must not assume particular pin numbers, a particular board, real networks, real astronomical equipment, or GPS positioning
+    with an unlimited waiting time.
+
+===============================================================================
+8. Source traceability (not part of runtime input)
+===============================================================================
+
+  - OnStep-SRS-v5.docx：IF-CMD、IF-MOT、IF-GPS、IF-RTC、IF-LIMIT；
+    Initialization, Goto, tracking, guiding, calibration, parking, and FDIR requirements.
+  - Official OnStep repository and Config.h: configurable hardware capabilities for multiple serial command channels, GPS/RTC time/location sources,
+    TMC drivers, limits, PPS, and ST4.

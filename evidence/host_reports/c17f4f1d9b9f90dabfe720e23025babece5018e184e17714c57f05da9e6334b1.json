@@ -1,0 +1,85 @@
+{
+  "candidate": {
+    "key": "7918177cf3fca1c371d7f43633d44d8adeee7d0fd47c82f18a1533d742d248c8",
+    "project": "onstep",
+    "header": "<WORKSPACE>\\fse\\official_baselines\\paired_repair_20260916\\code\\7918177cf3fca1c371d7f43633d44d8adeee7d0fd47c82f18a1533d742d248c8\\raw\\6_generated_code.h",
+    "source": "<WORKSPACE>\\fse\\official_baselines\\paired_repair_20260916\\code\\7918177cf3fca1c371d7f43633d44d8adeee7d0fd47c82f18a1533d742d248c8\\raw\\6_generated_code.c",
+    "header_sha256": "641b7bb4ce889b1245cc1ba4d6e474f4c10daaed8e15b3d46f0f5fd9318009e4",
+    "source_sha256": "4ea00a8bb8df298c35264e5492475183f5931c689b3ca53de6ba2b8fac8941df",
+    "labels": [],
+    "whole_project_sha256": "7918177cf3fca1c371d7f43633d44d8adeee7d0fd47c82f18a1533d742d248c8",
+    "all_file_sha256": {
+      "6_generated_code.h": "641b7bb4ce889b1245cc1ba4d6e474f4c10daaed8e15b3d46f0f5fd9318009e4",
+      "6_generated_code.c": "4ea00a8bb8df298c35264e5492475183f5931c689b3ca53de6ba2b8fac8941df"
+    }
+  },
+  "suite_sha256": "7b3ea083fc200084487ea77197bcd77fce7a340fbf147e2c3234652952a2a27f",
+  "complete": true,
+  "compile_returncode": 1,
+  "compile_timeout": false,
+  "source_changes": {
+    "header_include_alignment": [
+      "6_generated_code.h"
+    ],
+    "entrypoint_rename": "compile-time main=fse_candidate_main"
+  },
+  "cases": [
+    {
+      "id": "OS-B01",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-004",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "OS-B02",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-001 / runtime state reset",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "OS-B03",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-001 / runtime state reset",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "OS-B04",
+      "category": "persistent_storage",
+      "anchor": "5 / NVM",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "OS-B05",
+      "category": "input_propagation",
+      "anchor": "3.2 / RTC",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "OS-B06",
+      "category": "invalid_input_state",
+      "anchor": "REQ-FUNC-005",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    }
+  ],
+  "counts": {
+    "candidate_build_failed": 6
+  }
+}

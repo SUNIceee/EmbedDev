@@ -1,0 +1,73 @@
+DiscoBot Device Interface Contract
+Version: FSE v1.0, 2026-09-07
+Source: the Test-Compatible v3 contracts in this directory's RE_req.txt / RE_api.txt.
+This file consolidates the device boundaries of existing experiments; it is not an independently verified specification of physical wiring.
+
+1. Input boundaries and platform
+Target: STM32F407 Discovery with STM32 SPL; host verification uses C11.
+This document neither specifies full software function signatures nor supplies test-answer files. Direct-Raw receives only
+requirements and this device contract; Direct+API and structured conditions additionally receive RE_api.txt.
+When DISCOBOT_TARGET is undefined, do not depend on STM32/ARM-specific headers or instructions.
+The host model must retain observable device state. SPL configuration calls may be stubbed, but data reads,
+GPIO outputs, time progression, and UART transmission/reception must not become fixed constants or ineffective no-ops.
+
+2. Clocks and interrupts
+SystemCoreClock is 168000000 Hz; SysTick triggers every 1ms, with reload argument
+SystemCoreClock/1000. Tests explicitly advance host ticks; do not depend on wall-clock time or actual sleep.
+Each tick updates the millisecond counter and executes the button-debounce logic specified in the requirements.
+A failed SysTick configuration must retain its failure state. Host tests observe the error path through controlled termination or timeout;
+do not report failed initialization as successful or let the entire test process wait forever.
+
+3. Dual DC motors / L293D
+The left motor uses PA1/PA2; the right motor uses PA3/PA4.
+GPIO: push-pull output, pull-up, 25MHz; initialize all four pins low.
+Each output pair: 10=forward, 01=reverse, 00=stop. This experiment never emits 11.
+The existing design has no PWM; speed arguments do not change outputs. Do not add encoders or closed-loop speed control.
+In host mode, GPIOA_output[1..4] records actual outputs and must be synchronized on every direction write.
+These are experimental output constraints, not grounds for inferring actual braking or electrical-safety properties of the driver.
+
+4. Button and LEDs
+PA0 is an input; this experiment consistently uses high=pressed and low=released.
+This polarity comes from the existing debounce and software API contracts; do not use the opposite description
+'pull-up, connected to GND when pressed'. The target adapter configures physical external pull-ups/pull-downs; do not infer them here.
+Enter the pressed state only after 250 consecutive high 1ms ticks; low clears the counter and releases the button.
+GPIOA_IDR bit0 represents the button; injected button levels must not alter other bits.
+LEDs use PD12..PD15; indices 0..3 map to pin 12+index; high=on and low=off.
+Initialize outputs low; host GPIOD_output retains outputs; invalid indices must not cause out-of-bounds access.
+
+5. LIS3DSH accelerometer
+Use the requirements' SPI1 / TM-library device boundary, +/-2g range, and 50Hz filter configuration.
+The device supplies three signed raw milli-g values; domain-level readings are raw/1000.0 in g.
+The host permits independent injection of all three axes; do not replace inputs with zero or a fixed gravity vector.
+Separate the initialization result from device-data reads; do not add a sensor protocol absent from the requirements.
+
+6. ADC1 internal temperature
+Retain 12bit, independent, continuous conversion, Prescaler8, right alignment, temperature channel, and 144 cycles.
+Enable the temperature sensor/Vrefint and ADC. Read in order: start conversion, wait for EOC, read raw value.
+The host provides an injectable 12bit raw value; temperature conversion uses the requirements' floating-point formula.
+Not-ready must not masquerade as a successful new sample; controlled test steps or timeouts observe blocking paths.
+
+7. Hardware RNG
+Enable the AHB2 RNG clock and RNG; observe DRDY before reading 32bit data.
+Both 0 and UINT32_MAX are valid data; neither may substitute for a separate readiness flag.
+The host injects ready and value independently; identical injected inputs yield identical results.
+Retain the target's historical wait-without-timeout for DRDY; represent it on the host by controlled waiting/test timeout,
+not an indefinite hang or fabricated successful value.
+
+8. USART1 / XBee
+PB6=TX, PB7=RX; alternate-function push-pull, pull-up, 100MHz; default 9600 baud, 8N1, no flow control.
+Enable TX/RX and the RXNE interrupt; NVIC preempt/sub are both 0. Receive-buffer capacity is 200 as required.
+After the host injects DR and RXNE, use the same receive-interrupt logic; do not enqueue when RXNE is unset.
+Reject new bytes when full without overwriting unread data. Preserve FIFO reception order.
+Append sent characters in order to the host TX log, maintain its length, and prevent out-of-bounds writes.
+Retain the existing API's SR & 0x40 wait condition; do not substitute a different register-bit interpretation here.
+The host simulates status conditions; record target waiting without timeout separately from test-process timeout.
+Firmware receives bare command bytes with no framing, checksum, or ACK/NAK; do not add the GUI framing protocol.
+Distinguish an empty queue from valid 0x00 data using available-byte count, so an empty read cannot trigger movement.
+
+9. Initialization, host observability, and isolation
+RE_req.txt / RE_api.txt define startup order, command semantics, and the software API.
+The host must be able to observe GPIO, button input, tick, UART configuration and TX logs, and inject sensor data.
+Use a single-step host loop entry point; do not put an infinite main loop in the generated library implementation.
+Provide a C implementation with equivalent observable ARM-assembly semantics on the host; isolate target assembly with platform conditions.
+Device initialization must not erase unrelated device state. Put self-tests in separate files, outside the production implementation.

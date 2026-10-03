@@ -1,0 +1,1723 @@
+{
+  "identity": "discobot__deepseek-v4-pro__Direct_Raw__r01",
+  "project": "discobot",
+  "model": "deepseek-v4-pro",
+  "method": "Direct-LLM",
+  "repeat": 1,
+  "status": "complete_static_subset",
+  "candidate_files": [
+    {
+      "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+      "sha256": "5fcee5f70da1aba363665347c5c42b46ce6bc093f3a0329309a44d90883cbf54"
+    },
+    {
+      "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.h",
+      "sha256": "8829fae9e42ab5fc966e9c50b1732941b876bea0bc68fc056a8f3a3c21622840"
+    }
+  ],
+  "candidate_all_files_sha256_verified": true,
+  "checklist_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+  "candidate_inventory_sha256": "60721e6c11f3e5fb421b58209ce90367c3e66ea260a90a87b625c43d81a53d16",
+  "evaluator": "current Codex LLM static review",
+  "human_review_claimed": false,
+  "reviewed_at": "2026-10-02T06:14:02.995672+00:00",
+  "requirements": [
+    {
+      "id": "DB-R001",
+      "verdict": "fully_covered",
+      "reason": "Observable hostGPIO,tick,UARTstates implemented despite differingAPI names.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 12,
+          "line_end": 54,
+          "function": "globals"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 67,
+          "line_end": 93,
+          "function": "systick"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 474,
+          "line_end": 515,
+          "function": "UART"
+        }
+      ]
+    },
+    {
+      "id": "DB-R002",
+      "verdict": "fully_covered",
+      "reason": "168MHz/168000,tick++.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 59,
+          "line_end": 93,
+          "function": "clock/systick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R003",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R004",
+      "verdict": "partially_covered",
+      "reason": "Baud-rate handling and the receive-state/queue path exist, but PB6/PB7, 8N1, and NVIC 0/0 specified by R:24 lack complete configuration code or observable configuration state. Low-level configuration may be stubbed; the gap is that the required parameters are not expressed.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 474,
+          "line_end": 492,
+          "function": "UART"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 24,
+          "line_end": 24
+        },
+        {
+          "source": "device",
+          "line_start": 58,
+          "line_end": 64
+        }
+      ]
+    },
+    {
+      "id": "DB-R005",
+      "verdict": "partially_covered",
+      "reason": "PA1-4 have binary outputs and no PWM behavior, but the push-pull, pull-up, and 25 MHz parameters required by R:25 are not expressed. Actual physical pin driving is not required on the host.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 154,
+          "line_end": 204,
+          "function": "motors"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 25,
+          "line_end": 25
+        },
+        {
+          "source": "device",
+          "line_start": 21,
+          "line_end": 27
+        }
+      ]
+    },
+    {
+      "id": "DB-R006",
+      "verdict": "fully_covered",
+      "reason": "Host LED states for PD12-15 are stored and updated by index. D:35-36 permits observable arrays as hardware-effect equivalents; absence of physical BSRRL/BSRRH registers alone is not a defect.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 96,
+          "line_end": 114,
+          "function": "LED"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 26,
+          "line_end": 26
+        },
+        {
+          "source": "device",
+          "line_start": 35,
+          "line_end": 36
+        }
+      ]
+    },
+    {
+      "id": "DB-R007",
+      "verdict": "fully_covered",
+      "reason": "PA0highpress,lowrelease.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 81,
+          "line_end": 93,
+          "function": "handler"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 121,
+          "line_end": 126,
+          "function": "read_buttonc"
+        }
+      ]
+    },
+    {
+      "id": "DB-R008",
+      "verdict": "partially_covered",
+      "reason": "Accelerometer initialization and three-axis reading exist, but the LIS3DSH SPI1/2G/50Hz settings or TM initialization call required by R:28 are not expressed. Low-level configuration may be stubbed; the missing evidence concerns parameters or call paths, not physical hardware.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 252,
+          "line_end": 254,
+          "function": "init_accelerometers"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 28,
+          "line_end": 28
+        },
+        {
+          "source": "device",
+          "line_start": 38,
+          "line_end": 42
+        }
+      ]
+    },
+    {
+      "id": "DB-R009",
+      "verdict": "partially_covered",
+      "reason": "A raw-temperature input and conversion model exist, but the 12-bit, continuous, divide-by-8, and 144-cycle settings in R:29 are not fully expressed. Configuration stubs are permitted; read functions or comments do not substitute for these parameters.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 291,
+          "line_end": 317,
+          "function": "temperature"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 29,
+          "line_end": 29
+        },
+        {
+          "source": "device",
+          "line_start": 44,
+          "line_end": 48
+        }
+      ]
+    },
+    {
+      "id": "DB-R010",
+      "verdict": "partially_covered",
+      "reason": "Simulated ready/value injection and reading exist, but AHB2 clock enabling in R:30 has no call or observable configuration state. DRDY data flow is assessed under host semantics without requiring physical RNG registers.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 320,
+          "line_end": 336,
+          "function": "RNG"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 30,
+          "line_end": 30
+        },
+        {
+          "source": "device",
+          "line_start": 50,
+          "line_end": 55
+        }
+      ]
+    },
+    {
+      "id": "DB-R011",
+      "verdict": "fully_covered",
+      "reason": "Specifiedcallorder.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 593,
+          "line_end": 605,
+          "function": "init_system"
+        }
+      ]
+    },
+    {
+      "id": "DB-R012",
+      "verdict": "fully_covered",
+      "reason": "ExactbannerafterUART.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 602,
+          "line_end": 604,
+          "function": "init_system"
+        }
+      ]
+    },
+    {
+      "id": "DB-R013",
+      "verdict": "fully_covered",
+      "reason": "ClockUpdatebeforeclock/1000config.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 72,
+          "line_end": 79,
+          "function": "init_systick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R014",
+      "verdict": "fully_covered",
+      "reason": "Nonzero return setsfailureflagandpermanentloop.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 72,
+          "line_end": 79,
+          "function": "init_systick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R015",
+      "verdict": "partially_covered",
+      "reason": "Initialization preserves PA0-low/released semantics, but GPIOA clock enabling and input-mode configuration in R:44 have no call or state representation. Configuration calls may use empty stubs; the missing call path remains uncovered.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 117,
+          "line_end": 119,
+          "function": "init_button"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 44,
+          "line_end": 44
+        },
+        {
+          "source": "device",
+          "line_start": 30,
+          "line_end": 36
+        }
+      ]
+    },
+    {
+      "id": "DB-R016",
+      "verdict": "fully_covered",
+      "reason": "0/1/2values.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.h",
+          "line_start": 21,
+          "line_end": 25,
+          "function": "Directions"
+        }
+      ]
+    },
+    {
+      "id": "DB-R017",
+      "verdict": "fully_covered",
+      "reason": "10/01/00defaultstop.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 160,
+          "line_end": 181,
+          "function": "leftmotor"
+        }
+      ]
+    },
+    {
+      "id": "DB-R018",
+      "verdict": "fully_covered",
+      "reason": "10/01/00defaultstop.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 183,
+          "line_end": 204,
+          "function": "rightmotor"
+        }
+      ]
+    },
+    {
+      "id": "DB-R019",
+      "verdict": "fully_covered",
+      "reason": "Unusedspeedpreserved.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 160,
+          "line_end": 184,
+          "function": "motors"
+        }
+      ]
+    },
+    {
+      "id": "DB-R020",
+      "verdict": "fully_covered",
+      "reason": "1010.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 206,
+          "line_end": 209,
+          "function": "move_forward"
+        }
+      ]
+    },
+    {
+      "id": "DB-R021",
+      "verdict": "fully_covered",
+      "reason": "0101.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 211,
+          "line_end": 214,
+          "function": "move_backward"
+        }
+      ]
+    },
+    {
+      "id": "DB-R022",
+      "verdict": "fully_covered",
+      "reason": "0010.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 216,
+          "line_end": 219,
+          "function": "move_forward_soft_left"
+        }
+      ]
+    },
+    {
+      "id": "DB-R023",
+      "verdict": "fully_covered",
+      "reason": "1000.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 221,
+          "line_end": 224,
+          "function": "move_forward_soft_right"
+        }
+      ]
+    },
+    {
+      "id": "DB-R024",
+      "verdict": "fully_covered",
+      "reason": "0001.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 226,
+          "line_end": 229,
+          "function": "move_backward_soft_left"
+        }
+      ]
+    },
+    {
+      "id": "DB-R025",
+      "verdict": "fully_covered",
+      "reason": "0100.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 231,
+          "line_end": 234,
+          "function": "move_backward_soft_right"
+        }
+      ]
+    },
+    {
+      "id": "DB-R026",
+      "verdict": "fully_covered",
+      "reason": "1001.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 236,
+          "line_end": 239,
+          "function": "move_spin_right"
+        }
+      ]
+    },
+    {
+      "id": "DB-R027",
+      "verdict": "fully_covered",
+      "reason": "0110.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 241,
+          "line_end": 244,
+          "function": "move_spin_left"
+        }
+      ]
+    },
+    {
+      "id": "DB-R028",
+      "verdict": "fully_covered",
+      "reason": "0000.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 246,
+          "line_end": 249,
+          "function": "stop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R029",
+      "verdict": "partially_covered",
+      "reason": "The four observable host outputs are initialized low, but the clock and electrical configuration required by R:72-74 are not expressed. The gap is missing evidence of the specified settings or initialization path, not missing physical hardware.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 154,
+          "line_end": 158,
+          "function": "motorinit"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 72,
+          "line_end": 74
+        },
+        {
+          "source": "device",
+          "line_start": 21,
+          "line_end": 27
+        }
+      ]
+    },
+    {
+      "id": "DB-R030",
+      "verdict": "fully_covered",
+      "reason": "Finalstatesnever11;physicaltransientsunassessed.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 160,
+          "line_end": 204,
+          "function": "motors"
+        }
+      ]
+    },
+    {
+      "id": "DB-R031",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R032",
+      "verdict": "fully_covered",
+      "reason": "ExactnineIDs/functionorder.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.h",
+          "line_start": 18,
+          "line_end": 18,
+          "function": "MAXIDSIZE"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.h",
+          "line_start": 29,
+          "line_end": 39,
+          "function": "_ID"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 27,
+          "line_end": 37,
+          "function": "flookup"
+        }
+      ]
+    },
+    {
+      "id": "DB-R033",
+      "verdict": "fully_covered",
+      "reason": "Bare0-8immediatelycallslookup;noACK/frame,althoughdispatchsignaturediffers.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 574,
+          "line_end": 590,
+          "function": "dispatch/mainloop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R034",
+      "verdict": "partially_covered",
+      "reason": "Empty/invaliddoesnotactuate;requiredcallmeobservableisnotimplemented.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 521,
+          "line_end": 526,
+          "function": "readc"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 574,
+          "line_end": 582,
+          "function": "dispatch"
+        }
+      ]
+    },
+    {
+      "id": "DB-R035",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R036",
+      "verdict": "fully_covered",
+      "reason": "0..3bits;invalid-1.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 121,
+          "line_end": 126,
+          "function": "read_buttonc"
+        }
+      ]
+    },
+    {
+      "id": "DB-R037",
+      "verdict": "fully_covered",
+      "reason": "Ticksincrementand250highspress.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 81,
+          "line_end": 93,
+          "function": "SysTick_Handler"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.h",
+          "line_start": 14,
+          "line_end": 14,
+          "function": "debounce"
+        }
+      ]
+    },
+    {
+      "id": "DB-R038",
+      "verdict": "fully_covered",
+      "reason": "Lowcounter0/release.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 89,
+          "line_end": 92,
+          "function": "handler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R039",
+      "verdict": "fully_covered",
+      "reason": "Unchangedreturns;switchbreaksandhistoryupdate.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 128,
+          "line_end": 143,
+          "function": "checkbutton"
+        }
+      ]
+    },
+    {
+      "id": "DB-R040",
+      "verdict": "fully_covered",
+      "reason": "Correctrollatan2degrees.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 278,
+          "line_end": 288,
+          "function": "calc_pitch_roll"
+        }
+      ]
+    },
+    {
+      "id": "DB-R041",
+      "verdict": "fully_covered",
+      "reason": "Correctpitchatan2/sqrtdegrees.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 278,
+          "line_end": 288,
+          "function": "calc_pitch_roll"
+        }
+      ]
+    },
+    {
+      "id": "DB-R042",
+      "verdict": "partially_covered",
+      "reason": "Host outputs PD12-15 start low, but GPIOD clock enabling and push-pull configuration required by R:118-119 have no call or state representation. Low-level configuration stubs are allowed; configuration cannot be inferred from an initialization function's name.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 96,
+          "line_end": 100,
+          "function": "init_LED_pins"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 118,
+          "line_end": 119
+        },
+        {
+          "source": "device",
+          "line_start": 35,
+          "line_end": 36
+        }
+      ]
+    },
+    {
+      "id": "DB-R043",
+      "verdict": "fully_covered",
+      "reason": "A valid index sets GPIOD_output[12+i] to 1, which is the required host equivalent of setting the LED. A physical BSRRL write is not required on the host.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 102,
+          "line_end": 107,
+          "function": "LED_On"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 121,
+          "line_end": 121
+        },
+        {
+          "source": "device",
+          "line_start": 35,
+          "line_end": 36
+        }
+      ]
+    },
+    {
+      "id": "DB-R044",
+      "verdict": "fully_covered",
+      "reason": "A valid index clears GPIOD_output[12+i], preserving observable LED-off semantics. Absence of a physical BSRRH write is not a missing host-model behavior.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 109,
+          "line_end": 114,
+          "function": "LED_Off"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 122,
+          "line_end": 122
+        },
+        {
+          "source": "device",
+          "line_start": 35,
+          "line_end": 36
+        }
+      ]
+    },
+    {
+      "id": "DB-R045",
+      "verdict": "fully_covered",
+      "reason": "Invalidrangeexits.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 102,
+          "line_end": 114,
+          "function": "LED"
+        }
+      ]
+    },
+    {
+      "id": "DB-R046",
+      "verdict": "fully_covered",
+      "reason": "Strict>1000timer;UARTdispatchalwaysprocessed.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 584,
+          "line_end": 590,
+          "function": "main_loop_iteration"
+        }
+      ]
+    },
+    {
+      "id": "DB-R047",
+      "verdict": "partially_covered",
+      "reason": "Initialization returns success as 0, but no actual call evidence supports the TM initialization and 2G/50Hz parameters specified by R:134-135. These cannot be inferred from a function name or success constant. The low-level host implementation of the call may be an empty stub.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 252,
+          "line_end": 254,
+          "function": "init_accelerometers"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 134,
+          "line_end": 135
+        },
+        {
+          "source": "device",
+          "line_start": 38,
+          "line_end": 42
+        }
+      ]
+    },
+    {
+      "id": "DB-R048",
+      "verdict": "fully_covered",
+      "reason": "Original R:137 explicitly specifies float *acc[3]. The implementation dereferences each axis and divides by 1000 in floating point, meeting that obligation. Direct receives only R+D; the unsupplied A contract's contiguous float[3] signature cannot impose an extra penalty.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 256,
+          "line_end": 270,
+          "function": "read_accelerometers"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 137,
+          "line_end": 139
+        },
+        {
+          "source": "requirement",
+          "line_start": 289,
+          "line_end": 289
+        },
+        {
+          "source": "device",
+          "line_start": 38,
+          "line_end": 42
+        }
+      ]
+    },
+    {
+      "id": "DB-R049",
+      "verdict": "partially_covered",
+      "reason": "A temperature-initialization entry exists, but ADC mode, division, internal channel, and the 144-cycle parameter in R:145-147 are not fully encoded. Permission to stub configuration in D does not permit assuming unspecified parameters.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 291,
+          "line_end": 294,
+          "function": "init_temperature_sensor"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 145,
+          "line_end": 148
+        },
+        {
+          "source": "device",
+          "line_start": 44,
+          "line_end": 48
+        }
+      ]
+    },
+    {
+      "id": "DB-R050",
+      "verdict": "partially_covered",
+      "reason": "ForcesEOCreadythenpolls;noactualstart/completionprotocol.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 301,
+          "line_end": 317,
+          "function": "read_temperature_sensor"
+        }
+      ]
+    },
+    {
+      "id": "DB-R051",
+      "verdict": "fully_covered",
+      "reason": "Correctfloat4095/3.3/.760/.0025/+25.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 309,
+          "line_end": 314,
+          "function": "temperatureformula"
+        }
+      ]
+    },
+    {
+      "id": "DB-R052",
+      "verdict": "partially_covered",
+      "reason": "An RNG-initialization entry exists, but the R:160-161 sequence of enabling AHB2 before enabling RNG is not expressed. Empty low-level configuration stubs are acceptable; the two missing calls cannot be assumed.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 320,
+          "line_end": 323,
+          "function": "init_rng"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 160,
+          "line_end": 161
+        },
+        {
+          "source": "device",
+          "line_start": 50,
+          "line_end": 55
+        }
+      ]
+    },
+    {
+      "id": "DB-R053",
+      "verdict": "partially_covered",
+      "reason": "Reading waits for simulated ready and then obtains a separate value, preserving the target's no-timeout semantics. However, ready=false also causes infinite spinning on the host, with no controlled error exit, violating the host no-deadlock boundary in R:291/D:54-55. Physical DRDY registers are unnecessary to implement that distinction.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 330,
+          "line_end": 336,
+          "function": "get_random_number"
+        }
+      ]
+    },
+    {
+      "id": "DB-R054",
+      "verdict": "fully_covered",
+      "reason": "Readyuint32valueincluding0/FFFFFFFF.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 325,
+          "line_end": 336,
+          "function": "RNG"
+        }
+      ]
+    },
+    {
+      "id": "DB-R055",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R056",
+      "verdict": "fully_covered",
+      "reason": "FirstNULLof25,interval×1000,counterszero.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 533,
+          "line_end": 547,
+          "function": "add_timed_task"
+        }
+      ]
+    },
+    {
+      "id": "DB-R057",
+      "verdict": "fully_covered",
+      "reason": "Fulltableunchanged.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 538,
+          "line_end": 547,
+          "function": "add_timed_task"
+        }
+      ]
+    },
+    {
+      "id": "DB-R058",
+      "verdict": "fully_covered",
+      "reason": "Orderednonnullscan,all duefunctions,time/countupdated.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 549,
+          "line_end": 563,
+          "function": "execute_tasks"
+        }
+      ]
+    },
+    {
+      "id": "DB-R059",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R060",
+      "verdict": "fully_covered",
+      "reason": "Nonemptyindex/countprinted.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 565,
+          "line_end": 571,
+          "function": "printtimes"
+        }
+      ]
+    },
+    {
+      "id": "DB-R061",
+      "verdict": "fully_covered",
+      "reason": "NULLskip,noRemove/priority/preemption.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 533,
+          "line_end": 571,
+          "function": "scheduler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R062",
+      "verdict": "fully_covered",
+      "reason": "Warnszerobaudandfallsback9600.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 474,
+          "line_end": 483,
+          "function": "init_usart1"
+        }
+      ]
+    },
+    {
+      "id": "DB-R063",
+      "verdict": "partially_covered",
+      "reason": "UART initialization and receive state exist, but the PB6/PB7 alternate function, 100 MHz, push-pull/pull-up, 8N1, bidirectional/no-flow-control, and NVIC parameters in R:193-196 are not fully expressed. The stubs need not access physical peripherals.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 474,
+          "line_end": 483,
+          "function": "init_usart1"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 193,
+          "line_end": 196
+        },
+        {
+          "source": "device",
+          "line_start": 58,
+          "line_end": 64
+        }
+      ]
+    },
+    {
+      "id": "DB-R064",
+      "verdict": "fully_covered",
+      "reason": "Allocates200queue andsetsobservableenabledflag.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 474,
+          "line_end": 483,
+          "function": "init_usart1"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.h",
+          "line_start": 16,
+          "line_end": 16,
+          "function": "buffersize"
+        }
+      ]
+    },
+    {
+      "id": "DB-R065",
+      "verdict": "fully_covered",
+      "reason": "RXNEguard,DRqueue,fullsafedrop.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 485,
+          "line_end": 492,
+          "function": "USART1_IRQHandler"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 393,
+          "line_end": 404,
+          "function": "buf_putbyte"
+        }
+      ]
+    },
+    {
+      "id": "DB-R066",
+      "verdict": "partially_covered",
+      "reason": "Characters are appended in order to the host TX log, but the per-byte readiness wait required by R:202-204 and D:63-64 is not simulated. The gap is the state condition, not absence of physical USART_SendData.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 500,
+          "line_end": 515,
+          "function": "usart1_send"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 202,
+          "line_end": 204
+        },
+        {
+          "source": "device",
+          "line_start": 62,
+          "line_end": 64
+        }
+      ]
+    },
+    {
+      "id": "DB-R067",
+      "verdict": "fully_covered",
+      "reason": "Queue readreturns0empty.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 517,
+          "line_end": 519,
+          "function": "usart1_read"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 406,
+          "line_end": 417,
+          "function": "buf_getbyte"
+        }
+      ]
+    },
+    {
+      "id": "DB-R068",
+      "verdict": "fully_covered",
+      "reason": "Data is converted through char, so 0xFF is -1 under the task's signed-char convention. The empty-read -1/0 ambiguity is already assigned to unresolved R035 and should not be penalized again here.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 521,
+          "line_end": 526,
+          "function": "usart1_readc"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 209,
+          "line_end": 210
+        },
+        {
+          "source": "requirement",
+          "line_start": 270,
+          "line_end": 270
+        },
+        {
+          "source": "device",
+          "line_start": 65,
+          "line_end": 66
+        }
+      ]
+    },
+    {
+      "id": "DB-R069",
+      "verdict": "fully_covered",
+      "reason": "Counterdifference.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 528,
+          "line_end": 530,
+          "function": "available"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 419,
+          "line_end": 424,
+          "function": "buf_available"
+        }
+      ]
+    },
+    {
+      "id": "DB-R070",
+      "verdict": "fully_covered",
+      "reason": "Allrequiredfields.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.h",
+          "line_start": 46,
+          "line_end": 51,
+          "function": "CircArray"
+        }
+      ]
+    },
+    {
+      "id": "DB-R071",
+      "verdict": "fully_covered",
+      "reason": "Validcalloczero,fields,counters;enabledwarning/skip.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 339,
+          "line_end": 371,
+          "function": "initCircArray"
+        }
+      ]
+    },
+    {
+      "id": "DB-R072",
+      "verdict": "fully_covered",
+      "reason": "Moduloenqueue,n_w++,1/full0.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 393,
+          "line_end": 404,
+          "function": "buf_putbyte"
+        }
+      ]
+    },
+    {
+      "id": "DB-R073",
+      "verdict": "fully_covered",
+      "reason": "Modulodequeue,n_r++,empty0.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 406,
+          "line_end": 417,
+          "function": "buf_getbyte"
+        }
+      ]
+    },
+    {
+      "id": "DB-R074",
+      "verdict": "fully_covered",
+      "reason": "Counterequality.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 373,
+          "line_end": 378,
+          "function": "buf_empty"
+        }
+      ]
+    },
+    {
+      "id": "DB-R075",
+      "verdict": "fully_covered",
+      "reason": "Validqueue !emptyandmoduloequality.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 380,
+          "line_end": 391,
+          "function": "buf_full"
+        }
+      ]
+    },
+    {
+      "id": "DB-R076",
+      "verdict": "fully_covered",
+      "reason": "n_w-n_r.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 419,
+          "line_end": 424,
+          "function": "buf_available"
+        }
+      ]
+    },
+    {
+      "id": "DB-R077",
+      "verdict": "partially_covered",
+      "reason": "Positiverealloccorrect;nonpositivebypassesreallocanddeletesqueue/counters,changingrequiredresizecontract.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 426,
+          "line_end": 449,
+          "function": "buf_resize"
+        }
+      ]
+    },
+    {
+      "id": "DB-R078",
+      "verdict": "fully_covered",
+      "reason": "NULLfalse;clear/free/resetfields.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 451,
+          "line_end": 464,
+          "function": "buf_delete"
+        }
+      ]
+    },
+    {
+      "id": "DB-R079",
+      "verdict": "fully_covered",
+      "reason": "Contentonlyzeroed.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 466,
+          "line_end": 471,
+          "function": "buf_clear"
+        }
+      ]
+    },
+    {
+      "id": "DB-R080",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R081",
+      "verdict": "fully_covered",
+      "reason": "uint32addwrap.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 608,
+          "line_end": 611,
+          "function": "func2"
+        }
+      ]
+    },
+    {
+      "id": "DB-R082",
+      "verdict": "fully_covered",
+      "reason": "func1 passes the same argument to func2 and returns its result. D:72 explicitly allows an equivalent host C implementation; downgrading it for not delivering ARM LR instructions exceeds this task's scope.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 613,
+          "line_end": 615,
+          "function": "func1"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 253,
+          "line_end": 255
+        },
+        {
+          "source": "device",
+          "line_start": 71,
+          "line_end": 72
+        }
+      ]
+    },
+    {
+      "id": "DB-R083",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R084",
+      "verdict": "fully_covered",
+      "reason": "Requiredconstants,noframing.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.h",
+          "line_start": 11,
+          "line_end": 19,
+          "function": "constants"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 574,
+          "line_end": 582,
+          "function": "dispatch"
+        }
+      ]
+    },
+    {
+      "id": "DB-R085",
+      "verdict": "fully_covered",
+      "reason": "Arrayrequiredpinsbinary;GPIOA length5stillcovers1..4.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 154,
+          "line_end": 204,
+          "function": "motors"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 96,
+          "line_end": 114,
+          "function": "LED"
+        }
+      ]
+    },
+    {
+      "id": "DB-R086",
+      "verdict": "fully_covered",
+      "reason": "Onlybit0modified.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 145,
+          "line_end": 151,
+          "function": "buttoninjection"
+        }
+      ]
+    },
+    {
+      "id": "DB-R087",
+      "verdict": "fully_covered",
+      "reason": "Injection stores three milli-g values, and reading uses that same storage with per-axis division by 1000. R's float *acc[3] matches the implementation; the unsupplied A signature cannot be treated as a missing data path.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 256,
+          "line_end": 276,
+          "function": "accelerometer"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 289,
+          "line_end": 289
+        },
+        {
+          "source": "device",
+          "line_start": 38,
+          "line_end": 42
+        }
+      ]
+    },
+    {
+      "id": "DB-R088",
+      "verdict": "fully_covered",
+      "reason": "Injectedrawusesnormalformula.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 296,
+          "line_end": 317,
+          "function": "temperature"
+        }
+      ]
+    },
+    {
+      "id": "DB-R089",
+      "verdict": "partially_covered",
+      "reason": "Ready/valueinjected;readyfalsehangs.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 325,
+          "line_end": 336,
+          "function": "RNG"
+        }
+      ]
+    },
+    {
+      "id": "DB-R090",
+      "verdict": "fully_covered",
+      "reason": "Injection writes DR and RXNE state, then invokes the same USART1_IRQHandler. The ISR enqueues only when RXNE is set. R:292/D:60 does not require an additional false argument; an unsupplied A signature must not create an artificial gap.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 494,
+          "line_end": 498,
+          "function": "RXinjection"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 485,
+          "line_end": 492,
+          "function": "ISR"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 292,
+          "line_end": 292
+        },
+        {
+          "source": "device",
+          "line_start": 60,
+          "line_end": 64
+        }
+      ]
+    },
+    {
+      "id": "DB-R091",
+      "verdict": "fully_covered",
+      "reason": "Boundedcharappend,length/terminatorupdated.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 500,
+          "line_end": 515,
+          "function": "usart1_send"
+        }
+      ]
+    },
+    {
+      "id": "DB-R092",
+      "verdict": "fully_covered",
+      "reason": "Productionstep,nostandalonemain/selftests.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 584,
+          "line_end": 590,
+          "function": "main_loop_iteration"
+        }
+      ]
+    },
+    {
+      "id": "DB-R093",
+      "verdict": "fully_covered",
+      "reason": "AllallocationsCircArray;publicmsgcanbepassedtodelete,includingUARTbuffer.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 25,
+          "line_end": 25,
+          "function": "globalmsg"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.h",
+          "line_start": 73,
+          "line_end": 73,
+          "function": "externmsg"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 451,
+          "line_end": 464,
+          "function": "buf_delete"
+        }
+      ]
+    },
+    {
+      "id": "DB-R094",
+      "verdict": "fully_covered",
+      "reason": "NULLpointers,invalidindicesandfullbufferreturnsafelyunderdeclaredAPI.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 102,
+          "line_end": 126,
+          "function": "guards"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 256,
+          "line_end": 288,
+          "function": "sensorguards"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 393,
+          "line_end": 471,
+          "function": "CircArray"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 500,
+          "line_end": 515,
+          "function": "send"
+        }
+      ]
+    },
+    {
+      "id": "DB-R095",
+      "verdict": "fully_covered",
+      "reason": "NoUARTframes/Remove/priorities/PWM;speedunused.",
+      "evidence": [
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 574,
+          "line_end": 590,
+          "function": "dispatch"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 533,
+          "line_end": 571,
+          "function": "scheduler"
+        },
+        {
+          "path": "fse\\artifacts\\testset_evaluation\\repaired_three_projects_20260907\\code\\3c4d899c853e3e8b8ac1bc3d\\generated_code.c",
+          "line_start": 160,
+          "line_end": 204,
+          "function": "motors"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "fully_covered": 70,
+    "unassessed": 7,
+    "partially_covered": 18
+  },
+  "denominator": 88,
+  "rate": 79.54545454545455,
+  "metric": "coverage of 88 statically reviewable requirement leaves; 7 preclassified leaves unassessed",
+  "all_project_requirements_assessed": false,
+  "code_modified": false,
+  "model_api_calls": 0,
+  "host_or_compiler_executed": false,
+  "prior_static_scores_used": false,
+  "note": "Complete615-line C/164-line header read and SHA verified. Direct-LLM received no shared API; semantic coverage assessed without requiring a build, but genuine data-layout/observability gaps retained.",
+  "input_context": {
+    "requirement": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\discobot\\RE_req.txt",
+      "sha256": "0386b7323a917035fc1fcd21cafdd99aea562904d531126be06411af828c83bb",
+      "provided_to_generator": true
+    },
+    "device": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\discobot\\RE_device_interface.txt",
+      "sha256": "82e98267f500f08b2e54256b621795ae05b0884b56498f1bac2000cdc63366e0",
+      "provided_to_generator": true
+    },
+    "api": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\discobot\\RE_api.txt",
+      "sha256": "9ef8f2d20200c0f43ee8752e08d60a6a07243eabc1e2f8438d3f9e347ab7cee0",
+      "provided_to_generator": false,
+      "role": "reviewer reference only; not supplied to Direct-LLM; no hidden API signature penalty"
+    },
+    "original_generation_prompt": {
+      "path": "fse\\artifacts\\direct_baseline\\discobot\\repeat_01\\discobot\\20260907_094813_dcb521df\\deepseek-v4-pro\\prompt.txt",
+      "sha256": "a0a8b4797fc60dcbf2aa6f8bbf30cf44059f5e8abc3912cb23420ce21eb217d8"
+    }
+  },
+  "scope_review_complete": true,
+  "scope_reviewed_at": "2026-10-02T06:27:01.084450+00:00",
+  "scope_review_policy": "R+D host-equivalent task contract; supplied A constrains shared-API methods; configuration stubs allowed, missing required values/paths not invented; Direct not penalized by unsupplied A; no candidate changes",
+  "scope_review_notes": [
+    "R:1–16 and D:7–12 define project-level host-equivalent scope, not reconstruction of real upstream firmware.",
+    "D:11–12/A:273–276 allow configuration stubs; this does not waive R-specified configuration values/order.",
+    "D:72 allows transparent C semantics for host assembly functionality.",
+    "R:299 allocation-release obligation remains applicable regardless of hardware stub permissions.",
+    "Original standalone serializers record preliminary decisions; active JSON after this scope reconciliation is authoritative."
+  ],
+  "review_lineage": {
+    "previous_review": "fse\\requirement_coverage_review_20261002\\reviews\\deepseek\\discobot\\history\\pre_scope_reconciliation\\discobot__deepseek-v4-pro__Direct_Raw__r01.json",
+    "previous_review_sha256": "9116209ca08d99851e03af5f7e4ba66448f8754b5576dc5685a6f00cde67f82d",
+    "reason": "Correct task scope interpretation consistently after reading R+D+A; preserve actual functional failures; not score selection."
+  },
+  "final_semantic_consistency_complete": true,
+  "final_semantic_consistency_at": "2026-10-02T06:29:07.451577+00:00",
+  "semantic_consistency_lineage": {
+    "previous_review": "fse\\requirement_coverage_review_20261002\\reviews\\deepseek\\discobot\\history\\pre_final_semantic_consistency\\discobot__deepseek-v4-pro__Direct_Raw__r01.json",
+    "previous_review_sha256": "fc1251670be3b6a2628a3d4ef960c061a6954f052b494aab6a4cbde78b4c07ef",
+    "changes": [
+      {
+        "id": "DB-R090",
+        "old_verdict": "partially_covered",
+        "new_verdict": "fully_covered",
+        "old_reason": "InjectscorrectDR/sameISRbutAPIcannotinjectrxnefalse(alwayssets1).",
+        "new_reason": "Injection writes DR and RXNE state, then invokes the same USART1_IRQHandler. The ISR enqueues only when RXNE is set. R:292/D:60 does not require an additional false argument; an unsupplied A signature must not create an artificial gap."
+      },
+      {
+        "id": "DB-R053",
+        "old_verdict": "partially_covered",
+        "new_verdict": "partially_covered",
+        "old_reason": "Pollsinjectedreadybutcanhanghostindefinitely;norealDRDYpath.",
+        "new_reason": "Reading waits for simulated ready and then obtains a separate value, preserving the target's no-timeout semantics. However, ready=false also causes infinite spinning on the host, with no controlled error exit, violating the host no-deadlock boundary in R:291/D:54-55. Physical DRDY registers are unnecessary to implement that distinction."
+      }
+    ]
+  },
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/reviews/deepseek/discobot/discobot__deepseek-v4-pro__Direct_Raw__r01.json",
+    "original_sha256": "c2a1c4c3a4fcc178a6232e386e2c97d573a193c0071a19daedecb5ae738665c4",
+    "language": "Original Chinese evidence/rationales retained; no semantic translation.",
+    "initial_review_status": {
+      "evaluator": "current Codex LLM static review",
+      "human_review_claimed": false
+    },
+    "preservation": "Initial verdicts, reasons, historical rates and human-review flags retained. Path anonymization and export metadata do not constitute a new review.",
+    "current_aggregation": "(fully_covered + partially_covered) / preclassified static denominator; no fractional weighting of partial items.",
+    "checklist_export": {
+      "path": "data/rq1/requirement_coverage/checklists/discobot.json",
+      "sha256": "e731137141a0fc3c4d67258ff76e0fa635fbea1d88801da73c3edee10d1c66c6",
+      "original_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+      "leaf_count": 95,
+      "static_denominator": 88,
+      "source_requirement": {
+        "path": "data/rq1/requirement_coverage/source_requirements/discobot_RE_req.txt",
+        "sha256": "06306779a3ef8033f15aab14cc1701a809e8129513e2d5b77ea4ae7491cb91c9"
+      }
+    },
+    "candidate_bindings": [
+      {
+        "source": "fse/artifacts/testset_evaluation/repaired_three_projects_20260907/code/3c4d899c853e3e8b8ac1bc3d/generated_code.c",
+        "original_sha256": "5fcee5f70da1aba363665347c5c42b46ce6bc093f3a0329309a44d90883cbf54",
+        "kind": "candidate_source",
+        "original_name": "generated_code.c",
+        "path": "evidence/candidate_sources/5fcee5f70da1aba363665347c5c42b46ce6bc093f3a0329309a44d90883cbf54/generated_code.c",
+        "distributed_sha256": "5fcee5f70da1aba363665347c5c42b46ce6bc093f3a0329309a44d90883cbf54",
+        "transformation": "none"
+      },
+      {
+        "source": "fse/artifacts/testset_evaluation/repaired_three_projects_20260907/code/3c4d899c853e3e8b8ac1bc3d/generated_code.h",
+        "original_sha256": "8829fae9e42ab5fc966e9c50b1732941b876bea0bc68fc056a8f3a3c21622840",
+        "kind": "candidate_source",
+        "original_name": "generated_code.h",
+        "path": "evidence/candidate_sources/8829fae9e42ab5fc966e9c50b1732941b876bea0bc68fc056a8f3a3c21622840/generated_code.h",
+        "distributed_sha256": "8829fae9e42ab5fc966e9c50b1732941b876bea0bc68fc056a8f3a3c21622840",
+        "transformation": "none"
+      }
+    ],
+    "evidence_line_numbers": "Original candidate lines; transformed candidate comments, where used, retain separately recorded original and distributed hashes."
+  }
+}

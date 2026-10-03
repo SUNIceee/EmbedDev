@@ -1,0 +1,88 @@
+{
+  "candidate": {
+    "key": "549bac69fad39ec5db28e762c1fb93fe8394b2c40fbb0bbb1da993fd1e402544",
+    "project": "onstep",
+    "header": "<WORKSPACE>\\fse\\official_baselines\\reassessment_host_20260921\\code\\549bac69fad39ec5db28e762c1fb93fe8394b2c40fbb0bbb1da993fd1e402544\\raw\\6_generated_code.h",
+    "source": "<WORKSPACE>\\fse\\official_baselines\\reassessment_host_20260921\\code\\549bac69fad39ec5db28e762c1fb93fe8394b2c40fbb0bbb1da993fd1e402544\\raw\\onstep_align.c",
+    "header_sha256": "1d25eebe4476662d475a44c342d39017629e20dbcd4dc3283b3cf42633ea2950",
+    "source_sha256": "dd8426cc07a900ffe6bd6b531acde640781a05e93c70d783d01afcc806deca07",
+    "labels": [],
+    "whole_project_sha256": "549bac69fad39ec5db28e762c1fb93fe8394b2c40fbb0bbb1da993fd1e402544",
+    "all_file_sha256": {
+      "6_generated_code.h": "1d25eebe4476662d475a44c342d39017629e20dbcd4dc3283b3cf42633ea2950",
+      "onstep_internal.h": "b7fb32c815532b3844ae5de8d3c9f35d372a10313c9cbd89c17a4b605c2c40f0",
+      "onstep_hal_stub.c": "ca24769283c378f4422d03f41dcd9fc29c639242bb034a217bfb88aaca8021e0",
+      "onstep_align.c": "dd8426cc07a900ffe6bd6b531acde640781a05e93c70d783d01afcc806deca07",
+      "onstep_motion.c": "5e0dd74cc150a1cfe98272eae6a4a0a7294d409e4bb42f8dd6c4e68982c812fd",
+      "onstep_cmd.c": "4fff0434111c00eeb932ec5683299d9338d878d7c3797894033d47ec62a1228a",
+      "onstep_core.c": "5702a4e75f2b0c3f4e057e2aadaa52a5afabf92dac6e974692a89b744f4799a7"
+    }
+  },
+  "suite_sha256": "7b3ea083fc200084487ea77197bcd77fce7a340fbf147e2c3234652952a2a27f",
+  "complete": true,
+  "compile_returncode": 1,
+  "compile_timeout": false,
+  "source_changes": {
+    "header_include_alignment": [],
+    "entrypoint_rename": "compile-time main=fse_candidate_main"
+  },
+  "cases": [
+    {
+      "id": "OS-B01",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-004",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "OS-B02",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-001 / runtime state reset",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "OS-B03",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-001 / runtime state reset",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "OS-B04",
+      "category": "persistent_storage",
+      "anchor": "5 / NVM",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "OS-B05",
+      "category": "input_propagation",
+      "anchor": "3.2 / RTC",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "OS-B06",
+      "category": "invalid_input_state",
+      "anchor": "REQ-FUNC-005",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    }
+  ],
+  "counts": {
+    "candidate_build_failed": 6
+  }
+}

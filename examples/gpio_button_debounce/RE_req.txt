@@ -1,0 +1,13 @@
+GPIO Debounced Button and LED — self-authored small embedded task
+
+Scope: one active-high logical button toggles one LED only after a stable debounced press. This is a newly authored task, not a new open-source project. Implement the fixed C11 API. Do not provide a main function or implement platform callbacks.
+
+GB-R01 Initialization: button_led_init(now_ms) establishes LED off, accepted/debounced button released, candidate input released, and candidate start timestamp now_ms. It calls board_led_write(false) exactly once and does not read the button. Reinitialization resets all these values regardless of previous state.
+GB-R02 Before initialization, button_led_poll returns without platform reads or writes. Both query functions return false.
+GB-R03 Nonblocking sampling: every poll after initialization calls board_button_read() exactly once and returns without waiting, sleeping, or making repeated samples. The caller controls the polling times.
+GB-R04 Candidate tracking: if the sample differs from the previous candidate value, store the new candidate and current now_ms as its start time. A single differing sample never changes the accepted button state.
+GB-R05 Debounce threshold: a candidate that differs from the accepted state is accepted only on a subsequent poll observing the same value with unsigned elapsed time at least BUTTON_DEBOUNCE_MS = 20. Each candidate change restarts this interval. No acceptance occurs at elapsed 19 ms; acceptance occurs at elapsed 20 ms.
+GB-R06 Press action: when the accepted state changes from released to pressed, negate the current LED state and call board_led_write once with the new LED state.
+GB-R07 Hold and release: continued pressed samples cause no additional LED writes. A release is accepted using the same 20 ms rule; accepting a release does not change or write the LED. Only a later separately accepted press toggles again.
+GB-R08 Queries: button_led_is_on() and button_led_is_pressed() report the stored LED and accepted button states, respectively, without sampling, writing, or changing any state.
+GB-R09 Timer rollover: compute elapsed time as (uint32_t)(now_ms - candidate_start_ms), so a candidate interval crossing UINT32_MAX is handled identically to any other interval. Calls are in chronological order modulo uint32_t and successive elapsed intervals are less than 2^31 ms. Sparse polling accepts at the first qualifying observed poll, not at an unobserved instant.

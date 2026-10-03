@@ -1,0 +1,32 @@
+| Task | Method | Mean (%) | Population SD (pp) | n |
+|---|---|---:|---:|---:|
+| gpio_output | Direct-LLM | 100.00 | 0.00 | 3 |
+| gpio_output | MetaGPT | 100.00 | 0.00 | 3 |
+| gpio_output | ChatDev | 100.00 | 0.00 | 3 |
+| gpio_output | StructGen | 100.00 | 0.00 | 3 |
+| gpio_output | EmbedDev | 100.00 | 0.00 | 3 |
+| gpio_button_debounce | Direct-LLM | 100.00 | 0.00 | 3 |
+| gpio_button_debounce | MetaGPT | 100.00 | 0.00 | 3 |
+| gpio_button_debounce | ChatDev | 100.00 | 0.00 | 3 |
+| gpio_button_debounce | StructGen | 100.00 | 0.00 | 3 |
+| gpio_button_debounce | EmbedDev | 100.00 | 0.00 | 3 |
+| balance_control | Direct-LLM | 100.00 | 0.00 | 3 |
+| balance_control | MetaGPT | 61.90 | 29.35 | 3 |
+| balance_control | ChatDev | 100.00 | 0.00 | 3 |
+| balance_control | StructGen | 100.00 | 0.00 | 3 |
+| balance_control | EmbedDev | 100.00 | 0.00 | 3 |
+| discobot | Direct-LLM | 82.26 | 1.32 | 3 |
+| discobot | MetaGPT | 13.44 | 9.86 | 3 |
+| discobot | ChatDev | 90.32 | 5.85 | 3 |
+| discobot | StructGen | 86.56 | 0.76 | 3 |
+| discobot | EmbedDev | 95.70 | 4.38 | 3 |
+| onstep | Direct-LLM | 43.70 | 2.62 | 3 |
+| onstep | MetaGPT | 0.00 | 0.00 | 3 |
+| onstep | ChatDev | 78.89 | 0.91 | 3 |
+| onstep | StructGen | 65.56 | 3.14 | 3 |
+| onstep | EmbedDev | 82.96 | 1.39 | 3 |
+| crazyflie | Direct-LLM | 21.67 | 15.33 | 3 |
+| crazyflie | MetaGPT | 0.00 | 0.00 | 3 |
+| crazyflie | ChatDev | 57.28 | 8.54 | 3 |
+| crazyflie | StructGen | 38.33 | 3.86 | 3 |
+| crazyflie | EmbedDev | 68.22 | 5.28 | 3 |

@@ -1,0 +1,68 @@
+{
+  "metric": "Static requirement/testcase support",
+  "formula": "P / (P + F + U); N/A is excluded",
+  "aggregation": "Equal-weight mean of three planned positions within each task and method. Retained no-code positions contribute zero unless an explicitly recorded author-reported replacement score is used.",
+  "standard_deviation": "Population standard deviation across the three position scores, divisor 3. Retained as a descriptive table field; not plotted or interpreted as a confidence interval.",
+  "tasks": [
+    {
+      "id": "gpio_output",
+      "label": "GPIO output",
+      "review_protocol": "whole_numbered_requirements",
+      "original_review_item_count": 8
+    },
+    {
+      "id": "gpio_button_debounce",
+      "label": "Button debounce",
+      "review_protocol": "whole_numbered_requirements",
+      "original_review_item_count": 9
+    },
+    {
+      "id": "balance_control",
+      "label": "Balance control",
+      "review_protocol": "whole_numbered_requirements",
+      "original_review_item_count": 14
+    },
+    {
+      "id": "discobot",
+      "label": "DiscoBot",
+      "review_protocol": "original_project_testcases",
+      "original_review_item_count": 124
+    },
+    {
+      "id": "onstep",
+      "label": "OnStep",
+      "review_protocol": "original_project_testcases",
+      "original_review_item_count": 90
+    },
+    {
+      "id": "crazyflie",
+      "label": "Crazyflie",
+      "review_protocol": "original_project_testcases",
+      "original_review_item_count": 100
+    }
+  ],
+  "method_order": [
+    "Direct-LLM",
+    "MetaGPT",
+    "ChatDev",
+    "StructGen",
+    "EmbedDev"
+  ],
+  "model": "deepseek-v4-pro",
+  "input_difference": "Direct-LLM did not receive the supplied application API. The other methods did.",
+  "interpretation": "New tasks use whole numbered requirements; legacy tasks use original testcase reviews. Compare methods within a task. Do not pool denominators or interpret the six tasks as an equally spaced scale. Static support is not executable testcase success or hardware correctness.",
+  "author_reported_value": "The third GPIO output / EmbedDev score is 100 percent from a direct author statement. Its candidate and review were not provided in the local evidence. The retained local result is not overwritten.",
+  "review_judgments_regenerated": false,
+  "current_replacement": "Crazyflie / ChatDev / DeepSeek r02 uses the selected unchanged rerun artifact and its fixed 46/100 static review. Host remains compilation-failing. Human review was attested by the author; the offline scripts do not independently witness it.",
+  "plot": {
+    "type": "line_means_only",
+    "tasks": 6,
+    "series": 5,
+    "points": 30,
+    "error_bars": 0,
+    "confidence_bands": 0,
+    "footer": false,
+    "EmbedDev_color": "#D62728"
+  },
+  "excluded_from_current_display": "Motor tracking remains preserved in the historical export and source archive."
+}

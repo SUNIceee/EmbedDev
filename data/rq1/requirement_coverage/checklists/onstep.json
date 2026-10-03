@@ -1,0 +1,3282 @@
+{
+  "schema_version": 1,
+  "project": "onstep",
+  "status": "requirements_only_not_code_reviewed",
+  "source": {
+    "path": "fse/static_testcase_completion_20261001/inputs/onstep/RE_req.txt",
+    "sha256": "1f96fcbc6b26840f62d0c978b3bdc755932ec2541fce362f44c47264bc59442f",
+    "line_count": 281,
+    "line_numbering": "1-based physical text lines; CRLF and LF count identically"
+  },
+  "construction": "LLM semantic decomposition of RE_req only; no generated candidates or external testcase list read",
+  "summary": {
+    "leaf_count": 102,
+    "reviewability_counts": {
+      "static_evidence_reviewable": 89,
+      "requires_contract_clarification": 6,
+      "requires_execution_or_hardware": 7
+    },
+    "category_counts": {
+      "architecture": 1,
+      "timing": 6,
+      "dataflow": 7,
+      "safety": 16,
+      "control_flow": 10,
+      "interface": 2,
+      "initialization": 5,
+      "recovery": 3,
+      "state": 10,
+      "persistence": 4,
+      "communication": 7,
+      "numeric": 11,
+      "observability": 9,
+      "power": 1,
+      "performance": 4,
+      "resource": 4,
+      "artifact": 1,
+      "configuration": 1
+    }
+  },
+  "source_notes": [
+    {
+      "lines": [
+        1,
+        30
+      ],
+      "kind": "project_context_and_environment",
+      "reason": "Open-source product background, device counts, platforms, and external ecosystems are not independent execution outcomes; executable software obligations are counted in later items."
+    },
+    {
+      "lines": [
+        203,
+        214
+      ],
+      "kind": "summary_alias",
+      "reason": "F-01–F-10 are summary aliases for REQ-FUNC-001–010 and are not counted again. PEC optionality is retained in the applicability condition."
+    },
+    {
+      "lines": [
+        216,
+        222
+      ],
+      "kind": "environment",
+      "reason": "Platform/capacity/connection tables provide context; constraint/resource obligations are counted in §5 and REQ-RES-*."
+    },
+    {
+      "lines": [
+        263,
+        281
+      ],
+      "kind": "appendix_alias_and_ambiguity",
+      "reason": "State/data summaries mostly repeat the functional text. Only new calibration-exit, fault-recovery, and boundary-ambiguity leaves are listed separately, without double-weighting functionality."
+    },
+    {
+      "lines": [
+        138,
+        138
+      ],
+      "kind": "incorrect_rationale_not_new_requirement",
+      "reason": "The square of 1.3e6 does not exceed the IEEE754 float range. The original implementation constraints requiring double precision and a stable solver are retained, but the incorrect explanation is not counted as an additional requirement."
+    }
+  ],
+  "requirements": [
+    {
+      "id": "OS-R001",
+      "source_requirement_id": "§2.1/§3.1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2.1 Operating scheme and scenarios / 3.1 Functional decomposition",
+      "source_lines": [
+        {
+          "start": 34,
+          "end": 40
+        }
+      ],
+      "statement": "After power-on initialization, continuously run the main loop, performing communication parsing, motor advance, tracking updates, and safety checks each cycle.",
+      "category": "architecture",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 34,
+          "end": 40,
+          "text": "OnStep uses a main-loop architecture. After power-on it initializes once (loads configuration and initializes motor drivers and sensors), then enters an infinite loop. Each iteration performs:\n1. Check all communication channels (serial, Bluetooth, WiFi, Ethernet) for new commands\n2. Parse LX200 protocol commands and perform the corresponding operations\n3. Update stepper-motor positions: calculate the difference between current target and actual positions and generate motor pulse sequences\n4. Update celestial tracking rates (sidereal/lunar/solar/custom)\n5. Check limit switches and emergency-stop state, stopping motors if necessary\nMotor control uses timer interrupts to generate precise pulses for smooth stepper-motor speed control and acceleration/deceleration profiles."
+        }
+      ],
+      "source_requirement_ids": [
+        "§2.1/§3.1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R002",
+      "source_requirement_id": "§2.1/§3.1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2.1 Operating scheme and scenarios / 3.1 Functional decomposition",
+      "source_lines": [
+        {
+          "start": 40,
+          "end": 40
+        }
+      ],
+      "statement": "Generate motor pulses in timer interrupts; software provides speed control and acceleration/deceleration scheduling.",
+      "category": "timing",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 40,
+          "end": 40,
+          "text": "Motor control uses timer interrupts to generate precise pulses for smooth stepper-motor speed control and acceleration/deceleration profiles."
+        }
+      ],
+      "source_requirement_ids": [
+        "§2.1/§3.1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R003",
+      "source_requirement_id": "§2.1/§3.1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2.1 Operating scheme and scenarios / 3.1 Functional decomposition",
+      "source_lines": [
+        {
+          "start": 45,
+          "end": 48
+        }
+      ],
+      "statement": "Implement three complete data flows: received command to returned state, time/site to motor update, and calibration observations to coordinate transformation.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 45,
+          "end": 48,
+          "text": "OnStep's core data flow has three paths:\n**Command path**: external device -> communication reception -> LX200 command parsing -> function execution -> status response\n**Tracking path**: current time and location -> celestial-coordinate calculation -> target-position conversion -> stepper-pulse generation -> position update\n**Calibration path**: manually point at known stars -> collect multiple actual-coordinate/motor-position pairs -> construct the celestial-to-motor coordinate transformation matrix"
+        }
+      ],
+      "source_requirement_ids": [
+        "§2.1/§3.1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R004",
+      "source_requirement_id": "§3.1.1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3.1.1 General design principles",
+      "source_lines": [
+        {
+          "start": 50,
+          "end": 50
+        }
+      ],
+      "statement": "All public API pointer entry points check NULL and return OS_ERR_INVALID_ARGUMENT.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 50,
+          "end": 50,
+          "text": "1. Check pointer arguments of all public APIs for NULL at function entry; NULL arguments return OS_ERR_INVALID_ARGUMENT"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3.1.1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R005",
+      "source_requirement_id": "§3.1.1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3.1.1 General design principles",
+      "source_lines": [
+        {
+          "start": 51,
+          "end": 51
+        }
+      ],
+      "statement": "Validate parameters before system state; invalid parameters must return OS_ERR_INVALID_ARGUMENT in every state.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 51,
+          "end": 51,
+          "text": "2. Argument validation (coordinate ranges, enumeration values, boundaries, etc.) takes precedence over system-state checks. Invalid arguments return OS_ERR_INVALID_ARGUMENT regardless of system state"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3.1.1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R006",
+      "source_requirement_id": "§3.1.1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3.1.1 General design principles",
+      "source_lines": [
+        {
+          "start": 52,
+          "end": 52
+        }
+      ],
+      "statement": "Do not introduce API preconditions or state restrictions absent from the specification.",
+      "category": "interface",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 52,
+          "end": 52,
+          "text": "3. Do not add preconditions or state checks not required by the specification to API implementations"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3.1.1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R007",
+      "source_requirement_id": "REQ-FUNC-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.1 Initialization and configuration loading",
+      "source_lines": [
+        {
+          "start": 56,
+          "end": 61
+        }
+      ],
+      "statement": "Reads step angle, gear ratio, microstepping, and driver-chip parameters from compile-time configuration.",
+      "category": "initialization",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 56,
+          "end": 61,
+          "text": "2. Description: load hardware configuration and initialize communication interfaces, stepper drivers, and sensors at power-on\n3. Invocation condition: called once by the main program at power-on or reset\n4. Input: configuration in Config.h (motor step angle, reduction ratio, driver-chip model, communication-channel settings, etc.)\n5. Output: initialization-complete flags for hardware modules\n6. Processing:\n   1. Read compile-time configuration, including motor step angle, transmission reduction ratio, microstepping settings, and driver-chip model"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R008",
+      "source_requirement_id": "REQ-FUNC-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.1 Initialization and configuration loading",
+      "source_lines": [
+        {
+          "start": 62,
+          "end": 62
+        }
+      ],
+      "statement": "Initialize USB, Bluetooth, and enabled WiFi/Ethernet communication channels.",
+      "category": "initialization",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 62,
+          "end": 62,
+          "text": "   2. Initialize communication channels: USB serial, Bluetooth serial, WiFi module (if enabled), and Ethernet module (if enabled)"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R009",
+      "source_requirement_id": "REQ-FUNC-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.1 Initialization and configuration loading",
+      "source_lines": [
+        {
+          "start": 63,
+          "end": 63
+        }
+      ],
+      "statement": "Initialize driver registers, microstepping, current limits, and silent mode from configuration.",
+      "category": "initialization",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 63,
+          "end": 63,
+          "text": "   3. Initialize stepper drivers: write TMC configuration registers over SPI to set microstepping, current limits, silent mode, etc. Enter a fault state on SPI failure (see REQ-FDIR-003)"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-003",
+        "REQ-FUNC-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R010",
+      "source_requirement_id": "REQ-FUNC-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.1 Initialization and configuration loading",
+      "source_lines": [
+        {
+          "start": 63,
+          "end": 63
+        },
+        {
+          "start": 259,
+          "end": 259
+        }
+      ],
+      "statement": "On driver SPI initialization failure, enter fault state, report the error, and attempt reinitialization.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 63,
+          "end": 63,
+          "text": "   3. Initialize stepper drivers: write TMC configuration registers over SPI to set microstepping, current limits, silent mode, etc. Enter a fault state on SPI failure (see REQ-FDIR-003)"
+        },
+        {
+          "start": 259,
+          "end": 259,
+          "text": "REQ-FDIR-003 | Motor-driver communication failure | SPI timeout or error bits in status register | Report an error and attempt driver reinitialization | Required"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-003",
+        "REQ-FUNC-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R011",
+      "source_requirement_id": "REQ-FUNC-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.1 Initialization and configuration loading",
+      "source_lines": [
+        {
+          "start": 64,
+          "end": 64
+        }
+      ],
+      "statement": "Obtain latitude, longitude, altitude, and UTC when GPS is enabled and available.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 64,
+          "end": 64,
+          "text": "   4. If GPS is enabled, wait for a position fix and obtain observing-site longitude, latitude, altitude, and UTC time"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R012",
+      "source_requirement_id": "REQ-FUNC-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.1 Initialization and configuration loading",
+      "source_lines": [
+        {
+          "start": 65,
+          "end": 65
+        },
+        {
+          "start": 258,
+          "end": 258
+        }
+      ],
+      "statement": "When GPS is unavailable, fall back to RTC time and the preset location.",
+      "category": "recovery",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 65,
+          "end": 65,
+          "text": "   5. If GPS is unavailable, read time from RTC and the preset location from configuration"
+        },
+        {
+          "start": 258,
+          "end": 258,
+          "text": "REQ-FDIR-002 | No GPS signal | Timeout without valid NMEA frames | Fall back to RTC and preset location; prompt the user for manual input | Important"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-002",
+        "REQ-FUNC-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R013",
+      "source_requirement_id": "REQ-FUNC-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.1 Initialization and configuration loading",
+      "source_lines": [
+        {
+          "start": 66,
+          "end": 66
+        }
+      ],
+      "statement": "Initialize RTC through I2C.",
+      "category": "initialization",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 66,
+          "end": 66,
+          "text": "   6. Initialize the RTC module through I2C"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R014",
+      "source_requirement_id": "REQ-FUNC-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.1 Initialization and configuration loading",
+      "source_lines": [
+        {
+          "start": 67,
+          "end": 67
+        }
+      ],
+      "statement": "Initialize the pulse timer and set sidereal tracking as the default rate.",
+      "category": "initialization",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 67,
+          "end": 67,
+          "text": "   7. Configure timer interrupts for motor-pulse generation; set the default tracking rate to sidereal"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R015",
+      "source_requirement_id": "REQ-FUNC-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.1 Initialization and configuration loading",
+      "source_lines": [
+        {
+          "start": 68,
+          "end": 68
+        }
+      ],
+      "statement": "After initialization, enter the command-responsive main loop.",
+      "category": "state",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 68,
+          "end": 68,
+          "text": "   8. After initialization, enter the main loop and begin responding to commands"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R016",
+      "source_requirement_id": "REQ-FUNC-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.1 Initialization and configuration loading",
+      "source_lines": [
+        {
+          "start": 69,
+          "end": 69
+        }
+      ],
+      "statement": "os_init resets every runtime computed/active flag, including calibration residual computation/star count, guiding, manual motion, and Goto.",
+      "category": "state",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 69,
+          "end": 69,
+          "text": "   9. os_init must reset all modules' runtime flags (including but not limited to calibration-residual-computed flags, calibration-star count, guiding-pulse state, manual-motion state, and Goto-motion state), restoring persistent state only after successfully loading persistent data from NVM. Explicitly reset every 'computed/active' boolean flag in os_init to avoid carryover between tests or resets"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R017",
+      "source_requirement_id": "REQ-FUNC-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.1 Initialization and configuration loading",
+      "source_lines": [
+        {
+          "start": 69,
+          "end": 69
+        }
+      ],
+      "statement": "Restore persistent state only after successful NVM loading; reset must not retain runtime state with no persistent source.",
+      "category": "persistence",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 69,
+          "end": 69,
+          "text": "   9. os_init must reset all modules' runtime flags (including but not limited to calibration-residual-computed flags, calibration-star count, guiding-pulse state, manual-motion state, and Goto-motion state), restoring persistent state only after successfully loading persistent data from NVM. Explicitly reset every 'computed/active' boolean flag in os_init to avoid carryover between tests or resets"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R018",
+      "source_requirement_id": "REQ-FUNC-002",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.2 Command reception and parsing",
+      "source_lines": [
+        {
+          "start": 73,
+          "end": 78
+        }
+      ],
+      "statement": "Each loop checks enabled channels in order, receives characters, and forms a complete command at newline.",
+      "category": "communication",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 73,
+          "end": 78,
+          "text": "3. Invocation condition: check once each main-loop iteration\n4. Input: text command strings from any USB serial, Bluetooth, WiFi, or Ethernet channel\n5. Output: textual execution-result replies through the same channel\n6. Processing:\n   1. Check enabled communication channels in sequence for newly arrived data\n   2. Read the buffer character by character; a newline marks reception of a complete command"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-002"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R019",
+      "source_requirement_id": "REQ-FUNC-002",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.2 Command reception and parsing",
+      "source_lines": [
+        {
+          "start": 79,
+          "end": 79
+        }
+      ],
+      "statement": "Recognize LX200 commands beginning with colon and ending with #.",
+      "category": "communication",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 79,
+          "end": 79,
+          "text": "   3. Check command prefix: commands beginning with a colon and ending with a hash are standard LX200 commands for further parsing"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-002"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R020",
+      "source_requirement_id": "REQ-FUNC-002",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.2 Command reception and parsing",
+      "source_lines": [
+        {
+          "start": 80,
+          "end": 80
+        }
+      ],
+      "statement": "Nonstandard input may be internal configuration/debug commands, but no mandatory command set is specified, so a particular extra command cannot be required as missing.",
+      "category": "communication",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The supplied requirements lack necessary parameters or contain conflicting wording; clarify one common contract first rather than inferring it from candidate implementations."
+      },
+      "source_excerpt": [
+        {
+          "start": 80,
+          "end": 80,
+          "text": "   4. Nonstandard input may be recognized as an internal configuration or debugging command"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-002"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R021",
+      "source_requirement_id": "REQ-FUNC-002",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.2 Command reception and parsing",
+      "source_lines": [
+        {
+          "start": 81,
+          "end": 81
+        },
+        {
+          "start": 83,
+          "end": 83
+        }
+      ],
+      "statement": "Classify G queries, S settings, M motion, and other commands and dispatch them and their parameters to the appropriate modules.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 81,
+          "end": 81,
+          "text": "   5. Identify the category by the first command character: queries (:G...), settings (:S...), movement (:M...), etc."
+        },
+        {
+          "start": 83,
+          "end": 83,
+          "text": "   7. Dispatch commands and arguments to the corresponding functional modules"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-002"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R022",
+      "source_requirement_id": "REQ-FUNC-002",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.2 Command reception and parsing",
+      "source_lines": [
+        {
+          "start": 82,
+          "end": 82
+        }
+      ],
+      "statement": "Return OS_ERR_COMMAND_FORMAT for malformed commands and OS_ERR_INVALID_STATE for disallowed contexts.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 82,
+          "end": 82,
+          "text": "   6. Return OS_ERR_COMMAND_FORMAT for malformed commands and OS_ERR_INVALID_STATE when a command is disallowed in the current context"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-002"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R023",
+      "source_requirement_id": "REQ-FUNC-002",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.2 Command reception and parsing",
+      "source_lines": [
+        {
+          "start": 75,
+          "end": 75
+        },
+        {
+          "start": 84,
+          "end": 84
+        }
+      ],
+      "statement": "Return processing results as text through the original sending channel.",
+      "category": "communication",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 75,
+          "end": 75,
+          "text": "5. Output: textual execution-result replies through the same channel"
+        },
+        {
+          "start": 84,
+          "end": 84,
+          "text": "   8. Return processing results as text to the sending channel"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-002"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R024",
+      "source_requirement_id": "REQ-FUNC-003",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.3 Celestial Goto",
+      "source_lines": [
+        {
+          "start": 88,
+          "end": 88
+        },
+        {
+          "start": 92,
+          "end": 92
+        }
+      ],
+      "statement": "Goto accepts the specified commands and validates RA∈[0,24] hours and Dec∈[-90,90] degrees.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 88,
+          "end": 88,
+          "text": "3. Invocation condition: triggered by a Goto command (:MS#, :Sr...#, etc.)"
+        },
+        {
+          "start": 92,
+          "end": 92,
+          "text": "   1. Receive target coordinates and validate their ranges (right ascension 0~24 hours, declination -90~+90 degrees)"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-003"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R025",
+      "source_requirement_id": "REQ-FUNC-003",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.3 Celestial Goto",
+      "source_lines": [
+        {
+          "start": 93,
+          "end": 94
+        }
+      ],
+      "statement": "Convert celestial coordinates and required time/site information to two-axis target steps according to equatorial/alt-azimuth mode.",
+      "category": "numeric",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 93,
+          "end": 94,
+          "text": "   2. Determine coordinate conversion according to the current mount mode (equatorial or alt-azimuth)\n   3. Convert celestial coordinates to target motor steps: in equatorial mode calculate the RA-axis target using tracking rate; in alt-azimuth mode calculate celestial bearing from current time and site"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-003"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R026",
+      "source_requirement_id": "REQ-FUNC-003",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.3 Celestial Goto",
+      "source_lines": [
+        {
+          "start": 95,
+          "end": 95
+        }
+      ],
+      "statement": "Completes immediately when current-to-target difference is too small, but this file does not specify the step threshold for “too small.”",
+      "category": "control_flow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The supplied requirements lack necessary parameters or contain conflicting wording; clarify one common contract first rather than inferring it from candidate implementations."
+      },
+      "source_excerpt": [
+        {
+          "start": 95,
+          "end": 95,
+          "text": "   4. Compute the step difference between current and target motor positions; return completion directly if the difference is too small"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-003"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R027",
+      "source_requirement_id": "REQ-FUNC-003",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.3 Celestial Goto",
+      "source_lines": [
+        {
+          "start": 96,
+          "end": 96
+        }
+      ],
+      "statement": "For each axis, plan acceleration from its current speed, the main travel segment, and deceleration to the target.",
+      "category": "timing",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 96,
+          "end": 96,
+          "text": "   5. Plan acceleration/deceleration for both axes: start at current speed, accelerate to maximum Goto speed, decelerate after most travel, and reach the target precisely at low speed"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-003"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R028",
+      "source_requirement_id": "REQ-FUNC-003",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.3 Celestial Goto",
+      "source_lines": [
+        {
+          "start": 97,
+          "end": 97
+        },
+        {
+          "start": 257,
+          "end": 257
+        }
+      ],
+      "statement": "Check limits before and during Goto; refuse startup or immediately stop and report an error in the triggered direction.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 97,
+          "end": 97,
+          "text": "   6. Monitor limit switches continuously during motion; stop immediately and report an error when a limit is detected"
+        },
+        {
+          "start": 257,
+          "end": 257,
+          "text": "REQ-FDIR-001 | Limit switch triggered | GPIO-level detection | Immediately stop the corresponding axis and reject further motion in that direction. All motion functions (Goto, manual motion, parking) must proactively check limits before starting and reject movement toward an already triggered limit. os_hal_limit_is_triggered must fail safely by returning true (triggered) for invalid axis IDs (other than RA/DEC) | Required"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-001",
+        "REQ-FUNC-003"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R029",
+      "source_requirement_id": "REQ-FUNC-003",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.3 Celestial Goto",
+      "source_lines": [
+        {
+          "start": 98,
+          "end": 98
+        }
+      ],
+      "statement": "Sound the buzzer after both axes reach their targets.",
+      "category": "observability",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 98,
+          "end": 98,
+          "text": "   7. Sound the buzzer once both axes reach their targets"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-003"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R030",
+      "source_requirement_id": "REQ-FUNC-003",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.3 Celestial Goto",
+      "source_lines": [
+        {
+          "start": 99,
+          "end": 100
+        }
+      ],
+      "statement": "After Goto completes, enter OS_STATE_IDLE_TRACKING and resume sidereal tracking.",
+      "category": "state",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 99,
+          "end": 100,
+          "text": "   8. Switch to tracking mode and continuously adjust motors at sidereal rate to compensate for Earth's rotation\n   9. Goto is asynchronous: os_goto_equatorial returns OS_ERR_NONE immediately after starting motion and retains OS_STATE_GOTO. os_loop_iteration advances motor positions each cycle; only after reaching the target does state return to OS_STATE_IDLE_TRACKING. Do not complete the entire movement synchronously inside os_goto_equatorial (otherwise os_query_is_moving can never observe motion and os_goto_abort can never abort it)"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-003"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R031",
+      "source_requirement_id": "REQ-FUNC-003",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.3 Celestial Goto",
+      "source_lines": [
+        {
+          "start": 100,
+          "end": 100
+        }
+      ],
+      "statement": "os_goto_equatorial starts motion asynchronously and immediately returns OS_ERR_NONE while retaining OS_STATE_GOTO; successive os_loop_iteration calls advance position.",
+      "category": "state",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 100,
+          "end": 100,
+          "text": "   9. Goto is asynchronous: os_goto_equatorial returns OS_ERR_NONE immediately after starting motion and retains OS_STATE_GOTO. os_loop_iteration advances motor positions each cycle; only after reaching the target does state return to OS_STATE_IDLE_TRACKING. Do not complete the entire movement synchronously inside os_goto_equatorial (otherwise os_query_is_moving can never observe motion and os_goto_abort can never abort it)"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-003"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R032",
+      "source_requirement_id": "REQ-FUNC-003",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.3 Celestial Goto",
+      "source_lines": [
+        {
+          "start": 100,
+          "end": 100
+        }
+      ],
+      "statement": "os_query_is_moving observes ongoing motion, and os_goto_abort can cancel unfinished Goto.",
+      "category": "observability",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 100,
+          "end": 100,
+          "text": "   9. Goto is asynchronous: os_goto_equatorial returns OS_ERR_NONE immediately after starting motion and retains OS_STATE_GOTO. os_loop_iteration advances motor positions each cycle; only after reaching the target does state return to OS_STATE_IDLE_TRACKING. Do not complete the entire movement synchronously inside os_goto_equatorial (otherwise os_query_is_moving can never observe motion and os_goto_abort can never abort it)"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-003"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R033",
+      "source_requirement_id": "REQ-FUNC-004",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.4 Continuous tracking",
+      "source_lines": [
+        {
+          "start": 103,
+          "end": 108
+        }
+      ],
+      "statement": "Compute the target's current apparent position from current time and observing site during tracking.",
+      "category": "numeric",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 103,
+          "end": 108,
+          "text": "2. Description: rotate the telescope continuously at celestial-motion rate to keep the target centered in the field of view\n3. Invocation condition: runs continuously and automatically while the system is idle; starts automatically after Goto completion\n4. Input: current time and geographic coordinates, and user-selected tracking rate (sidereal/lunar/solar/custom)\n5. Output: motors continuously produce microstep pulses at the tracking rate\n6. Processing:\n   1. Calculate the object's current apparent position from current time and observing-site latitude/longitude"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-004"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R034",
+      "source_requirement_id": "REQ-FUNC-004",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.4 Continuous tracking",
+      "source_lines": [
+        {
+          "start": 109,
+          "end": 109
+        }
+      ],
+      "statement": "Compute the RA rotation-compensation rate from equatorial mount orientation/polar-alignment parameters.",
+      "category": "numeric",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 109,
+          "end": 109,
+          "text": "   2. Calculate the RA-axis compensation rate from the equatorial mount's orientation relative to Earth's rotation axis (polar-alignment accuracy)"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-004"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R035",
+      "source_requirement_id": "REQ-FUNC-004",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.4 Continuous tracking",
+      "source_lines": [
+        {
+          "start": 105,
+          "end": 105
+        },
+        {
+          "start": 110,
+          "end": 110
+        }
+      ],
+      "statement": "Support sidereal/lunar/solar/custom tracking rates and apply their corresponding coefficients.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 105,
+          "end": 105,
+          "text": "4. Input: current time and geographic coordinates, and user-selected tracking rate (sidereal/lunar/solar/custom)"
+        },
+        {
+          "start": 110,
+          "end": 110,
+          "text": "   3. Adjust the rate coefficient for a non-sidereal rate selected by the user (for example, lunar rate is approximately 3.4% slower)"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-004"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R036",
+      "source_requirement_id": "REQ-FUNC-004",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.4 Continuous tracking",
+      "source_lines": [
+        {
+          "start": 111,
+          "end": 112
+        }
+      ],
+      "statement": "Convert tracking rate to pulse frequency and drive motors through timer pulses.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 111,
+          "end": 112,
+          "text": "   4. Convert tracking rate into required motor pulses per second\n   5. Use timer interrupts to generate accurately timed pulse sequences for constant-rate motor rotation"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-004"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R037",
+      "source_requirement_id": "REQ-FUNC-004",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.4 Continuous tracking",
+      "source_lines": [
+        {
+          "start": 113,
+          "end": 113
+        }
+      ],
+      "statement": "In alt-azimuth mode, calculate and drive separate time-varying AZ and ALT trajectories.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 113,
+          "end": 113,
+          "text": "   6. In alt-azimuth mode, calculate time-dependent trajectories for both AZ and ALT axes and control each separately"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-004"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R038",
+      "source_requirement_id": "REQ-FUNC-004",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.4 Continuous tracking",
+      "source_lines": [
+        {
+          "start": 114,
+          "end": 114
+        }
+      ],
+      "statement": "Periodically correct tracking rates using RTC/GPS time to reduce accumulated timing error.",
+      "category": "timing",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 114,
+          "end": 114,
+          "text": "   7. Periodically fine-tune tracking rate using RTC or GPS time to reduce accumulated timing error"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-004"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R039",
+      "source_requirement_id": "REQ-FUNC-005",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.5 Guiding correction",
+      "source_lines": [
+        {
+          "start": 119,
+          "end": 119
+        }
+      ],
+      "statement": "Guiding requires duration_ms>0 and a valid direction; otherwise return OS_ERR_INVALID_ARGUMENT.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 119,
+          "end": 119,
+          "text": "4. Input: correction direction and duration (east/west/south/north time pulses). duration_ms must be greater than 0 and direction must be a valid enumeration value; otherwise return OS_ERR_INVALID_ARGUMENT"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-005"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R040",
+      "source_requirement_id": "REQ-FUNC-005",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.5 Guiding correction",
+      "source_lines": [
+        {
+          "start": 118,
+          "end": 118
+        },
+        {
+          "start": 122,
+          "end": 122
+        }
+      ],
+      "statement": "Accept guiding signals through ST4 or LX200 :Mg...#.",
+      "category": "communication",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 118,
+          "end": 118,
+          "text": "3. Invocation condition: continuously receive correction signals through ST4 or LX200 guiding commands"
+        },
+        {
+          "start": 122,
+          "end": 122,
+          "text": "   1. Monitor the guiding interface (ST4 hardware pins or LX200 :Mg...# commands)"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-005"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R041",
+      "source_requirement_id": "REQ-FUNC-005",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.5 Guiding correction",
+      "source_lines": [
+        {
+          "start": 123,
+          "end": 123
+        }
+      ],
+      "statement": "Map directions to the correct RA+/RA-/DEC+/DEC- axes and signs.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 123,
+          "end": 123,
+          "text": "   2. Identify the axis and direction (RA+/RA-/DEC+/DEC-) on receiving a correction signal"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-005"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R042",
+      "source_requirement_id": "REQ-FUNC-005",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.5 Guiding correction",
+      "source_lines": [
+        {
+          "start": 124,
+          "end": 125
+        }
+      ],
+      "statement": "Compute guiding offsets from guiding-rate parameters and add them to, rather than replace, the base tracking rate.",
+      "category": "numeric",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 124,
+          "end": 125,
+          "text": "   3. Calculate the temporary rate adjustment from the guiding-rate setting (typically 0.25x~1x sidereal rate)\n   4. Retain the base tracking rate while adding a short-duration rate offset in the requested direction"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-005"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R043",
+      "source_requirement_id": "REQ-FUNC-005",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.5 Guiding correction",
+      "source_lines": [
+        {
+          "start": 126,
+          "end": 126
+        }
+      ],
+      "statement": "Restore the ordinary tracking rate after the specified guiding duration expires.",
+      "category": "timing",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 126,
+          "end": 126,
+          "text": "   5. Restore normal tracking rate at the end of the correction duration"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-005"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R044",
+      "source_requirement_id": "REQ-FUNC-005",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.5 Guiding correction",
+      "source_lines": [
+        {
+          "start": 127,
+          "end": 127
+        }
+      ],
+      "statement": "Process simultaneous guiding corrections in DEC-then-RA order.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 127,
+          "end": 127,
+          "text": "   6. Handle simultaneous corrections by priority (DEC before RA)"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-005"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R045",
+      "source_requirement_id": "REQ-FUNC-006",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.6 Calibration",
+      "source_lines": [
+        {
+          "start": 131,
+          "end": 137
+        }
+      ],
+      "statement": "When accepting calibration stars, record celestial coordinates and current two-axis steps, supporting accumulation of multiple stars.",
+      "category": "state",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 131,
+          "end": 137,
+          "text": "3. Invocation condition: triggered by a calibration command after the user manually points at a calibration star\n4. Input: calibration-star celestial coordinates, current motor steps, and calibration type (1-star/2-star/3-star/multi-star)\n5. Output: calibration-completion confirmation and accuracy indicators\n6. Processing:\n   1. The user manually points the telescope precisely at the first known object\n   2. The user issues an 'accept calibration star' command; record its celestial coordinates and both axes' current motor steps\n   3. For multi-star calibration (recommended), repeat pointing and acceptance for at least 2~3 stars distributed across different sky regions"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-006"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R046",
+      "source_requirement_id": "REQ-FUNC-006",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.6 Calibration",
+      "source_lines": [
+        {
+          "start": 138,
+          "end": 138
+        }
+      ],
+      "statement": "Use double precision and numerically stable least-squares matrix solving for calibration; prohibit float-based normal equations.",
+      "category": "numeric",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 138,
+          "end": 138,
+          "text": "   4. Fit collected calibration points by least squares to calculate an affine transformation from celestial coordinates to motor steps. Astronomical coordinates in arcseconds may reach 1.3x10^6; their squares exceed the single-precision floating-point range. Calibration must use double-precision (double) arithmetic and a numerically stable matrix solver; float plus normal equations is prohibited"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-006"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R047",
+      "source_requirement_id": "REQ-FUNC-006",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.6 Calibration",
+      "source_lines": [
+        {
+          "start": 139,
+          "end": 139
+        }
+      ],
+      "statement": "For an exact three-star fit, detect degeneracy through collinearity/a near-zero determinant rather than treating zero residual as evidence of a good fit.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 139,
+          "end": 139,
+          "text": "   5. With 3-star calibration, the parameter count equals the data-point count, so least squares gives an exact solution and zero residual. Detect degenerate data by collinearity (whether the determinant is near zero), not by a residual threshold. Residual checks apply only to calibration with 4 or more stars"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-006"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R048",
+      "source_requirement_id": "REQ-FUNC-006",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.6 Calibration",
+      "source_lines": [
+        {
+          "start": 139,
+          "end": 139
+        }
+      ],
+      "statement": "Enable residual-threshold checks only for calibration with four or more stars.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 139,
+          "end": 139,
+          "text": "   5. With 3-star calibration, the parameter count equals the data-point count, so least squares gives an exact solution and zero residual. Detect degenerate data by collinearity (whether the determinant is near zero), not by a residual threshold. Residual checks apply only to calibration with 4 or more stars"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-006"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R049",
+      "source_requirement_id": "REQ-FUNC-006",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.6 Calibration",
+      "source_lines": [
+        {
+          "start": 140,
+          "end": 140
+        }
+      ],
+      "statement": "Require at least 1/2/3/3 stars for 1/2/3/N-star modes; os_align_compute returns OS_ERR_INVALID_STATE when insufficient.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 140,
+          "end": 140,
+          "text": "   6. Minimum stars by mode: 1-star requires at least 1 (offset only); 2-star at least 2 (diagonal matrix); 3-star at least 3 (full matrix); N-star at least 3. os_align_compute returns OS_ERR_INVALID_STATE if there are too few stars"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-006"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R050",
+      "source_requirement_id": "REQ-FUNC-006",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.6 Calibration",
+      "source_lines": [
+        {
+          "start": 140,
+          "end": 140
+        }
+      ],
+      "statement": "One star solves offsets, two stars solve a diagonal mapping, and three stars solve a full matrix.",
+      "category": "numeric",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 140,
+          "end": 140,
+          "text": "   6. Minimum stars by mode: 1-star requires at least 1 (offset only); 2-star at least 2 (diagonal matrix); 3-star at least 3 (full matrix); N-star at least 3. os_align_compute returns OS_ERR_INVALID_STATE if there are too few stars"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-006"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R051",
+      "source_requirement_id": "REQ-FUNC-006",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.6 Calibration",
+      "source_lines": [
+        {
+          "start": 141,
+          "end": 141
+        }
+      ],
+      "statement": "Include polar error, cone error, and gear-backlash compensation in the calibration transform.",
+      "category": "numeric",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 141,
+          "end": 141,
+          "text": "   7. Transformation parameters include polar-axis pointing errors (two angular offsets), cone error (non-orthogonality of telescope and polar axis), and gear-backlash compensation"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-006"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R052",
+      "source_requirement_id": "REQ-FUNC-006",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.6 Calibration",
+      "source_lines": [
+        {
+          "start": 142,
+          "end": 142
+        }
+      ],
+      "statement": "Write computed calibration parameters to NVM and support restoration.",
+      "category": "persistence",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 142,
+          "end": 142,
+          "text": "   8. Save calculated transformation parameters to nonvolatile storage so they survive power loss"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-006"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R053",
+      "source_requirement_id": "REQ-FUNC-006",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.6 Calibration",
+      "source_lines": [
+        {
+          "start": 143,
+          "end": 143
+        }
+      ],
+      "statement": "Compute calibration residuals in arcseconds and display them to the user.",
+      "category": "observability",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 143,
+          "end": 143,
+          "text": "   9. Calculate and display calibration residuals (arcseconds) for the user to assess calibration quality"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-006"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R054",
+      "source_requirement_id": "REQ-FUNC-006",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.6 Calibration",
+      "source_lines": [
+        {
+          "start": 144,
+          "end": 144
+        }
+      ],
+      "statement": "Subsequent Goto and tracking actually apply calibration parameters to correct original celestial coordinates.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 144,
+          "end": 144,
+          "text": "   10. Subsequent Goto and tracking operations use calibration parameters to correct original celestial coordinates"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-006"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R055",
+      "source_requirement_id": "REQ-FUNC-007",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.7 Parking",
+      "source_lines": [
+        {
+          "start": 148,
+          "end": 148
+        },
+        {
+          "start": 152,
+          "end": 152
+        }
+      ],
+      "statement": "The park command selects the user-defined position, otherwise the prescribed default target.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 148,
+          "end": 148,
+          "text": "3. Invocation condition: triggered by a park command (:hP#)"
+        },
+        {
+          "start": 152,
+          "end": 152,
+          "text": "   1. Use the user-configured parking position if present; otherwise use the default (tube oriented near the north celestial pole and placed horizontally)"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-007"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R056",
+      "source_requirement_id": "REQ-FUNC-007",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.7 Parking",
+      "source_lines": [
+        {
+          "start": 153,
+          "end": 153
+        },
+        {
+          "start": 257,
+          "end": 257
+        }
+      ],
+      "statement": "Parking reuses Goto planning and checks limits before and during motion, refusing startup in the triggered direction.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 153,
+          "end": 153,
+          "text": "   2. Apply the same motion planning as Goto (acceleration/deceleration and limit detection). Check limits before starting; refuse startup if already triggered"
+        },
+        {
+          "start": 257,
+          "end": 257,
+          "text": "REQ-FDIR-001 | Limit switch triggered | GPIO-level detection | Immediately stop the corresponding axis and reject further motion in that direction. All motion functions (Goto, manual motion, parking) must proactively check limits before starting and reject movement toward an already triggered limit. os_hal_limit_is_triggered must fail safely by returning true (triggered) for invalid axis IDs (other than RA/DEC) | Required"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-001",
+        "REQ-FUNC-007"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R057",
+      "source_requirement_id": "REQ-FUNC-007",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.7 Parking",
+      "source_lines": [
+        {
+          "start": 154,
+          "end": 154
+        }
+      ],
+      "statement": "After reaching the park position, stop both axes' pulses and disable tracking.",
+      "category": "state",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 154,
+          "end": 154,
+          "text": "   3. Once both axes reach parking position, stop all motor pulse output and disable tracking"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-007"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R058",
+      "source_requirement_id": "REQ-FUNC-007",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.7 Parking",
+      "source_lines": [
+        {
+          "start": 155,
+          "end": 155
+        }
+      ],
+      "statement": "After parking, put drivers in standby and disable unnecessary communication modules.",
+      "category": "power",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 155,
+          "end": 155,
+          "text": "   4. Enter low-power state: place drivers in standby and disable unnecessary communication modules"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-007"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R059",
+      "source_requirement_id": "REQ-FUNC-007",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.7 Parking",
+      "source_lines": [
+        {
+          "start": 156,
+          "end": 156
+        }
+      ],
+      "statement": "On wake-up, re-enable drivers, restore all channels as at initialization, synchronize RTC, and restore tracking.",
+      "category": "state",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 156,
+          "end": 156,
+          "text": "   5. On wake command (:hO#), exit parking: re-enable motor drivers, restore every communication channel (USB, Bluetooth, WiFi, Ethernet, matching initialization scope), synchronize RTC time, and resume normal tracking"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-007"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R060",
+      "source_requirement_id": "REQ-FUNC-007",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.7 Parking",
+      "source_lines": [
+        {
+          "start": 157,
+          "end": 157
+        }
+      ],
+      "statement": "Return parking/wake-up completion acknowledgments to the user.",
+      "category": "observability",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 157,
+          "end": 157,
+          "text": "   6. Return parking/wake-completion confirmation to the user"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-007"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R061",
+      "source_requirement_id": "REQ-FUNC-008",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.8 Manual motion control",
+      "source_lines": [
+        {
+          "start": 161,
+          "end": 165
+        }
+      ],
+      "statement": "Select the target axis/direction from manual direction commands or direction buttons.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 161,
+          "end": 165,
+          "text": "3. Invocation condition: activated by motion commands (:Me#/:Mw#/:Mn#/:Ms#) or sustained directional-button presses\n4. Input: direction (east/west/south/north) and speed (slow/medium/fast/custom)\n5. Output: motors rotate continuously in the specified direction at the specified rate\n6. Processing:\n   1. Determine target axis and direction from the command"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-008"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R062",
+      "source_requirement_id": "REQ-FUNC-008",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.8 Manual motion control",
+      "source_lines": [
+        {
+          "start": 166,
+          "end": 166
+        }
+      ],
+      "statement": "Preset speed levels select corresponding pulse frequencies.",
+      "category": "numeric",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 166,
+          "end": 166,
+          "text": "   2. For a selected speed level, choose the motor-pulse frequency from the predefined rate table"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-008"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R063",
+      "source_requirement_id": "REQ-FUNC-008",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.8 Manual motion control",
+      "source_lines": [
+        {
+          "start": 167,
+          "end": 167
+        }
+      ],
+      "statement": "Real-time speed commands dynamically adjust the current pulse frequency.",
+      "category": "state",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 167,
+          "end": 167,
+          "text": "   3. Dynamically adjust pulse frequency for real-time speed-change commands"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-008"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R064",
+      "source_requirement_id": "REQ-FUNC-008",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.8 Manual motion control",
+      "source_lines": [
+        {
+          "start": 168,
+          "end": 168
+        }
+      ],
+      "statement": "End manual motion after its finite duration or a stop command.",
+      "category": "timing",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 168,
+          "end": 168,
+          "text": "   4. Each motion command remains valid for a limited duration or until a stop command arrives"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-008"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R065",
+      "source_requirement_id": "REQ-FUNC-008",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.8 Manual motion control",
+      "source_lines": [
+        {
+          "start": 169,
+          "end": 169
+        },
+        {
+          "start": 257,
+          "end": 257
+        }
+      ],
+      "statement": "Check limits before and during manual motion to prevent overtravel.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 169,
+          "end": 169,
+          "text": "   5. Check limit switches during motion to prevent overtravel"
+        },
+        {
+          "start": 257,
+          "end": 257,
+          "text": "REQ-FDIR-001 | Limit switch triggered | GPIO-level detection | Immediately stop the corresponding axis and reject further motion in that direction. All motion functions (Goto, manual motion, parking) must proactively check limits before starting and reject movement toward an already triggered limit. os_hal_limit_is_triggered must fail safely by returning true (triggered) for invalid axis IDs (other than RA/DEC) | Required"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-001",
+        "REQ-FUNC-008"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R066",
+      "source_requirement_id": "REQ-FUNC-008",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.8 Manual motion control",
+      "source_lines": [
+        {
+          "start": 170,
+          "end": 170
+        }
+      ],
+      "statement": "Automatically restore tracking after manual motion ends.",
+      "category": "state",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 170,
+          "end": 170,
+          "text": "   6. Automatically restore tracking when motion ends"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-008"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R067",
+      "source_requirement_id": "REQ-FUNC-009",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.9 Status queries",
+      "source_lines": [
+        {
+          "start": 174,
+          "end": 179
+        }
+      ],
+      "statement": "Coordinate queries transform current motor steps through calibration into celestial coordinates and return formatted results.",
+      "category": "observability",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 174,
+          "end": 179,
+          "text": "3. Invocation condition: execute immediately on a query command\n4. Input: query command (for example, :GD# for declination, :GR# for right ascension, :GVP# for firmware version)\n5. Output: corresponding textual status value\n6. Processing:\n   1. Read the appropriate internal variable according to query type\n   2. Coordinate queries: transform current motor steps to celestial coordinates, format, and return"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-009"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R068",
+      "source_requirement_id": "REQ-FUNC-009",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.9 Status queries",
+      "source_lines": [
+        {
+          "start": 180,
+          "end": 180
+        }
+      ],
+      "statement": "Time queries return current GPS/RTC time and local sidereal time.",
+      "category": "observability",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 180,
+          "end": 180,
+          "text": "   3. Time queries: read current time and local sidereal time from GPS or RTC, format, and return"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-009"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R069",
+      "source_requirement_id": "REQ-FUNC-009",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.9 Status queries",
+      "source_lines": [
+        {
+          "start": 181,
+          "end": 181
+        }
+      ],
+      "statement": "Status queries return live system mode, moving status, and GPS lock.",
+      "category": "observability",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 181,
+          "end": 181,
+          "text": "   4. State queries: return current mode (parked/tracking/calibration/Goto), whether motors are moving, and GPS lock state"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-009"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R070",
+      "source_requirement_id": "REQ-FUNC-009",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.9 Status queries",
+      "source_lines": [
+        {
+          "start": 182,
+          "end": 182
+        }
+      ],
+      "statement": "Information queries return the version, configuration summary, and communication-channel status.",
+      "category": "observability",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 182,
+          "end": 182,
+          "text": "   5. Information queries: return firmware version, configuration summary, and communication-channel status"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-009"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R071",
+      "source_requirement_id": "REQ-FUNC-009",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.9 Status queries",
+      "source_lines": [
+        {
+          "start": 183,
+          "end": 183
+        }
+      ],
+      "statement": "Query-response strings comply with LX200 formatting.",
+      "category": "communication",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 183,
+          "end": 183,
+          "text": "   6. Return all query results as strings conforming to LX200 protocol format"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-009"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R072",
+      "source_requirement_id": "REQ-FUNC-010",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.10 Periodic error correction",
+      "source_lines": [
+        {
+          "start": 187,
+          "end": 187
+        }
+      ],
+      "statement": "Periodic error correction is user-configurable and takes effect during tracking.",
+      "category": "control_flow",
+      "applicability_condition": "The source overview marks PEC optional. Whether it is enabled for this task must be decided uniformly before inspecting candidates, not excluded arbitrarily per method.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 187,
+          "end": 187,
+          "text": "3. Invocation condition: enabled by user configuration and continuously active during tracking"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-010"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R073",
+      "source_requirement_id": "REQ-FUNC-010",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.10 Periodic error correction",
+      "source_lines": [
+        {
+          "start": 188,
+          "end": 188
+        }
+      ],
+      "statement": "worm_phase_deg accepts the closed interval [0,360] and returns OS_ERR_INVALID_ARGUMENT outside its bounds.",
+      "category": "safety",
+      "applicability_condition": "The source overview marks PEC optional. Whether it is enabled for this task must be decided uniformly before inspecting candidates, not excluded arbitrarily per method.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 188,
+          "end": 188,
+          "text": "4. Input: periodic-error correction table (errors at phase points within one worm-gear revolution, in arcseconds). worm_phase_deg has valid range [0, 360] degrees; 360 is a valid boundary (one complete revolution). Values above 360 return OS_ERR_INVALID_ARGUMENT"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-010"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R074",
+      "source_requirement_id": "REQ-FUNC-010",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.10 Periodic error correction",
+      "source_lines": [
+        {
+          "start": 191,
+          "end": 192
+        }
+      ],
+      "statement": "Record worm phase in real time and look up its periodic-error correction.",
+      "category": "dataflow",
+      "applicability_condition": "The source overview marks PEC optional. Whether it is enabled for this task must be decided uniformly before inspecting candidates, not excluded arbitrarily per method.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 191,
+          "end": 192,
+          "text": "   1. Record current worm-gear phase (0 degrees~360 degrees) in real time during tracking\n   2. Look up the corresponding compensation value from the correction table using the current rotation angle"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-010"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R075",
+      "source_requirement_id": "REQ-FUNC-010",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.10 Periodic error correction",
+      "source_lines": [
+        {
+          "start": 193,
+          "end": 193
+        }
+      ],
+      "statement": "Add signed phase-dependent corrections to the base tracking rate.",
+      "category": "numeric",
+      "applicability_condition": "The source overview marks PEC optional. Whether it is enabled for this task must be decided uniformly before inspecting candidates, not excluded arbitrarily per method.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 193,
+          "end": 193,
+          "text": "   3. Add compensation to base tracking rate: temporarily raise pulse frequency in acceleration phase segments and lower it in deceleration segments"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-010"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R076",
+      "source_requirement_id": "REQ-FUNC-010",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.10 Periodic error correction",
+      "source_lines": [
+        {
+          "start": 194,
+          "end": 194
+        }
+      ],
+      "statement": "Support building the compensation table through guiding-data training or manual input.",
+      "category": "dataflow",
+      "applicability_condition": "The source overview marks PEC optional. Whether it is enabled for this task must be decided uniformly before inspecting candidates, not excluded arbitrarily per method.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 194,
+          "end": 194,
+          "text": "   4. Construct the table by automatic recording (learning backward from guiding data) or manual entry"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-010"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R077",
+      "source_requirement_id": "REQ-FUNC-010",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "3.2.10 Periodic error correction",
+      "source_lines": [
+        {
+          "start": 195,
+          "end": 195
+        }
+      ],
+      "statement": "Store the compensation table in nonvolatile storage.",
+      "category": "persistence",
+      "applicability_condition": "The source overview marks PEC optional. Whether it is enabled for this task must be decided uniformly before inspecting candidates, not excluded arbitrarily per method.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 195,
+          "end": 195,
+          "text": "   5. Save the correction table in nonvolatile storage"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FUNC-010"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R078",
+      "source_requirement_id": "REQ-PERF-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "4. Performance requirements",
+      "source_lines": [
+        {
+          "start": 234,
+          "end": 234
+        }
+      ],
+      "statement": "Actual Goto pointing error after three-star calibration is less than 1 arcminute.",
+      "category": "performance",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_execution_or_hardware",
+        "reason": "Real timing, resources, physical devices, or statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance."
+      },
+      "source_excerpt": [
+        {
+          "start": 234,
+          "end": 234,
+          "text": "REQ-PERF-001 | Goto pointing accuracy | < 1 arcminute after calibration | 3-star calibration | Required"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-PERF-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R079",
+      "source_requirement_id": "REQ-PERF-002",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "4. Performance requirements",
+      "source_lines": [
+        {
+          "start": 235,
+          "end": 235
+        }
+      ],
+      "statement": "With good polar alignment and no guiding, actual tracking error is less than 1 arcsecond/minute.",
+      "category": "performance",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_execution_or_hardware",
+        "reason": "Real timing, resources, physical devices, or statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance."
+      },
+      "source_excerpt": [
+        {
+          "start": 235,
+          "end": 235,
+          "text": "REQ-PERF-002 | Tracking accuracy | < 1 arcsecond/minute (unguided) | Good polar alignment | Required"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-PERF-002"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R080",
+      "source_requirement_id": "REQ-PERF-003",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "4. Performance requirements",
+      "source_lines": [
+        {
+          "start": 236,
+          "end": 236
+        }
+      ],
+      "statement": "Maximum Goto speed depends on motor/gear ratio; 3°/s is only typical, with no fixed acceptance target specified.",
+      "category": "performance",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The supplied requirements lack necessary parameters or contain conflicting wording; clarify one common contract first rather than inferring it from candidate implementations."
+      },
+      "source_excerpt": [
+        {
+          "start": 236,
+          "end": 236,
+          "text": "REQ-PERF-003 | Maximum Goto speed | Depends on motors and reduction ratio (typically 3 degrees/s) | High-speed mode | Important"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-PERF-003"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R081",
+      "source_requirement_id": "REQ-PERF-004",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "4. Performance requirements",
+      "source_lines": [
+        {
+          "start": 237,
+          "end": 237
+        }
+      ],
+      "statement": "Actual response time for one LX200 command is less than 50 ms.",
+      "category": "performance",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_execution_or_hardware",
+        "reason": "Real timing, resources, physical devices, or statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance."
+      },
+      "source_excerpt": [
+        {
+          "start": 237,
+          "end": 237,
+          "text": "REQ-PERF-004 | Command response time | < 50ms | One LX200 command | Important"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-PERF-004"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R082",
+      "source_requirement_id": "REQ-PERF-005",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "4. Performance requirements",
+      "source_lines": [
+        {
+          "start": 238,
+          "end": 238
+        }
+      ],
+      "statement": "The target build uses less than 90% of available Flash capacity.",
+      "category": "resource",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_execution_or_hardware",
+        "reason": "Real timing, resources, physical devices, or statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance."
+      },
+      "source_excerpt": [
+        {
+          "start": 238,
+          "end": 238,
+          "text": "REQ-PERF-005 | Program-memory usage | Hardware-dependent | Compiled size < 90% of available Flash | Required"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-PERF-005"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R083",
+      "source_requirement_id": "§5/IF-*",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Design constraints / Interface table",
+      "source_lines": [
+        {
+          "start": 242,
+          "end": 242
+        }
+      ],
+      "statement": "Use C/C++ and the specified platform interfaces; whether a platform adapter replaces Arduino is determined by the common task boundary.",
+      "category": "artifact",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 242,
+          "end": 242,
+          "text": "Programming language | C/C++ (Arduino framework)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5/IF-*"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R084",
+      "source_requirement_id": "§5/IF-*",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Design constraints / Interface table",
+      "source_lines": [
+        {
+          "start": 226,
+          "end": 230
+        },
+        {
+          "start": 243,
+          "end": 243
+        }
+      ],
+      "statement": "Use the prescribed communication, motor, GPS, RTC, and limit interfaces for actual data I/O rather than merely storing ineffective constants.",
+      "category": "interface",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 226,
+          "end": 230,
+          "text": "1 | IF-CMD | Command interface | Serial/WiFi/Bluetooth/Ethernet | Input: LX200 text commands / Output: execution-result text\n2 | IF-MOT | Motor-control interface | SPI or STEP/DIR pins | Output: pulse sequences and direction signals, SPI configuration registers\n3 | IF-GPS | GPS-data interface | Serial | Input: NMEA 0183 positioning data (longitude/latitude/altitude/time)\n4 | IF-RTC | Clock interface | I2C | Input: date and time values\n5 | IF-LIMIT | Limit-switch interface | GPIO digital input | Input: axis extreme-position trigger signals"
+        },
+        {
+          "start": 243,
+          "end": 243,
+          "text": "Motor-driver interface | SPI (TMC family) or STEP/DIR pulses (generic drivers)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5/IF-*"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R085",
+      "source_requirement_id": "§5/IF-*",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Design constraints / Interface table",
+      "source_lines": [
+        {
+          "start": 228,
+          "end": 228
+        },
+        {
+          "start": 245,
+          "end": 245
+        }
+      ],
+      "statement": "GPS input uses the NMEA 0183 protocol format.",
+      "category": "communication",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 228,
+          "end": 228,
+          "text": "3 | IF-GPS | GPS-data interface | Serial | Input: NMEA 0183 positioning data (longitude/latitude/altitude/time)"
+        },
+        {
+          "start": 245,
+          "end": 245,
+          "text": "GPS protocol | NMEA 0183"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5/IF-*"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R086",
+      "source_requirement_id": "§5/IF-*",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Design constraints / Interface table",
+      "source_lines": [
+        {
+          "start": 246,
+          "end": 246
+        }
+      ],
+      "statement": "Hardware parameters come from compile-time Config.h configuration.",
+      "category": "configuration",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 246,
+          "end": 246,
+          "text": "Configuration | Hardware parameters configured at compile time through Config.h"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5/IF-*"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R087",
+      "source_requirement_id": "§5/IF-*",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Design constraints / Interface table",
+      "source_lines": [
+        {
+          "start": 247,
+          "end": 247
+        }
+      ],
+      "statement": "Nonvolatile state uses EEPROM or Flash-emulated EEPROM interfaces.",
+      "category": "persistence",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 247,
+          "end": 247,
+          "text": "Nonvolatile storage | EEPROM or Flash-emulated EEPROM"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5/IF-*"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R088",
+      "source_requirement_id": "REQ-RES-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "6. Resource requirements",
+      "source_lines": [
+        {
+          "start": 251,
+          "end": 251
+        }
+      ],
+      "statement": "The target build must not exceed the specified platform's Flash capacity.",
+      "category": "resource",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_execution_or_hardware",
+        "reason": "Real timing, resources, physical devices, or statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance."
+      },
+      "source_excerpt": [
+        {
+          "start": 251,
+          "end": 251,
+          "text": "REQ-RES-001 | Program memory | Mega2560: 256KB / Teensy 3.2: 256KB / Teensy 4.0: 1MB | Platform-dependent"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-RES-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R089",
+      "source_requirement_id": "REQ-RES-002",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "6. Resource requirements",
+      "source_lines": [
+        {
+          "start": 252,
+          "end": 252
+        }
+      ],
+      "statement": "Runtime memory, including the calibration matrix, must not exceed the target platform's RAM limit.",
+      "category": "resource",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_execution_or_hardware",
+        "reason": "Real timing, resources, physical devices, or statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance."
+      },
+      "source_excerpt": [
+        {
+          "start": 252,
+          "end": 252,
+          "text": "REQ-RES-002 | Runtime memory | Mega2560: 8KB / Teensy: 64KB+ | Includes calibration data and transformation matrix"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-RES-002"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R090",
+      "source_requirement_id": "REQ-RES-003",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "6. Resource requirements",
+      "source_lines": [
+        {
+          "start": 253,
+          "end": 253
+        }
+      ],
+      "statement": "The target platform provides at least 2 KB of usable nonvolatile storage for calibration/configuration.",
+      "category": "resource",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_execution_or_hardware",
+        "reason": "Real timing, resources, physical devices, or statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance."
+      },
+      "source_excerpt": [
+        {
+          "start": 253,
+          "end": 253,
+          "text": "REQ-RES-003 | Nonvolatile storage | >= 2KB | Stores calibration parameters and configuration"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-RES-003"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R091",
+      "source_requirement_id": "REQ-FDIR-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "7. Fault detection and recovery",
+      "source_lines": [
+        {
+          "start": 257,
+          "end": 257
+        }
+      ],
+      "statement": "On a runtime limit, immediately stop the corresponding axis and refuse further motion toward that limit.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 257,
+          "end": 257,
+          "text": "REQ-FDIR-001 | Limit switch triggered | GPIO-level detection | Immediately stop the corresponding axis and reject further motion in that direction. All motion functions (Goto, manual motion, parking) must proactively check limits before starting and reject movement toward an already triggered limit. os_hal_limit_is_triggered must fail safely by returning true (triggered) for invalid axis IDs (other than RA/DEC) | Required"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R092",
+      "source_requirement_id": "REQ-FDIR-001",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "7. Fault detection and recovery",
+      "source_lines": [
+        {
+          "start": 257,
+          "end": 257
+        }
+      ],
+      "statement": "os_hal_limit_is_triggered returns true fail-safely for invalid axis identifiers other than RA/DEC.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 257,
+          "end": 257,
+          "text": "REQ-FDIR-001 | Limit switch triggered | GPIO-level detection | Immediately stop the corresponding axis and reject further motion in that direction. All motion functions (Goto, manual motion, parking) must proactively check limits before starting and reject movement toward an already triggered limit. os_hal_limit_is_triggered must fail safely by returning true (triggered) for invalid axis IDs (other than RA/DEC) | Required"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-001"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R093",
+      "source_requirement_id": "REQ-FDIR-002",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "7. Fault detection and recovery",
+      "source_lines": [
+        {
+          "start": 258,
+          "end": 258
+        }
+      ],
+      "statement": "Detect no GPS signal through a timeout without valid NMEA frames.",
+      "category": "timing",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 258,
+          "end": 258,
+          "text": "REQ-FDIR-002 | No GPS signal | Timeout without valid NMEA frames | Fall back to RTC and preset location; prompt the user for manual input | Important"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-002"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R094",
+      "source_requirement_id": "REQ-FDIR-002",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "7. Fault detection and recovery",
+      "source_lines": [
+        {
+          "start": 258,
+          "end": 258
+        }
+      ],
+      "statement": "When GPS loses its signal and falls back, prompt the user to enter location/time manually.",
+      "category": "observability",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 258,
+          "end": 258,
+          "text": "REQ-FDIR-002 | No GPS signal | Timeout without valid NMEA frames | Fall back to RTC and preset location; prompt the user for manual input | Important"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-002"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R095",
+      "source_requirement_id": "REQ-FDIR-003",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "7. Fault detection and recovery",
+      "source_lines": [
+        {
+          "start": 259,
+          "end": 259
+        }
+      ],
+      "statement": "Detect motor-driver SPI timeouts or error bits in status registers.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 259,
+          "end": 259,
+          "text": "REQ-FDIR-003 | Motor-driver communication failure | SPI timeout or error bits in status register | Report an error and attempt driver reinitialization | Required"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-003"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R096",
+      "source_requirement_id": "REQ-FDIR-004",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "7. Fault detection and recovery",
+      "source_lines": [
+        {
+          "start": 260,
+          "end": 260
+        }
+      ],
+      "statement": "Prompt recalibration on calibration faults; do not automatically apply invalid parameters.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 260,
+          "end": 260,
+          "text": "REQ-FDIR-004 | Calibration anomaly | Excessive residual (>several arcminutes) | Prompt recalibration; do not automatically apply incorrect parameters | Important"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-004"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R097",
+      "source_requirement_id": "REQ-FDIR-004",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "7. Fault detection and recovery",
+      "source_lines": [
+        {
+          "start": 260,
+          "end": 260
+        }
+      ],
+      "statement": "The residual threshold of “several arcminutes” has no definite numeric value; a common contract clarification is needed before assessing a particular threshold implementation.",
+      "category": "safety",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The supplied requirements lack necessary parameters or contain conflicting wording; clarify one common contract first rather than inferring it from candidate implementations."
+      },
+      "source_excerpt": [
+        {
+          "start": 260,
+          "end": 260,
+          "text": "REQ-FDIR-004 | Calibration anomaly | Excessive residual (>several arcminutes) | Prompt recalibration; do not automatically apply incorrect parameters | Important"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-004"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R098",
+      "source_requirement_id": "REQ-FDIR-005",
+      "source_id_kind": "original_requirement_id",
+      "source_section": "7. Fault detection and recovery",
+      "source_lines": [
+        {
+          "start": 261,
+          "end": 261
+        }
+      ],
+      "statement": "After watchdog reset, restore the last known position from EEPROM and resume tracking.",
+      "category": "recovery",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 261,
+          "end": 261,
+          "text": "REQ-FDIR-005 | Watchdog reset | Hardware-watchdog timeout | Reset the system, restore the last known position from EEPROM, and resume tracking | Required"
+        }
+      ],
+      "source_requirement_ids": [
+        "REQ-FDIR-005"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R099",
+      "source_requirement_id": "Appendices A/B",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "Appendices A/B",
+      "source_lines": [
+        {
+          "start": 268,
+          "end": 268
+        }
+      ],
+      "statement": "Users can enter calibration; completion or cancellation exits it.",
+      "category": "state",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 268,
+          "end": 268,
+          "text": "Calibration | Collect calibration-star data | User starts calibration | Calibration completed or canceled"
+        }
+      ],
+      "source_requirement_ids": [
+        "Appendices A/B"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R100",
+      "source_requirement_id": "Appendices A/B",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "Appendices A/B",
+      "source_lines": [
+        {
+          "start": 271,
+          "end": 271
+        }
+      ],
+      "statement": "Hardware errors enter fault state; error clearing or watchdog reset supports exit/recovery.",
+      "category": "recovery",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Original-code implementations, data flow, and branches can be inspected; static evidence does not prove actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 271,
+          "end": 271,
+          "text": "Fault | Error detected | Hardware error or anomaly | Error cleared or watchdog reset"
+        }
+      ],
+      "source_requirement_ids": [
+        "Appendices A/B"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R101",
+      "source_requirement_id": "Appendices A/B",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "Appendices A/B",
+      "source_lines": [
+        {
+          "start": 277,
+          "end": 277
+        }
+      ],
+      "statement": "The cumulative-step table specifies 0~2³², but uint32_t has maximum 2³²-1; the concrete type and overflow semantics need clarification.",
+      "category": "numeric",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The supplied requirements lack necessary parameters or contain conflicting wording; clarify one common contract first rather than inferring it from candidate implementations."
+      },
+      "source_excerpt": [
+        {
+          "start": 277,
+          "end": 277,
+          "text": "Stepper-motor steps | Accumulated absolute RA/Dec-axis positions | 0~2^32 steps | Motor-pulse count"
+        }
+      ],
+      "source_requirement_ids": [
+        "Appendices A/B"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "OS-R102",
+      "source_requirement_id": "Appendices A/B",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "Appendices A/B",
+      "source_lines": [
+        {
+          "start": 124,
+          "end": 124
+        },
+        {
+          "start": 280,
+          "end": 280
+        }
+      ],
+      "statement": "The text's typical guiding range of 0.25x~1x differs from the table's 0.1x~1x. A common adjudication must fix the valid range; it cannot be selected per candidate.",
+      "category": "numeric",
+      "applicability_condition": "Applies to the project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The supplied requirements lack necessary parameters or contain conflicting wording; clarify one common contract first rather than inferring it from candidate implementations."
+      },
+      "source_excerpt": [
+        {
+          "start": 124,
+          "end": 124,
+          "text": "   3. Calculate the temporary rate adjustment from the guiding-rate setting (typically 0.25x~1x sidereal rate)"
+        },
+        {
+          "start": 280,
+          "end": 280,
+          "text": "Guiding rate | Rate-offset coefficient during guiding correction | 0.1x~1x sidereal rate | User configuration"
+        }
+      ],
+      "source_requirement_ids": [
+        "Appendices A/B"
+      ],
+      "code_judgment": null
+    }
+  ],
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/preparation/onstep/requirements_checklist.json",
+    "original_sha256": "a2880041a7e76892abd2a08dc18f5a770e7459d7389b7fbceeefbb41bcf22c8b",
+    "language": "Original Chinese requirements and judgments retained; no semantic translation.",
+    "transformation": "Workspace/home-path anonymization and export metadata only; leaf statements and classifications unchanged."
+  }
+}

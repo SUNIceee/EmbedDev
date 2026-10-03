@@ -1,0 +1,2259 @@
+{
+  "classification": "Missing code has no behavioral verdict; among delivered candidates, build > harness/link > executed assertion > all-pass. Every scenario outcome is retained.",
+  "rows": [
+    {
+      "id": "crazyflie__deepseek-v4-pro__C4_structured__r01",
+      "method": "C4_structured",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/f17513b45d10f19c0fe00116d17ce7a897557132a04987aed4bfd12a11773235/report.json",
+      "candidate_source": "fse/official_baselines/reassessment_host_20260921/code/f17513b45d10f19c0fe00116d17ce7a897557132a04987aed4bfd12a11773235/raw/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__C4_structured__r02",
+      "method": "C4_structured",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/396f7c9be1aa77f73b3d4136bd637e385d246078998fa5bacfba39345d064b5e/report.json",
+      "candidate_source": "fse/official_baselines/reassessment_host_20260921/code/396f7c9be1aa77f73b3d4136bd637e385d246078998fa5bacfba39345d064b5e/raw/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__C4_structured__r03",
+      "method": "C4_structured",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/8d3567b6619d0f1f28c0265d601601af4f810e3436d7e724525c9da26ddf0bb1/report.json",
+      "candidate_source": "fse/official_baselines/reassessment_host_20260921/code/8d3567b6619d0f1f28c0265d601601af4f810e3436d7e724525c9da26ddf0bb1/raw/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__C4_structured__r01",
+      "method": "C4_structured",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/ab0d5ed4ef659a2a5a6fbb705a54775f71a952e600e1fad9f6a979a3790ed52e/report.json",
+      "candidate_source": "fse/official_baselines/reassessment_host_20260921/code/ab0d5ed4ef659a2a5a6fbb705a54775f71a952e600e1fad9f6a979a3790ed52e/raw/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__C4_structured__r02",
+      "method": "C4_structured",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/b779f97cbb9e327e868eb3f3dd15c14c0f6e06446c41989052cf0ed3660a9160/report.json",
+      "candidate_source": "fse/official_baselines/reassessment_host_20260921/code/b779f97cbb9e327e868eb3f3dd15c14c0f6e06446c41989052cf0ed3660a9160/raw/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__C4_structured__r03",
+      "method": "C4_structured",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/deepseek_no_cap_host_20261001/candidates/ebbd550a5cd41b9128e57506de4b92c9893d3069913a41bede1d3bafe1855565/report.json",
+      "candidate_source": "fse/deepseek_no_cap_20261001/deepseek/execution/discobot__deepseek-v4-pro__C4_structured__r03/jobs/discobot__deepseek-v4-pro__C4_structured__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__C4_structured__r01",
+      "method": "C4_structured",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/decode_recovery_host_20261001/candidates/40f8ecee6d9645e820b80e4400116d89a042cda9dfa7e1d2122214afe305cced/report.json",
+      "candidate_source": "fse/deepseek_output_decode_recovery_20261001/candidates/onstep__deepseek-v4-pro__C4_structured__r01/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__C4_structured__r02",
+      "method": "C4_structured",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/decode_recovery_host_20261001/candidates/063332772bcf616ebf971b1ed17917b87df2c0ab375f9b12af3eb1fdd908d1fb/report.json",
+      "candidate_source": "fse/deepseek_output_decode_recovery_20261001/candidates/onstep__deepseek-v4-pro__C4_structured__r02/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__C4_structured__r03",
+      "method": "C4_structured",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/deepseek_onstep_r03_new_host_20261001/candidates/b4a836e3ccaaf97d961e25405ace90b94126e148adb43d871fdc6be5094381c6/report.json",
+      "candidate_source": "fse/deepseek_onstep_r03_new_20261001/deepseek/execution/onstep__deepseek-v4-pro__C4_structured__r03/jobs/onstep__deepseek-v4-pro__C4_structured__r03/repair_2/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__C4_structured__r01",
+      "method": "C4_structured",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/deepseek_onstep_r03_new_host_20261001/candidates/0cf68209e1715b349ed22be7d4db2f599d9f288f88503a7b40abf97f1dd2c7b5/report.json",
+      "candidate_source": "fse/gemini_c4_rerun_20261001/execution/crazyflie__gemini-3-flash-preview__C4_structured__r01/jobs/crazyflie__gemini-3-flash-preview__C4_structured__r01/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__C4_structured__r02",
+      "method": "C4_structured",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/deepseek_onstep_r03_new_host_20261001/candidates/da7bba6311562b67c7f38c42f60de6d3a662517aaec7e839453f3bec7d4871b8/report.json",
+      "candidate_source": "fse/gemini_c4_rerun_20261001/execution/crazyflie__gemini-3-flash-preview__C4_structured__r02/jobs/crazyflie__gemini-3-flash-preview__C4_structured__r02/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__C4_structured__r03",
+      "method": "C4_structured",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 5,
+        "fail": 1
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/gemini_c4_three_retry_host_20261002/candidates/0f364de8c523c88e97a5e2b08cb0f9caf71c66daafe0c0051e6d5b0eb3e58fca/report.json",
+      "candidate_source": "fse/gemini_c4_three_retry_20261002/execution/crazyflie__gemini-3-flash-preview__C4_structured__r03/jobs/crazyflie__gemini-3-flash-preview__C4_structured__r03/initial/6_generated_code.c",
+      "exclusive_endpoint": "executed_assertion_failed"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__C4_structured__r01",
+      "method": "C4_structured",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/deepseek_onstep_r03_new_host_20261001/candidates/f0a906e02e81cf00259721b1f4787fb50062f185406d6f9325ba30a06c271dd9/report.json",
+      "candidate_source": "fse/gemini_c4_rerun_20261001/execution/discobot__gemini-3-flash-preview__C4_structured__r01/jobs/discobot__gemini-3-flash-preview__C4_structured__r01/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__C4_structured__r02",
+      "method": "C4_structured",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/deepseek_onstep_r03_new_host_20261001/candidates/5ffff03897fac06b1ddce3937c45571054f23027cb4d301c1a0c2d6ce2532ce7/report.json",
+      "candidate_source": "fse/gemini_c4_rerun_20261001/execution/discobot__gemini-3-flash-preview__C4_structured__r02/jobs/discobot__gemini-3-flash-preview__C4_structured__r02/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__C4_structured__r03",
+      "method": "C4_structured",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/deepseek_onstep_r03_new_host_20261001/candidates/0345e777083038f71f1bd2e4df16413b8d30bf3b440bdfb38c526995d84bb02b/report.json",
+      "candidate_source": "fse/gemini_c4_rerun_20261001/execution/discobot__gemini-3-flash-preview__C4_structured__r03/jobs/discobot__gemini-3-flash-preview__C4_structured__r03/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__C4_structured__r01",
+      "method": "C4_structured",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/gemini_c4_three_retry_host_20261002/candidates/ca0d7a46b0afb8ede9ff070387004d92ab0360af0313f4a868bb8662a9805330/report.json",
+      "candidate_source": "fse/gemini_c4_three_retry_20261002/execution/onstep__gemini-3-flash-preview__C4_structured__r01/jobs/onstep__gemini-3-flash-preview__C4_structured__r01/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__C4_structured__r02",
+      "method": "C4_structured",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/deepseek_onstep_r03_new_host_20261001/candidates/c70e308d51a3d7715d5a8e4c2fe27caf677a3576f98c3923e002e5521e731e40/report.json",
+      "candidate_source": "fse/gemini_c4_rerun_20261001/execution/onstep__gemini-3-flash-preview__C4_structured__r02/jobs/onstep__gemini-3-flash-preview__C4_structured__r02/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__C4_structured__r03",
+      "method": "C4_structured",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__C4_structured__r01",
+      "method": "C4_structured",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/cfhost_20260930/candidates/73e3c716ad3d3d771e14412d43baffcf8d60d10e08419eeb4d767a9dcd99e076/report.json",
+      "candidate_source": "fse/interrupted_restart_20260930/subscription_fixed/continuation_unstarted/execution/c4_repeat/crazyflie__gpt-5.5__C4_structured__r01/jobs/crazyflie__gpt-5.5__C4_structured__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__C4_structured__r02",
+      "method": "C4_structured",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "provider_blocked",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/gpt_connection_retry2_fix_host_20261001/candidates/d021d33c0b19b56c575d83b0dfcfa9b0824f19b921c445bc0f2c9cd770e99ceb/report.json",
+      "candidate_source": "fse/gpt_connection_retry2_fix_20261001/gpt/execution/crazyflie__gpt-5.5__C4_structured__r02/jobs/crazyflie__gpt-5.5__C4_structured__r02/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__C4_structured__r03",
+      "method": "C4_structured",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/gpt_connection_retry2_fix_host_20261001/candidates/92d8242bf0e9eed79474ba3f2cdd19dc847cde2f1e65d54f689e5189eea7fc81/report.json",
+      "candidate_source": "fse/gpt_connection_retry2_fix_20261001/gpt/execution/crazyflie__gpt-5.5__C4_structured__r03/jobs/crazyflie__gpt-5.5__C4_structured__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gpt-5.5__C4_structured__r01",
+      "method": "C4_structured",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/cfhost_20260930/candidates/7e98fe9c3ba372b53b290c8ca049d73c751323d8fc31118c26fe1d15698918fc/report.json",
+      "candidate_source": "fse/interrupted_restart_20260930/subscription_fixed/continuation_unstarted/execution/c4_repeat/discobot__gpt-5.5__C4_structured__r01/jobs/discobot__gpt-5.5__C4_structured__r01/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gpt-5.5__C4_structured__r02",
+      "method": "C4_structured",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "provider_blocked",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/cfhost_20260930/candidates/52222401d06a568dd07fadcfe9d2a1f7611c6c99e2a6d6c50e55660a41d480f9/report.json",
+      "candidate_source": "fse/interrupted_restart_20260930/subscription_fixed/execution/c4_repeat/discobot__gpt-5.5__C4_structured__r02/jobs/discobot__gpt-5.5__C4_structured__r02/repair_2/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gpt-5.5__C4_structured__r03",
+      "method": "C4_structured",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/cfhost_20260930/candidates/995bf7dbe4a105a6d85e1bcc2bc7bbb3e2b04980c35146ac8ce2ff0174094739/report.json",
+      "candidate_source": "fse/interrupted_restart_20260930/subscription_fixed/continuation_unstarted/execution/c4_repeat/discobot__gpt-5.5__C4_structured__r03/jobs/discobot__gpt-5.5__C4_structured__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__C4_structured__r01",
+      "method": "C4_structured",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/cfhost_20260930/candidates/dfbc8a8febcf3d52738213a74db4196e1dae9a895a79e67f5f5a72b98ea52dff/report.json",
+      "candidate_source": "fse/onstep_validator_recovery_20260930/execution/onstep__gpt-5.5__C4_structured__r01/jobs/onstep__gpt-5.5__C4_structured__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__C4_structured__r02",
+      "method": "C4_structured",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "provider_blocked",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/cfhost_20260930/candidates/bbea7f73b5a71b2e08b8551a50bc4ae979273da3b80cbd45dad47e69865d127b/report.json",
+      "candidate_source": "fse/interrupted_restart_20260930/subscription_fixed/execution/c4_repeat/onstep__gpt-5.5__C4_structured__r02/jobs/onstep__gpt-5.5__C4_structured__r02/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__C4_structured__r03",
+      "method": "C4_structured",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/cfhost_20260930/candidates/33af8b3d623266b2eddd10eeccf8c280494e2c80f1ac7588fedc4a3466fe22db/report.json",
+      "candidate_source": "fse/onstep_validator_recovery_20260930/execution/onstep__gpt-5.5__C4_structured__r03/jobs/onstep__gpt-5.5__C4_structured__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__C5_api_repair__r01",
+      "method": "C5_api_repair",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/b43f3285f8e033721aaf60fa528a0e6b7b0cd6afadf0f7dd38e235e00826736c/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__C5_api_repair__r01/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__C5_api_repair__r02",
+      "method": "C5_api_repair",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/d4fb6badbc50acb504df100716d03721ddb4de18b4cc656864ddef9cdc952e3e/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__C5_api_repair__r02/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__C5_api_repair__r03",
+      "method": "C5_api_repair",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "candidate_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/487121c8c8f5cf0e1d73f18660ffecce42ba5a9bdcf155ebf41703a4b9c1a873/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__C5_api_repair__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "candidate_build_failed"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__C5_api_repair__r01",
+      "method": "C5_api_repair",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/3b798b65a86249d11263c288a24f5c6c272714743ef90d83439f00ce72b19326/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__C5_api_repair__r01/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__C5_api_repair__r02",
+      "method": "C5_api_repair",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/0733e2f73f59a05bb7e42ac17f16a68fc25420798edda28fc4657486aa7508db/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__C5_api_repair__r02/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__C5_api_repair__r03",
+      "method": "C5_api_repair",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__C5_api_repair__r01",
+      "method": "C5_api_repair",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "harness_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/b14a37ed72312d2753cc83cda2daf5e68fb29a56da46f93171c8e3516c7df453/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__deepseek-v4-pro__C5_api_repair__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "harness_or_link_failed"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__C5_api_repair__r02",
+      "method": "C5_api_repair",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "harness_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/d6cc5557b745eb6a5b32dfa7868e2a89db66c753b6d2cacf74edfc4bca1211de/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__deepseek-v4-pro__C5_api_repair__r02/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "harness_or_link_failed"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__C5_api_repair__r03",
+      "method": "C5_api_repair",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "harness_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/be577fc94cb3eb6d7ab8669fc7faae6be449959de8c2dd45973100f5e3d890d3/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__deepseek-v4-pro__C5_api_repair__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "harness_or_link_failed"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__C5_api_repair__r01",
+      "method": "C5_api_repair",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__C5_api_repair__r02",
+      "method": "C5_api_repair",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__C5_api_repair__r03",
+      "method": "C5_api_repair",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__C5_api_repair__r01",
+      "method": "C5_api_repair",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__C5_api_repair__r02",
+      "method": "C5_api_repair",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__C5_api_repair__r03",
+      "method": "C5_api_repair",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__C5_api_repair__r01",
+      "method": "C5_api_repair",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/77ecf80ad3d24617e17d8ce428d06687f4935fb87f039fc981ed0743174fa1a3/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__gemini-3-flash-preview__C5_api_repair__r01/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__C5_api_repair__r02",
+      "method": "C5_api_repair",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__C5_api_repair__r03",
+      "method": "C5_api_repair",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__C5_api_repair__r01",
+      "method": "C5_api_repair",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/6fc20ab020cff77ad98cf771a95ff8518baad34a2b299dad3be4787ecfb79eb8/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__gpt-5.5__C5_api_repair__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__C5_api_repair__r02",
+      "method": "C5_api_repair",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "candidate_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/6534dd4178dfd4fd5d644e01f566cc37b262037e3b81eae7a575518510e4d861/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__gpt-5.5__C5_api_repair__r02/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "candidate_build_failed"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__C5_api_repair__r03",
+      "method": "C5_api_repair",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/45837c4f640ae48e1128f1f7638b8defce2dd7817d5d71ab2384dbed03e1db52/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__gpt-5.5__C5_api_repair__r03/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gpt-5.5__C5_api_repair__r01",
+      "method": "C5_api_repair",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/e1fb739fad7b8b3bcfdbb3f42a30d7ce1a49c59447a66f6bd7de028392e05bc5/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gpt-5.5__C5_api_repair__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gpt-5.5__C5_api_repair__r02",
+      "method": "C5_api_repair",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/cf19eae2f9647649e156efdbb2c7f9a2a6a4908fec5f1140ee21becb6c1db857/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gpt-5.5__C5_api_repair__r02/repair_2/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gpt-5.5__C5_api_repair__r03",
+      "method": "C5_api_repair",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/742dade3abf5fae06e34dbf09d39f54e1f7c44c9c5a37769d6d5d64b7f3499e1/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gpt-5.5__C5_api_repair__r03/repair_2/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__C5_api_repair__r01",
+      "method": "C5_api_repair",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "fail": 4,
+        "pass": 2
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/a5b8f63beb945d0f65fc660acf8e1715e929179256a2201357aeb226a3b99c4c/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__gpt-5.5__C5_api_repair__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "executed_assertion_failed"
+    },
+    {
+      "id": "onstep__gpt-5.5__C5_api_repair__r02",
+      "method": "C5_api_repair",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/8e36b067f8220b5b751b98461b3d9dd11aadb83d593ea9b193dcd29760dda210/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__gpt-5.5__C5_api_repair__r02/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__C5_api_repair__r03",
+      "method": "C5_api_repair",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "provider_blocked",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_unlimited_host_20261001/candidates/c18634a7bda7eae8fa92f65916605e28c38fe45a7b26e3c0976f096870b17a1e/report.json",
+      "candidate_source": "fse/rq2_execution_unlimited_20261001/gpt/execution/onstep__gpt-5.5__C5_api_repair__r03/jobs/onstep__gpt-5.5__C5_api_repair__r03/repair_2/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__C6_plain_plan__r01",
+      "method": "C6_plain_plan",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/481f1cb88dcadddc9ff5db8b3c8f2026c34792edf5845728d90e70dcccc48421/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__C6_plain_plan__r01/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__C6_plain_plan__r02",
+      "method": "C6_plain_plan",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/720cd76c9cc6c39086667cf29204d4ab7cc225acaa67c1cc0e2b42ab0eccdb97/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__C6_plain_plan__r02/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__C6_plain_plan__r03",
+      "method": "C6_plain_plan",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/be7762fcbb42125d07fa361f960006d36880683ea38c49dee9bb48849479772d/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__C6_plain_plan__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__C6_plain_plan__r01",
+      "method": "C6_plain_plan",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/31922878257745b8278f9f70caa9472f39476945561aa301086aed396e1cccd6/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__C6_plain_plan__r01/repair_2/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__C6_plain_plan__r02",
+      "method": "C6_plain_plan",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/e0b61c29ab969330946ef058ec8684a2bd221afd80e168d0b596675c5c4bc4ee/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__C6_plain_plan__r02/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__C6_plain_plan__r03",
+      "method": "C6_plain_plan",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/eb63b4c6eb070477bfe97d1a24fc57fc2e0b4f7a2bdee628d3ed4951bc4d8101/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__C6_plain_plan__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__C6_plain_plan__r01",
+      "method": "C6_plain_plan",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "candidate_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/842b843b40e8ee747882aa05d0c6d615bd255da74ef3986d3d103b9b55de32ae/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__deepseek-v4-pro__C6_plain_plan__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "candidate_build_failed"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__C6_plain_plan__r02",
+      "method": "C6_plain_plan",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/a97db2d2750e9c19751711c27307b843addde008aa7a06550ea7637dbc4baece/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__deepseek-v4-pro__C6_plain_plan__r02/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__C6_plain_plan__r03",
+      "method": "C6_plain_plan",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/e369afc92a6d465a8bc0ddd57df8c4a6f6eb93783d1fa7e3da91acc71f203f48/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__deepseek-v4-pro__C6_plain_plan__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__C6_plain_plan__r01",
+      "method": "C6_plain_plan",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "harness_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/1b1e9e2f87723ada2322ab9f1efc05cad0315d2e423846771f27f1b7474a4be8/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__gemini-3-flash-preview__C6_plain_plan__r01/initial/6_generated_code.c",
+      "exclusive_endpoint": "harness_or_link_failed"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__C6_plain_plan__r02",
+      "method": "C6_plain_plan",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__C6_plain_plan__r03",
+      "method": "C6_plain_plan",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__C6_plain_plan__r01",
+      "method": "C6_plain_plan",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__C6_plain_plan__r02",
+      "method": "C6_plain_plan",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__C6_plain_plan__r03",
+      "method": "C6_plain_plan",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/ccfb0a1ac63274addfe64a53218f2714309177e8c271b5fb6aa1f3636dfcceec/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gemini-3-flash-preview__C6_plain_plan__r03/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__C6_plain_plan__r01",
+      "method": "C6_plain_plan",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__C6_plain_plan__r02",
+      "method": "C6_plain_plan",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__C6_plain_plan__r03",
+      "method": "C6_plain_plan",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__C6_plain_plan__r01",
+      "method": "C6_plain_plan",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "candidate_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/e865615a2c364ce64432493c0debd4c4536fbdf5c8802c39098a010a355ea1cc/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__gpt-5.5__C6_plain_plan__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "candidate_build_failed"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__C6_plain_plan__r02",
+      "method": "C6_plain_plan",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "provider_blocked",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_unlimited_host_20261001/candidates/8b89d91e899ba40601908177ba3f59979d47057a655e3dc14b82917a8a7a37aa/report.json",
+      "candidate_source": "fse/rq2_execution_unlimited_20261001/gpt/execution/crazyflie__gpt-5.5__C6_plain_plan__r02/jobs/crazyflie__gpt-5.5__C6_plain_plan__r02/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__C6_plain_plan__r03",
+      "method": "C6_plain_plan",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "candidate_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/5cb14d3b6af1fe8bf4e48db2fc5840c213b88a617b46d6fb930f1bb0116ac2af/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__gpt-5.5__C6_plain_plan__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "candidate_build_failed"
+    },
+    {
+      "id": "discobot__gpt-5.5__C6_plain_plan__r01",
+      "method": "C6_plain_plan",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/4794eeb48f80a59845d3dd3b7c74ee75295d80c527040ca36e668c33ff46dcdd/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gpt-5.5__C6_plain_plan__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gpt-5.5__C6_plain_plan__r02",
+      "method": "C6_plain_plan",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/e747e08efe80c786497bde9bb643dffa71d444a787bdc6d1e590131a9a52b165/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gpt-5.5__C6_plain_plan__r02/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gpt-5.5__C6_plain_plan__r03",
+      "method": "C6_plain_plan",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/bba5650f5621c6161ac7e5aa4763baf11a5c0c4d54ba1baa10821d565c33a390/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gpt-5.5__C6_plain_plan__r03/repair_2/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__C6_plain_plan__r01",
+      "method": "C6_plain_plan",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/7d42d17fde06291c459df0e9861c55ef6d0c575d6b42d4001549c5289ad34d93/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__gpt-5.5__C6_plain_plan__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__C6_plain_plan__r02",
+      "method": "C6_plain_plan",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/a5dbaf93e42c5032234f8c651f13d2ee701ce6de32a8b374af868fd8b2b4f405/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__gpt-5.5__C6_plain_plan__r02/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__C6_plain_plan__r03",
+      "method": "C6_plain_plan",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 5,
+        "fail": 1
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/f6edc01db25d98f9bb2cc7ee3515bf91329fcec201254259372e922964a65273/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__gpt-5.5__C6_plain_plan__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "executed_assertion_failed"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__A_no_state__r01",
+      "method": "A_no_state",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__A_no_state__r02",
+      "method": "A_no_state",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__A_no_state__r03",
+      "method": "A_no_state",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/2abebfb2d65c442ccbd49fa23db895b360466673da02cb1a724cc6ebdc6c071c/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__A_no_state__r03/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__A_no_state__r01",
+      "method": "A_no_state",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/b80cfd74139cfa277702e606e170fc8be83b8db03208f4f89d717e9b8fa4c57b/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__A_no_state__r01/repair_2/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__A_no_state__r02",
+      "method": "A_no_state",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/f1ca4b2f1920aa2b71bb270b6b72df19b987e1a84a58e59781c23895686ee103/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__A_no_state__r02/repair_2/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__A_no_state__r03",
+      "method": "A_no_state",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/d47efdab444c3ee093304dd37910c47e85fcb654208264d7284d23ccf9c423fb/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__A_no_state__r03/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__A_no_state__r01",
+      "method": "A_no_state",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_unlimited_host_20261001/candidates/be5d4f2a89daf0cc59f2f9aa67d568d2159fdf22bd044231e6bd0b0164fcf7c8/report.json",
+      "candidate_source": "fse/rq2_execution_unlimited_20261001/deepseek/execution/onstep__deepseek-v4-pro__A_no_state__r01/jobs/onstep__deepseek-v4-pro__A_no_state__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__A_no_state__r02",
+      "method": "A_no_state",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/3ea7b8940b0ed9a3b93447668a68f0facd22fb23620070b35c490c3d4f4afca2/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__deepseek-v4-pro__A_no_state__r02/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__A_no_state__r03",
+      "method": "A_no_state",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_unlimited_host_20261001/candidates/e2d63837ed7933e3cd02f4d582e2f80ce7a86d5c3f1dbbb31669ed821315a797/report.json",
+      "candidate_source": "fse/rq2_execution_unlimited_20261001/deepseek/execution/onstep__deepseek-v4-pro__A_no_state__r03/jobs/onstep__deepseek-v4-pro__A_no_state__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__A_no_state__r01",
+      "method": "A_no_state",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__A_no_state__r02",
+      "method": "A_no_state",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__A_no_state__r03",
+      "method": "A_no_state",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__A_no_state__r01",
+      "method": "A_no_state",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__A_no_state__r02",
+      "method": "A_no_state",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__A_no_state__r03",
+      "method": "A_no_state",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__A_no_state__r01",
+      "method": "A_no_state",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__A_no_state__r02",
+      "method": "A_no_state",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__A_no_state__r03",
+      "method": "A_no_state",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__A_no_state__r01",
+      "method": "A_no_state",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__A_no_state__r02",
+      "method": "A_no_state",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__A_no_state__r03",
+      "method": "A_no_state",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gpt-5.5__A_no_state__r01",
+      "method": "A_no_state",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_gpt_resume_host_20261001/candidates/37dd6b51b02f71415597e25f1910c4354d7ff9eec35dff5fcef23e7f5be2c74b/report.json",
+      "candidate_source": "fse/rq2_gpt_resume_20261001/gpt/execution/discobot__gpt-5.5__A_no_state__r01/jobs/discobot__gpt-5.5__A_no_state__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gpt-5.5__A_no_state__r02",
+      "method": "A_no_state",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gpt-5.5__A_no_state__r03",
+      "method": "A_no_state",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_gpt_resume_host_20261001/candidates/013f0c512211866791ce403770fd019638eb72fe75bb0e468e388db079104767/report.json",
+      "candidate_source": "fse/rq2_gpt_resume_20261001/gpt/execution/discobot__gpt-5.5__A_no_state__r03/jobs/discobot__gpt-5.5__A_no_state__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__A_no_state__r01",
+      "method": "A_no_state",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gpt-5.5__A_no_state__r02",
+      "method": "A_no_state",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gpt-5.5__A_no_state__r03",
+      "method": "A_no_state",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__A_no_behavior__r01",
+      "method": "A_no_behavior",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "candidate_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/dc7fd6fc0ed8740986e7babb17afc1d80b52fb2212af9cc06e72d77b98b9c71a/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__A_no_behavior__r01/initial/6_generated_code.c",
+      "exclusive_endpoint": "candidate_build_failed"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__A_no_behavior__r02",
+      "method": "A_no_behavior",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/e7c8dc5b5d57957a439e5aefd5a6b2f888adf4a938520ea376b1ded01bf1eed9/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__A_no_behavior__r02/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__A_no_behavior__r03",
+      "method": "A_no_behavior",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/a40dff6ea0e6817f480267b4662531ddff06aa88c35d3ebd5340d9919d49571a/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__A_no_behavior__r03/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__A_no_behavior__r01",
+      "method": "A_no_behavior",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/3ae969bd79e52459b5939bdeac5521a22e27466da9cce8240cc182d9180e1b92/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__A_no_behavior__r01/repair_2/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__A_no_behavior__r02",
+      "method": "A_no_behavior",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "harness_build_failed": 3,
+        "pass": 5
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/1d66d1c4425d6e617c73df32859946a61ba2535fe910b491b81b18c224589e71/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__A_no_behavior__r02/initial/6_generated_code.c",
+      "exclusive_endpoint": "harness_or_link_failed"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__A_no_behavior__r03",
+      "method": "A_no_behavior",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/9a636665e3d8f142f57f7cffe9fb09993ea1494fe2e27b5f708ade08018bdb61/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__A_no_behavior__r03/repair_1/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__A_no_behavior__r01",
+      "method": "A_no_behavior",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "candidate_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/ae7428a0636af7a83bc66af1397c3af574cf84f495c3d3ac77062eab79d3cd54/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__deepseek-v4-pro__A_no_behavior__r01/initial/6_generated_code.c",
+      "exclusive_endpoint": "candidate_build_failed"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__A_no_behavior__r02",
+      "method": "A_no_behavior",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "candidate_build_failed": 6
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_unlimited_host_20261001/candidates/6241cbc3f1d85439fa3096ed8c88fe4525814c9e268986ccc78f3839eb132827/report.json",
+      "candidate_source": "fse/rq2_execution_unlimited_20261001/deepseek/execution/onstep__deepseek-v4-pro__A_no_behavior__r02/jobs/onstep__deepseek-v4-pro__A_no_behavior__r02/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "candidate_build_failed"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__A_no_behavior__r03",
+      "method": "A_no_behavior",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__A_no_behavior__r01",
+      "method": "A_no_behavior",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__A_no_behavior__r02",
+      "method": "A_no_behavior",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__A_no_behavior__r03",
+      "method": "A_no_behavior",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__A_no_behavior__r01",
+      "method": "A_no_behavior",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/bbed05605860edd83270c8f93b432bd1693a31ea1db164d65078f5601da625be/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gemini-3-flash-preview__A_no_behavior__r01/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__A_no_behavior__r02",
+      "method": "A_no_behavior",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__A_no_behavior__r03",
+      "method": "A_no_behavior",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__A_no_behavior__r01",
+      "method": "A_no_behavior",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__A_no_behavior__r02",
+      "method": "A_no_behavior",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__A_no_behavior__r03",
+      "method": "A_no_behavior",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__A_no_behavior__r01",
+      "method": "A_no_behavior",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__A_no_behavior__r02",
+      "method": "A_no_behavior",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__A_no_behavior__r03",
+      "method": "A_no_behavior",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gpt-5.5__A_no_behavior__r01",
+      "method": "A_no_behavior",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "candidate_build_failed": 8
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_gpt_resume3_host_20261001/candidates/8179b640842ccb45575afcf3384c2dbc435f1ef2669ef139660d3e7303b8bae4/report.json",
+      "candidate_source": "fse/rq2_gpt_resume3_20261001/gpt/execution/discobot__gpt-5.5__A_no_behavior__r01/jobs/discobot__gpt-5.5__A_no_behavior__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "candidate_build_failed"
+    },
+    {
+      "id": "discobot__gpt-5.5__A_no_behavior__r02",
+      "method": "A_no_behavior",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_gpt_resume3_host_20261001/candidates/a70442f3cf66f1c3c1fa218f73d5aacb1173113cc1585b131653e69061e3cb2e/report.json",
+      "candidate_source": "fse/rq2_gpt_resume3_20261001/gpt/execution/discobot__gpt-5.5__A_no_behavior__r02/jobs/discobot__gpt-5.5__A_no_behavior__r02/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gpt-5.5__A_no_behavior__r03",
+      "method": "A_no_behavior",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_gpt_resume3_host_20261001/candidates/728ec14b480715d55bbb3b8cb5d2868e334101a79b77949fc2d0b3c74a5c0a3f/report.json",
+      "candidate_source": "fse/rq2_gpt_resume3_20261001/gpt/execution/discobot__gpt-5.5__A_no_behavior__r03/jobs/discobot__gpt-5.5__A_no_behavior__r03/repair_2/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__A_no_behavior__r01",
+      "method": "A_no_behavior",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gpt-5.5__A_no_behavior__r02",
+      "method": "A_no_behavior",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gpt-5.5__A_no_behavior__r03",
+      "method": "A_no_behavior",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/0c9789c2d16bc17d4dda52efd1340810f262f1f0238f28fa9b0e219316d8c837/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__gpt-5.5__A_no_behavior__r03/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__A_no_trace_gate__r01",
+      "method": "A_no_trace_gate",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/5e3d6094e3686f2e1a28694dd93a2516c3e77f4ff35c6c8b3f2a6a0f9711811b/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__A_no_trace_gate__r01/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__A_no_trace_gate__r02",
+      "method": "A_no_trace_gate",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "candidate_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/0a6028928caa5fbcd38e2348a52bb7212269d17afe14b5d5c2a4a93db317d32c/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__A_no_trace_gate__r02/initial/6_generated_code.c",
+      "exclusive_endpoint": "candidate_build_failed"
+    },
+    {
+      "id": "crazyflie__deepseek-v4-pro__A_no_trace_gate__r03",
+      "method": "A_no_trace_gate",
+      "model": "deepseek-v4-pro",
+      "project": "crazyflie",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "candidate_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/46615e53c2a4d3beae86470cc36780b4f434c3ae489547ce81ece48a24e83ba2/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/crazyflie__deepseek-v4-pro__A_no_trace_gate__r03/initial/6_generated_code.c",
+      "exclusive_endpoint": "candidate_build_failed"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__A_no_trace_gate__r01",
+      "method": "A_no_trace_gate",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/22b3b3bdffc40c23f6ba0f052f22fdee5bb7d443e047a53cb3d760fa6590ea64/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__A_no_trace_gate__r01/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__A_no_trace_gate__r02",
+      "method": "A_no_trace_gate",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/ad41c6716a4fabba1d96d0e2e0b2377ff9696d2e239ca4aabee7effeddab20f5/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__A_no_trace_gate__r02/repair_2/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__deepseek-v4-pro__A_no_trace_gate__r03",
+      "method": "A_no_trace_gate",
+      "model": "deepseek-v4-pro",
+      "project": "discobot",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/78b712c1c37d772c5ea93dab9bed7b8268c20f3c37929de79f47845f97207422/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__deepseek-v4-pro__A_no_trace_gate__r03/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__A_no_trace_gate__r01",
+      "method": "A_no_trace_gate",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__A_no_trace_gate__r02",
+      "method": "A_no_trace_gate",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "budget_stopped",
+      "delivery": true,
+      "host_scenario_counts": {
+        "harness_build_failed": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/7f98834a0fff9022d117a9a67161fe595c5f26d996936aa82b55788e24878c9b/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__deepseek-v4-pro__A_no_trace_gate__r02/initial/6_generated_code.c",
+      "exclusive_endpoint": "harness_or_link_failed"
+    },
+    {
+      "id": "onstep__deepseek-v4-pro__A_no_trace_gate__r03",
+      "method": "A_no_trace_gate",
+      "model": "deepseek-v4-pro",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__A_no_trace_gate__r01",
+      "method": "A_no_trace_gate",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__A_no_trace_gate__r02",
+      "method": "A_no_trace_gate",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gemini-3-flash-preview__A_no_trace_gate__r03",
+      "method": "A_no_trace_gate",
+      "model": "gemini-3-flash-preview",
+      "project": "crazyflie",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__A_no_trace_gate__r01",
+      "method": "A_no_trace_gate",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__A_no_trace_gate__r02",
+      "method": "A_no_trace_gate",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gemini-3-flash-preview__A_no_trace_gate__r03",
+      "method": "A_no_trace_gate",
+      "model": "gemini-3-flash-preview",
+      "project": "discobot",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__A_no_trace_gate__r01",
+      "method": "A_no_trace_gate",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__A_no_trace_gate__r02",
+      "method": "A_no_trace_gate",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "onstep__gemini-3-flash-preview__A_no_trace_gate__r03",
+      "method": "A_no_trace_gate",
+      "model": "gemini-3-flash-preview",
+      "project": "onstep",
+      "generation_status": "protocol_or_output_error",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": false,
+      "report": "fse/official_baselines/reassessment_host_20260921/candidates/0bf3866afdcc9dfd65720d9f73e0ab7609bedce384d52567c46b65f621371ea0/report.json",
+      "candidate_source": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/onstep__gemini-3-flash-preview__A_no_trace_gate__r03/initial/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__A_no_trace_gate__r01",
+      "method": "A_no_trace_gate",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__A_no_trace_gate__r02",
+      "method": "A_no_trace_gate",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "crazyflie__gpt-5.5__A_no_trace_gate__r03",
+      "method": "A_no_trace_gate",
+      "model": "gpt-5.5",
+      "project": "crazyflie",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gpt-5.5__A_no_trace_gate__r01",
+      "method": "A_no_trace_gate",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "provider_blocked",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    },
+    {
+      "id": "discobot__gpt-5.5__A_no_trace_gate__r02",
+      "method": "A_no_trace_gate",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_gpt_resume5_host_20261001/candidates/3ac6e8961bbb24aa1696caeeac9329309c6057659380e427dabca3aa4bc0944f/report.json",
+      "candidate_source": "fse/rq2_gpt_resume5_20261001/gpt/execution/discobot__gpt-5.5__A_no_trace_gate__r02/jobs/discobot__gpt-5.5__A_no_trace_gate__r02/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "discobot__gpt-5.5__A_no_trace_gate__r03",
+      "method": "A_no_trace_gate",
+      "model": "gpt-5.5",
+      "project": "discobot",
+      "generation_status": "common_audit_accepted",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 8
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_gpt_resume5_host_20261001/candidates/bdf35839133b9f1b11cb42e9f2895753432a25ad11a9d9328e7b5f2a075177f3/report.json",
+      "candidate_source": "fse/rq2_gpt_resume5_20261001/gpt/execution/discobot__gpt-5.5__A_no_trace_gate__r03/jobs/discobot__gpt-5.5__A_no_trace_gate__r03/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__A_no_trace_gate__r01",
+      "method": "A_no_trace_gate",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_gpt_resume5_host_20261001/candidates/b2d6a32ddaf34ad44663029baf95ca5efb27cfbfee2aa865c1a82f22eee19597/report.json",
+      "candidate_source": "fse/rq2_gpt_resume5_20261001/gpt/execution/onstep__gpt-5.5__A_no_trace_gate__r01/jobs/onstep__gpt-5.5__A_no_trace_gate__r01/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__A_no_trace_gate__r02",
+      "method": "A_no_trace_gate",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "repair_limit_reached",
+      "delivery": true,
+      "host_scenario_counts": {
+        "pass": 6
+      },
+      "static_review_pending": true,
+      "report": "fse/official_baselines/rq2_gpt_resume5_host_20261001/candidates/6954128a462077eef7ab978381e26288615ad20d2bacfbdea6fd243cc24e86e3/report.json",
+      "candidate_source": "fse/rq2_gpt_resume5_20261001/gpt/execution/onstep__gpt-5.5__A_no_trace_gate__r02/jobs/onstep__gpt-5.5__A_no_trace_gate__r02/repair_3/6_generated_code.c",
+      "exclusive_endpoint": "host_all_pass"
+    },
+    {
+      "id": "onstep__gpt-5.5__A_no_trace_gate__r03",
+      "method": "A_no_trace_gate",
+      "model": "gpt-5.5",
+      "project": "onstep",
+      "generation_status": "design_rejected",
+      "delivery": false,
+      "host_scenario_counts": {},
+      "static_review_pending": false,
+      "exclusive_endpoint": "no_code"
+    }
+  ],
+  "expected_groups": [
+    {
+      "method": "C5_api_repair",
+      "planned": 27,
+      "no_code": 9,
+      "candidate_build_failed": 2,
+      "harness_or_link_failed": 3,
+      "executed_assertion_failed": 1,
+      "host_all_pass": 12
+    },
+    {
+      "method": "C6_plain_plan",
+      "planned": 27,
+      "no_code": 7,
+      "candidate_build_failed": 3,
+      "harness_or_link_failed": 1,
+      "executed_assertion_failed": 1,
+      "host_all_pass": 15
+    },
+    {
+      "method": "C4_structured",
+      "planned": 27,
+      "no_code": 1,
+      "candidate_build_failed": 0,
+      "harness_or_link_failed": 0,
+      "executed_assertion_failed": 1,
+      "host_all_pass": 25
+    },
+    {
+      "method": "A_no_state",
+      "planned": 27,
+      "no_code": 18,
+      "candidate_build_failed": 0,
+      "harness_or_link_failed": 0,
+      "executed_assertion_failed": 0,
+      "host_all_pass": 9
+    },
+    {
+      "method": "A_no_behavior",
+      "planned": 27,
+      "no_code": 14,
+      "candidate_build_failed": 4,
+      "harness_or_link_failed": 1,
+      "executed_assertion_failed": 0,
+      "host_all_pass": 8
+    },
+    {
+      "method": "A_no_trace_gate",
+      "planned": 27,
+      "no_code": 15,
+      "candidate_build_failed": 2,
+      "harness_or_link_failed": 1,
+      "executed_assertion_failed": 0,
+      "host_all_pass": 9
+    }
+  ],
+  "expected_totals": {
+    "planned": 162,
+    "delivered": 98,
+    "host_all_pass": 78,
+    "no_code": 64,
+    "exclusive_endpoints": {
+      "host_all_pass": 78,
+      "executed_assertion_failed": 3,
+      "no_code": 64,
+      "candidate_build_failed": 11,
+      "harness_or_link_failed": 6
+    },
+    "no_code_terminals": {
+      "design_rejected": 20,
+      "protocol_or_output_error": 28,
+      "budget_stopped": 1,
+      "provider_blocked": 15
+    },
+    "static_pending": 14
+  }
+}

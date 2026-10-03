@@ -1,0 +1,57 @@
+Fixed device and dependency contract for motor_track (host application task).
+
+1. The generated source defines the six application functions, motor_l, motor_r, motor_pid_l/r, target_speed_pid, posloop_pid, target_speed, and clk. It includes its own generated header using the method output protocol. No fixed generated-header filename is prescribed. The supplied declarations specify ABI, types, enums and storage ownership. The original motor.h belongs to a different omni-wheel project and is not supplied.
+2. The environment defines motor_env and fills it before calls. angle is finite degrees in[-20,20]; speeds/duties finite, counts in the ranges in R,0<=rptsn_num<=128, points finite. For the geometry branch the chosen y difference is nonzero. enum values are declared valid values. No concurrent mutation occurs during a call. Positions are arbitrary track-coordinate units and their ratio is dimensionless. Encoder speed and target speed use the same fixed abstract speed unit; total/target_encoder use pulses.
+3. Initial motor_env is supplied by the caller, not chosen by generated code. A neutral runnable environment typically has laser_angle90, no flags, inductance sum>=60. These are environmental states, not functions the generator must synthesize.
+4. PWM channels0/1 are left forward/reverse,2/3 right forward/reverse. pwm_init records channel, frequency inHz and duty. pwm_duty records duty units0..50000. These fixed helpers update per-channel output observations; no physical timer/register access is generated. Use four calls per init/control, one per channel. Order among four writes is unrestricted; assessment checks complete final complementary outputs and correct channel identity, not switching dead time.
+5. Missing original PID dependencies are supplied as fixed, deterministic helper contracts. pid_solve(p,e) updates p.out_i=clamp(p.out_i+p.ki*e,-p.max_integral,p.max_integral), computes p.kp*e+p.out_i+p.kd*(e-p.last_error), sets p.last_error=e, and returns that sum clamped to +/-p.max_output. No elapsed-time factor is applied. The helper is not to be reimplemented in the generated pair.
+6. bangbang_pid_solve(p,e) records p.last_error=e and returns clamp(1000*e,-50000,50000), an increment to existing duty. changable_pid_solve(p,e) records p.last_error=e and returns clamp(250*e,-2000,2000), an increment. These fixed coefficients fill absent dependencies for this shared task; they are not claimed as measured or recovered upstream controller behavior. Normal speed PID gains7021/10/0, target PID5/0/30 with output cap5, and position PID200/0/0 are from the supplied source/SRS. No hidden original macro implementation is assumed.
+7. The caller explicitly invokes the planning stage and/or actuation stage. Unlike the source's hidden speed_control call inside motor_control, this task has separate public stages so MODE_POSLOOP and each PID mode are actually testable. The same stage contract applies to every method. Host evaluation does not assert equivalence to the complete original firmware or hardware control performance.
+8. Geometric utility inputs are finite, noncollinear, with determinant magnitude>=1e-6; no undefined collinear behavior is scored. clk inputs are in0..10000; unsigned timestamp subtraction handles clock wrap for short elapsed intervals. PWM, PID, and environment functions are fixed by the evaluator; do not define them, create a main function, or emit tests/expected results.
+
+9. RE_api.txt is a self-contained declaration header. The five fixed platform helper functions are declared extern and are not application functions to implement. The same fixed environment and dependency declarations appear below for methods that receive R/D without a supplied application API. These contain no function implementations, examples of output, or test expectations.
+
+#ifndef MOTOR_TRACK_DEPENDENCY_DECLARATIONS_H
+#define MOTOR_TRACK_DEPENDENCY_DECLARATIONS_H
+#include <stdint.h>
+#define MOTOR_PWM_DUTY_MAX 50000.0f
+#define MOTOR_TRACK_POINT_CAPACITY 128
+#define MOTOR_PI 3.14159265358979323846f
+typedef enum { MODE_NORMAL=0, MODE_BANGBANG=1, MODE_SOFT=2, MODE_POSLOOP=3 } motor_mode_t;
+typedef enum { FA_NONE=0, ANIMAL=1 } fa_type_t;
+typedef enum { TAG_NONE=0, TAG_SEARCH=1, TAG_STOP=2, TAG_SHOOTING=3 } tag_type_t;
+typedef enum { APRILTAG_NONE=0, APRILTAG_FOUND=1, APRILTAG_MAYBE=2 } apriltag_type_t;
+typedef enum { GARAGE_NONE=0, GARAGE_OUT_LEFT=1, GARAGE_OUT_RIGHT=2, GARAGE_IN_LEFT=3, GARAGE_IN_RIGHT=4, GARAGE_STOP=5 } garage_type_t;
+typedef enum { YROAD_NONE=0, YROAD_FOUND=1, YROAD_NEAR=2 } yroad_type_t;
+typedef enum { CIRCLE_NONE=0, CIRCLE_LEFT_BEGIN=1, CIRCLE_RIGHT_BEGIN=2 } circle_type_t;
+typedef enum { MOTOR_LEFT_FORWARD=0, MOTOR_LEFT_REVERSE=1, MOTOR_RIGHT_FORWARD=2, MOTOR_RIGHT_REVERSE=3 } motor_pwm_channel_t;
+typedef struct { float kp, ki, kd, out_i, last_error, max_output, max_integral; } motor_pid_t;
+typedef struct {
+    float target_speed, encoder_speed, duty;
+    int64_t total_encoder, target_encoder;
+    motor_mode_t motor_mode;
+    motor_pid_t brake_pid, pid;
+} motor_param_t;
+typedef struct {
+    uint32_t now_ms, animal_time_ms;
+    fa_type_t fa_type;
+    float fruit_delta, laser_angle;
+    tag_type_t tag_type;
+    apriltag_type_t apriltag_type;
+    garage_type_t garage_type;
+    int enable_adc;
+    yroad_type_t yroad_type;
+    circle_type_t circle_type;
+    unsigned rptsn_num;
+    float rptsn[MOTOR_TRACK_POINT_CAPACITY][2];
+    float elec_data[2], angle;
+} motor_environment_t;
+/* Defined by the fixed environment; application reads but never defines it. */
+extern motor_environment_t motor_env;
+/* Fixed platform functions: declare/call, do not reimplement. */
+extern void pwm_init(motor_pwm_channel_t channel, uint32_t frequency_hz, uint32_t duty);
+extern void pwm_duty(motor_pwm_channel_t channel, uint32_t duty);
+extern float pid_solve(motor_pid_t *pid, float error);
+extern float bangbang_pid_solve(motor_pid_t *pid, float error);
+extern float changable_pid_solve(motor_pid_t *pid, float error);
+#endif

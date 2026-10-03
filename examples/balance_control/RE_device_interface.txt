@@ -1,0 +1,14 @@
+Balance control device/environment contract
+
+Fixed language: ISO C11. Public declarations are specified in RE_api.txt; the delivered header filename follows the selected method output protocol. Candidate defines public globals and controller functions. Platform callbacks are supplied externally. No STM32 HAL, MPU/DMP implementation, RTOS, physical register address, clock-reading call, dynamic allocation, main loop or hardware initialization is part of this bounded task.
+
+The application invokes get_pwm every 5 ms and then may call motor_proc(left_pwm,right_pwm). Host scenarios advance this logical cycle by calling the API; they do not measure wall-clock real-time behavior. The 5-call decimation constants are fixed by the shared header, and their exact first-update timing is stated in the requirements.
+
+board_read_imu writes six valid output pointers immediately. pitch, roll, yaw are finite floats in [-30,30] degrees; gyro components are int16_t in [-5000,5000] in the source controller's sensor units. The PID gains absorb unit scaling; do not invent degree/radian conversions.
+board_encoder_read(channel) returns a signed 16-bit encoder count for logical wheel 0 or 1. Reading does not clear it. board_encoder_clear(channel) sets that simulated count to zero and is observable. Any signed 16-bit value, including -32768, is allowed. get_speed returns a nonnegative integer 0..32768.
+board_direction_error returns an int16_t track-deviation sample in [-5000,5000]. It is sampled only on a direction PID update. The scale is the exact /25 factor in the requirements.
+board_motor_write(channel,in_a,in_b,duty) atomically records one logical motor command. Channel 0 means left PC6/PC7 and TIM3 CH1; channel 1 means right PC8/PC9 and TIM3 CH2. Physical pin changes/dead time and real electrical behavior are outside this host-visible contract. Callback has no failure return.
+
+All calls are single-threaded; caller must invoke control_init before using the API. Direct velocity_proc and direction_proc calls accept measured_speed in [-32768,32768]. Public sensor globals may be observed by the application; normal updates use get_mpu. Motor arguments accept full int32_t range. Finite sensor bounds ensure float-to-int and integer fusion/interpolation stay defined. Standard C integer division truncates toward zero.
+
+Reference code, historical test vectors, expected outputs, fixture sources and final tests are private. They must not be provided to generation or used as repair feedback. Only this input directory is generation-visible.

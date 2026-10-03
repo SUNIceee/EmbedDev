@@ -1,0 +1,27 @@
+[
+  {
+    "source": "fse/rq_rebuild_20261001/rq1/three_model_retry_revision_20261002/current_three_model_view.json",
+    "original_sha256": "af906eea5fbd0ccecf65cfd2e5e9b37186ce44743b12514243490f56de3c5de6"
+  },
+  {
+    "source": "fse/full_draft_20261002/qa/rq1_population_standard_deviation_20261002/statistics.json",
+    "original_sha256": "aa64226c1e7a41312b3270dcc5605ed91bf1ec6ed3b6e3dbb2e948fba93c9814"
+  },
+  {
+    "source": "fse/rq_rebuild_20261001/rq2/deepseek_revision_20261002/deepseek_evidence.json",
+    "original_sha256": "c3f2d910d82ddff25c56099e9dc205773f1a605ad4ed9e4252ef87dba076b0c4"
+  },
+  {
+    "source": "fse/rq_rebuild_20261001/rq4/current_revision_20261002/rq4_current_evidence.json",
+    "original_sha256": "a07da69d5ae34770d7d16f88da4cd181237c2183429fd4d47609e355c46e49a4"
+  },
+  {
+    "source": "fse/rq_rebuild_20261001/rq4/mechanism_revision_20261002/mechanism_evidence.json",
+    "original_sha256": "d2506dc107cb1b2b48e2cca5da207540a4061fa75084ee19c379271d4a01035c"
+  },
+  {
+    "source": "fse/rq1_chatdev_deepseek_static_20261003/current_three_model_view.json",
+    "original_sha256": "f53867771b788f2120ae6c1f1919e96357a05d6f679b60c31a0f00f1d07e7518",
+    "role": "Current RQ1 observations; original no-code position remains in history."
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "archive_dir": "archives",
+  "inputs": {
+    "api": "RE_api.txt",
+    "requirement": "RE_req.txt",
+    "device_interface": "RE_device_interface.txt"
+  },
+  "project_name": "discobot",
+  "output_dir": "trusted_output",
+  "build": {
+    "compiler": "gcc",
+    "include_dirs": [],
+    "language": "c",
+    "standard": "c11",
+    "compile_flags": [
+      "-Wall",
+      "-Wextra"
+    ],
+    "platform": "host",
+    "defines": []
+  },
+  "pipeline": {
+    "design_iteration": {
+      "max_iterations": 4
+    }
+  }
+}

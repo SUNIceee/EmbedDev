@@ -1,0 +1,219 @@
+===============================================================================
+Crazyflie DEVICE / ENVIRONMENT INTERFACE INPUT
+===============================================================================
+Status: KNOWN ENVIRONMENT INPUT - NOT A FROZEN SOFTWARE API
+Version: 0.2.0-srs-v5-baseline
+Purpose:
+- This file records known Crazyflie device, platform, protocol, I/O, RTOS, mock,
+  and external-state facts used as input when generating the frozen software API
+  candidate RE_api.txt.
+- It must not replace RE_api.txt.
+- It must not be treated as the final public software API.
+- It constrains platform adapters, variable ownership, units, mock boundaries,
+  protocol packet layouts, and I/O direction. It must not prescribe software
+  function names, internal variables, or implementation algorithms.
+
+Baseline decision:
+- `Crazyflie-SRS-v5.docx` is the hardware/environment baseline for this project.
+- This file therefore uses the SRS-v5 MPU9250 and LPS25H profile. A future
+  Crazyflie 2.1/BMI088/BMP388 run must use a separately versioned SRS and
+  device-interface input; the two hardware profiles must not be silently mixed.
+
+Sources:
+- Crazyflie-SRS-v5.docx (primary project baseline): system composition,
+  IF-IMU/IF-BARO/IF-MOTOR/IF-RADIO/IF-BATTERY/IF-LED/IF-DECK, task rates,
+  performance constraints, and FDIR boundaries.
+- Bitcraze Crazyflie platform overview:
+  https://www.bitcraze.io/documentation/system/platform/
+- Bitcraze CRTP documentation:
+  https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/
+- Bitcraze CRTP Commander documentation:
+  https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/crtp_commander/
+- Bitcraze Supervisor CRTP port documentation:
+  https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/crtp_supervisor/
+- Bitcraze Platform services CRTP documentation:
+  https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/crtp/crtp_platform/
+- Bitcraze Commander Framework documentation:
+  https://www.bitcraze.io/documentation/repository/crazyflie-firmware/master/functional-areas/sensor-to-control/commanders_setpoints/
+
+When a supplementary external source conflicts with Crazyflie-SRS-v5.docx,
+the SRS controls this project input until the project baseline is explicitly
+changed.
+
+0. AUTHORITY BOUNDARY
+- RE_req.txt remains the authority for behavior, edge cases, safety rules,
+  algorithms, timing semantics, and expected software behavior.
+- This file is authority only for known environment facts: hardware components,
+  protocol endpoints, packet layouts, I/O direction, platform services, and
+  external mockable boundaries.
+- Frozen RE_api.txt should be generated from RE_req.txt plus this file, then
+  manually reviewed and frozen.
+
+1. HARDWARE / PLATFORM FACTS
+
+ENV-HW-001 Main application MCU
+- Device: STM32F405
+- Role: main Crazyflie firmware, low-level and high-level controls
+- Class: platform processing environment
+- Host boundary: board HAL calls are unavailable in host simulation and must be
+  represented by the documented environment inputs and outputs below.
+
+ENV-HW-002 Radio / power MCU
+- Device: nRF51822
+- Role: radio communication and power management
+- Class: external coprocessor / link and power environment
+- Interface role: radio/link/power traffic crosses a platform or protocol
+  boundary; it is not an internal control-algorithm state.
+- Transport: UART/SPI to the application MCU; 2.4GHz and BLE externally.
+- Input payload: throttle, pitch, roll, yaw, and flight-mode commands.
+- Output payload: timestamped attitude, angular-rate, battery, flight-state,
+  and sensor telemetry.
+- Link fault: loss of valid control traffic beyond the configured timeout is an
+  environment event that requires the RE-defined controlled-landing response.
+
+ENV-HW-003 IMU
+- Device: MPU9250 9-axis IMU
+- Direction: sensor input
+- Units: accelerometer g; gyroscope deg/s; magnetometer μT.
+- Transport: I2C/SPI.
+- Input payload: three-axis acceleration, angular velocity, and magnetic field.
+- Host boundary: a deterministic sensor sample carries all three vectors;
+  byte-order conversion, calibration offsets, and communication validity are
+  platform-adapter responsibilities.
+
+ENV-HW-004 Barometer
+- Device: LPS25H barometer
+- Direction: sensor input
+- Units: pressure hPa; temperature degree Celsius.
+- Transport: I2C.
+- Input payload: atmospheric pressure and temperature. Altitude is a software
+  estimate, not a raw device field.
+
+ENV-HW-005 Motors / actuators
+- Device class: four coreless DC motors driven through four PWM channels
+- Direction: actuator output
+- Units: physical output is PWM duty cycle, 0% to 100%.
+- Software intermediates may include signed mix values, normalized force, or
+  integer PWM values, but their conversion boundary must be explicit.
+- Safety boundary: while locked, emergency-stopped, or in a configured fault
+  state, all four PWM outputs are zero.
+
+ENV-HW-006 Expansion decks / buses
+- Feature: expansion decks, automatic detection, expansion bus with communication
+  buses and GPIO pins
+- Direction: inout
+- Host boundary: deterministic deck discovery uses a mock inventory and bus-scan
+  responses; device discovery is not inferred from hidden software globals.
+
+ENV-HW-007 Battery-voltage measurement
+- Device: battery voltage divider sampled through ADC.
+- Direction: sensor input.
+- Unit: volts after conversion from the ADC sample.
+- Host boundary: battery-voltage samples and validity/timeout status are
+  externally injectable environment input.
+
+ENV-HW-008 LED indicators
+- Device: four arm LEDs controlled through GPIO.
+- Direction: actuator output.
+- Output payload: per-LED on/off or color/state command.
+- Host boundary: LED state is observable output; its policy is defined by
+  RE_req.txt rather than by this device-interface document.
+
+2. COMMUNICATION / PROTOCOL FACTS
+
+ENV-CRTP-001 CRTP
+- Name: Crazy RealTime Protocol (CRTP)
+- Role: packet protocol used to route communication to Crazyflie subsystems
+- Environment facts: packets have port/channel ownership; link state, queue
+  capacity, packet loss, and error status are external protocol conditions.
+
+ENV-CRTP-002 Commander RPYT packet
+- Port/function area: Commander
+- Payload layout:
+  - ROLL: bytes 0-3, float
+  - PITCH: bytes 4-7, float
+  - YAW: bytes 8-11, float
+  - THRUST: bytes 12-13, uint16_t
+- Direction: host/controller input to firmware
+- Units: roll/pitch/yaw are floating-point command values; thrust is uint16_t.
+
+ENV-CRTP-003 Supervisor port
+- CRTP port: 9
+- Channels:
+  - channel 0: state info
+  - channel 1: commands
+- Commands:
+  - 0x01 arm/disarm
+  - 0x02 recover system
+  - 0x03 emergency stop
+  - 0x04 emergency stop watchdog
+- Response convention: command ID with high bit set, cmd | 0x80
+- The protocol command/response channel is distinct from the internal safety
+  state machine.
+
+ENV-CRTP-004 Platform services port
+- CRTP port: 13
+- Channels:
+  - channel 0: platform commands
+  - channel 1: version commands
+  - channel 2: app channel
+  - channel 3: reserved
+- Known platform commands include continuous wave and deprecated arm/recover.
+- This protocol endpoint is separate from Commander and Supervisor traffic.
+
+ENV-CRTP-005 Link behavior
+- CRTP links may include USB, radio, and BLE-related behavior.
+- Radio link may maintain packet counters / safelink behavior.
+- Host boundary: tests use a deterministic link mock and queue state rather than
+  a real radio device.
+
+3. RTOS / TIME / QUEUE BOUNDARIES
+
+ENV-RTOS-001 System tick
+- Direction: platform time input
+- Unit: monotonic milliseconds for all host-visible timeouts and ages.
+- Host boundary: tests provide a deterministic, writable millisecond tick.
+- Scheduler divisors may count control-loop iterations, but must not be mixed
+  with millisecond timeout values without an explicit conversion.
+
+ENV-CTRL-001 Position-controller boundary
+- Direction: controller input/output boundary; consumes frozen Setpoint and State,
+  produces a bounded actuator-thrust command for z-axis position/velocity modes.
+- Host boundary: this output may be fixture-driven or replaced in host tests.
+- This file deliberately does not name a software function for the boundary;
+  RE_api.txt owns any public C declaration selected for it.
+
+ENV-RTOS-002 Tasks and loops
+- Firmware may contain long-running RTOS tasks such as stabilizer, CRTP RX/TX,
+  and supervisor/info handling.
+- Host boundary: a host invocation represents a bounded scheduler step; it must
+  not depend on an unbounded RTOS task loop.
+
+ENV-RTOS-003 Queues
+- CRTP and estimator behavior may rely on bounded queues/FIFOs.
+- Queue facts required by the environment contract are capacity, full/empty
+  behavior, blocking/timeout semantics, and deterministic seed/inspection.
+
+4. HOST-TEST MOCK / OBSERVABILITY GUIDANCE
+
+ENV-MOCK-001 Sensor injection
+- Needed for deterministic IMU/barometer/supervisor tests.
+- Preferred form: platform adapter setter or host-test fixture that injects
+  complete sensor samples, not arbitrary exposure of internal filter variables.
+
+ENV-MOCK-002 Motor output observation
+- Needed for power distribution and stabilizer tests.
+- The fixture records the representation being observed (raw signed mix,
+  normalized force, integer PWM, or physical PWM); it must not silently change
+  representation between input and assertion.
+
+ENV-MOCK-003 CRTP link mock
+- Needed for CRTP send/receive, queue, stats, and link connectivity tests.
+- Should include mock send, receive, reset, isConnected, packet counters, and
+  queue occupancy where required by RE_req.txt.
+
+ENV-MOCK-004 Supervisor state observation
+- Needed for arming, crash recovery, tumble/freefall, watchdog, and state info
+  tests.
+- The fixture must identify whether it observes enum state, bitfield, booleans,
+  or protocol response bytes, and must use one declared representation.

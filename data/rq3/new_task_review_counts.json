@@ -1,0 +1,3180 @@
+{
+  "schema_version": 2,
+  "scope": "The three smaller tasks retained in the six-task manuscript, using exact already-selected reviews. No new judgments.",
+  "source_result_view": {
+    "original_repository_relative_path": "fse/rq_rebuild_20261001/rq3/seven_task_resolution_preparation_20261002/static_completed_20261002T132752099053Z/four_task_static_view.json",
+    "sha256": "b9944ed791939b191ab2eb1cc53a2c57b914dfd2cebc5bf65280ef6bda0e832f"
+  },
+  "positions": 45,
+  "real_reviews": 44,
+  "judgment_count": 457,
+  "unique_requirement_items": 31,
+  "rows": [
+    {
+      "identity": "gpio_output__deepseek-v4-pro__Direct_LLM__r01",
+      "task": "gpio_output",
+      "method": "Direct-LLM",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__Direct_LLM__r01.json",
+        "sha256": "756201361f2c8b4e9d4b2de991c621de50ddd44a9f19d91b572bda89a55966b2"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__Direct_LLM__r01",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__metagpt__r01",
+      "task": "gpio_output",
+      "method": "MetaGPT",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__metagpt__r01.json",
+        "sha256": "6033f2afa02195f09709318812613f49e3990f93c1c01d7fc3b08bfc432ebb73"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__metagpt__r01",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__chatdev__r01",
+      "task": "gpio_output",
+      "method": "ChatDev",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__chatdev__r01.json",
+        "sha256": "b5c39357611a4a4282d8b0ed84ad473e6228adf045e39b2676b8ddc390be64c1"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__chatdev__r01",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__structgen__r01",
+      "task": "gpio_output",
+      "method": "StructGen",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__structgen__r01.json",
+        "sha256": "703ace449ac14e4ce4b1c93f3e838a9a32b4d07394f2e155c999979aac26afbe"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__structgen__r01",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__C4_structured__r01",
+      "task": "gpio_output",
+      "method": "EmbedDev",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "internal_acceptance": true,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__C4_structured__r01.json",
+        "sha256": "598c193d1028f407729bf0d8611e0f0fcb3c6d1f79eac9fc855e5ad0fb7f8e8b"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__C4_structured__r01",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r01",
+      "task": "gpio_button_debounce",
+      "method": "Direct-LLM",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r01.json",
+        "sha256": "52ad940878d611b628546959787b5e484608d69dcb925db2e2e099041ebfb311"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r01",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__metagpt__r01",
+      "task": "gpio_button_debounce",
+      "method": "MetaGPT",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__metagpt__r01.json",
+        "sha256": "3e9b42619cd3aec5fb84eb1e42b9d28ffc22e7618e9f8ecdea59dd975030aa04"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__metagpt__r01",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__chatdev__r01",
+      "task": "gpio_button_debounce",
+      "method": "ChatDev",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__chatdev__r01.json",
+        "sha256": "e2f9fc00d15f09579838c318d90f6b8ebd029b6add4b650efc8d9b36c9f9cb7a"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__chatdev__r01",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__structgen__r01",
+      "task": "gpio_button_debounce",
+      "method": "StructGen",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__structgen__r01.json",
+        "sha256": "aebc130bb069f328922998a4bf70c2b7039e3920b9322625e5c38727758e0987"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__structgen__r01",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__C4_structured__r01",
+      "task": "gpio_button_debounce",
+      "method": "EmbedDev",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "internal_acceptance": true,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__C4_structured__r01.json",
+        "sha256": "f90bd6aa64303679d66c27151ac4af8588c2bcd91f011ec39052ad45573bf133"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__C4_structured__r01",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__Direct_LLM__r01",
+      "task": "balance_control",
+      "method": "Direct-LLM",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__Direct_LLM__r01.json",
+        "sha256": "be6d821e614dd636432d7151873f4bc9a84486ce5f64b2a8bfc867304834c783"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__Direct_LLM__r01",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__metagpt__r01",
+      "task": "balance_control",
+      "method": "MetaGPT",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 4,
+        "U": 2,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 57.14285714285714,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "F"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "F"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "U"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "U"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "F"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "F"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__metagpt__r01.json",
+        "sha256": "54d208dea3b9d73002378429c65ac16659c61cea1e66dae59bc4bb5b85d0b5df"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__metagpt__r01",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__chatdev__r01",
+      "task": "balance_control",
+      "method": "ChatDev",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__chatdev__r01.json",
+        "sha256": "7eb0e538646a8c0cac4bda762d1575d681cfeb42a433284e7d98277eedaf3182"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__chatdev__r01",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__structgen__r01",
+      "task": "balance_control",
+      "method": "StructGen",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__structgen__r01.json",
+        "sha256": "05c90cd623173139900e360f6f0254825a79d00f14bf43df97ff589e027c0e63"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__structgen__r01",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__C4_structured__r01",
+      "task": "balance_control",
+      "method": "EmbedDev",
+      "repeat": 1,
+      "artifact_available": true,
+      "raw_generation_status": "provider_blocked",
+      "raw_code_delivery": true,
+      "internal_acceptance": false,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_task_extension_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__C4_structured__r01.json",
+        "sha256": "e889fa2f467106bd3deb59b7c44875a9e74a3a0c070ee05d9298480523312410"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__C4_structured__r01",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__Direct_LLM__r02",
+      "task": "gpio_output",
+      "method": "Direct-LLM",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__Direct_LLM__r02.json",
+        "sha256": "cddf16d409e9a6600baacf60e72af9e8a0d94f7128566327ce0bc3b055e1396e"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__Direct_LLM__r02",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__metagpt__r02",
+      "task": "gpio_output",
+      "method": "MetaGPT",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__metagpt__r02.json",
+        "sha256": "5a5751da2ddc5822f97b7e827a71a5a662c9879282697e421e118349a0c74ddc"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__metagpt__r02",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__chatdev__r02",
+      "task": "gpio_output",
+      "method": "ChatDev",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__chatdev__r02.json",
+        "sha256": "74b3706c7f80b5f10f2593caaa77d7d831b1ee421f52f5986559478ad58f7d98"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__chatdev__r02",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__structgen__r02",
+      "task": "gpio_output",
+      "method": "StructGen",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__structgen__r02.json",
+        "sha256": "3313f72ab2cc9283586a71869a591459b9cb0b3e055326a2d20075112995267d"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__structgen__r02",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__C4_structured__r02",
+      "task": "gpio_output",
+      "method": "EmbedDev",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "internal_acceptance": true,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__C4_structured__r02.json",
+        "sha256": "9c4fde2bb5a22a923e1a53aa3c2f0e825befd8af4ef2ff7a6fe786901716164b"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__C4_structured__r02",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r02",
+      "task": "gpio_button_debounce",
+      "method": "Direct-LLM",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r02.json",
+        "sha256": "43a4664268cbed1b59184267d06a3b7554528e5b722a54c1aaf35a06db7ffb36"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r02",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__metagpt__r02",
+      "task": "gpio_button_debounce",
+      "method": "MetaGPT",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__metagpt__r02.json",
+        "sha256": "286916966fd7bdbb5c2051c0b5f4f7b4795591457feab7b62a4a7f0ada56ed37"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__metagpt__r02",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__chatdev__r02",
+      "task": "gpio_button_debounce",
+      "method": "ChatDev",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__chatdev__r02.json",
+        "sha256": "b0254ab3b78a571dae90a9cdf24176d8e25479fd33c290db1e1527299fd28a97"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__chatdev__r02",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__structgen__r02",
+      "task": "gpio_button_debounce",
+      "method": "StructGen",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__structgen__r02.json",
+        "sha256": "aa64f5e73b645d82f90bcb167ffc31fd37ad98bcebc9a882e85b4a4bba1ba1af"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__structgen__r02",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__C4_structured__r02",
+      "task": "gpio_button_debounce",
+      "method": "EmbedDev",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "internal_acceptance": true,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__C4_structured__r02.json",
+        "sha256": "23b502c6c18703afdcb4da40ebd28aba744999b20acf3a826dd121495cacff33"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__C4_structured__r02",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__Direct_LLM__r02",
+      "task": "balance_control",
+      "method": "Direct-LLM",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__Direct_LLM__r02.json",
+        "sha256": "c22c684593f190c338031c9c7609e10e0d7638d270b7fec0b8f8e3ff7da0d3bf"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__Direct_LLM__r02",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__metagpt__r02",
+      "task": "balance_control",
+      "method": "MetaGPT",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 4,
+        "F": 5,
+        "U": 5,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 28.57142857142857,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "F"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "F"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "F"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "U"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "U"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "F"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "U"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "U"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "U"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "F"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__metagpt__r02.json",
+        "sha256": "5dcbfefce85cba1b1c2b5a15ccc265d30658ceb08ff42aa9ff2be0436c974adc"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__metagpt__r02",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__chatdev__r02",
+      "task": "balance_control",
+      "method": "ChatDev",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__chatdev__r02.json",
+        "sha256": "a29995e565f2e4fd6cb734805336590d0bddf95bfcb6150955220c7e7a730379"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__chatdev__r02",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__structgen__r02",
+      "task": "balance_control",
+      "method": "StructGen",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__structgen__r02.json",
+        "sha256": "831f4cde5103a83a54a55607a9f29f6ed9bef855df28e6d3e316e087e39ef107"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__structgen__r02",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__C4_structured__r02",
+      "task": "balance_control",
+      "method": "EmbedDev",
+      "repeat": 2,
+      "artifact_available": true,
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "internal_acceptance": true,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__C4_structured__r02.json",
+        "sha256": "94fb7ec197b68c8c45ad7656ea7d0393201066f3ad0a5319e6b308af2b9ec6c6"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__C4_structured__r02",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__Direct_LLM__r03",
+      "task": "gpio_output",
+      "method": "Direct-LLM",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__Direct_LLM__r03.json",
+        "sha256": "77f95aef65b3f0a6fb9fd35e7bb7de4baf6f5a7cec77856de0cc2194663f0236"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__Direct_LLM__r03",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__metagpt__r03",
+      "task": "gpio_output",
+      "method": "MetaGPT",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__metagpt__r03.json",
+        "sha256": "fb6c9ef864945e0615de09872e76b96b7e32a3f356493407be6357ddd469d254"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__metagpt__r03",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__chatdev__r03",
+      "task": "gpio_output",
+      "method": "ChatDev",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__chatdev__r03.json",
+        "sha256": "c3ce05a87ce9cd5f9a6d455927e92c423b61fd7396a655ba2a23158c7b7ce56e"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__chatdev__r03",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__structgen__r03",
+      "task": "gpio_output",
+      "method": "StructGen",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 8,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 8,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GO-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GO-R08",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_output__deepseek-v4-pro__structgen__r03.json",
+        "sha256": "5d27cbf725ad6baadc611a60a41c09e0c714e05b14d8d11c19efc74172625bc2"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_output__deepseek-v4-pro__structgen__r03",
+      "checklist": "data/rq3/requirements/gpio_output.json"
+    },
+    {
+      "identity": "gpio_output__deepseek-v4-pro__C4_structured__r03",
+      "task": "gpio_output",
+      "method": "EmbedDev",
+      "repeat": 3,
+      "artifact_available": false,
+      "raw_generation_status": "protocol_or_output_error",
+      "raw_code_delivery": false,
+      "internal_acceptance": false,
+      "status": "no_local_code",
+      "counts": null,
+      "denominator": null,
+      "local_support_percent": 0.0,
+      "judgments": [],
+      "original_review": null,
+      "author_reported_display_replacement": "data/rq3/position_scores.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r03",
+      "task": "gpio_button_debounce",
+      "method": "Direct-LLM",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r03.json",
+        "sha256": "e0691202d655c66f8730e4e096adc345ac7cc9229075ff4c4dfb77ccbb2d1104"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__Direct_LLM__r03",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__metagpt__r03",
+      "task": "gpio_button_debounce",
+      "method": "MetaGPT",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__metagpt__r03.json",
+        "sha256": "ebd514fac8ebe4d01bacf303f072f9e174e3aeb1d065968ffcaeb39293dc57cb"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__metagpt__r03",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__chatdev__r03",
+      "task": "gpio_button_debounce",
+      "method": "ChatDev",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "infrastructure_stopped",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_resume_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__chatdev__r03.json",
+        "sha256": "a3c97cb62a9bcd0db7170cd8bc8a39afe6d4b50d9117625074389c35b281ecf3"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__chatdev__r03",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__structgen__r03",
+      "task": "gpio_button_debounce",
+      "method": "StructGen",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__structgen__r03.json",
+        "sha256": "91217790ca849cf411382d06f640b7ccaf3f5dc8bc1cca17388c4cc2152e1223"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__structgen__r03",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "gpio_button_debounce__deepseek-v4-pro__C4_structured__r03",
+      "task": "gpio_button_debounce",
+      "method": "EmbedDev",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "internal_acceptance": true,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 9,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 9,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "GB-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "GB-R09",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/gpio_button_debounce__deepseek-v4-pro__C4_structured__r03.json",
+        "sha256": "98ca671c412234bfec5a6aac1e71f73b603aa0d56c93d3b51fdde38399a9bbd9"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/gpio_button_debounce__deepseek-v4-pro__C4_structured__r03",
+      "checklist": "data/rq3/requirements/gpio_button_debounce.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__Direct_LLM__r03",
+      "task": "balance_control",
+      "method": "Direct-LLM",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "direct_complete_pair",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__Direct_LLM__r03.json",
+        "sha256": "9d19f9dcc0f4ee9c83b3eb24b7d650ce68bda80ccee2997b0461cfd5deea3514"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__Direct_LLM__r03",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__metagpt__r03",
+      "task": "balance_control",
+      "method": "MetaGPT",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__metagpt__r03.json",
+        "sha256": "1f34e2b918656228c75ee34d41aed772e662449fa1e0f7c5da3bf380c61bd564"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__metagpt__r03",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__chatdev__r03",
+      "task": "balance_control",
+      "method": "ChatDev",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__chatdev__r03.json",
+        "sha256": "d803cef191df712dcdcf351dccaf4d54222f4307df3daa804014a6fa1d1ee734"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__chatdev__r03",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__structgen__r03",
+      "task": "balance_control",
+      "method": "StructGen",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "native_workflow_finished",
+      "raw_code_delivery": true,
+      "internal_acceptance": null,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__structgen__r03.json",
+        "sha256": "71285a35f4e503df1e70ed963e0775f0df7989a435575d475b0089612e8227ce"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__structgen__r03",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    },
+    {
+      "identity": "balance_control__deepseek-v4-pro__C4_structured__r03",
+      "task": "balance_control",
+      "method": "EmbedDev",
+      "repeat": 3,
+      "artifact_available": true,
+      "raw_generation_status": "common_audit_accepted",
+      "raw_code_delivery": true,
+      "internal_acceptance": true,
+      "status": "retained_selected_code_bound_review",
+      "counts": {
+        "P": 14,
+        "F": 0,
+        "U": 0,
+        "N/A": 0
+      },
+      "denominator": 14,
+      "local_support_percent": 100.0,
+      "judgments": [
+        {
+          "id": "BC-R01",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R02",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R03",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R04",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R05",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R06",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R07",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R08",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R09",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R10",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R11",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R12",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R13",
+          "verdict": "P"
+        },
+        {
+          "id": "BC-R14",
+          "verdict": "P"
+        }
+      ],
+      "original_review": {
+        "original_repository_relative_path": "fse/rq3_final12_20261002/execution/static_reviews/balance_control__deepseek-v4-pro__C4_structured__r03.json",
+        "sha256": "933a75fc335fabecb241761e236d3f2caece6e934bdc2d863c58a7622ed73395"
+      },
+      "review_type": "complete_original_static_reading",
+      "original_review_lineage": null,
+      "new_semantic_judgments": 0,
+      "source_directory": "data/rq3/candidate_sources/balance_control__deepseek-v4-pro__C4_structured__r03",
+      "checklist": "data/rq3/requirements/balance_control.json"
+    }
+  ],
+  "author_reported_gpio_r03_item_judgments_supplied": false
+}

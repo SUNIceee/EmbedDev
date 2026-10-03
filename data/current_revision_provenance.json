@@ -1,0 +1,189 @@
+{
+  "base_archive_sha256": "73af94527e2d92e36019a9dc35174b8d181c2ec676c7de722ba5122e4118b3ac",
+  "bindings": [
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host/code/6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8/raw/6_generated_code.h",
+      "original_sha256": "184ff1eb838b6ccab6603f0defbbea9e3ff52f1e1abe8523443e23ce9341f523",
+      "path": "evidence/current_chatdev_crazyflie_r02/raw/6_generated_code.h",
+      "distributed_sha256": "184ff1eb838b6ccab6603f0defbbea9e3ff52f1e1abe8523443e23ce9341f523",
+      "kind": "candidate_source",
+      "original_name": "6_generated_code.h",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host/code/6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8/raw/crazyflie_internal.h",
+      "original_sha256": "99d9b3588c40001b56f8bbdc2997a0470c991f2e7bc11b2c621219f03ab5ac07",
+      "path": "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_internal.h",
+      "distributed_sha256": "99d9b3588c40001b56f8bbdc2997a0470c991f2e7bc11b2c621219f03ab5ac07",
+      "kind": "candidate_source",
+      "original_name": "crazyflie_internal.h",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host/code/6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8/raw/crazyflie_sensfusion6.c",
+      "original_sha256": "e597fa3a6537ed2296f6a951a405654b5480c415c5a1026b879ac14e7906675a",
+      "path": "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_sensfusion6.c",
+      "distributed_sha256": "e597fa3a6537ed2296f6a951a405654b5480c415c5a1026b879ac14e7906675a",
+      "kind": "candidate_source",
+      "original_name": "crazyflie_sensfusion6.c",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host/code/6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8/raw/crazyflie_power.c",
+      "original_sha256": "91d48df025815d454f7b5f09fba84b381b1646ccd045619d1cfb91b81a8f6d34",
+      "path": "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_power.c",
+      "distributed_sha256": "91d48df025815d454f7b5f09fba84b381b1646ccd045619d1cfb91b81a8f6d34",
+      "kind": "candidate_source",
+      "original_name": "crazyflie_power.c",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host/code/6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8/raw/crazyflie_control.c",
+      "original_sha256": "4cae64371934321ebb7d28924fb61cc686bd82a07ad5f158dfe4ec223527a127",
+      "path": "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_control.c",
+      "distributed_sha256": "4cae64371934321ebb7d28924fb61cc686bd82a07ad5f158dfe4ec223527a127",
+      "kind": "candidate_source",
+      "original_name": "crazyflie_control.c",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host/code/6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8/raw/crazyflie_commander_rpyt.c",
+      "original_sha256": "ae0ca7816275c538f6486b5431e13629cff233b6384bc8e0d9b3fec671639b80",
+      "path": "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_commander_rpyt.c",
+      "distributed_sha256": "ae0ca7816275c538f6486b5431e13629cff233b6384bc8e0d9b3fec671639b80",
+      "kind": "candidate_source",
+      "original_name": "crazyflie_commander_rpyt.c",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host/code/6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8/raw/crazyflie_supervisor.c",
+      "original_sha256": "4d1279f4c4b7a4f12cf27359ee577074e74d70b5af6d6ed9cc1a536f7407cc2f",
+      "path": "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_supervisor.c",
+      "distributed_sha256": "4d1279f4c4b7a4f12cf27359ee577074e74d70b5af6d6ed9cc1a536f7407cc2f",
+      "kind": "candidate_source",
+      "original_name": "crazyflie_supervisor.c",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host/code/6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8/raw/crazyflie_estimator_commander.c",
+      "original_sha256": "23bde9752f08e9cfe4ad27caf747eec2895d637d8e78751ad1f79cd0d198847b",
+      "path": "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_estimator_commander.c",
+      "distributed_sha256": "23bde9752f08e9cfe4ad27caf747eec2895d637d8e78751ad1f79cd0d198847b",
+      "kind": "candidate_source",
+      "original_name": "crazyflie_estimator_commander.c",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host/code/6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8/raw/crazyflie_stabilizer.c",
+      "original_sha256": "c05e092ceb0c07ba4a38edbddb0e4fdf56333628176bf6e068c5045dc4c1d623",
+      "path": "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_stabilizer.c",
+      "distributed_sha256": "c05e092ceb0c07ba4a38edbddb0e4fdf56333628176bf6e068c5045dc4c1d623",
+      "kind": "candidate_source",
+      "original_name": "crazyflie_stabilizer.c",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host/code/6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8/raw/crazyflie_health.c",
+      "original_sha256": "e4f7e389e306487ad6dd69014eef01bf4432eda73460f22214d2b7bd3aa9768e",
+      "path": "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_health.c",
+      "distributed_sha256": "e4f7e389e306487ad6dd69014eef01bf4432eda73460f22214d2b7bd3aa9768e",
+      "kind": "candidate_source",
+      "original_name": "crazyflie_health.c",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host/code/6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8/raw/crazyflie_crtp.c",
+      "original_sha256": "023ad7b7454529f0ef0fcb3a9264f7935ae29dafd70ba18cbf146629847a3c1d",
+      "path": "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_crtp.c",
+      "distributed_sha256": "023ad7b7454529f0ef0fcb3a9264f7935ae29dafd70ba18cbf146629847a3c1d",
+      "kind": "candidate_source",
+      "original_name": "crazyflie_crtp.c",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host/code/6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8/raw/crazyflie_deck_log.c",
+      "original_sha256": "6a61ed1b43391bbced533ec4f09fbd155394ba094530f18ff10ee5f57bd29a67",
+      "path": "evidence/current_chatdev_crazyflie_r02/raw/crazyflie_deck_log.c",
+      "distributed_sha256": "6a61ed1b43391bbced533ec4f09fbd155394ba094530f18ff10ee5f57bd29a67",
+      "kind": "candidate_source",
+      "original_name": "crazyflie_deck_log.c",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/rq1_chatdev_deepseek_static_20261003/review.json",
+      "original_sha256": "7b729073073fb17766d7b6dced1e88dc80fd2c165da3a707fdde8521e0cf3c7d",
+      "path": "data/rq1/chatdev_crazyflie_r02/static_review.json",
+      "distributed_sha256": "98514fb0037c637182e6919d304e034c343c482f92486606f7bd81fff2f76e5c",
+      "kind": "static_review",
+      "original_name": "review.json",
+      "transformation": "Path anonymization and separate release annotation; original judgments retained.; English translation in this distribution; original digest retained"
+    },
+    {
+      "source": "fse/static_testcase_completion_20261001/inputs/crazyflie/crazyflie_semantic_review_testcases.json",
+      "original_sha256": "801627de9d6a8474f2382902e430a9abf8e59369dd5bfe487501b5df276b812b",
+      "path": "data/rq1/chatdev_crazyflie_r02/static_testcases.json",
+      "distributed_sha256": "c4534c71260178abfbc70bb18a6be5acb6f96d253f5c5aca9190812d52253f9e",
+      "kind": "static_testcases",
+      "original_name": "crazyflie_semantic_review_testcases.json",
+      "transformation": "Local path anonymization; original language and verdicts retained."
+    },
+    {
+      "source": "fse/official_baselines/rq1_chatdev_deepseek_retry_format_diagnostic_20261003/host_report.json",
+      "original_sha256": "6f3184207187b7e1aabc5827d79089faa77989cde8c0f860dfd37ee5dcccc197",
+      "path": "data/rq1/chatdev_crazyflie_r02/host_report.json",
+      "distributed_sha256": "5d5229d9a6e30b6bbd85bb462d8ef1154467e979b55246e9cc6b329c9797c43f",
+      "kind": "saved_host_report",
+      "original_name": "host_report.json",
+      "transformation": "Local path anonymization; original language and verdicts retained."
+    },
+    {
+      "source": "fse/current_author_revision_20261003/chatdev_replacement_sync/rq1.tex",
+      "original_sha256": "00729fce8aa925c045970643007c658f0c66fa1cfce1853a2702f0dc831d2b29",
+      "path": "paper/sections/rq1.tex",
+      "distributed_sha256": "00729fce8aa925c045970643007c658f0c66fa1cfce1853a2702f0dc831d2b29",
+      "kind": "current_manuscript_section",
+      "original_name": "rq1.tex",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/current_author_revision_20261003/chatdev_replacement_sync/rq3.tex",
+      "original_sha256": "23b672acd9a23e0a62565d0fbd709ff37f851166f261f577a07682443e98d03e",
+      "path": "paper/sections/rq3.tex",
+      "distributed_sha256": "23b672acd9a23e0a62565d0fbd709ff37f851166f261f577a07682443e98d03e",
+      "kind": "current_manuscript_section",
+      "original_name": "rq3.tex",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/current_author_revision_20261003/chatdev_replacement_sync/figures/rq3_static_support_six_tasks.pdf",
+      "original_sha256": "98fa591a028375d4ecc54f1a839c331bc884e73db7596b57f3307c4215657b23",
+      "path": "paper/figures/rq3_static_support_six_tasks.pdf",
+      "distributed_sha256": "98fa591a028375d4ecc54f1a839c331bc884e73db7596b57f3307c4215657b23",
+      "kind": "current_manuscript_figure",
+      "original_name": "rq3_static_support_six_tasks.pdf",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/current_author_revision_20261003/chatdev_replacement_sync/figures/rq3_static_support_six_tasks.png",
+      "original_sha256": "d9bc424617ef140f9a6a11fbe91085776dbce32da92d613f7ad74e3b3779e650",
+      "path": "paper/figures/rq3_static_support_six_tasks.png",
+      "distributed_sha256": "d9bc424617ef140f9a6a11fbe91085776dbce32da92d613f7ad74e3b3779e650",
+      "kind": "current_manuscript_figure",
+      "original_name": "rq3_static_support_six_tasks.png",
+      "transformation": "none; exact bytes"
+    },
+    {
+      "source": "fse/current_author_revision_20261003/chatdev_replacement_sync/figures/rq3_static_support_six_tasks.svg",
+      "original_sha256": "e6a1ef10bb873b40347421f96db085cab7be452518487b49f2b8c235949ea6e7",
+      "path": "paper/figures/rq3_static_support_six_tasks.svg",
+      "distributed_sha256": "e6a1ef10bb873b40347421f96db085cab7be452518487b49f2b8c235949ea6e7",
+      "kind": "current_manuscript_figure",
+      "original_name": "rq3_static_support_six_tasks.svg",
+      "transformation": "none; exact bytes"
+    }
+  ],
+  "updated_identity": "crazyflie__deepseek-v4-pro__B_chatdev__r02",
+  "new_experiments": 0,
+  "source_observations_changed": false,
+  "current_review_status": "data/human_review_attestation.json"
+}

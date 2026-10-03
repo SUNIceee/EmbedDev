@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-03",
+  "basis": "Direct author confirmation in the current conversation",
+  "confirmation_translation": "Manual review has been completed.",
+  "scope": {
+    "identity": "crazyflie__deepseek-v4-pro__B_chatdev__r02",
+    "static_testcase_judgments": 100,
+    "requirement_leaf_judgments": 145
+  },
+  "status": "completed_author_attested",
+  "judgments_and_statistics_changed": false,
+  "code_modified": false,
+  "new_executed_tests": false,
+  "limitations": "Reviewer identity and signed item-level adjudication forms were not supplied; this file records the author statement, not an independently observed review session."
+}

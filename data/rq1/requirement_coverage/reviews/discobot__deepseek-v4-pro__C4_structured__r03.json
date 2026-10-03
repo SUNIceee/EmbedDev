@@ -1,0 +1,1699 @@
+{
+  "identity": "discobot__deepseek-v4-pro__C4_structured__r03",
+  "project": "discobot",
+  "model": "deepseek-v4-pro",
+  "method": "EmbedDev",
+  "repeat": 3,
+  "status": "complete_static_subset",
+  "candidate_files": [
+    {
+      "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+      "sha256": "eb84bb4fa38b9f4ef4d91ff1f3214d665976d6c51a5e041ba36e26219980bce5"
+    },
+    {
+      "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.h",
+      "sha256": "cd63a8acaebc8e3567824ee845212db7898207a6e8ffd2ce1407782f1b2f9527"
+    }
+  ],
+  "candidate_all_files_sha256_verified": true,
+  "checklist_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+  "candidate_inventory_sha256": "60721e6c11f3e5fb421b58209ce90367c3e66ea260a90a87b625c43d81a53d16",
+  "evaluator": "current Codex LLM static review",
+  "human_review_claimed": false,
+  "reviewed_at": "2026-10-02T06:05:18.367751+00:00",
+  "requirements": [
+    {
+      "id": "DB-R001",
+      "verdict": "fully_covered",
+      "reason": "GPIO, reload, and UART logs are actually updated through host-effect code paths.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 182,
+          "line_end": 190,
+          "function": "observable globals"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 419,
+          "line_end": 473,
+          "function": "motor operations"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 875,
+          "line_end": 888,
+          "function": "usart1_send"
+        }
+      ]
+    },
+    {
+      "id": "DB-R002",
+      "verdict": "fully_covered",
+      "reason": "168 MHz, reload divided by 1000, and tick increments are explicit.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 363,
+          "line_end": 377,
+          "function": "SystemInit/init_systick"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 531,
+          "line_end": 542,
+          "function": "SysTick_Handler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R003",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R004",
+      "verdict": "fully_covered",
+      "reason": "The target path fully specifies PB6/7, default 9600, 8N1, RXNE, and NVIC 0/0.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 820,
+          "line_end": 861,
+          "function": "init_usart1"
+        }
+      ]
+    },
+    {
+      "id": "DB-R005",
+      "verdict": "fully_covered",
+      "reason": "Push-pull/pull-up/25 MHz settings are present; direction drives outputs directly and ignores speed.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 419,
+          "line_end": 473,
+          "function": "motor initialization/direction"
+        }
+      ]
+    },
+    {
+      "id": "DB-R006",
+      "verdict": "fully_covered",
+      "reason": "Host LED states for PD12-15 are stored and updated by index. D:35-36 permits observable arrays as hardware-effect equivalents; absence of physical BSRRL/BSRRH registers alone is not a defect.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 576,
+          "line_end": 605,
+          "function": "LED functions"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 26,
+          "line_end": 26
+        },
+        {
+          "source": "device",
+          "line_start": 35,
+          "line_end": 36
+        },
+        {
+          "source": "api",
+          "line_start": 273,
+          "line_end": 276
+        }
+      ]
+    },
+    {
+      "id": "DB-R007",
+      "verdict": "fully_covered",
+      "reason": "Bit 0 is active-high and initially cleared; the low-level branch releases the button.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 379,
+          "line_end": 395,
+          "function": "init_button"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 520,
+          "line_end": 542,
+          "function": "button read/tick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R008",
+      "verdict": "fully_covered",
+      "reason": "The prescribed TM LIS3DSH initialization receives 2G/50Hz. D:39 fixes the SPI1/TM device boundary and permits low-level configuration stubs.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 607,
+          "line_end": 619,
+          "function": "accelerometer functions"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 28,
+          "line_end": 28
+        },
+        {
+          "source": "device",
+          "line_start": 38,
+          "line_end": 42
+        },
+        {
+          "source": "api",
+          "line_start": 273,
+          "line_end": 276
+        }
+      ]
+    },
+    {
+      "id": "DB-R009",
+      "verdict": "fully_covered",
+      "reason": "12-bit, continuous, Prescaler8, and 144-cycle parameters are explicitly passed to initialization. Host structures/configuration stubs need not access a physical ADC. This judgment does not claim verification of target SPL compilation or hardware configuration.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 125,
+          "line_end": 144,
+          "function": "host ADC structures"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 271,
+          "line_end": 290,
+          "function": "host ADC initialization stubs"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 627,
+          "line_end": 644,
+          "function": "init_temperature_sensor"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 29,
+          "line_end": 29
+        },
+        {
+          "source": "device",
+          "line_start": 44,
+          "line_end": 48
+        },
+        {
+          "source": "api",
+          "line_start": 273,
+          "line_end": 276
+        }
+      ]
+    },
+    {
+      "id": "DB-R010",
+      "verdict": "fully_covered",
+      "reason": "The target uses AHB2 RNG and reads DRDY; host ready/value provide the corresponding observable inputs.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 664,
+          "line_end": 683,
+          "function": "init_rng/get_random_number"
+        }
+      ]
+    },
+    {
+      "id": "DB-R011",
+      "verdict": "fully_covered",
+      "reason": "The nine startup stages are in the correct order.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 350,
+          "line_end": 361,
+          "function": "init_system"
+        }
+      ]
+    },
+    {
+      "id": "DB-R012",
+      "verdict": "fully_covered",
+      "reason": "The exact CRLF-terminated text is sent after USART initialization.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 190,
+          "line_end": 190,
+          "function": "startup_banner"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 350,
+          "line_end": 361,
+          "function": "init_system"
+        }
+      ]
+    },
+    {
+      "id": "DB-R013",
+      "verdict": "fully_covered",
+      "reason": "The clock is updated before calling SysTick_Config with clock/1000.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 368,
+          "line_end": 377,
+          "function": "init_systick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R014",
+      "verdict": "fully_covered",
+      "reason": "A nonzero target configuration result loops forever and prevents subsequent startup. The host SysTick model's fixed success does not constitute testing the failure path.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 368,
+          "line_end": 377,
+          "function": "init_systick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R015",
+      "verdict": "fully_covered",
+      "reason": "The target enables GPIOA and configures PA0 input; the host clears bit 0 and debounce state.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 379,
+          "line_end": 395,
+          "function": "init_button"
+        }
+      ]
+    },
+    {
+      "id": "DB-R016",
+      "verdict": "fully_covered",
+      "reason": "The direction enumeration values 0, 1, and 2 are correct.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.h",
+          "line_start": 11,
+          "line_end": 11,
+          "function": "Directions"
+        }
+      ]
+    },
+    {
+      "id": "DB-R017",
+      "verdict": "fully_covered",
+      "reason": "The left-side 10/01/00/default-00 mapping is complete.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 454,
+          "function": "set_left_motor_direc"
+        }
+      ]
+    },
+    {
+      "id": "DB-R018",
+      "verdict": "fully_covered",
+      "reason": "The right-side 10/01/00/default-00 mapping is complete.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 456,
+          "line_end": 473,
+          "function": "set_right_motor_direc"
+        }
+      ]
+    },
+    {
+      "id": "DB-R019",
+      "verdict": "fully_covered",
+      "reason": "speed is retained and discarded; there is no PWM.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 473,
+          "function": "motor direction setters"
+        }
+      ]
+    },
+    {
+      "id": "DB-R020",
+      "verdict": "fully_covered",
+      "reason": "Both sides forward produce 1010.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 475,
+          "line_end": 478,
+          "function": "move_forward"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 473,
+          "function": "motor setters"
+        }
+      ]
+    },
+    {
+      "id": "DB-R021",
+      "verdict": "fully_covered",
+      "reason": "Both sides reverse produce 0101.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 480,
+          "line_end": 483,
+          "function": "move_backward"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 473,
+          "function": "motor setters"
+        }
+      ]
+    },
+    {
+      "id": "DB-R022",
+      "verdict": "fully_covered",
+      "reason": "Left stopped and right forward produce 0010.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 485,
+          "line_end": 488,
+          "function": "move_forward_soft_left"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 473,
+          "function": "motor setters"
+        }
+      ]
+    },
+    {
+      "id": "DB-R023",
+      "verdict": "fully_covered",
+      "reason": "Left forward and right stopped produce 1000.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 490,
+          "line_end": 493,
+          "function": "move_forward_soft_right"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 473,
+          "function": "motor setters"
+        }
+      ]
+    },
+    {
+      "id": "DB-R024",
+      "verdict": "fully_covered",
+      "reason": "Left stopped and right reverse produce 0001.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 495,
+          "line_end": 498,
+          "function": "move_backward_soft_left"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 473,
+          "function": "motor setters"
+        }
+      ]
+    },
+    {
+      "id": "DB-R025",
+      "verdict": "fully_covered",
+      "reason": "Left reverse and right stopped produce 0100.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 500,
+          "line_end": 503,
+          "function": "move_backward_soft_right"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 473,
+          "function": "motor setters"
+        }
+      ]
+    },
+    {
+      "id": "DB-R026",
+      "verdict": "fully_covered",
+      "reason": "Left forward and right reverse produce 1001.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 505,
+          "line_end": 508,
+          "function": "move_spin_right"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 473,
+          "function": "motor setters"
+        }
+      ]
+    },
+    {
+      "id": "DB-R027",
+      "verdict": "fully_covered",
+      "reason": "Left reverse and right forward produce 0110.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 510,
+          "line_end": 513,
+          "function": "move_spin_left"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 473,
+          "function": "motor setters"
+        }
+      ]
+    },
+    {
+      "id": "DB-R028",
+      "verdict": "fully_covered",
+      "reason": "STOP on both sides clears all four outputs.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 515,
+          "line_end": 518,
+          "function": "stop"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 473,
+          "function": "motor setters"
+        }
+      ]
+    },
+    {
+      "id": "DB-R029",
+      "verdict": "fully_covered",
+      "reason": "Clock/mode and host initial states are complete; the target explicitly clears the four bits through BSRRH.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 419,
+          "line_end": 435,
+          "function": "init_GPIO_A1A2A3A4_output"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 335,
+          "line_end": 348,
+          "function": "gpioa_motor_pin_pair"
+        }
+      ]
+    },
+    {
+      "id": "DB-R030",
+      "verdict": "fully_covered",
+      "reason": "Direction combinations avoid 11; bits that must be low are cleared before high bits are set. This does not establish that physical transient tests passed.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 335,
+          "line_end": 348,
+          "function": "gpioa_motor_pin_pair"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 473,
+          "function": "motor setters"
+        }
+      ]
+    },
+    {
+      "id": "DB-R031",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R032",
+      "verdict": "fully_covered",
+      "reason": "The nine IDs match the nine functions in order.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.h",
+          "line_start": 6,
+          "line_end": 11,
+          "function": "_ID/MAXIDSIZE"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 171,
+          "line_end": 181,
+          "function": "flookup"
+        }
+      ]
+    },
+    {
+      "id": "DB-R033",
+      "verdict": "fully_covered",
+      "reason": "Valid IDs 0-8 immediately invoke the lookup-table entry, without framing or ACK.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 397,
+          "line_end": 405,
+          "function": "dispatch_uart_command"
+        }
+      ]
+    },
+    {
+      "id": "DB-R034",
+      "verdict": "fully_covered",
+      "reason": "Validity is checked before writing callme; empty queues are not dispatched, and invalid negative values do not alter state.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 397,
+          "line_end": 417,
+          "function": "dispatch/main_loop_iteration"
+        }
+      ]
+    },
+    {
+      "id": "DB-R035",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R036",
+      "verdict": "fully_covered",
+      "reason": "Indices 0-3 read the corresponding bits; out-of-range indices return -1.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 520,
+          "line_end": 529,
+          "function": "read_buttonc"
+        }
+      ]
+    },
+    {
+      "id": "DB-R037",
+      "verdict": "fully_covered",
+      "reason": "Every tick increments the clock; continuous high counting must reach 250 to become pressed.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 531,
+          "line_end": 542,
+          "function": "SysTick_Handler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R038",
+      "verdict": "fully_covered",
+      "reason": "A low level immediately clears the count and sets the released state.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 538,
+          "line_end": 541,
+          "function": "SysTick_Handler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R039",
+      "verdict": "fully_covered",
+      "reason": "Only change tracking, switch/break, and laststate updates occur.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 544,
+          "line_end": 556,
+          "function": "checkbutton"
+        }
+      ]
+    },
+    {
+      "id": "DB-R040",
+      "verdict": "fully_covered",
+      "reason": "The roll formula atan2f(y,z)*180/pi is correct.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 558,
+          "line_end": 566,
+          "function": "calc_pitch_roll"
+        }
+      ]
+    },
+    {
+      "id": "DB-R041",
+      "verdict": "fully_covered",
+      "reason": "The pitch formula atan2f(-x,sqrt(y squared+z squared))*180/pi is correct.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 558,
+          "line_end": 566,
+          "function": "calc_pitch_roll"
+        }
+      ]
+    },
+    {
+      "id": "DB-R042",
+      "verdict": "fully_covered",
+      "reason": "GPIOD and push-pull outputs are enabled; BSRRH is written and host initial outputs are cleared.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 576,
+          "line_end": 591,
+          "function": "init_LED_pins"
+        }
+      ]
+    },
+    {
+      "id": "DB-R043",
+      "verdict": "fully_covered",
+      "reason": "A valid index sets GPIOD_output[12+i] to 1, which is the required host equivalent of setting the LED. A physical BSRRL write is not required on the host.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 593,
+          "line_end": 598,
+          "function": "LED_On"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 121,
+          "line_end": 121
+        },
+        {
+          "source": "device",
+          "line_start": 35,
+          "line_end": 36
+        },
+        {
+          "source": "api",
+          "line_start": 273,
+          "line_end": 276
+        }
+      ]
+    },
+    {
+      "id": "DB-R044",
+      "verdict": "fully_covered",
+      "reason": "A valid index clears GPIOD_output[12+i], preserving observable LED-off semantics. Absence of a physical BSRRH write is not a missing host-model behavior.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 600,
+          "line_end": 605,
+          "function": "LED_Off"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 122,
+          "line_end": 122
+        },
+        {
+          "source": "device",
+          "line_start": 35,
+          "line_end": 36
+        },
+        {
+          "source": "api",
+          "line_start": 273,
+          "line_end": 276
+        }
+      ]
+    },
+    {
+      "id": "DB-R045",
+      "verdict": "fully_covered",
+      "reason": "Only indices 0-3 are accepted; invalid values do not write GPIO.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 593,
+          "line_end": 605,
+          "function": "LED_On/LED_Off"
+        }
+      ]
+    },
+    {
+      "id": "DB-R046",
+      "verdict": "fully_covered",
+      "reason": "History time is updated only when strictly >1000; UART is still checked each step.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 407,
+          "line_end": 417,
+          "function": "main_loop_iteration"
+        }
+      ]
+    },
+    {
+      "id": "DB-R047",
+      "verdict": "fully_covered",
+      "reason": "The prescribed TM function is called with 2G/50Hz and the host returns 0. Target configuration details are not presented as proof of hardware execution.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 607,
+          "line_end": 609,
+          "function": "init_accelerometers"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 320,
+          "line_end": 324,
+          "function": "host TM adapter"
+        }
+      ]
+    },
+    {
+      "id": "DB-R048",
+      "verdict": "fully_covered",
+      "reason": "Stored three-axis values use the shared read path with floating-point division by 1000.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 326,
+          "line_end": 332,
+          "function": "host raw adapter"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 611,
+          "line_end": 625,
+          "function": "accelerometer functions"
+        }
+      ]
+    },
+    {
+      "id": "DB-R049",
+      "verdict": "fully_covered",
+      "reason": "Clock, independent mode, division, alignment, internal temperature channel, 144 cycles, and enabling are encoded. Empty host configuration stubs are allowed without actual register side effects.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 627,
+          "line_end": 644,
+          "function": "init_temperature_sensor"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 271,
+          "line_end": 290,
+          "function": "host ADC adapters"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 145,
+          "line_end": 148
+        },
+        {
+          "source": "device",
+          "line_start": 10,
+          "line_end": 12
+        },
+        {
+          "source": "api",
+          "line_start": 273,
+          "line_end": 276
+        }
+      ]
+    },
+    {
+      "id": "DB-R050",
+      "verdict": "partially_covered",
+      "reason": "The source expresses start -> wait -> read, but the host start function is empty and ADC_GetFlagStatus always returns SET, making not-ready unrepresentable. D:11-12 permits configuration stubs, not a data-readiness check fixed to success.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 292,
+          "line_end": 304,
+          "function": "ADC host helpers"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 646,
+          "line_end": 657,
+          "function": "read_temperature_sensor"
+        }
+      ]
+    },
+    {
+      "id": "DB-R051",
+      "verdict": "fully_covered",
+      "reason": "raw is first converted to float; formula parameters and operation order are correct.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 650,
+          "line_end": 657,
+          "function": "read_temperature_sensor"
+        }
+      ]
+    },
+    {
+      "id": "DB-R052",
+      "verdict": "fully_covered",
+      "reason": "The target enables the AHB2 clock before RNG.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 664,
+          "line_end": 667,
+          "function": "init_rng"
+        }
+      ]
+    },
+    {
+      "id": "DB-R053",
+      "verdict": "partially_covered",
+      "reason": "The target's no-timeout wait is correct. The host exits after a bounded wait, but returns the old value even if readiness never occurs, without a distinguishable not-ready outcome.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 669,
+          "line_end": 683,
+          "function": "get_random_number"
+        }
+      ]
+    },
+    {
+      "id": "DB-R054",
+      "verdict": "fully_covered",
+      "reason": "The entire 32-bit value is returned without filtering zero or all ones.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 316,
+          "line_end": 318,
+          "function": "host RNG read"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 669,
+          "line_end": 688,
+          "function": "RNG functions"
+        }
+      ]
+    },
+    {
+      "id": "DB-R055",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R056",
+      "verdict": "fully_covered",
+      "reason": "The first NULL slot stores interval*1000 and clears both counter fields.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 690,
+          "line_end": 700,
+          "function": "add_timed_task"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.h",
+          "line_start": 35,
+          "line_end": 35,
+          "function": "MAXNUMTASKS"
+        }
+      ]
+    },
+    {
+      "id": "DB-R057",
+      "verdict": "fully_covered",
+      "reason": "After traversing full slots, the code ends silently without writes.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 690,
+          "line_end": 700,
+          "function": "add_timed_task"
+        }
+      ]
+    },
+    {
+      "id": "DB-R058",
+      "verdict": "fully_covered",
+      "reason": "Due nonempty tasks execute in slot order and update last_called and numcalls; multiple tasks may run on one tick.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 702,
+          "line_end": 711,
+          "function": "execute_tasks"
+        }
+      ]
+    },
+    {
+      "id": "DB-R059",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R060",
+      "verdict": "fully_covered",
+      "reason": "Nonempty tasks print the correct slot number and count.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 713,
+          "line_end": 719,
+          "function": "printtimes"
+        }
+      ]
+    },
+    {
+      "id": "DB-R061",
+      "verdict": "fully_covered",
+      "reason": "Execution is sequential and nonpreemptive; NULL slots are skipped, and no removal or priority API exists.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 690,
+          "line_end": 719,
+          "function": "task scheduler"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.h",
+          "line_start": 72,
+          "line_end": 81,
+          "function": "task interface"
+        }
+      ]
+    },
+    {
+      "id": "DB-R062",
+      "verdict": "fully_covered",
+      "reason": "baud=0 emits a warning and selects 9600.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 820,
+          "line_end": 825,
+          "function": "init_usart1"
+        }
+      ]
+    },
+    {
+      "id": "DB-R063",
+      "verdict": "fully_covered",
+      "reason": "Target calls specify GPIOB alternate function/push-pull/pull-up/100 MHz, USART 8N1, bidirectional operation without flow control, and interrupt priority.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 826,
+          "line_end": 857,
+          "function": "init_usart1"
+        }
+      ]
+    },
+    {
+      "id": "DB-R064",
+      "verdict": "fully_covered",
+      "reason": "msg is initialized to 200 bytes and USART is enabled.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 859,
+          "line_end": 860,
+          "function": "init_usart1"
+        }
+      ]
+    },
+    {
+      "id": "DB-R065",
+      "verdict": "fully_covered",
+      "reason": "RXNE reads DR into the queue, dropping the byte if full; other interrupts have no branch action.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 863,
+          "line_end": 873,
+          "function": "USART1_IRQHandler"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 744,
+          "line_end": 754,
+          "function": "buf_putbyte"
+        }
+      ]
+    },
+    {
+      "id": "DB-R066",
+      "verdict": "fully_covered",
+      "reason": "The target waits for 0x40 before each character and retains the unbounded wait.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 875,
+          "line_end": 888,
+          "function": "usart1_send"
+        }
+      ]
+    },
+    {
+      "id": "DB-R067",
+      "verdict": "fully_covered",
+      "reason": "The ring-buffer read is delegated; empty returns 0.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 890,
+          "line_end": 892,
+          "function": "usart1_read"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 756,
+          "line_end": 763,
+          "function": "buf_getbyte"
+        }
+      ]
+    },
+    {
+      "id": "DB-R068",
+      "verdict": "fully_covered",
+      "reason": "Conversion to signed char precedes return, preserving the convention that FF is -1.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 894,
+          "line_end": 898,
+          "function": "usart1_readc"
+        }
+      ]
+    },
+    {
+      "id": "DB-R069",
+      "verdict": "fully_covered",
+      "reason": "Delegation returns the counter difference.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 900,
+          "line_end": 902,
+          "function": "usart1_available"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 779,
+          "line_end": 784,
+          "function": "buf_available"
+        }
+      ]
+    },
+    {
+      "id": "DB-R070",
+      "verdict": "fully_covered",
+      "reason": "All five required fields are present.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.h",
+          "line_start": 82,
+          "line_end": 88,
+          "function": "CircArray"
+        }
+      ]
+    },
+    {
+      "id": "DB-R071",
+      "verdict": "fully_covered",
+      "reason": "An enabled buffer reports an error and is skipped; calloc zeros memory and all fields are initialized.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 721,
+          "line_end": 742,
+          "function": "initCircArray"
+        }
+      ]
+    },
+    {
+      "id": "DB-R072",
+      "verdict": "fully_covered",
+      "reason": "Nonfull buffers write modulo size and increment n_w; full buffers return 0 without overwriting.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 744,
+          "line_end": 754,
+          "function": "buf_putbyte"
+        }
+      ]
+    },
+    {
+      "id": "DB-R073",
+      "verdict": "fully_covered",
+      "reason": "Nonempty buffers read modulo size and increment n_r; empty buffers return 0.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 756,
+          "line_end": 763,
+          "function": "buf_getbyte"
+        }
+      ]
+    },
+    {
+      "id": "DB-R074",
+      "verdict": "fully_covered",
+      "reason": "Normal objects use n_r==n_w to test emptiness.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 765,
+          "line_end": 770,
+          "function": "buf_empty"
+        }
+      ]
+    },
+    {
+      "id": "DB-R075",
+      "verdict": "fully_covered",
+      "reason": "A normal nonempty buffer is full when its indices are equal modulo size; invalid objects are separately rejected safely.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 772,
+          "line_end": 777,
+          "function": "buf_full"
+        }
+      ]
+    },
+    {
+      "id": "DB-R076",
+      "verdict": "fully_covered",
+      "reason": "Returns n_w-n_r.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 779,
+          "line_end": 784,
+          "function": "buf_available"
+        }
+      ]
+    },
+    {
+      "id": "DB-R077",
+      "verdict": "fully_covered",
+      "reason": "A temporary realloc pointer protects the old allocation; success updates size.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 786,
+          "line_end": 797,
+          "function": "buf_resize"
+        }
+      ]
+    },
+    {
+      "id": "DB-R078",
+      "verdict": "fully_covered",
+      "reason": "Contents are cleared and freed, all fields reset, and the buffer disabled; NULL returns false.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 799,
+          "line_end": 811,
+          "function": "buf_delete"
+        }
+      ]
+    },
+    {
+      "id": "DB-R079",
+      "verdict": "fully_covered",
+      "reason": "Only contents are memset; counters and configuration are unchanged.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 813,
+          "line_end": 818,
+          "function": "buf_clear"
+        }
+      ]
+    },
+    {
+      "id": "DB-R080",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R081",
+      "verdict": "fully_covered",
+      "reason": "uint32_t addition by 1 implements modulo-2^32 wraparound.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 928,
+          "line_end": 930,
+          "function": "func2"
+        }
+      ]
+    },
+    {
+      "id": "DB-R082",
+      "verdict": "fully_covered",
+      "reason": "func1 passes the same argument to func2 and returns its result. D:72 explicitly allows an equivalent host C implementation; downgrading it for not delivering ARM LR instructions exceeds this task's scope.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 923,
+          "line_end": 931,
+          "function": "func1/func2"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 253,
+          "line_end": 255
+        },
+        {
+          "source": "device",
+          "line_start": 71,
+          "line_end": 72
+        },
+        {
+          "source": "api",
+          "line_start": 273,
+          "line_end": 276
+        }
+      ]
+    },
+    {
+      "id": "DB-R083",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R084",
+      "verdict": "fully_covered",
+      "reason": "Required values are public; START/STOP constants do not become a firmware framing protocol.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.h",
+          "line_start": 6,
+          "line_end": 35,
+          "function": "public constants"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 397,
+          "line_end": 405,
+          "function": "dispatch"
+        }
+      ]
+    },
+    {
+      "id": "DB-R085",
+      "verdict": "fully_covered",
+      "reason": "Pin-indexed arrays are actually updated with only 0 or 1.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 419,
+          "line_end": 473,
+          "function": "motor functions"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 576,
+          "line_end": 605,
+          "function": "LED functions"
+        }
+      ]
+    },
+    {
+      "id": "DB-R086",
+      "verdict": "fully_covered",
+      "reason": "The mask modifies only GPIOA_IDR bit 0.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 568,
+          "line_end": 574,
+          "function": "discobot_set_button_level"
+        }
+      ]
+    },
+    {
+      "id": "DB-R087",
+      "verdict": "fully_covered",
+      "reason": "Injected three-axis data is read through the same path.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 326,
+          "line_end": 332,
+          "function": "host axes adapter"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 611,
+          "line_end": 625,
+          "function": "accelerometer functions"
+        }
+      ]
+    },
+    {
+      "id": "DB-R088",
+      "verdict": "fully_covered",
+      "reason": "Injected raw data enters the formula through the same conversion-value entry.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 302,
+          "line_end": 305,
+          "function": "host ADC get"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 646,
+          "line_end": 662,
+          "function": "temperature functions"
+        }
+      ]
+    },
+    {
+      "id": "DB-R089",
+      "verdict": "partially_covered",
+      "reason": "ready/value are stored and no permanent deadlock occurs, but not-ready eventually returns the old value just like ready, without a distinguishable status outcome.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 669,
+          "line_end": 688,
+          "function": "RNG functions"
+        }
+      ]
+    },
+    {
+      "id": "DB-R090",
+      "verdict": "fully_covered",
+      "reason": "Setting DR and RXNE invokes the same ISR; the host clears the injected state after returning.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 863,
+          "line_end": 873,
+          "function": "USART1_IRQHandler"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 904,
+          "line_end": 921,
+          "function": "RX injection"
+        }
+      ]
+    },
+    {
+      "id": "DB-R091",
+      "verdict": "fully_covered",
+      "reason": "Characters are appended to the log with maintained length and bounded capacity.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 875,
+          "line_end": 888,
+          "function": "usart1_send"
+        }
+      ]
+    },
+    {
+      "id": "DB-R092",
+      "verdict": "fully_covered",
+      "reason": "A single step handles timing/UART/button/tasks without defining main or self-tests.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 407,
+          "line_end": 417,
+          "function": "main_loop_iteration"
+        }
+      ]
+    },
+    {
+      "id": "DB-R093",
+      "verdict": "partially_covered",
+      "reason": "Generic CircArray objects can be deleted, but UART's internally allocated static msg is not exposed. The complete delivered code has no reachable call freeing it. R:299 requires all allocations to be releasable; this gap is unrelated to permitted configuration stubs.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 193,
+          "line_end": 193,
+          "function": "private msg"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 820,
+          "line_end": 859,
+          "function": "init_usart1"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 799,
+          "line_end": 810,
+          "function": "buf_delete"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 299,
+          "line_end": 299
+        },
+        {
+          "source": "device",
+          "line_start": 69,
+          "line_end": 73
+        },
+        {
+          "source": "api",
+          "line_start": 273,
+          "line_end": 276
+        }
+      ]
+    },
+    {
+      "id": "DB-R094",
+      "verdict": "fully_covered",
+      "reason": "Null pointers, out-of-range indices, and full buffers have safe branches; the executor does not call NULL tasks.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 520,
+          "line_end": 529,
+          "function": "read_buttonc"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 558,
+          "line_end": 625,
+          "function": "LED/vector APIs"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 721,
+          "line_end": 888,
+          "function": "buffer/send APIs"
+        }
+      ]
+    },
+    {
+      "id": "DB-R095",
+      "verdict": "fully_covered",
+      "reason": "No UART framing/removal/PWM extensions are added; speed remains ignored.",
+      "evidence": [
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 397,
+          "line_end": 417,
+          "function": "command loop"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 437,
+          "line_end": 473,
+          "function": "motor setters"
+        },
+        {
+          "path": "fse\\deepseek_no_cap_20261001\\deepseek\\execution\\discobot__deepseek-v4-pro__C4_structured__r03\\jobs\\discobot__deepseek-v4-pro__C4_structured__r03\\repair_3\\6_generated_code.c",
+          "line_start": 690,
+          "line_end": 711,
+          "function": "task scheduler"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "fully_covered": 84,
+    "unassessed": 7,
+    "partially_covered": 4
+  },
+  "denominator": 88,
+  "rate": 95.45454545454545,
+  "metric": "coverage of 88 statically reviewable requirement leaves; 7 preclassified leaves unassessed",
+  "all_project_requirements_assessed": false,
+  "code_modified": false,
+  "model_api_calls": 0,
+  "host_or_compiler_executed": false,
+  "prior_static_scores_used": false,
+  "note": "All 931 C-source lines and the 107-line header were read, tracing target conditional branches and host adapters separately. Configuration stubs and not-ready semantics were not credited based on function names.",
+  "input_context": {
+    "requirement": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\discobot\\RE_req.txt",
+      "sha256": "0386b7323a917035fc1fcd21cafdd99aea562904d531126be06411af828c83bb",
+      "provided_to_generator": true
+    },
+    "device": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\discobot\\RE_device_interface.txt",
+      "sha256": "82e98267f500f08b2e54256b621795ae05b0884b56498f1bac2000cdc63366e0",
+      "provided_to_generator": true
+    },
+    "api": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\discobot\\RE_api.txt",
+      "sha256": "9ef8f2d20200c0f43ee8752e08d60a6a07243eabc1e2f8438d3f9e347ab7cee0",
+      "provided_to_generator": true
+    }
+  },
+  "scope_review_complete": true,
+  "scope_reviewed_at": "2026-10-02T06:27:01.084450+00:00",
+  "scope_review_policy": "R+D host-equivalent task contract; supplied A constrains shared-API methods; configuration stubs allowed, missing required values/paths not invented; Direct not penalized by unsupplied A; no candidate changes",
+  "scope_review_notes": [
+    "R:1–16 and D:7–12 define project-level host-equivalent scope, not reconstruction of real upstream firmware.",
+    "D:11–12/A:273–276 allow configuration stubs; this does not waive R-specified configuration values/order.",
+    "D:72 allows transparent C semantics for host assembly functionality.",
+    "R:299 allocation-release obligation remains applicable regardless of hardware stub permissions.",
+    "Original standalone serializers record preliminary decisions; active JSON after this scope reconciliation is authoritative."
+  ],
+  "review_lineage": {
+    "previous_review": "fse\\requirement_coverage_review_20261002\\reviews\\deepseek\\discobot\\history\\pre_scope_reconciliation\\discobot__deepseek-v4-pro__C4_structured__r03.json",
+    "previous_review_sha256": "7cabe556e42b2eec25a285b15eeff41127b1df2632072c2c1dc66d177643390e",
+    "reason": "Correct task scope interpretation consistently after reading R+D+A; preserve actual functional failures; not score selection."
+  },
+  "final_semantic_consistency_complete": true,
+  "final_semantic_consistency_at": "2026-10-02T06:29:07.451577+00:00",
+  "semantic_consistency_lineage": {
+    "previous_review": "fse\\requirement_coverage_review_20261002\\reviews\\deepseek\\discobot\\history\\pre_final_semantic_consistency\\discobot__deepseek-v4-pro__C4_structured__r03.json",
+    "previous_review_sha256": "217f5a8cfdcc115f1502a5cd94bbcba5adbfc6880c1eeb07ba8095e1b5c7c677",
+    "changes": [
+      {
+        "id": "DB-R050",
+        "old_verdict": "fully_covered",
+        "new_verdict": "partially_covered",
+        "old_reason": "The target starts conversion in software, waits for EOC, and reads the value; host EOC is fixed ready.",
+        "new_reason": "The source expresses start -> wait -> read, but the host start function is empty and ADC_GetFlagStatus always returns SET, making not-ready unrepresentable. D:11-12 permits configuration stubs, not a data-readiness check fixed to success."
+      }
+    ]
+  },
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/reviews/deepseek/discobot/discobot__deepseek-v4-pro__C4_structured__r03.json",
+    "original_sha256": "4225d92dbf20b261f7c27bdd3bb6ef74a4e0b019dfcdd32dc52a588d93665df8",
+    "language": "Original Chinese evidence/rationales retained; no semantic translation.",
+    "initial_review_status": {
+      "evaluator": "current Codex LLM static review",
+      "human_review_claimed": false
+    },
+    "preservation": "Initial verdicts, reasons, historical rates and human-review flags retained. Path anonymization and export metadata do not constitute a new review.",
+    "current_aggregation": "(fully_covered + partially_covered) / preclassified static denominator; no fractional weighting of partial items.",
+    "checklist_export": {
+      "path": "data/rq1/requirement_coverage/checklists/discobot.json",
+      "sha256": "e731137141a0fc3c4d67258ff76e0fa635fbea1d88801da73c3edee10d1c66c6",
+      "original_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+      "leaf_count": 95,
+      "static_denominator": 88,
+      "source_requirement": {
+        "path": "data/rq1/requirement_coverage/source_requirements/discobot_RE_req.txt",
+        "sha256": "06306779a3ef8033f15aab14cc1701a809e8129513e2d5b77ea4ae7491cb91c9"
+      }
+    },
+    "candidate_bindings": [
+      {
+        "source": "fse/deepseek_no_cap_20261001/deepseek/execution/discobot__deepseek-v4-pro__C4_structured__r03/jobs/discobot__deepseek-v4-pro__C4_structured__r03/repair_3/6_generated_code.c",
+        "original_sha256": "eb84bb4fa38b9f4ef4d91ff1f3214d665976d6c51a5e041ba36e26219980bce5",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.c",
+        "path": "evidence/candidate_sources/eb84bb4fa38b9f4ef4d91ff1f3214d665976d6c51a5e041ba36e26219980bce5/6_generated_code.c",
+        "distributed_sha256": "eb84bb4fa38b9f4ef4d91ff1f3214d665976d6c51a5e041ba36e26219980bce5",
+        "transformation": "none"
+      },
+      {
+        "source": "fse/deepseek_no_cap_20261001/deepseek/execution/discobot__deepseek-v4-pro__C4_structured__r03/jobs/discobot__deepseek-v4-pro__C4_structured__r03/repair_3/6_generated_code.h",
+        "original_sha256": "cd63a8acaebc8e3567824ee845212db7898207a6e8ffd2ce1407782f1b2f9527",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.h",
+        "path": "evidence/candidate_sources/cd63a8acaebc8e3567824ee845212db7898207a6e8ffd2ce1407782f1b2f9527/6_generated_code.h",
+        "distributed_sha256": "cd63a8acaebc8e3567824ee845212db7898207a6e8ffd2ce1407782f1b2f9527",
+        "transformation": "none"
+      }
+    ],
+    "evidence_line_numbers": "Original candidate lines; transformed candidate comments, where used, retain separately recorded original and distributed hashes."
+  }
+}

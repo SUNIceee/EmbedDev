@@ -1,0 +1,1660 @@
+{
+  "identity": "discobot__deepseek-v4-pro__B_metagpt__r01",
+  "project": "discobot",
+  "model": "deepseek-v4-pro",
+  "method": "MetaGPT",
+  "repeat": 1,
+  "status": "complete_static_subset",
+  "candidate_files": [
+    {
+      "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+      "sha256": "617e9b64f69f06c5827a76cad7a4646603aa4ec7dea41c648fd372431fbc6547"
+    },
+    {
+      "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+      "sha256": "ff9a11ce6c5eafc996f8bd2ed0fbd5164966da9c9d674d92a882d478f0f667d9"
+    }
+  ],
+  "candidate_all_files_sha256_verified": true,
+  "checklist_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+  "candidate_inventory_sha256": "60721e6c11f3e5fb421b58209ce90367c3e66ea260a90a87b625c43d81a53d16",
+  "evaluator": "current Codex LLM static review",
+  "human_review_claimed": false,
+  "reviewed_at": "2026-10-02T06:18:18.776036+00:00",
+  "requirements": [
+    {
+      "id": "DB-R001",
+      "verdict": "partially_covered",
+      "reason": "GPIO/tick/logstateprivatewithnogetter;hostSysTickstubdiscardsticksinstead ofobservable reload.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 36,
+          "line_end": 36,
+          "function": "s_device"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 39,
+          "line_end": 58,
+          "function": "DeviceState"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 26,
+          "line_end": 29,
+          "function": "SysTick_Config"
+        }
+      ]
+    },
+    {
+      "id": "DB-R002",
+      "verdict": "partially_covered",
+      "reason": "168000 passedbutnoobservablehostreload/168MHzclockstate;tickincrements.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 233,
+          "line_end": 238,
+          "function": "init"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 286,
+          "line_end": 288,
+          "function": "handler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R003",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R004",
+      "verdict": "partially_covered",
+      "reason": "Baud/RXNEenabledbutwrongPA9/10insteadofPB6/7,NVICprioritiesnotset.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 196,
+          "line_end": 224,
+          "function": "targetUARTinit"
+        }
+      ]
+    },
+    {
+      "id": "DB-R005",
+      "verdict": "partially_covered",
+      "reason": "PA1-4output,nomotorPWM;pullup25MHznotconfiguredandcommandtablewrong.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 206,
+          "line_end": 208,
+          "function": "GPIOconfig"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 411,
+          "line_end": 449,
+          "function": "motorwriter"
+        }
+      ]
+    },
+    {
+      "id": "DB-R006",
+      "verdict": "partially_covered",
+      "reason": "PD12-15 initialized,butnoLED_on/offbehavior.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 165,
+          "line_end": 166,
+          "function": "init"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 210,
+          "line_end": 212,
+          "function": "GPIOconfig"
+        }
+      ]
+    },
+    {
+      "id": "DB-R007",
+      "verdict": "partially_covered",
+      "reason": "Targetbit0correct;hostusesentireIDRbyteasboolean;releaseonlymainloop.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 257,
+          "line_end": 277,
+          "function": "button"
+        }
+      ]
+    },
+    {
+      "id": "DB-R008",
+      "verdict": "not_covered",
+      "reason": "Noaccelerometerinit/config/readfunction.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 183,
+          "line_end": 192,
+          "function": "sensorreset"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 364,
+          "line_end": 368,
+          "function": "accelinjection"
+        }
+      ]
+    },
+    {
+      "id": "DB-R009",
+      "verdict": "partially_covered",
+      "reason": "ADCenabledbut12bit/prescaler8/continuous/channel144notconfiguredormodeled.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 229,
+          "line_end": 230,
+          "function": "ADCinit"
+        }
+      ]
+    },
+    {
+      "id": "DB-R010",
+      "verdict": "fully_covered",
+      "reason": "AHB2clock/RNGenable,DRDYhardwarewait,injectableready/value.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 204,
+          "line_end": 227,
+          "function": "RNGinit"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 393,
+          "line_end": 405,
+          "function": "random_read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R011",
+      "verdict": "not_covered",
+      "reason": "Differentinitializationsequence,missingseveralrequiredsetupsteps.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 164,
+          "line_end": 239,
+          "function": "discobot_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R012",
+      "verdict": "fully_covered",
+      "reason": "ExactbannerafterUARTsetup,excludesNUL.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 39,
+          "line_end": 41,
+          "function": "banner"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 233,
+          "line_end": 235,
+          "function": "init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R013",
+      "verdict": "partially_covered",
+      "reason": "168000ConfigcallbutnoClockUpdateorclock/1000calculation.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 233,
+          "line_end": 238,
+          "function": "init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R014",
+      "verdict": "partially_covered",
+      "reason": "Sets haltedflag,butmainloopneverchecksit;errornotlatchedoperationally.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 233,
+          "line_end": 238,
+          "function": "init"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 245,
+          "line_end": 280,
+          "function": "mainloop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R015",
+      "verdict": "partially_covered",
+      "reason": "GPIOAclockandhostlow;PA0inputmodeunconfigured.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 167,
+          "line_end": 167,
+          "function": "init"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 201,
+          "line_end": 201,
+          "function": "clock"
+        }
+      ]
+    },
+    {
+      "id": "DB-R016",
+      "verdict": "not_covered",
+      "reason": "Directions0/1/2notdefined;noper-motordirectionAPI.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 11,
+          "line_end": 80,
+          "function": "API"
+        }
+      ]
+    },
+    {
+      "id": "DB-R017",
+      "verdict": "not_covered",
+      "reason": "Onlywhole-commandtable,noleftmotor setter/defaultstop contract.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 411,
+          "line_end": 449,
+          "function": "motor_command_fn"
+        }
+      ]
+    },
+    {
+      "id": "DB-R018",
+      "verdict": "not_covered",
+      "reason": "Norightmotor setter/defaultstop contract.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 411,
+          "line_end": 449,
+          "function": "motor_command_fn"
+        }
+      ]
+    },
+    {
+      "id": "DB-R019",
+      "verdict": "not_covered",
+      "reason": "Requiredunusedspeedparameternotretained.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 411,
+          "line_end": 449,
+          "function": "motor_command_fn"
+        }
+      ]
+    },
+    {
+      "id": "DB-R020",
+      "verdict": "partially_covered",
+      "reason": "The original code can produce the forward pin pattern 1010, but lacks the required separate command entry and maps external command IDs incorrectly. Previously treating the action as entirely absent because of the wrong ID was too strict; the partial implementation and call-path gap are retained.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 51,
+          "line_end": 59,
+          "function": "commands"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 416,
+          "line_end": 426,
+          "function": "truthtable"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 62,
+          "line_end": 62
+        },
+        {
+          "source": "device",
+          "line_start": 21,
+          "line_end": 27
+        },
+        {
+          "source": "api",
+          "line_start": 273,
+          "line_end": 276
+        }
+      ]
+    },
+    {
+      "id": "DB-R021",
+      "verdict": "partially_covered",
+      "reason": "The original code can produce the reverse pin pattern 0101, but lacks the required separate command entry and maps external command IDs incorrectly. Previously treating the action as entirely absent because of the wrong ID was too strict; the partial implementation and call-path gap are retained.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 51,
+          "line_end": 59,
+          "function": "commands"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 416,
+          "line_end": 426,
+          "function": "truthtable"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 63,
+          "line_end": 63
+        },
+        {
+          "source": "device",
+          "line_start": 21,
+          "line_end": 27
+        },
+        {
+          "source": "api",
+          "line_start": 273,
+          "line_end": 276
+        }
+      ]
+    },
+    {
+      "id": "DB-R022",
+      "verdict": "not_covered",
+      "reason": "RequiredID2softleft insteadbackward.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 51,
+          "line_end": 59,
+          "function": "commands"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 416,
+          "line_end": 426,
+          "function": "truthtable"
+        }
+      ]
+    },
+    {
+      "id": "DB-R023",
+      "verdict": "not_covered",
+      "reason": "RequiredID3softright insteadspinleft.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 51,
+          "line_end": 59,
+          "function": "commands"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 416,
+          "line_end": 426,
+          "function": "truthtable"
+        }
+      ]
+    },
+    {
+      "id": "DB-R024",
+      "verdict": "not_covered",
+      "reason": "RequiredID4backsoftleft insteadspinright.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 51,
+          "line_end": 59,
+          "function": "commands"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 416,
+          "line_end": 426,
+          "function": "truthtable"
+        }
+      ]
+    },
+    {
+      "id": "DB-R025",
+      "verdict": "not_covered",
+      "reason": "RequiredID5backsoftright insteadforward.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 51,
+          "line_end": 59,
+          "function": "commands"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 416,
+          "line_end": 426,
+          "function": "truthtable"
+        }
+      ]
+    },
+    {
+      "id": "DB-R026",
+      "verdict": "partially_covered",
+      "reason": "The original code can produce the right-spin pin pattern 1001, but lacks the required separate command entry and maps external command IDs incorrectly. Previously treating the action as entirely absent because of the wrong ID was too strict; the partial implementation and call-path gap are retained.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 51,
+          "line_end": 59,
+          "function": "commands"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 416,
+          "line_end": 426,
+          "function": "truthtable"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 68,
+          "line_end": 68
+        },
+        {
+          "source": "device",
+          "line_start": 21,
+          "line_end": 27
+        },
+        {
+          "source": "api",
+          "line_start": 273,
+          "line_end": 276
+        }
+      ]
+    },
+    {
+      "id": "DB-R027",
+      "verdict": "partially_covered",
+      "reason": "The original code can produce the left-spin pin pattern 0110, but lacks the required separate command entry and maps external command IDs incorrectly. Previously treating the action as entirely absent because of the wrong ID was too strict; the partial implementation and call-path gap are retained.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 51,
+          "line_end": 59,
+          "function": "commands"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 416,
+          "line_end": 426,
+          "function": "truthtable"
+        }
+      ],
+      "scope_basis": [
+        {
+          "source": "requirement",
+          "line_start": 69,
+          "line_end": 69
+        },
+        {
+          "source": "device",
+          "line_start": 21,
+          "line_end": 27
+        },
+        {
+          "source": "api",
+          "line_start": 273,
+          "line_end": 276
+        }
+      ]
+    },
+    {
+      "id": "DB-R028",
+      "verdict": "fully_covered",
+      "reason": "ID8produces0000stop.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 59,
+          "line_end": 59,
+          "function": "command8"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 425,
+          "line_end": 425,
+          "function": "truth8"
+        }
+      ]
+    },
+    {
+      "id": "DB-R029",
+      "verdict": "partially_covered",
+      "reason": "Hostlowandtargetoutputmode;electricaloptions/targetinitialresetabsent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 165,
+          "line_end": 165,
+          "function": "init"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 206,
+          "line_end": 208,
+          "function": "targetGPIO"
+        }
+      ]
+    },
+    {
+      "id": "DB-R030",
+      "verdict": "fully_covered",
+      "reason": "Allprovidedcompletedpatternsavoid11perbridge.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 416,
+          "line_end": 426,
+          "function": "truth table"
+        }
+      ]
+    },
+    {
+      "id": "DB-R031",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R032",
+      "verdict": "not_covered",
+      "reason": "Nineentriesbutsemantics/orderwrongandrequiredIDsabsent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 48,
+          "line_end": 63,
+          "function": "flookup"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 416,
+          "line_end": 426,
+          "function": "truth table"
+        }
+      ]
+    },
+    {
+      "id": "DB-R033",
+      "verdict": "partially_covered",
+      "reason": "Barebytes0-8immediatedispatchbutwrongmovementmapping.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 245,
+          "line_end": 255,
+          "function": "main_loop_iteration"
+        }
+      ]
+    },
+    {
+      "id": "DB-R034",
+      "verdict": "partially_covered",
+      "reason": "Empty/invalidbyteignored,butcallmeobservablemissing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 245,
+          "line_end": 255,
+          "function": "mainloop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R035",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R036",
+      "verdict": "not_covered",
+      "reason": "Noindexedread_buttonc0..3orinvalid-1.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 257,
+          "line_end": 277,
+          "function": "buttonlogic"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 60,
+          "line_end": 80,
+          "function": "API"
+        }
+      ]
+    },
+    {
+      "id": "DB-R037",
+      "verdict": "partially_covered",
+      "reason": "Counter250existsbutcountsloopiterations,notticks;handleronlyticks++.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 257,
+          "line_end": 277,
+          "function": "debounce"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 286,
+          "line_end": 288,
+          "function": "handler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R038",
+      "verdict": "partially_covered",
+      "reason": "Lowclearsduringmainloop,noteachtickimmediately.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 274,
+          "line_end": 277,
+          "function": "release"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 286,
+          "line_end": 288,
+          "function": "handler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R039",
+      "verdict": "not_covered",
+      "reason": "Unconditionallyoverwriteshistory,nochangeguard/switchtransitionfunction.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 265,
+          "line_end": 277,
+          "function": "buttonlogic"
+        }
+      ]
+    },
+    {
+      "id": "DB-R040",
+      "verdict": "not_covered",
+      "reason": "Noattitudecalculationimplementation.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 364,
+          "line_end": 368,
+          "function": "accelinjection"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 60,
+          "line_end": 80,
+          "function": "API"
+        }
+      ]
+    },
+    {
+      "id": "DB-R041",
+      "verdict": "not_covered",
+      "reason": "Noatan2/sqrtpitchimplementation.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 364,
+          "line_end": 368,
+          "function": "accelinjection"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 60,
+          "line_end": 80,
+          "function": "API"
+        }
+      ]
+    },
+    {
+      "id": "DB-R042",
+      "verdict": "partially_covered",
+      "reason": "Hostarrayzero,targetmodepresent;targetPP/initiallowoperationunshown.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 165,
+          "line_end": 166,
+          "function": "init"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 201,
+          "line_end": 212,
+          "function": "GPIOinit"
+        }
+      ]
+    },
+    {
+      "id": "DB-R043",
+      "verdict": "not_covered",
+      "reason": "NoLED_Onfunctionorequivalentsetoperation.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 60,
+          "line_end": 80,
+          "function": "API"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 164,
+          "line_end": 239,
+          "function": "init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R044",
+      "verdict": "not_covered",
+      "reason": "NoLED_Offfunctionorequivalentclearoperation.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 60,
+          "line_end": 80,
+          "function": "API"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 164,
+          "line_end": 239,
+          "function": "init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R045",
+      "verdict": "not_covered",
+      "reason": "NocallableLEDindexoperationorvalidation.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 60,
+          "line_end": 80,
+          "function": "API"
+        }
+      ]
+    },
+    {
+      "id": "DB-R046",
+      "verdict": "partially_covered",
+      "reason": "UARTcontinuouslyprocessed,but>1000idletimer/historyabsent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 245,
+          "line_end": 280,
+          "function": "main_loop_iteration"
+        }
+      ]
+    },
+    {
+      "id": "DB-R047",
+      "verdict": "not_covered",
+      "reason": "Noaccelerometerinitializer/successcontract.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 183,
+          "line_end": 192,
+          "function": "reset"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 364,
+          "line_end": 368,
+          "function": "injection"
+        }
+      ]
+    },
+    {
+      "id": "DB-R048",
+      "verdict": "not_covered",
+      "reason": "Onlyrawstored;no/1000greadfunction.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 364,
+          "line_end": 368,
+          "function": "accelinjection"
+        }
+      ]
+    },
+    {
+      "id": "DB-R049",
+      "verdict": "partially_covered",
+      "reason": "Basicclock/enabled,butremainingADCconfigurationabsent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 203,
+          "line_end": 203,
+          "function": "ADCclock"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 229,
+          "line_end": 230,
+          "function": "ADCenable"
+        }
+      ]
+    },
+    {
+      "id": "DB-R050",
+      "verdict": "partially_covered",
+      "reason": "TargetDRreadexists;nostart/EOCwait.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 383,
+          "line_end": 391,
+          "function": "temperature_read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R051",
+      "verdict": "not_covered",
+      "reason": "Wrongparentheses:raw-scaledtermnotdividedby.0025;subtracts304instead ofapplyingfullformula.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 389,
+          "line_end": 390,
+          "function": "temperatureformula"
+        }
+      ]
+    },
+    {
+      "id": "DB-R052",
+      "verdict": "fully_covered",
+      "reason": "Correctclockthenenable.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 204,
+          "line_end": 204,
+          "function": "AHB2enable"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 226,
+          "line_end": 227,
+          "function": "RNGenable"
+        }
+      ]
+    },
+    {
+      "id": "DB-R053",
+      "verdict": "partially_covered",
+      "reason": "Targetwaitcorrect;hostFFFFFFFFsentinelconflictswithvalidvalueanddoesnotseparatelyreportnotready.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 393,
+          "line_end": 405,
+          "function": "random_read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R054",
+      "verdict": "fully_covered",
+      "reason": "Ready0/FFFFFFFFreturnedunfiltered.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 393,
+          "line_end": 405,
+          "function": "random_read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R055",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R056",
+      "verdict": "partially_covered",
+      "reason": "25slotfirstinactive,butintervalalreadyms,last_calledcurrenttickratherthan0.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 451,
+          "line_end": 466,
+          "function": "task_add"
+        }
+      ]
+    },
+    {
+      "id": "DB-R057",
+      "verdict": "fully_covered",
+      "reason": "Fulltablesilentunchanged.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 451,
+          "line_end": 466,
+          "function": "task_add"
+        }
+      ]
+    },
+    {
+      "id": "DB-R058",
+      "verdict": "fully_covered",
+      "reason": "AllactivenonNULLduetasksordered;time/countupdatedeachcall.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 468,
+          "line_end": 484,
+          "function": "scheduler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R059",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R060",
+      "verdict": "not_covered",
+      "reason": "No printtimes/call-countoutputoperation.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 451,
+          "line_end": 484,
+          "function": "scheduler"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 60,
+          "line_end": 80,
+          "function": "API"
+        }
+      ]
+    },
+    {
+      "id": "DB-R061",
+      "verdict": "fully_covered",
+      "reason": "NULLskip,sequential,noRemove/priority/preemption.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 451,
+          "line_end": 484,
+          "function": "scheduler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R062",
+      "verdict": "not_covered",
+      "reason": "No baudargument/zerofallbackwarning.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 196,
+          "line_end": 224,
+          "function": "UARTinit"
+        }
+      ]
+    },
+    {
+      "id": "DB-R063",
+      "verdict": "partially_covered",
+      "reason": "WrongPA9/10;PB6/7,electrical8N1/NVICprioritiesnotconfigured.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 214,
+          "line_end": 224,
+          "function": "UARTconfig"
+        }
+      ]
+    },
+    {
+      "id": "DB-R064",
+      "verdict": "partially_covered",
+      "reason": "200bytesallocatedstatically,butringreservesoneslot=>199capacity.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 45,
+          "line_end": 45,
+          "function": "RXbuffer"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 172,
+          "line_end": 173,
+          "function": "queueinit"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 222,
+          "line_end": 222,
+          "function": "USARTenable"
+        }
+      ]
+    },
+    {
+      "id": "DB-R065",
+      "verdict": "partially_covered",
+      "reason": "TargetRXNEpathpresent;hostISRno-opand200thbytealreadydropsduetoringcapacity199.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 290,
+          "line_end": 301,
+          "function": "ISR"
+        }
+      ]
+    },
+    {
+      "id": "DB-R066",
+      "verdict": "partially_covered",
+      "reason": "PercharinfinitewaitandDRsendbutUSART_SR_TXEreplacesrequiredSR0x40condition.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 307,
+          "line_end": 319,
+          "function": "targetsend"
+        }
+      ]
+    },
+    {
+      "id": "DB-R067",
+      "verdict": "fully_covered",
+      "reason": "Queuepopreturnsdata;emptyinitializedbyte0.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 342,
+          "line_end": 346,
+          "function": "usart1_read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R068",
+      "verdict": "not_covered",
+      "reason": "FFreturns255,not signed-1.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 334,
+          "line_end": 340,
+          "function": "usart1_readc"
+        }
+      ]
+    },
+    {
+      "id": "DB-R069",
+      "verdict": "partially_covered",
+      "reason": "Correctringoccupancyconceptbutboundedhead/tailinstead ofrequiredmonotonicdifference.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 348,
+          "line_end": 350,
+          "function": "available"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 94,
+          "line_end": 102,
+          "function": "CircArray_available"
+        }
+      ]
+    },
+    {
+      "id": "DB-R070",
+      "verdict": "partially_covered",
+      "reason": "Buffer/capacity/cursorspresent;enabledanduint32monotoniccountersabsent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 13,
+          "line_end": 19,
+          "function": "CircArray"
+        }
+      ]
+    },
+    {
+      "id": "DB-R071",
+      "verdict": "not_covered",
+      "reason": "Borrows suppliedbuffer,no calloczero/enabled/reinitwarning.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 69,
+          "line_end": 78,
+          "function": "CircArray_init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R072",
+      "verdict": "partially_covered",
+      "reason": "FIFOwrite/fullrejectbutreservedslotcapacityandwrappedheadviolaterequiredmonotoniccountercontract.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 137,
+          "line_end": 148,
+          "function": "push"
+        }
+      ]
+    },
+    {
+      "id": "DB-R073",
+      "verdict": "partially_covered",
+      "reason": "FIFOreadbutoutparameter/statusandwrappedtailinstead ofreturnbyte/monotoniccounter.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 150,
+          "line_end": 158,
+          "function": "pop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R074",
+      "verdict": "fully_covered",
+      "reason": "Head/tail equalitycorrectlyrepresentsemptyinimplementedring.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 87,
+          "line_end": 92,
+          "function": "isEmpty"
+        }
+      ]
+    },
+    {
+      "id": "DB-R075",
+      "verdict": "not_covered",
+      "reason": "One-slotempty ruleinstead ofnonemptyidenticalmoduloindices.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 80,
+          "line_end": 85,
+          "function": "isFull"
+        }
+      ]
+    },
+    {
+      "id": "DB-R076",
+      "verdict": "partially_covered",
+      "reason": "Ringoccupancycomputed,notrequiredmonotonicn_w-n_r.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 94,
+          "line_end": 102,
+          "function": "available"
+        }
+      ]
+    },
+    {
+      "id": "DB-R077",
+      "verdict": "not_covered",
+      "reason": "Onlychangescapacity/resetcursors;noreallocation,canexceedbackingbuffer.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 104,
+          "line_end": 113,
+          "function": "resize"
+        }
+      ]
+    },
+    {
+      "id": "DB-R078",
+      "verdict": "partially_covered",
+      "reason": "Resetsfieldsbutdoesnotclear/free,returns-1forNULLratherthanfalse.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 115,
+          "line_end": 125,
+          "function": "delete"
+        }
+      ]
+    },
+    {
+      "id": "DB-R079",
+      "verdict": "not_covered",
+      "reason": "Resetscountersanddoesnotclearbuffercontent,oppositecontract.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 127,
+          "line_end": 135,
+          "function": "clear"
+        }
+      ]
+    },
+    {
+      "id": "DB-R080",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R081",
+      "verdict": "not_covered",
+      "reason": "Subtractstwoargumentsinsteadofincrementoneuint32.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 494,
+          "line_end": 496,
+          "function": "func2"
+        }
+      ]
+    },
+    {
+      "id": "DB-R082",
+      "verdict": "not_covered",
+      "reason": "Addsargumentsinstead oftransparentfunc2call.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 490,
+          "line_end": 492,
+          "function": "func1"
+        }
+      ]
+    },
+    {
+      "id": "DB-R083",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R084",
+      "verdict": "partially_covered",
+      "reason": "Someconstantsencoded;START/STOP/MAXIDSIZE/SYSTICKconstantsmissing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 39,
+          "line_end": 58,
+          "function": "DeviceState"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 46,
+          "line_end": 46,
+          "function": "debounce"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 197,
+          "line_end": 197,
+          "function": "baud"
+        }
+      ]
+    },
+    {
+      "id": "DB-R085",
+      "verdict": "partially_covered",
+      "reason": "Binarypinsupdatedhostbutprivate/unexposed;LEDoutputsneveroperated.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 411,
+          "line_end": 449,
+          "function": "motorwriter"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 36,
+          "line_end": 36,
+          "function": "private state"
+        }
+      ]
+    },
+    {
+      "id": "DB-R086",
+      "verdict": "partially_covered",
+      "reason": "SetsentireIDRbyte,notonlybit0.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 360,
+          "line_end": 362,
+          "function": "buttoninject"
+        }
+      ]
+    },
+    {
+      "id": "DB-R087",
+      "verdict": "not_covered",
+      "reason": "Injectionexistsbutnormalread/conversionmissing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 364,
+          "line_end": 368,
+          "function": "accelinject"
+        }
+      ]
+    },
+    {
+      "id": "DB-R088",
+      "verdict": "partially_covered",
+      "reason": "Injectedrawusedbutformulaincorrect.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 370,
+          "line_end": 391,
+          "function": "ADCinject/read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R089",
+      "verdict": "partially_covered",
+      "reason": "Ready/valueinjected,nonblockingbutFFFFFFFFsentinelnotuniquelyunready.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 374,
+          "line_end": 377,
+          "function": "inject"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 393,
+          "line_end": 405,
+          "function": "random_read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R090",
+      "verdict": "not_covered",
+      "reason": "DirectqueuepushbypassesDR/RXNEandhostISRempty.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 379,
+          "line_end": 381,
+          "function": "RXinject"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 296,
+          "line_end": 300,
+          "function": "hostISR"
+        }
+      ]
+    },
+    {
+      "id": "DB-R091",
+      "verdict": "fully_covered",
+      "reason": "Hostappendorder,length,boundscheckpresent.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 307,
+          "line_end": 332,
+          "function": "send"
+        }
+      ]
+    },
+    {
+      "id": "DB-R092",
+      "verdict": "fully_covered",
+      "reason": "Productionstep,no main/selftest.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 245,
+          "line_end": 280,
+          "function": "main_loop_iteration"
+        }
+      ]
+    },
+    {
+      "id": "DB-R093",
+      "verdict": "fully_covered",
+      "reason": "Noheapallocationinthiscandidate;buffersarestaticorborrowed,so noownedheapleak.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 36,
+          "line_end": 36,
+          "function": "static state"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.h",
+          "line_start": 39,
+          "line_end": 58,
+          "function": "DeviceState"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 69,
+          "line_end": 78,
+          "function": "init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R094",
+      "verdict": "partially_covered",
+      "reason": "NULL/fullguardsbutresizecanenlargecapacitywithoutbackingallocationthenOOBwrite.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 137,
+          "line_end": 158,
+          "function": "queueguards"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 104,
+          "line_end": 113,
+          "function": "resize"
+        }
+      ]
+    },
+    {
+      "id": "DB-R095",
+      "verdict": "partially_covered",
+      "reason": "Noframing/removal/PWM,butrequiredspeedparameterandhistoricalcommandsemanticsmissing.",
+      "evidence": [
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 245,
+          "line_end": 280,
+          "function": "mainloop"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 451,
+          "line_end": 484,
+          "function": "scheduler"
+        },
+        {
+          "path": "fse\\official_baselines\\reassessment_host_20260921\\code\\d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba\\raw\\6_generated_code.c",
+          "line_start": 411,
+          "line_end": 449,
+          "function": "motors"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "partially_covered": 42,
+    "unassessed": 7,
+    "not_covered": 32,
+    "fully_covered": 14
+  },
+  "denominator": 88,
+  "rate": 15.909090909090908,
+  "metric": "coverage of 88 statically reviewable requirement leaves; 7 preclassified leaves unassessed",
+  "all_project_requirements_assessed": false,
+  "code_modified": false,
+  "model_api_calls": 0,
+  "host_or_compiler_executed": false,
+  "prior_static_scores_used": false,
+  "note": "496-line C and86-line header read in full;all hashes verified. Reviewed alternate delivered API semantically;clear functional errors not treated as mere compiler problems. Common R/D/A platform contract read.",
+  "input_context": {
+    "requirement": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\discobot\\RE_req.txt",
+      "sha256": "0386b7323a917035fc1fcd21cafdd99aea562904d531126be06411af828c83bb",
+      "provided_to_generator": true
+    },
+    "device": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\discobot\\RE_device_interface.txt",
+      "sha256": "82e98267f500f08b2e54256b621795ae05b0884b56498f1bac2000cdc63366e0",
+      "provided_to_generator": true
+    },
+    "api": {
+      "path": "fse\\artifacts\\matched_experiments\\main_v4_800k_20260908\\protocol\\discobot\\RE_api.txt",
+      "sha256": "9ef8f2d20200c0f43ee8752e08d60a6a07243eabc1e2f8438d3f9e347ab7cee0",
+      "provided_to_generator": true
+    }
+  },
+  "scope_review_complete": true,
+  "scope_reviewed_at": "2026-10-02T06:27:01.084450+00:00",
+  "scope_review_policy": "R+D host-equivalent task contract; supplied A constrains shared-API methods; configuration stubs allowed, missing required values/paths not invented; Direct not penalized by unsupplied A; no candidate changes",
+  "scope_review_notes": [
+    "R:1–16 and D:7–12 define project-level host-equivalent scope, not reconstruction of real upstream firmware.",
+    "D:11–12/A:273–276 allow configuration stubs; this does not waive R-specified configuration values/order.",
+    "D:72 allows transparent C semantics for host assembly functionality.",
+    "R:299 allocation-release obligation remains applicable regardless of hardware stub permissions.",
+    "Original standalone serializers record preliminary decisions; active JSON after this scope reconciliation is authoritative."
+  ],
+  "review_lineage": {
+    "previous_review": "fse\\requirement_coverage_review_20261002\\reviews\\deepseek\\discobot\\history\\pre_scope_reconciliation\\discobot__deepseek-v4-pro__B_metagpt__r01.json",
+    "previous_review_sha256": "50f5b6c3ceab45d0158f51a7e5ece38354657121c09d584b46615da1bebe7d05",
+    "reason": "Correct task scope interpretation consistently after reading R+D+A; preserve actual functional failures; not score selection."
+  },
+  "final_semantic_consistency_complete": true,
+  "final_semantic_consistency_at": "2026-10-02T06:29:07.451577+00:00",
+  "semantic_consistency_lineage": {
+    "previous_review": "fse\\requirement_coverage_review_20261002\\reviews\\deepseek\\discobot\\history\\pre_final_semantic_consistency\\discobot__deepseek-v4-pro__B_metagpt__r01.json",
+    "previous_review_sha256": "ea4b885ef3e92965b08862f6cf1f02c48ad73e110d53400f463c614fffe59698",
+    "changes": []
+  },
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/reviews/deepseek/discobot/discobot__deepseek-v4-pro__B_metagpt__r01.json",
+    "original_sha256": "477e55101ad6f3986800365fbe0e1cd97a9d7d13c4c14d738572dd2389b910b4",
+    "language": "Original Chinese evidence/rationales retained; no semantic translation.",
+    "initial_review_status": {
+      "evaluator": "current Codex LLM static review",
+      "human_review_claimed": false
+    },
+    "preservation": "Initial verdicts, reasons, historical rates and human-review flags retained. Path anonymization and export metadata do not constitute a new review.",
+    "current_aggregation": "(fully_covered + partially_covered) / preclassified static denominator; no fractional weighting of partial items.",
+    "checklist_export": {
+      "path": "data/rq1/requirement_coverage/checklists/discobot.json",
+      "sha256": "e731137141a0fc3c4d67258ff76e0fa635fbea1d88801da73c3edee10d1c66c6",
+      "original_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+      "leaf_count": 95,
+      "static_denominator": 88,
+      "source_requirement": {
+        "path": "data/rq1/requirement_coverage/source_requirements/discobot_RE_req.txt",
+        "sha256": "06306779a3ef8033f15aab14cc1701a809e8129513e2d5b77ea4ae7491cb91c9"
+      }
+    },
+    "candidate_bindings": [
+      {
+        "source": "fse/official_baselines/reassessment_host_20260921/code/d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba/raw/6_generated_code.c",
+        "original_sha256": "617e9b64f69f06c5827a76cad7a4646603aa4ec7dea41c648fd372431fbc6547",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.c",
+        "path": "evidence/candidate_sources/617e9b64f69f06c5827a76cad7a4646603aa4ec7dea41c648fd372431fbc6547/6_generated_code.c",
+        "distributed_sha256": "617e9b64f69f06c5827a76cad7a4646603aa4ec7dea41c648fd372431fbc6547",
+        "transformation": "none"
+      },
+      {
+        "source": "fse/official_baselines/reassessment_host_20260921/code/d3e0d9cfc85f03dc4c207f34b2dbd6815609cd100a52fc158803d4d09df5deba/raw/6_generated_code.h",
+        "original_sha256": "ff9a11ce6c5eafc996f8bd2ed0fbd5164966da9c9d674d92a882d478f0f667d9",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.h",
+        "path": "evidence/candidate_sources/ff9a11ce6c5eafc996f8bd2ed0fbd5164966da9c9d674d92a882d478f0f667d9/6_generated_code.h",
+        "distributed_sha256": "ff9a11ce6c5eafc996f8bd2ed0fbd5164966da9c9d674d92a882d478f0f667d9",
+        "transformation": "none"
+      }
+    ],
+    "evidence_line_numbers": "Original candidate lines; transformed candidate comments, where used, retain separately recorded original and distributed hashes."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "status": "passed_translation_invariant_checks",
+  "created_at_utc": "2026-10-03T07:07:35.524955+00:00",
+  "language": "English throughout distributed text, including decoded JSON strings",
+  "cjk_occurrences": 0,
+  "translated_files": 127,
+  "translated_json_string_occurrences": 25656,
+  "python_files_parsed": 55,
+  "json_files_decoded": 378,
+  "text_files_checked": 1084,
+  "unchanged_scope_files_verified": 91,
+  "new_model_calls": 0,
+  "new_host_experiments": 0,
+  "original_evidence_modified": false,
+  "public_url": null,
+  "publication_status": "local_only",
+  "validation_boundary": "Sealed ZIP security and offline reconstruction checks are recorded separately alongside the archive."
+}

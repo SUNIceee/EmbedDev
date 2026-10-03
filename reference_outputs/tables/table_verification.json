@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "rq1_positions": 135,
+  "rq1_method_model_rows": 15,
+  "rq1_mean_sd_cells": 60,
+  "rq1_sd": "population SD across three equally weighted project-mean repeat blocks",
+  "requirement_coverage": {
+    "metric": "(fully_covered + partially_covered) / fixed static denominator",
+    "reviewed_positions": 108,
+    "no_code_positions": 27,
+    "leaf_judgments_checked": 12148
+  },
+  "rq2_positions": 54,
+  "rq2_conditions": 6,
+  "rq4_positions": 162,
+  "rq4_conditions": 6,
+  "new_model_calls": 0,
+  "new_candidate_executions": 0,
+  "interpretation": "Reconstruction of saved observations, not new judgments or regeneration."
+}

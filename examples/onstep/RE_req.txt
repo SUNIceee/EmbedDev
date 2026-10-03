@@ -1,0 +1,281 @@
+OnStep Software Requirements Specification
+1 Overview
+1.1 Software overview
+OnStep is a computerized telescope Goto control system for astronomy enthusiasts. Its main function is to control telescope pointing precisely through stepper motors, allowing automatic acquisition and tracking of celestial targets.
+OnStep supports equatorial mounts (GEM, Fork, etc.) and alt-azimuth mounts (including Dobsonian), is compatible with the LX200 standard protocol, and connects to host software and mobile devices through Bluetooth, WiFi, Ethernet, or USB. Its ecosystem includes ASCOM drivers, an Android App, a built-in web control panel, and Sky Planetarium star-chart software.
+1.2 System composition
+OnStep consists of the following components. Its environmental entities include operators (astronomy enthusiasts sending Goto commands through host software/Apps), monitored objects (current telescope pointing and observing-site location/time), and controlled objects (rotation of telescope-tube pointing). The system composition is:
+1) Sensors (inputs):
+- GPS module: one, providing observing-site longitude, latitude, altitude, and UTC time
+- Real-time clock (RTC): one, providing the time/date reference when GPS is unavailable
+- Limit switches: several, detecting extreme positions of telescope axes
+- Communication channels: USB serial, Bluetooth, WiFi, Ethernet, receiving LX200 instructions and configuration commands
+2) Actuators (outputs):
+- RA/Dec-axis stepper motors (equatorial mount) or AZ/ALT-axis stepper motors (alt-azimuth mount): one per axis, rotating telescope pointing
+- Buzzer: one, providing sounds such as Goto-completion and error alerts
+- Status indicators: several, indicating system operating state
+3) Controller (processing core):
+- Processor: Teensy 3.x/4.0 or Arduino Mega2560
+- Stepper motor drivers: TMC2130/TMC5160/TMC2209/LV8729/DRV8825
+- Program memory: 256KB~1MB (platform-dependent)
+- Data memory: 8KB~1MB (platform-dependent)
++------------------+   LX200 protocol   +------------------+
+| Host software    | <----------------> |                  |
+| Sky Safari/CdC   | WiFi/Bluetooth/serial |   OnStep       |
+| Stellarium/ASCOM |                    | telescope controller |
+└──────────────────┘                  │                  │
+                                       | Stepper control --> RA/Dec motors
+┌──────────────────┐                  │                  │
+| GPS / RTC        | --- location/time -> | State monitoring <-- limit switches
+└──────────────────┘                  └──────────────────┘
+1.3 Product feature overview
+2 Operating environment requirements
+2.1 Operating scheme and scenarios
+OnStep uses a main-loop architecture. After power-on it initializes once (loads configuration and initializes motor drivers and sensors), then enters an infinite loop. Each iteration performs:
+1. Check all communication channels (serial, Bluetooth, WiFi, Ethernet) for new commands
+2. Parse LX200 protocol commands and perform the corresponding operations
+3. Update stepper-motor positions: calculate the difference between current target and actual positions and generate motor pulse sequences
+4. Update celestial tracking rates (sidereal/lunar/solar/custom)
+5. Check limit switches and emergency-stop state, stopping motors if necessary
+Motor control uses timer interrupts to generate precise pulses for smooth stepper-motor speed control and acceleration/deceleration profiles.
+2.2 Hardware environment
+2.3 Interfaces
+3 Detailed software requirements
+3.1 Functional decomposition
+OnStep's core data flow has three paths:
+**Command path**: external device -> communication reception -> LX200 command parsing -> function execution -> status response
+**Tracking path**: current time and location -> celestial-coordinate calculation -> target-position conversion -> stepper-pulse generation -> position update
+**Calibration path**: manually point at known stars -> collect multiple actual-coordinate/motor-position pairs -> construct the celestial-to-motor coordinate transformation matrix
+3.1.1 General design principles
+1. Check pointer arguments of all public APIs for NULL at function entry; NULL arguments return OS_ERR_INVALID_ARGUMENT
+2. Argument validation (coordinate ranges, enumeration values, boundaries, etc.) takes precedence over system-state checks. Invalid arguments return OS_ERR_INVALID_ARGUMENT regardless of system state
+3. Do not add preconditions or state checks not required by the specification to API implementations
+3.2 Functional requirements
+3.2.1 Initialization and configuration loading
+1. Requirement ID: REQ-FUNC-001
+2. Description: load hardware configuration and initialize communication interfaces, stepper drivers, and sensors at power-on
+3. Invocation condition: called once by the main program at power-on or reset
+4. Input: configuration in Config.h (motor step angle, reduction ratio, driver-chip model, communication-channel settings, etc.)
+5. Output: initialization-complete flags for hardware modules
+6. Processing:
+   1. Read compile-time configuration, including motor step angle, transmission reduction ratio, microstepping settings, and driver-chip model
+   2. Initialize communication channels: USB serial, Bluetooth serial, WiFi module (if enabled), and Ethernet module (if enabled)
+   3. Initialize stepper drivers: write TMC configuration registers over SPI to set microstepping, current limits, silent mode, etc. Enter a fault state on SPI failure (see REQ-FDIR-003)
+   4. If GPS is enabled, wait for a position fix and obtain observing-site longitude, latitude, altitude, and UTC time
+   5. If GPS is unavailable, read time from RTC and the preset location from configuration
+   6. Initialize the RTC module through I2C
+   7. Configure timer interrupts for motor-pulse generation; set the default tracking rate to sidereal
+   8. After initialization, enter the main loop and begin responding to commands
+   9. os_init must reset all modules' runtime flags (including but not limited to calibration-residual-computed flags, calibration-star count, guiding-pulse state, manual-motion state, and Goto-motion state), restoring persistent state only after successfully loading persistent data from NVM. Explicitly reset every 'computed/active' boolean flag in os_init to avoid carryover between tests or resets
+3.2.2 Command reception and parsing
+1. Requirement ID: REQ-FUNC-002
+2. Description: receive and parse LX200 protocol commands from multiple communication channels
+3. Invocation condition: check once each main-loop iteration
+4. Input: text command strings from any USB serial, Bluetooth, WiFi, or Ethernet channel
+5. Output: textual execution-result replies through the same channel
+6. Processing:
+   1. Check enabled communication channels in sequence for newly arrived data
+   2. Read the buffer character by character; a newline marks reception of a complete command
+   3. Check command prefix: commands beginning with a colon and ending with a hash are standard LX200 commands for further parsing
+   4. Nonstandard input may be recognized as an internal configuration or debugging command
+   5. Identify the category by the first command character: queries (:G...), settings (:S...), movement (:M...), etc.
+   6. Return OS_ERR_COMMAND_FORMAT for malformed commands and OS_ERR_INVALID_STATE when a command is disallowed in the current context
+   7. Dispatch commands and arguments to the corresponding functional modules
+   8. Return processing results as text to the sending channel
+3.2.3 Celestial Goto
+1. Requirement ID: REQ-FUNC-003
+2. Description: automatically point the telescope at specified celestial coordinates
+3. Invocation condition: triggered by a Goto command (:MS#, :Sr...#, etc.)
+4. Input: target right ascension and declination (or azimuth and altitude), plus an optional celestial-object type
+5. Output: motors start moving; on Goto completion, sound the buzzer and return completion status
+6. Processing:
+   1. Receive target coordinates and validate their ranges (right ascension 0~24 hours, declination -90~+90 degrees)
+   2. Determine coordinate conversion according to the current mount mode (equatorial or alt-azimuth)
+   3. Convert celestial coordinates to target motor steps: in equatorial mode calculate the RA-axis target using tracking rate; in alt-azimuth mode calculate celestial bearing from current time and site
+   4. Compute the step difference between current and target motor positions; return completion directly if the difference is too small
+   5. Plan acceleration/deceleration for both axes: start at current speed, accelerate to maximum Goto speed, decelerate after most travel, and reach the target precisely at low speed
+   6. Monitor limit switches continuously during motion; stop immediately and report an error when a limit is detected
+   7. Sound the buzzer once both axes reach their targets
+   8. Switch to tracking mode and continuously adjust motors at sidereal rate to compensate for Earth's rotation
+   9. Goto is asynchronous: os_goto_equatorial returns OS_ERR_NONE immediately after starting motion and retains OS_STATE_GOTO. os_loop_iteration advances motor positions each cycle; only after reaching the target does state return to OS_STATE_IDLE_TRACKING. Do not complete the entire movement synchronously inside os_goto_equatorial (otherwise os_query_is_moving can never observe motion and os_goto_abort can never abort it)
+3.2.4 Continuous tracking
+1. Requirement ID: REQ-FUNC-004
+2. Description: rotate the telescope continuously at celestial-motion rate to keep the target centered in the field of view
+3. Invocation condition: runs continuously and automatically while the system is idle; starts automatically after Goto completion
+4. Input: current time and geographic coordinates, and user-selected tracking rate (sidereal/lunar/solar/custom)
+5. Output: motors continuously produce microstep pulses at the tracking rate
+6. Processing:
+   1. Calculate the object's current apparent position from current time and observing-site latitude/longitude
+   2. Calculate the RA-axis compensation rate from the equatorial mount's orientation relative to Earth's rotation axis (polar-alignment accuracy)
+   3. Adjust the rate coefficient for a non-sidereal rate selected by the user (for example, lunar rate is approximately 3.4% slower)
+   4. Convert tracking rate into required motor pulses per second
+   5. Use timer interrupts to generate accurately timed pulse sequences for constant-rate motor rotation
+   6. In alt-azimuth mode, calculate time-dependent trajectories for both AZ and ALT axes and control each separately
+   7. Periodically fine-tune tracking rate using RTC or GPS time to reduce accumulated timing error
+3.2.5 Guiding correction
+1. Requirement ID: REQ-FUNC-005
+2. Description: receive correction commands from a guiding camera and fine-tune telescope pointing to eliminate tracking error
+3. Invocation condition: continuously receive correction signals through ST4 or LX200 guiding commands
+4. Input: correction direction and duration (east/west/south/north time pulses). duration_ms must be greater than 0 and direction must be a valid enumeration value; otherwise return OS_ERR_INVALID_ARGUMENT
+5. Output: temporarily accelerate or decelerate the corresponding motor to adjust pointing
+6. Processing:
+   1. Monitor the guiding interface (ST4 hardware pins or LX200 :Mg...# commands)
+   2. Identify the axis and direction (RA+/RA-/DEC+/DEC-) on receiving a correction signal
+   3. Calculate the temporary rate adjustment from the guiding-rate setting (typically 0.25x~1x sidereal rate)
+   4. Retain the base tracking rate while adding a short-duration rate offset in the requested direction
+   5. Restore normal tracking rate at the end of the correction duration
+   6. Handle simultaneous corrections by priority (DEC before RA)
+3.2.6 Calibration
+1. Requirement ID: REQ-FUNC-006
+2. Description: calibrate pointing against known stars to establish an accurate mapping from celestial coordinates to motor steps
+3. Invocation condition: triggered by a calibration command after the user manually points at a calibration star
+4. Input: calibration-star celestial coordinates, current motor steps, and calibration type (1-star/2-star/3-star/multi-star)
+5. Output: calibration-completion confirmation and accuracy indicators
+6. Processing:
+   1. The user manually points the telescope precisely at the first known object
+   2. The user issues an 'accept calibration star' command; record its celestial coordinates and both axes' current motor steps
+   3. For multi-star calibration (recommended), repeat pointing and acceptance for at least 2~3 stars distributed across different sky regions
+   4. Fit collected calibration points by least squares to calculate an affine transformation from celestial coordinates to motor steps. Astronomical coordinates in arcseconds may reach 1.3x10^6; their squares exceed the single-precision floating-point range. Calibration must use double-precision (double) arithmetic and a numerically stable matrix solver; float plus normal equations is prohibited
+   5. With 3-star calibration, the parameter count equals the data-point count, so least squares gives an exact solution and zero residual. Detect degenerate data by collinearity (whether the determinant is near zero), not by a residual threshold. Residual checks apply only to calibration with 4 or more stars
+   6. Minimum stars by mode: 1-star requires at least 1 (offset only); 2-star at least 2 (diagonal matrix); 3-star at least 3 (full matrix); N-star at least 3. os_align_compute returns OS_ERR_INVALID_STATE if there are too few stars
+   7. Transformation parameters include polar-axis pointing errors (two angular offsets), cone error (non-orthogonality of telescope and polar axis), and gear-backlash compensation
+   8. Save calculated transformation parameters to nonvolatile storage so they survive power loss
+   9. Calculate and display calibration residuals (arcseconds) for the user to assess calibration quality
+   10. Subsequent Goto and tracking operations use calibration parameters to correct original celestial coordinates
+3.2.7 Parking
+1. Requirement ID: REQ-FUNC-007
+2. Description: move the telescope to a preset safe parking position to avoid collisions and dust accumulation
+3. Invocation condition: triggered by a park command (:hP#)
+4. Input: preset parking motor steps or celestial coordinates
+5. Output: motors move to the parking position; the system then enters sleep state
+6. Processing:
+   1. Use the user-configured parking position if present; otherwise use the default (tube oriented near the north celestial pole and placed horizontally)
+   2. Apply the same motion planning as Goto (acceleration/deceleration and limit detection). Check limits before starting; refuse startup if already triggered
+   3. Once both axes reach parking position, stop all motor pulse output and disable tracking
+   4. Enter low-power state: place drivers in standby and disable unnecessary communication modules
+   5. On wake command (:hO#), exit parking: re-enable motor drivers, restore every communication channel (USB, Bluetooth, WiFi, Ethernet, matching initialization scope), synchronize RTC time, and resume normal tracking
+   6. Return parking/wake-completion confirmation to the user
+3.2.8 Manual motion control
+1. Requirement ID: REQ-FUNC-008
+2. Description: allow the user to rotate the telescope manually at a specified rate and direction
+3. Invocation condition: activated by motion commands (:Me#/:Mw#/:Mn#/:Ms#) or sustained directional-button presses
+4. Input: direction (east/west/south/north) and speed (slow/medium/fast/custom)
+5. Output: motors rotate continuously in the specified direction at the specified rate
+6. Processing:
+   1. Determine target axis and direction from the command
+   2. For a selected speed level, choose the motor-pulse frequency from the predefined rate table
+   3. Dynamically adjust pulse frequency for real-time speed-change commands
+   4. Each motion command remains valid for a limited duration or until a stop command arrives
+   5. Check limit switches during motion to prevent overtravel
+   6. Automatically restore tracking when motion ends
+3.2.9 Status queries
+1. Requirement ID: REQ-FUNC-009
+2. Description: return current telescope status for real-time display by host software
+3. Invocation condition: execute immediately on a query command
+4. Input: query command (for example, :GD# for declination, :GR# for right ascension, :GVP# for firmware version)
+5. Output: corresponding textual status value
+6. Processing:
+   1. Read the appropriate internal variable according to query type
+   2. Coordinate queries: transform current motor steps to celestial coordinates, format, and return
+   3. Time queries: read current time and local sidereal time from GPS or RTC, format, and return
+   4. State queries: return current mode (parked/tracking/calibration/Goto), whether motors are moving, and GPS lock state
+   5. Information queries: return firmware version, configuration summary, and communication-channel status
+   6. Return all query results as strings conforming to LX200 protocol format
+3.2.10 Periodic error correction
+1. Requirement ID: REQ-FUNC-010
+2. Description: model and compensate periodic errors in the mechanical transmission (worm gears, etc.)
+3. Invocation condition: enabled by user configuration and continuously active during tracking
+4. Input: periodic-error correction table (errors at phase points within one worm-gear revolution, in arcseconds). worm_phase_deg has valid range [0, 360] degrees; 360 is a valid boundary (one complete revolution). Values above 360 return OS_ERR_INVALID_ARGUMENT
+5. Output: corrected motor tracking rate
+6. Processing:
+   1. Record current worm-gear phase (0 degrees~360 degrees) in real time during tracking
+   2. Look up the corresponding compensation value from the correction table using the current rotation angle
+   3. Add compensation to base tracking rate: temporarily raise pulse frequency in acceleration phase segments and lower it in deceleration segments
+   4. Construct the table by automatic recording (learning backward from guiding data) or manual entry
+   5. Save the correction table in nonvolatile storage
+4 Performance requirements
+5 Design constraints
+6 Resource requirements
+7 Fault Detection, Isolation, and Recovery (FDIR)
+Appendix A: System states and modes
+Appendix B: Key data definitions
+
+--- TABLE ---
+ID | Function | Description | Priority
+F-01 | Initialization and configuration | Load configuration and initialize stepper drivers and sensors at power-on | Required
+F-02 | Command processing | Receive and parse standard LX200 commands and execute corresponding operations | Required
+F-03 | Celestial Goto | Automatically point the telescope at specified celestial coordinates | Required
+F-04 | Continuous tracking | Rotate continuously at celestial-motion rate to retain the target in view | Required
+F-05 | Guiding correction | Receive guiding-camera corrections and fine-tune pointing | Important
+F-06 | Calibration | Calibrate against known stars to map celestial coordinates to motor steps | Required
+F-07 | Parking | Move the telescope to a safe parking position | Important
+F-08 | Motion control | Manually rotate each telescope axis at a specified rate | Required
+F-09 | Status queries | Return current coordinates, motor state, system information, etc. | Required
+F-10 | Periodic error correction | Compensate periodic mechanical-transmission error | Optional
+
+--- TABLE ---
+Item | Configuration
+Processor / platform | Teensy 3.2/3.5/3.6/4.0 or Arduino Mega2560
+Program memory | Teensy: 256KB~1MB Flash; Mega2560: 256KB Flash
+Data memory | Teensy: 64KB~1MB RAM; Mega2560: 8KB RAM
+Stepper drivers | TMC2130/TMC5160/TMC2209/LV8729/DRV8825 (SPI or STEP/DIR interfaces)
+Communication interfaces | UART (Bluetooth), SPI (WiFi/Ethernet), USB serial
+
+--- TABLE ---
+No. | Interface ID | Description | Interface type | Data
+1 | IF-CMD | Command interface | Serial/WiFi/Bluetooth/Ethernet | Input: LX200 text commands / Output: execution-result text
+2 | IF-MOT | Motor-control interface | SPI or STEP/DIR pins | Output: pulse sequences and direction signals, SPI configuration registers
+3 | IF-GPS | GPS-data interface | Serial | Input: NMEA 0183 positioning data (longitude/latitude/altitude/time)
+4 | IF-RTC | Clock interface | I2C | Input: date and time values
+5 | IF-LIMIT | Limit-switch interface | GPIO digital input | Input: axis extreme-position trigger signals
+
+--- TABLE ---
+Requirement ID | Performance metric | Target | Measurement conditions | Priority
+REQ-PERF-001 | Goto pointing accuracy | < 1 arcminute after calibration | 3-star calibration | Required
+REQ-PERF-002 | Tracking accuracy | < 1 arcsecond/minute (unguided) | Good polar alignment | Required
+REQ-PERF-003 | Maximum Goto speed | Depends on motors and reduction ratio (typically 3 degrees/s) | High-speed mode | Important
+REQ-PERF-004 | Command response time | < 50ms | One LX200 command | Important
+REQ-PERF-005 | Program-memory usage | Hardware-dependent | Compiled size < 90% of available Flash | Required
+
+--- TABLE ---
+Constraint | Description
+Programming language | C/C++ (Arduino framework)
+Motor-driver interface | SPI (TMC family) or STEP/DIR pulses (generic drivers)
+Communication protocol | LX200 standard protocol
+GPS protocol | NMEA 0183
+Configuration | Hardware parameters configured at compile time through Config.h
+Nonvolatile storage | EEPROM or Flash-emulated EEPROM
+
+--- TABLE ---
+Requirement ID | Resource type | Limit | Description
+REQ-RES-001 | Program memory | Mega2560: 256KB / Teensy 3.2: 256KB / Teensy 4.0: 1MB | Platform-dependent
+REQ-RES-002 | Runtime memory | Mega2560: 8KB / Teensy: 64KB+ | Includes calibration data and transformation matrix
+REQ-RES-003 | Nonvolatile storage | >= 2KB | Stores calibration parameters and configuration
+
+--- TABLE ---
+Requirement ID | Fault scenario | Detection | Recovery action | Priority
+REQ-FDIR-001 | Limit switch triggered | GPIO-level detection | Immediately stop the corresponding axis and reject further motion in that direction. All motion functions (Goto, manual motion, parking) must proactively check limits before starting and reject movement toward an already triggered limit. os_hal_limit_is_triggered must fail safely by returning true (triggered) for invalid axis IDs (other than RA/DEC) | Required
+REQ-FDIR-002 | No GPS signal | Timeout without valid NMEA frames | Fall back to RTC and preset location; prompt the user for manual input | Important
+REQ-FDIR-003 | Motor-driver communication failure | SPI timeout or error bits in status register | Report an error and attempt driver reinitialization | Required
+REQ-FDIR-004 | Calibration anomaly | Excessive residual (>several arcminutes) | Prompt recalibration; do not automatically apply incorrect parameters | Important
+REQ-FDIR-005 | Watchdog reset | Hardware-watchdog timeout | Reset the system, restore the last known position from EEPROM, and resume tracking | Required
+
+--- TABLE ---
+State | Description | Entry condition | Exit condition
+Initialization | Load configuration and initialize hardware | Power-on or reset | Automatically after initialization
+Idle/tracking | Track continuously at sidereal rate while awaiting commands | Initialization, Goto, or calibration completed | Motion command received
+Goto | Automatically point at the target object | Goto command received | Target position reached
+Calibration | Collect calibration-star data | User starts calibration | Calibration completed or canceled
+Manual motion | User-controlled direction | Motion command received | Stop command received
+Parked | Telescope at a safe position; motors asleep | Parking completed | Wake command received
+Fault | Error detected | Hardware error or anomaly | Error cleared or watchdog reset
+
+--- TABLE ---
+Data element | Meaning | Range | Source
+Right ascension (RA) | Celestial longitude of an object | 0~24 hours | Goto target or status query
+Declination (Dec) | Celestial latitude of an object | -90 degrees~+90 degrees | Goto target or status query
+Stepper-motor steps | Accumulated absolute RA/Dec-axis positions | 0~2^32 steps | Motor-pulse count
+Calibration transformation matrix | Mapping from celestial coordinates to motor steps | 2x2 matrix + translation vector | Multi-star calibration
+Tracking rate | Current RA-axis pulse frequency compensating Earth's rotation | Typically 15 degrees/hour (sidereal) | Configuration or automatic calculation
+Guiding rate | Rate-offset coefficient during guiding correction | 0.1x~1x sidereal rate | User configuration
+Local sidereal time (LST) | Celestial longitude currently aligned with the observing site | 0~24 hours | GPS/RTC + latitude/longitude calculation

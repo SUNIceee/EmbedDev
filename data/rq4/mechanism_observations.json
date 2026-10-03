@@ -1,0 +1,415 @@
+{
+  "scope": "Offline read-only audit for mechanism-focused RQ4 rewrite; no new experimental outcomes.",
+  "design_case": {
+    "identity": "discobot__gemini-3-flash-preview__C4_structured__r03",
+    "history": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gemini-3-flash-preview__C4_structured__r03/design_history.json",
+    "revisions": [
+      {
+        "revision": 1,
+        "interface": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gemini-3-flash-preview__C4_structured__r03/design_01/2_interface_model.json",
+        "validation": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gemini-3-flash-preview__C4_structured__r03/design_01/validation.json",
+        "functions": 2,
+        "empty_preconditions": [
+          "init_system",
+          "read_temperature_sensor"
+        ],
+        "valid": false,
+        "issue_codes": [
+          "A2_API_FUNCTIONS",
+          "A2_API_TYPES",
+          "A2_INTERFACE_SEMANTICS_INCOMPLETE",
+          "TRACE_INTERFACE_REQUIREMENT_MISSING"
+        ]
+      },
+      {
+        "revision": 2,
+        "interface": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gemini-3-flash-preview__C4_structured__r03/design_02/2_interface_model.json",
+        "validation": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gemini-3-flash-preview__C4_structured__r03/design_02/validation.json",
+        "functions": 56,
+        "empty_preconditions": [
+          "move_forward",
+          "move_backward",
+          "move_forward_soft_left",
+          "move_forward_soft_right",
+          "move_backward_soft_left",
+          "move_backward_soft_right",
+          "move_spin_right",
+          "move_spin_left",
+          "stop",
+          "read_buttonc",
+          "checkbutton",
+          "discobot_set_button_level",
+          "init_accelerometers",
+          "discobot_set_accelerometer_raw",
+          "discobot_set_adc_raw",
+          "discobot_set_rng",
+          "execute_tasks",
+          "printtimes",
+          "buf_delete",
+          "usart1_read",
+          "usart1_readc",
+          "usart1_available",
+          "discobot_usart1_inject_rx",
+          "func1",
+          "func2"
+        ],
+        "valid": false,
+        "issue_codes": [
+          "A2_INTERFACE_SEMANTICS_INCOMPLETE"
+        ]
+      },
+      {
+        "revision": 3,
+        "interface": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gemini-3-flash-preview__C4_structured__r03/design_03/2_interface_model.json",
+        "validation": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gemini-3-flash-preview__C4_structured__r03/design_03/validation.json",
+        "functions": 56,
+        "empty_preconditions": [],
+        "valid": false,
+        "issue_codes": [
+          "A2_API_FUNCTION_SIGNATURES"
+        ]
+      },
+      {
+        "revision": 4,
+        "interface": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gemini-3-flash-preview__C4_structured__r03/design_04/2_interface_model.json",
+        "validation": "fse/artifacts/matched_experiments/main_v4_800k_20260908/jobs/discobot__gemini-3-flash-preview__C4_structured__r03/design_04/validation.json",
+        "functions": 56,
+        "empty_preconditions": [],
+        "valid": true,
+        "issue_codes": []
+      }
+    ],
+    "missing_functions_first_revision": 54,
+    "empty_preconditions_second_revision": 25,
+    "callback_false_positive": "Iteration 3 rejects equivalent callback declarator representations: void (*myfunc)(void) versus type void (*)(void) and name myfunc. Do not count this as a real API defect prevented. Field presence also does not prove field semantics.",
+    "supported_claim": "Explicit API membership and required contract-field checks localized omissions and guided an observed design correction.",
+    "unsupported_claim": "25 proven semantic bugs prevented; all gate rejections were real API defects; controlled downstream prevention."
+  },
+  "executed_failures": [
+    {
+      "identity": "crazyflie__gemini-3-flash-preview__C4_structured__r03",
+      "case": "CF-B05",
+      "failed_assertions": 3,
+      "observations": [
+        "OBS begin monitoring actual=1 expected=0 tolerance=0 pass=0",
+        "OBS before monitoring limit actual=1 expected=0 tolerance=0 pass=0",
+        "OBS reentry starts anew actual=1 expected=0 tolerance=0 pass=0"
+      ],
+      "log": "fse/official_baselines/gemini_c4_three_retry_host_20261002/candidates/0f364de8c523c88e97a5e2b08cb0f9caf71c66daafe0c0051e6d5b0eb3e58fca/CF-B05.run.log",
+      "failed_observation_locations": [
+        {
+          "line": 1,
+          "text": "OBS begin monitoring actual=1 expected=0 tolerance=0 pass=0"
+        },
+        {
+          "line": 3,
+          "text": "OBS before monitoring limit actual=1 expected=0 tolerance=0 pass=0"
+        },
+        {
+          "line": 9,
+          "text": "OBS reentry starts anew actual=1 expected=0 tolerance=0 pass=0"
+        }
+      ]
+    },
+    {
+      "identity": "onstep__gpt-5.5__C5_api_repair__r01",
+      "case": "OS-B01",
+      "failed_assertions": 1,
+      "observations": [
+        "OBS init actual=-8 expected=0 tolerance=0 pass=0"
+      ],
+      "log": "fse/official_baselines/reassessment_host_20260921/candidates/a5b8f63beb945d0f65fc660acf8e1715e929179256a2201357aeb226a3b99c4c/OS-B01.run.log",
+      "failed_observation_locations": [
+        {
+          "line": 1,
+          "text": "OBS init actual=-8 expected=0 tolerance=0 pass=0"
+        }
+      ]
+    },
+    {
+      "identity": "onstep__gpt-5.5__C5_api_repair__r01",
+      "case": "OS-B02",
+      "failed_assertions": 2,
+      "observations": [
+        "OBS init actual=-8 expected=0 tolerance=0 pass=0",
+        "OBS reinitialize actual=-8 expected=0 tolerance=0 pass=0"
+      ],
+      "log": "fse/official_baselines/reassessment_host_20260921/candidates/a5b8f63beb945d0f65fc660acf8e1715e929179256a2201357aeb226a3b99c4c/OS-B02.run.log",
+      "failed_observation_locations": [
+        {
+          "line": 1,
+          "text": "OBS init actual=-8 expected=0 tolerance=0 pass=0"
+        },
+        {
+          "line": 11,
+          "text": "OBS reinitialize actual=-8 expected=0 tolerance=0 pass=0"
+        }
+      ]
+    },
+    {
+      "identity": "onstep__gpt-5.5__C5_api_repair__r01",
+      "case": "OS-B03",
+      "failed_assertions": 2,
+      "observations": [
+        "OBS init actual=-8 expected=0 tolerance=0 pass=0",
+        "OBS reset actual=-8 expected=0 tolerance=0 pass=0"
+      ],
+      "log": "fse/official_baselines/reassessment_host_20260921/candidates/a5b8f63beb945d0f65fc660acf8e1715e929179256a2201357aeb226a3b99c4c/OS-B03.run.log",
+      "failed_observation_locations": [
+        {
+          "line": 1,
+          "text": "OBS init actual=-8 expected=0 tolerance=0 pass=0"
+        },
+        {
+          "line": 9,
+          "text": "OBS reset actual=-8 expected=0 tolerance=0 pass=0"
+        }
+      ]
+    },
+    {
+      "identity": "onstep__gpt-5.5__C5_api_repair__r01",
+      "case": "OS-B06",
+      "failed_assertions": 1,
+      "observations": [
+        "OBS init actual=-8 expected=0 tolerance=0 pass=0"
+      ],
+      "log": "fse/official_baselines/reassessment_host_20260921/candidates/a5b8f63beb945d0f65fc660acf8e1715e929179256a2201357aeb226a3b99c4c/OS-B06.run.log",
+      "failed_observation_locations": [
+        {
+          "line": 1,
+          "text": "OBS init actual=-8 expected=0 tolerance=0 pass=0"
+        }
+      ]
+    },
+    {
+      "identity": "onstep__gpt-5.5__C6_plain_plan__r03",
+      "case": "OS-B02",
+      "failed_assertions": 1,
+      "observations": [
+        "OBS tracking actual=-2 expected=0 tolerance=0 pass=0"
+      ],
+      "log": "fse/official_baselines/reassessment_host_20260921/candidates/f6edc01db25d98f9bb2cc7ee3515bf91329fcec201254259372e922964a65273/OS-B02.run.log",
+      "failed_observation_locations": [
+        {
+          "line": 3,
+          "text": "OBS tracking actual=-2 expected=0 tolerance=0 pass=0"
+        }
+      ]
+    }
+  ],
+  "temporal_counterexample": {
+    "id": "crazyflie__gemini-3-flash-preview__C4_structured__r03",
+    "source": "fse/gemini_c4_three_retry_20261002/execution/crazyflie__gemini-3-flash-preview__C4_structured__r03/jobs/crazyflie__gemini-3-flash-preview__C4_structured__r03/initial/6_generated_code.c",
+    "line_start": 788,
+    "source_excerpt": "bool isMotorsNotResponding(const int32_t motorRPMs[4], int32_t rpmThreshold, uint32_t rpmCheckDurationMs, bool canFly, uint32_t currentTick) {\n  if (!motorRPMs || !canFly) return false;\n  (void)rpmCheckDurationMs; (void)currentTick;\n  for (int i = 0; i < 4; i++) {\n    if (motorRPMs[i] < rpmThreshold) return true;\n  }\n  return false;\n}",
+    "host_case": {
+      "identity": "crazyflie__gemini-3-flash-preview__C4_structured__r03",
+      "case": "CF-B05",
+      "failed_assertions": 3,
+      "observations": [
+        "OBS begin monitoring actual=1 expected=0 tolerance=0 pass=0",
+        "OBS before monitoring limit actual=1 expected=0 tolerance=0 pass=0",
+        "OBS reentry starts anew actual=1 expected=0 tolerance=0 pass=0"
+      ],
+      "log": "fse/official_baselines/gemini_c4_three_retry_host_20261002/candidates/0f364de8c523c88e97a5e2b08cb0f9caf71c66daafe0c0051e6d5b0eb3e58fca/CF-B05.run.log"
+    },
+    "interpretation": "Duration/currentTick explicitly discarded; premature triggering under the saved host contract."
+  },
+  "link_example": {
+    "id": "onstep__deepseek-v4-pro__C5_api_repair__r01",
+    "log": "fse/official_baselines/reassessment_host_20260921/candidates/b14a37ed72312d2753cc83cda2daf5e68fb29a56da46f93171c8e3516c7df453/OS-B01.build.log",
+    "behavior_executed": false,
+    "interpretation": "Unresolved required platform symbols; not a runtime motor-control verdict."
+  },
+  "independent_common_start": {
+    "source": "fse/official_baselines/paired_repair_20260916/summary.json",
+    "seeds": 6,
+    "repeats_per_seed_per_arm": 3,
+    "arms": {
+      "plain": {
+        "planned": 18,
+        "delivered": 15,
+        "host_all_pass": 14,
+        "generation_statuses": {
+          "output_or_infrastructure_error": 13,
+          "audit_accepted": 2,
+          "repair_limit_reached": 3
+        },
+        "host_scenario_counts": {
+          "pass": 94,
+          "candidate_build_failed": 6
+        }
+      },
+      "structured": {
+        "planned": 18,
+        "delivered": 16,
+        "host_all_pass": 14,
+        "generation_statuses": {
+          "repair_limit_reached": 9,
+          "output_or_infrastructure_error": 3,
+          "audit_accepted": 6
+        },
+        "host_scenario_counts": {
+          "pass": 96,
+          "candidate_build_failed": 12
+        }
+      }
+    },
+    "is_full_c4": false,
+    "boundary": "Compile-failing seeds are not executable behavioral baselines; 14/18 versus 14/18 shows no Host all-pass advantage."
+  },
+  "restricted_monitor": {
+    "fixture_source": "fse/dataflow_study_20260921/fixtures_20260921T145409663479Z/summary.json",
+    "fixtures": [
+      {
+        "case": "shared",
+        "expected_monitor": "pass",
+        "expected_numeric": true,
+        "numeric_pass": true,
+        "monitor": "pass"
+      },
+      {
+        "case": "alias",
+        "expected_monitor": "pass",
+        "expected_numeric": true,
+        "numeric_pass": true,
+        "monitor": "pass"
+      },
+      {
+        "case": "copied",
+        "expected_monitor": "pass",
+        "expected_numeric": true,
+        "numeric_pass": true,
+        "monitor": "pass"
+      },
+      {
+        "case": "copy_chain",
+        "expected_monitor": "pass",
+        "expected_numeric": true,
+        "numeric_pass": true,
+        "monitor": "pass"
+      },
+      {
+        "case": "wrong_object",
+        "expected_monitor": "fail",
+        "expected_numeric": false,
+        "numeric_pass": false,
+        "monitor": "fail"
+      },
+      {
+        "case": "reverse_order",
+        "expected_monitor": "fail",
+        "expected_numeric": false,
+        "numeric_pass": false,
+        "monitor": "fail"
+      },
+      {
+        "case": "stale_copy",
+        "expected_monitor": "fail",
+        "expected_numeric": false,
+        "numeric_pass": false,
+        "monitor": "fail"
+      },
+      {
+        "case": "overwrite",
+        "expected_monitor": "fail",
+        "expected_numeric": false,
+        "numeric_pass": false,
+        "monitor": "fail"
+      },
+      {
+        "case": "no_output",
+        "expected_monitor": "fail",
+        "expected_numeric": false,
+        "numeric_pass": false,
+        "monitor": "fail"
+      },
+      {
+        "case": "wrong_output",
+        "expected_monitor": "fail",
+        "expected_numeric": false,
+        "numeric_pass": false,
+        "monitor": "fail"
+      },
+      {
+        "case": "wrong_math",
+        "expected_monitor": "pass",
+        "expected_numeric": false,
+        "numeric_pass": false,
+        "monitor": "pass"
+      }
+    ],
+    "fixture_summary": {
+      "valid_controls_monitor_pass": 4,
+      "injected_wiring_order_output_faults_detected": 6,
+      "numeric_wrong_math_not_detected_by_monitor": 1,
+      "all_expected_fixture_outcomes": 11
+    },
+    "repair_pilot_source": "fse/dataflow_study_20260921/paired_feedback_v1/verified_summary.json",
+    "repair_pilot": [
+      {
+        "job": "paired_feedback_v1_A_F0",
+        "start": "A",
+        "condition": "F0",
+        "candidate_sha256": "30858756bddbdccc19f3d9b627361002be260ba21639f298b90b84ba2d24e686",
+        "terminal_cycles": 8,
+        "candidate_path": "<WORKSPACE>\\fse\\dataflow_study_20260921\\paired_feedback_v1\\jobs\\paired_feedback_v1_A_F0\\candidate.c",
+        "result_path": "<WORKSPACE>\\fse\\dataflow_study_20260921\\paired_feedback_v1\\jobs\\paired_feedback_v1_A_F0\\result.json"
+      },
+      {
+        "job": "paired_feedback_v1_A_F1",
+        "start": "A",
+        "condition": "F1",
+        "candidate_sha256": "30858756bddbdccc19f3d9b627361002be260ba21639f298b90b84ba2d24e686",
+        "terminal_cycles": 8,
+        "candidate_path": "<WORKSPACE>\\fse\\dataflow_study_20260921\\paired_feedback_v1\\jobs\\paired_feedback_v1_A_F1\\candidate.c",
+        "result_path": "<WORKSPACE>\\fse\\dataflow_study_20260921\\paired_feedback_v1\\jobs\\paired_feedback_v1_A_F1\\result.json"
+      },
+      {
+        "job": "paired_feedback_v1_A_F2",
+        "start": "A",
+        "condition": "F2",
+        "candidate_sha256": "30858756bddbdccc19f3d9b627361002be260ba21639f298b90b84ba2d24e686",
+        "terminal_cycles": 8,
+        "candidate_path": "<WORKSPACE>\\fse\\dataflow_study_20260921\\paired_feedback_v1\\jobs\\paired_feedback_v1_A_F2\\candidate.c",
+        "result_path": "<WORKSPACE>\\fse\\dataflow_study_20260921\\paired_feedback_v1\\jobs\\paired_feedback_v1_A_F2\\result.json"
+      },
+      {
+        "job": "paired_feedback_v1_B_F2",
+        "start": "B",
+        "condition": "F2",
+        "candidate_sha256": "a1e081a0cfe3240d154e91c1bb9dbd996dec1ba51c49dbd9fdc5d102d2244c11",
+        "terminal_cycles": 8,
+        "candidate_path": "<WORKSPACE>\\fse\\dataflow_study_20260921\\paired_feedback_v1\\jobs\\paired_feedback_v1_B_F2\\candidate.c",
+        "result_path": "<WORKSPACE>\\fse\\dataflow_study_20260921\\paired_feedback_v1\\jobs\\paired_feedback_v1_B_F2\\result.json"
+      },
+      {
+        "job": "paired_feedback_v1_B_F1",
+        "start": "B",
+        "condition": "F1",
+        "candidate_sha256": "a1e081a0cfe3240d154e91c1bb9dbd996dec1ba51c49dbd9fdc5d102d2244c11",
+        "terminal_cycles": 8,
+        "candidate_path": "<WORKSPACE>\\fse\\dataflow_study_20260921\\paired_feedback_v1\\jobs\\paired_feedback_v1_B_F1\\candidate.c",
+        "result_path": "<WORKSPACE>\\fse\\dataflow_study_20260921\\paired_feedback_v1\\jobs\\paired_feedback_v1_B_F1\\result.json"
+      },
+      {
+        "job": "paired_feedback_v1_B_F0",
+        "start": "B",
+        "condition": "F0",
+        "candidate_sha256": "a1e081a0cfe3240d154e91c1bb9dbd996dec1ba51c49dbd9fdc5d102d2244c11",
+        "terminal_cycles": 8,
+        "candidate_path": "<WORKSPACE>\\fse\\dataflow_study_20260921\\paired_feedback_v1\\jobs\\paired_feedback_v1_B_F0\\candidate.c",
+        "result_path": "<WORKSPACE>\\fse\\dataflow_study_20260921\\paired_feedback_v1\\jobs\\paired_feedback_v1_B_F0\\result.json"
+      }
+    ],
+    "unique_candidate_hashes_by_start": {
+      "A": [
+        "30858756bddbdccc19f3d9b627361002be260ba21639f298b90b84ba2d24e686"
+      ],
+      "B": [
+        "a1e081a0cfe3240d154e91c1bb9dbd996dec1ba51c49dbd9fdc5d102d2244c11"
+      ]
+    },
+    "boundary": "Injected fixtures establish restricted provenance/order detection; all F0/F1/F2 repaired both starts, so six outputs do not establish feedback gain. Eight cycles per output are checks, not generation samples."
+  }
+}

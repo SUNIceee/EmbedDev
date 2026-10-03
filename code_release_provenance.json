@@ -1,0 +1,411 @@
+{
+  "artifact": "EmbedDev English implementation release",
+  "release_directory": "fse/reproducibility_release_20261002/EmbedDev",
+  "created_at_utc": "2026-10-02T16:08:46.218963+00:00",
+  "based_on": "Current fse/checking development modules; not a historical experiment snapshot",
+  "historical_prompts_reproduced_byte_identically": false,
+  "original_sources_modified": false,
+  "original_source_files_checked": 44,
+  "copied_files": [
+    {
+      "source": "fse/checking/_internal/__init__.py",
+      "release": "fse/checking/_internal/__init__.py",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "release_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/_internal/c_contract.py",
+      "release": "fse/checking/_internal/c_contract.py",
+      "source_sha256": "53210d5f30b59126fd2ae20aadfb4a9b4036793cc5666983911356347f089985",
+      "release_sha256": "53210d5f30b59126fd2ae20aadfb4a9b4036793cc5666983911356347f089985",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/_internal/canonical_models.py",
+      "release": "fse/checking/_internal/canonical_models.py",
+      "source_sha256": "8d8e5486981bd0f7d9357b1345200242ee8d8a29069d0d8687cfd4b233161e99",
+      "release_sha256": "405fcb8e2d419e5a76b2fef2fb43102d769b5a501f0ba947cb615c8c0e6a4b25",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/_internal/design_iteration.py",
+      "release": "fse/checking/_internal/design_iteration.py",
+      "source_sha256": "5e5eda89d9faf92fa8a85ecd3425f23f48b3716aed797c6f9d9cad1a59b20f29",
+      "release_sha256": "5e5eda89d9faf92fa8a85ecd3425f23f48b3716aed797c6f9d9cad1a59b20f29",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/_internal/design_iteration_models.py",
+      "release": "fse/checking/_internal/design_iteration_models.py",
+      "source_sha256": "1417a88822c2e72ddab77fc1aa5337632662178fb6e7ca4f456cf76050d0257d",
+      "release_sha256": "d4382ba2d156053820e0412769af44ff009314f1bdfb96f7c5847bf2b4bd2f90",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/_internal/design_iteration_policy.py",
+      "release": "fse/checking/_internal/design_iteration_policy.py",
+      "source_sha256": "c7c84fcaf25e7fe801b7a4c8a96e8e6a671a0f28a20203dd1170aa3cdd5f5cc6",
+      "release_sha256": "c7c84fcaf25e7fe801b7a4c8a96e8e6a671a0f28a20203dd1170aa3cdd5f5cc6",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/_internal/design_validation.py",
+      "release": "fse/checking/_internal/design_validation.py",
+      "source_sha256": "ad04148d29b558269c5d06d16bde2af0621256272ac164c2b467da7dd6f3fa81",
+      "release_sha256": "f431ed9c87c8b91197873ce50f2f74039332faa462a1cb91ed17a2f75e9ae9e7",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/_internal/domain_rag.py",
+      "release": "fse/checking/_internal/domain_rag.py",
+      "source_sha256": "cae9bcf0c9d4818d4b7e95b4fee802ad874af0464766c762c0eb6a003e82c4a3",
+      "release_sha256": "0509c6a514406b772c9980f54b3e664eba0f3b3db202feaef34ec56da6ae92d3",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/_internal/error_notebook.py",
+      "release": "fse/checking/_internal/error_notebook.py",
+      "source_sha256": "6d0b561b9201219d1cfd082c8221b230736f1c13049cf4c2eb9e0cb3a7a1097d",
+      "release_sha256": "0f95ab3a4c0ea7eef4c0077d23026442746cac69742056ed5fe82e094f6e6e9d",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/_internal/experimental/host_test_contract.py",
+      "release": "fse/checking/_internal/experimental/host_test_contract.py",
+      "source_sha256": "354f200363c99ae9ec3b5aad9d4c44d636ee074e35b1becf4866ff8e0174046e",
+      "release_sha256": "354f200363c99ae9ec3b5aad9d4c44d636ee074e35b1becf4866ff8e0174046e",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/_internal/experimental/test_generator.py",
+      "release": "fse/checking/_internal/experimental/test_generator.py",
+      "source_sha256": "5b754d76acd8b407bd689f5908e6b8295349c09af9fe80a959676e673175b3f0",
+      "release_sha256": "5b754d76acd8b407bd689f5908e6b8295349c09af9fe80a959676e673175b3f0",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/_internal/new_state.py",
+      "release": "fse/checking/_internal/new_state.py",
+      "source_sha256": "b4f65fecd80f8182985d8cae0dad4990ff78f87146c1f130cee495f76bbce66f",
+      "release_sha256": "45ea06b27cab16168644fb17e66b662de429209714406ecd9bb9ef5190849ea6",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/_internal/new_utils.py",
+      "release": "fse/checking/_internal/new_utils.py",
+      "source_sha256": "33b1b652d47f569433e76a19b2ea99edec51ba186ab22270853b671eeee5b1df",
+      "release_sha256": "4ba17fc3db21997aff3dc3871a065303fe7ceb8a916080db26f1017a8dfc1a81",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/_internal/pipeline_config.py",
+      "release": "fse/checking/_internal/pipeline_config.py",
+      "source_sha256": "30a26f70121985ed751bfb6233ace344ff013dcc844847179021d0635c607531",
+      "release_sha256": "a441ffd7a17e4fd33875bb9418ba39eadd9c86dff469b1aaa4db8ae96f696f75",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/_internal/plantuml_validation.py",
+      "release": "fse/checking/_internal/plantuml_validation.py",
+      "source_sha256": "b8258bd9ec526bac2558f9d77d7fa18986e0a55c079defc01ef8d0258d8b40e4",
+      "release_sha256": "73e05c4916bd16f12fb3d64355beb8d266df9f9e259acdd3146a8344ac673d11",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/_internal/structured_output.py",
+      "release": "fse/checking/_internal/structured_output.py",
+      "source_sha256": "afadf664d10c1aefef11c7bd15e8833749ef5e5fb5754c3aef6de8d423fc3005",
+      "release_sha256": "d1f46d8424ac3b88a5ab69b6b40d740bb4dc2234ba9ee394729b1752fe5e2c5e",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/agents/__init__.py",
+      "release": "fse/checking/agents/__init__.py",
+      "source_sha256": "792d21a0ecfe7ab710b1024485f4b0ef8f21eb866e280786b6d4fe915d2cbff3",
+      "release_sha256": "2a585096254d12169a7663924ca0187147d3ad7eea87d9336e967d7924f914a2",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/agents/agent_1_state_modeler.py",
+      "release": "fse/checking/agents/agent_1_state_modeler.py",
+      "source_sha256": "0f1a371c3a6d65620a38d12babe7bec66bfa06d58b5eee8de598c8f97fbf9db1",
+      "release_sha256": "693096eb17c83a369132b61c6de283dbf708a6abfe0e76486e2ce486a8743a66",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/agents/agent_1_state_repairer.py",
+      "release": "fse/checking/agents/agent_1_state_repairer.py",
+      "source_sha256": "fe88457099338952d1c03dc7610cf8e51687a37a3be26f11502afc8d3bbf2fb4",
+      "release_sha256": "70b5c420e22dcce55bd466dd35179e6ac0c4f4b5a900f68797715f3819e75257",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/agents/agent_2_api_generator.py",
+      "release": "fse/checking/agents/agent_2_api_generator.py",
+      "source_sha256": "3a7d836cb554990cc44efef73d0a2c07e4f3d90dd94cdeef50ef6062087e96c0",
+      "release_sha256": "054f9e2ef42e5b0f95cb4db61fced878738c6f711b2f0c52c950ecd21abf5dda",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/agents/agent_2_interface_modeler.py",
+      "release": "fse/checking/agents/agent_2_interface_modeler.py",
+      "source_sha256": "5ae287e4fb97940f10f0b73a775302b202ffcfd282cf6ea6a35b721f08d8de2d",
+      "release_sha256": "c591be40c180794de2992f6ea224db988e9a797007817a35931680ce7ee452b7",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/agents/agent_2_interface_repairer.py",
+      "release": "fse/checking/agents/agent_2_interface_repairer.py",
+      "source_sha256": "11afc5e2cd9b82cd9622bcb22fc2b8a67990afce53da8a1e788aa7796526bebd",
+      "release_sha256": "b175cc8cb811ce5b71298cf07675ebb3801f41e11235c633eb37e09de33969e6",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/agents/agent_3_behavior_modeler.py",
+      "release": "fse/checking/agents/agent_3_behavior_modeler.py",
+      "source_sha256": "3fdab851569048a5b81010ac5c1197ce036c463f4d273deef7907ebd4842a4d1",
+      "release_sha256": "676de2c6a61bfac40a71904e25971cad3e5697eeba0c899fcc2fc8529d5d01ad",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/agents/agent_3_behavior_repairer.py",
+      "release": "fse/checking/agents/agent_3_behavior_repairer.py",
+      "source_sha256": "09e52cd039e41aa8100f40bac08be42b5998e2c681c1371449032443465ad80f",
+      "release_sha256": "c8133a56aa3fee915d16100c87a7922161c8518a3947f30a9c88407ef437a20e",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/agents/agent_4_code_generator.py",
+      "release": "fse/checking/agents/agent_4_code_generator.py",
+      "source_sha256": "48d942ba71bc88772b0e812e09fd8c0e462ad8925abd02258546496fc302ec1b",
+      "release_sha256": "0c06025849a20a038328616d7be553aa11dbffdca16f59544f351d2d69eed955",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/agents/agent_5_code_verifier.py",
+      "release": "fse/checking/agents/agent_5_code_verifier.py",
+      "source_sha256": "9c27fe0baf842f88632acf543756162b565f10b486cccc08bb9c12083948a267",
+      "release_sha256": "ba8d5981888dff51267ec5f663d46f1efddd5fce34c3730c26ecd86a15fbcef8",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/agents/documentation_generator.py",
+      "release": "fse/checking/agents/documentation_generator.py",
+      "source_sha256": "a1a9c34f7859b6e7b76a4da93523e94977c69beefc7e15d1a0dc1e4256409885",
+      "release_sha256": "7a5e6151e9b3c7ec655701928c201aaf107dff96497745cf4ea914770a711d3a",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/codegen.py",
+      "release": "fse/checking/codegen.py",
+      "source_sha256": "dcd93547699fada47f103a96687f8bb8220b2d733e779b9e203c3769a3af18e1",
+      "release_sha256": "dcd93547699fada47f103a96687f8bb8220b2d733e779b9e203c3769a3af18e1",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/config.py",
+      "release": "fse/checking/config.py",
+      "source_sha256": "6459def668b5172f7be6f593e38d3afc81693be522c0f678cb733ec2d9b1138a",
+      "release_sha256": "6459def668b5172f7be6f593e38d3afc81693be522c0f678cb733ec2d9b1138a",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/context.py",
+      "release": "fse/checking/context.py",
+      "source_sha256": "094d3adcb81734f2b18a659c072d964982017fc18b24dba7bcc9fe1fbaf92af4",
+      "release_sha256": "094d3adcb81734f2b18a659c072d964982017fc18b24dba7bcc9fe1fbaf92af4",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/dataflow_binding.py",
+      "release": "fse/checking/dataflow_binding.py",
+      "source_sha256": "cf1e4ddcf2d0c3234609cbe46915f0279ba8ef4c564c3e4864939620a89d42d7",
+      "release_sha256": "cf1e4ddcf2d0c3234609cbe46915f0279ba8ef4c564c3e4864939620a89d42d7",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/dataflow_obligation.py",
+      "release": "fse/checking/dataflow_obligation.py",
+      "source_sha256": "f03a39f3c614013113cf2ca165afa01292854c637e65684272e4fa252185f318",
+      "release_sha256": "f03a39f3c614013113cf2ca165afa01292854c637e65684272e4fa252185f318",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/design.py",
+      "release": "fse/checking/design.py",
+      "source_sha256": "520ba3ad1c195bdfbbfdcea7987ebb1c8230f546336f354bb0e3dfb0f6b89ea4",
+      "release_sha256": "520ba3ad1c195bdfbbfdcea7987ebb1c8230f546336f354bb0e3dfb0f6b89ea4",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/model_config.py",
+      "release": "fse/checking/model_config.py",
+      "source_sha256": "a7cb907564de8771acc85c4e9a4d8bc9bacd4e3c6214109d67c6d34fc032116f",
+      "release_sha256": "1d7b7984677ced83056e4d0dd49fe5d7b175fe716b2e71681800ded390756388",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/pipeline.py",
+      "release": "fse/checking/pipeline.py",
+      "source_sha256": "4f2b999dfeb4d26800c40f96ace2f603e270d89dbd80afa5d392adaf02a81292",
+      "release_sha256": "fad6377ecc8e8a98bfbfb5a07ff53e92ef7f88be638ae9cb828631f88312707c",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/plantuml_kb/__init__.py",
+      "release": "fse/checking/plantuml_kb/__init__.py",
+      "source_sha256": "1ad08cc3bd6dd40646aa9d8d2d769ce43995334f24e6a12faf803e90c67a19c9",
+      "release_sha256": "34113f3407cdb09c1cd6d650906ddd9849bcb9a7da70f1e93d326e96fd9f7af1",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/plantuml_kb/retriever.py",
+      "release": "fse/checking/plantuml_kb/retriever.py",
+      "source_sha256": "8c84a4aa0ce54458c3ca148b9bb37bf2c9bf1fed986c4beb14fca2cb12f012e8",
+      "release_sha256": "d596b400a20e695609c09e22c6a23fd8220ac74753fe0e9c8bf8ff3844bab89c",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/plantuml_kb/sequence_diagram_examples.py",
+      "release": "fse/checking/plantuml_kb/sequence_diagram_examples.py",
+      "source_sha256": "4f1c140c62afbb24dc586ec91fcb5c84190cb63b9ec8489017ae8c8d5f098588",
+      "release_sha256": "9b1fbbfed53f1f730b54877dcfef19332eaf44d5815bc9e00313908c9c688042",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/plantuml_kb/state_diagram_examples.py",
+      "release": "fse/checking/plantuml_kb/state_diagram_examples.py",
+      "source_sha256": "3f19cf4cb78e396062d41e47b013aa8caf15a2384fdbd0cdc2d8053c1218a25a",
+      "release_sha256": "088ff573059ec13f27a6f9fc04b7bb209ec31ae620b9521e5e9a358d4cd0bdff",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/run_agent_4_code_generator.py",
+      "release": "fse/checking/run_agent_4_code_generator.py",
+      "source_sha256": "9c85dc8d495b73f9fa520073c4977c65eb40b54c37ddd162a3b9fd4fb4826c54",
+      "release_sha256": "49d6d00b282d573986217f56016a29cc2e07ec2f42f4a7d074da57b2b5631210",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/run_design_pipeline.py",
+      "release": "fse/checking/run_design_pipeline.py",
+      "source_sha256": "e08bf460fff7a8b68b9c66df88ebe575c27755295ffe7a34c9d217f15123a89a",
+      "release_sha256": "e08bf460fff7a8b68b9c66df88ebe575c27755295ffe7a34c9d217f15123a89a",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/runtime.py",
+      "release": "fse/checking/runtime.py",
+      "source_sha256": "d6db9211beb01e9f952452dd18cef0a9ab3c6df2b0bc9406353f29978f2f0d36",
+      "release_sha256": "d6db9211beb01e9f952452dd18cef0a9ab3c6df2b0bc9406353f29978f2f0d36",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    },
+    {
+      "source": "fse/checking/scripts/generate_authoritative_api.py",
+      "release": "fse/checking/scripts/generate_authoritative_api.py",
+      "source_sha256": "9e2dc0791ff14f0a76cd43244de7896b76564d58682c826f05d283d4749b23f9",
+      "release_sha256": "35a53a211e1bc393457ec43c317e9aafc98507c42f0daf11dd62b78ab7880f51",
+      "modified": true,
+      "change_description": "English translation, newline normalization and/or release-only changes documented in docs/CODE_CHANGES.md"
+    },
+    {
+      "source": "fse/checking/traceability.py",
+      "release": "fse/checking/traceability.py",
+      "source_sha256": "9fb19346a6cd65183c5adfd61c44cfe43bc613bb55de723e239e30d66bc28979",
+      "release_sha256": "9fb19346a6cd65183c5adfd61c44cfe43bc613bb55de723e239e30d66bc28979",
+      "modified": false,
+      "change_description": "Byte-identical copy"
+    }
+  ],
+  "new_files": [
+    {
+      "path": "fse/checking/scripts/offline_smoke.py",
+      "release_sha256": "d5c26122d2f175476adde7d455a1626f8a434fda359f7de435c9df0b5be9185f",
+      "type": "new release artifact"
+    },
+    {
+      "path": "docs/API_GENERATION_PROMPT.md",
+      "release_sha256": "ada8824f1d8b97d013077a8ef239669c816b06adab0cb06bc053104d52021a59",
+      "type": "new release artifact"
+    },
+    {
+      "path": "fse/fse_models.json",
+      "release_sha256": "793e20c3f1eb36b48303e012938432c093121c6ca0e04371d288ceb01e93bcfc",
+      "type": "new release artifact"
+    },
+    {
+      "path": "requirements.txt",
+      "release_sha256": "260f57b8b37add2e452cca6dc4a1a78f122c918d3fd71c71dd453f1a6127777a",
+      "type": "new release artifact"
+    },
+    {
+      "path": "docs/CODE_CHANGES.md",
+      "release_sha256": "b72b13eb95eed9bdf59176340bc8e854d7da871a3d6def20fa8a8c3641717bcc",
+      "type": "new release artifact"
+    }
+  ],
+  "english_api_prompt_source": {
+    "path": "docs/AUTHORITATIVE_API_GENERATION_PROMPT.md",
+    "original_sha256": "59df50ef105dbc547b3812911f206c6dd311939536a78cea71f0d43b5d0f71f2",
+    "adapted_path": "docs/API_GENERATION_PROMPT.md",
+    "adaptation": "English preparation prompt with the same contract/review obligations and separate structured fields"
+  },
+  "excluded": [
+    "credential/environment files",
+    "author model configuration",
+    "author error notebooks",
+    "domain corpus",
+    "compiler/JRE/PlantUML binaries",
+    "historical experiment worker"
+  ],
+  "offline_verification": "docs/offline_smoke_result.json",
+  "offline_verification_sha256": "c953fca9551f5fa75c2cdcc4ce33710651650415a92b7bf82f59fdf8b1daaf54",
+  "limitations": [
+    "No model requests or regenerated experiment results",
+    "No compiler, diagram parser, Host or hardware execution during this code packaging check",
+    "Dependency installation on a fresh machine has not been tested"
+  ]
+}

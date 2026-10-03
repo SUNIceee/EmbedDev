@@ -1,0 +1,1 @@
+"""Unified implementation-generation interface."""

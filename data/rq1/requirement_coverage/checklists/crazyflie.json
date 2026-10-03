@@ -1,0 +1,4437 @@
+{
+  "schema_version": 1,
+  "project": "crazyflie",
+  "status": "requirements_only_not_code_reviewed",
+  "source": {
+    "path": "fse/static_testcase_completion_20261001/inputs/crazyflie/RE_req.txt",
+    "sha256": "737c0b42c185a0313c09af1e21a6ad3ad3d866167371283edcd46ff98d574f92",
+    "line_count": 294,
+    "line_numbering": "1-based physical text lines; CRLF and LF count identically"
+  },
+  "construction": "LLM semantic decomposition of RE_req only; no generated candidates or external testcase list read",
+  "summary": {
+    "leaf_count": 145,
+    "reviewability_counts": {
+      "static_evidence_reviewable": 141,
+      "requires_execution_or_hardware": 1,
+      "requires_contract_clarification": 3
+    },
+    "category_counts": {
+      "interface": 7,
+      "determinism": 1,
+      "timing": 16,
+      "state": 28,
+      "safety": 26,
+      "artifact": 1,
+      "numeric": 28,
+      "observability": 10,
+      "performance": 1,
+      "dataflow": 9,
+      "control_flow": 15,
+      "initialization": 3
+    }
+  },
+  "source_notes": [
+    {
+      "lines": [
+        1,
+        17
+      ],
+      "kind": "provenance_and_scope",
+      "reason": "Retain file versions, source precedence, and scope; source citations/test counts are not software requirements."
+    },
+    {
+      "lines": [
+        50,
+        52
+      ],
+      "kind": "explicit_non_obligation",
+      "reason": "Magnetometer yaw correction may remain unimplemented outside the current scope; no extra mandatory leaf is added."
+    }
+  ],
+  "requirements": [
+    {
+      "id": "CF-R001",
+      "source_requirement_id": "§1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "1. Scope and acceptance rules",
+      "source_lines": [
+        {
+          "start": 19,
+          "end": 20
+        }
+      ],
+      "statement": "All public functions, macros, enumerations, and structure fields must conform to the frozen RE_api; equivalently functioning modules with different names are not substitutes.",
+      "category": "interface",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 19,
+          "end": 20,
+          "text": "1) All function names, macro names, enumeration values, and structure fields must exactly match RE_api.txt;\n2) Differently named 'equivalent modules' must not replace the specified test points;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R002",
+      "source_requirement_id": "§1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "1. Scope and acceptance rules",
+      "source_lines": [
+        {
+          "start": 21,
+          "end": 21
+        }
+      ],
+      "statement": "Pure algorithms must be deterministic, repeatable standard C11 implementations, without dependencies on STM32/FreeRTOS headers.",
+      "category": "determinism",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 21,
+          "end": 21,
+          "text": "3) Pure algorithms must be deterministic and repeatable, without depending on STM32/FreeRTOS headers;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R003",
+      "source_requirement_id": "§1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "1. Scope and acceptance rules",
+      "source_lines": [
+        {
+          "start": 22,
+          "end": 23
+        }
+      ],
+      "statement": "Platform queues must use bounded memory. All observable timeouts, ages, and waits must use a monotonic 1ms tick, without mixing in divided scheduling-loop counters.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 22,
+          "end": 23,
+          "text": "4) Platform behavior is simulated using bounded in-memory queues, ticks, and callback stubs. All host-visible timeouts, ages, and waits\n   use monotonic millisecond ticks: 1 tick = 1ms. Scheduler loop divisors must not be mixed directly with millisecond thresholds;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R004",
+      "source_requirement_id": "§1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "1. Scope and acceptance rules",
+      "source_lines": [
+        {
+          "start": 24,
+          "end": 24
+        }
+      ],
+      "statement": "All initialization functions must be idempotent when called repeatedly.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 24,
+          "end": 24,
+          "text": "5) All initialization functions are idempotent; all output pointers are checked for null first; division and normalization require zero guards;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R005",
+      "source_requirement_id": "§1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "1. Scope and acceptance rules",
+      "source_lines": [
+        {
+          "start": 24,
+          "end": 24
+        }
+      ],
+      "statement": "All output pointers must be checked for null before use.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 24,
+          "end": 24,
+          "text": "5) All initialization functions are idempotent; all output pointers are checked for null first; division and normalization require zero guards;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R006",
+      "source_requirement_id": "§1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "1. Scope and acceptance rules",
+      "source_lines": [
+        {
+          "start": 24,
+          "end": 24
+        }
+      ],
+      "statement": "Division and normalization must be protected against zero denominators.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 24,
+          "end": 24,
+          "text": "5) All initialization functions are idempotent; all output pointers are checked for null first; division and normalization require zero guards;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R007",
+      "source_requirement_id": "§1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "1. Scope and acceptance rules",
+      "source_lines": [
+        {
+          "start": 25,
+          "end": 25
+        }
+      ],
+      "statement": "Production implementations must not define main; self-tests belong in separate files.",
+      "category": "artifact",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 25,
+          "end": 25,
+          "text": "6) Production files do not contain main; self-test code is generated separately;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R008",
+      "source_requirement_id": "§1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "1. Scope and acceptance rules",
+      "source_lines": [
+        {
+          "start": 26,
+          "end": 26
+        }
+      ],
+      "statement": "Motor-mixing intermediate values must use int32_t, avoiding overflow for values around 65535/70000 before clipping.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 26,
+          "end": 26,
+          "text": "7) Motor mixing intermediates use int32_t to prevent values such as 65535/70000 from overflowing before capping."
+        }
+      ],
+      "source_requirement_ids": [
+        "§1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R009",
+      "source_requirement_id": "§2",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2. Numerical functions",
+      "source_lines": [
+        {
+          "start": 32,
+          "end": 33
+        }
+      ],
+      "statement": "saturateSignedInt16 clamps its input to [-32767,32767] and returns in-range values unchanged.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 32,
+          "end": 33,
+          "text": "saturateSignedInt16(value) restricts values to [-32767,32767]. The negative limit is -INT16_MAX, not\nINT16_MIN. Thus 45000->32767, -50000->-32767, -32768->-32767; values inside the range are returned unchanged."
+        }
+      ],
+      "source_requirement_ids": [
+        "§2"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R010",
+      "source_requirement_id": "§2",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2. Numerical functions",
+      "source_lines": [
+        {
+          "start": 35,
+          "end": 36
+        }
+      ],
+      "statement": "capAngle normalizes any number of complete revolutions into [-180,180], preserving both endpoints.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 35,
+          "end": 36,
+          "text": "capAngle(angle) must repeatedly normalize into the closed interval [-180,180]: repeatedly subtract 360 above 180 and\nrepeatedly add 360 below -180. The boundaries +/-180 remain unchanged; 1000->-80 and -1000->80."
+        }
+      ],
+      "source_requirement_ids": [
+        "§2"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R011",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 42,
+          "end": 43
+        }
+      ],
+      "statement": "On its first call, sensfusion6Init sets the identity quaternion, clears the integrators, and sets the initialization flag; repeated calls must not overwrite the running state.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 42,
+          "end": 43,
+          "text": "sensfusion6Init sets the quaternion to the identity quaternion, clears the integral terms, and sets the initialization flag; repeated calls do not overwrite\nthe running state. sensfusion6Test returns the initialization flag."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R012",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 43,
+          "end": 43
+        }
+      ],
+      "statement": "sensfusion6Test returns the actual initialization flag.",
+      "category": "observability",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 43,
+          "end": 43,
+          "text": "the running state. sensfusion6Test returns the initialization flag."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R013",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 45,
+          "end": 48
+        }
+      ],
+      "statement": "The sensor/estimation base rate is 1kHz, from which control and power distribution at 500Hz, radio at 100Hz, and fusion filtering at 250Hz are divided.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 45,
+          "end": 48,
+          "text": "The sensor environment follows SRS-v5: the MPU9250 provides acceleration (g), angular velocity (deg/s), and magnetic field\n(microtesla) each sampling cycle; the LPS25H provides pressure (hPa) and temperature (degrees Celsius). The system base rate for sensor acquisition and estimation is\n1kHz; 500Hz control/power distribution and 100Hz radio tasks are scheduled from that base. The current 250Hz Sensfusion\nupdate is a filter-rate divisor within the 1kHz schedule; it must not be described as a 250Hz rate for the entire estimation task."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R014",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 45,
+          "end": 48
+        }
+      ],
+      "statement": "Acquisition, estimation, and control on real devices must achieve the specified 1kHz/500Hz/100Hz periods.",
+      "category": "performance",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_execution_or_hardware",
+        "reason": "Real-time, resource, physical-device, or statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance."
+      },
+      "source_excerpt": [
+        {
+          "start": 45,
+          "end": 48,
+          "text": "The sensor environment follows SRS-v5: the MPU9250 provides acceleration (g), angular velocity (deg/s), and magnetic field\n(microtesla) each sampling cycle; the LPS25H provides pressure (hPa) and temperature (degrees Celsius). The system base rate for sensor acquisition and estimation is\n1kHz; 500Hz control/power distribution and 100Hz radio tasks are scheduled from that base. The current 250Hz Sensfusion\nupdate is a filter-rate divisor within the 1kHz schedule; it must not be described as a 250Hz rate for the entire estimation task."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R015",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 45,
+          "end": 46
+        },
+        {
+          "start": 50,
+          "end": 52
+        }
+      ],
+      "statement": "The environment must retain the MPU9250 acceleration, angular velocity, and magnetic-field inputs and the LPS25H pressure/temperature inputs with their stated units; devices must not be substituted or magnetic-field inputs removed.",
+      "category": "interface",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 45,
+          "end": 46,
+          "text": "The sensor environment follows SRS-v5: the MPU9250 provides acceleration (g), angular velocity (deg/s), and magnetic field\n(microtesla) each sampling cycle; the LPS25H provides pressure (hPa) and temperature (degrees Celsius). The system base rate for sensor acquisition and estimation is"
+        },
+        {
+          "start": 50,
+          "end": 52,
+          "text": "Magnetic field is a known environmental input and must be represented in the next frozen API through `SensorData` or explicit platform sensor-sample fields.\nAttitude estimation may temporarily omit magnetometer-based yaw correction outside the current test scope, but must neither remove this device input from\nthe environment model nor substitute an invented IMU model."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R016",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 54,
+          "end": 54
+        }
+      ],
+      "statement": "sensfusion6UpdateQ updates the global quaternion using angular velocity, acceleration, and dt, and normalizes it.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 54,
+          "end": 54,
+          "text": "sensfusion6UpdateQ updates the global qw/qx/qy/qz using angular velocity, acceleration, and dt, then normalizes the quaternion:"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R017",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 55,
+          "end": 56
+        }
+      ],
+      "statement": "Default Mahony correction uses twoKp=0.8 and twoKi=0.002, accumulating integral feedback on all three axes when twoKi>0.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 55,
+          "end": 56,
+          "text": "- Default Mahony: twoKp=0.8, twoKi=0.002; accumulate integralFBx/y/z when twoKi>0; when twoKi=0,\n  clear all three integral terms;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R018",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 55,
+          "end": 56
+        }
+      ],
+      "statement": "When twoKi=0, all three integral-feedback states are cleared.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 55,
+          "end": 56,
+          "text": "- Default Mahony: twoKp=0.8, twoKi=0.002; accumulate integralFBx/y/z when twoKi>0; when twoKi=0,\n  clear all three integral terms;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R019",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 57,
+          "end": 57
+        }
+      ],
+      "statement": "When CONFIG_IMU_MADGWICK_QUATERNION is enabled, gradient correction uses beta=0.01 without integral feedback.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 57,
+          "end": 57,
+          "text": "- CONFIG_IMU_MADGWICK_QUATERNION mode uses gradient correction with beta=0.01 and no integral feedback;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R020",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 58,
+          "end": 58
+        }
+      ],
+      "statement": "A zero acceleration vector skips acceleration normalization and correction, while retaining gyro integration and avoiding division by zero.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 58,
+          "end": 58,
+          "text": "- If all three acceleration axes are zero, skip acceleration normalization and correction and perform only gyroscope integration; division by zero is prohibited;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R021",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 59,
+          "end": 60
+        }
+      ],
+      "statement": "The first valid update sets baseZacc and calibrated; subsequent updates do not recalibrate.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 59,
+          "end": 60,
+          "text": "- The first valid update stores the projection of acc onto the estimated gravity direction as baseZacc and sets calibrated; subsequent\n  updates must not recalibrate."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R022",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 62,
+          "end": 63
+        }
+      ],
+      "statement": "estimatedGravityDirection computes the gravity direction from the current quaternion, following the direction conventions for the identity quaternion and specified rotations.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 62,
+          "end": 63,
+          "text": "estimatedGravityDirection computes the gravity direction from the quaternion. The identity quaternion yields (0,0,1); the test's\n90-degree rotation quaternion yields approximately (0,1,0). sensfusion6GetEulerRPY must derive RPY in degrees from the current global"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R023",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 63,
+          "end": 66
+        }
+      ],
+      "statement": "sensfusion6GetEulerRPY computes RPY in degrees from the quaternion current at the time of the call, without using a stale gravity cache.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 63,
+          "end": 66,
+          "text": "90-degree rotation quaternion yields approximately (0,1,0). sensfusion6GetEulerRPY must derive RPY in degrees from the current global\nqw/qx/qy/qz at call time; stale gravityX/Y/Z caches must not produce results inconsistent with the current quaternion.\nThe implementation may synchronize gravityX/Y/Z from the current quaternion before reading them, or compute directly from that quaternion;\nclamp gravityX to [-1,1] before calling asinf. sensfusion6GetQuaternion returns the current global quaternion."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R024",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 66,
+          "end": 66
+        }
+      ],
+      "statement": "Euler conversion clamps gravityX to [-1,1] before calling asinf.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 66,
+          "end": 66,
+          "text": "clamp gravityX to [-1,1] before calling asinf. sensfusion6GetQuaternion returns the current global quaternion."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R025",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 66,
+          "end": 66
+        }
+      ],
+      "statement": "sensfusion6GetQuaternion returns the current global quaternion.",
+      "category": "observability",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 66,
+          "end": 66,
+          "text": "clamp gravityX to [-1,1] before calling asinf. sensfusion6GetQuaternion returns the current global quaternion."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R026",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 67,
+          "end": 67
+        }
+      ],
+      "statement": "sensfusion6GetAccZ returns the dot product of acceleration and the estimated gravity direction.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 67,
+          "end": 67,
+          "text": "sensfusion6GetAccZ returns the dot product of acc and estimated gravity; sensfusion6GetAccZWithoutGravity additionally subtracts"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R027",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 67,
+          "end": 68
+        }
+      ],
+      "statement": "sensfusion6GetAccZWithoutGravity subtracts baseZacc from projected acceleration.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 67,
+          "end": 68,
+          "text": "sensfusion6GetAccZ returns the dot product of acc and estimated gravity; sensfusion6GetAccZWithoutGravity additionally subtracts\nbaseZacc. invSqrt uses 0x5f3759df and one Newton-Raphson iteration; the result for 4.0 is approximately 0.5."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R028",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. Sensfusion6",
+      "source_lines": [
+        {
+          "start": 68,
+          "end": 68
+        }
+      ],
+      "statement": "invSqrt uses 0x5f3759df and one Newton-Raphson iteration.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 68,
+          "end": 68,
+          "text": "baseZacc. invSqrt uses 0x5f3759df and one Newton-Raphson iteration; the result for 4.0 is approximately 0.5."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R029",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 74,
+          "end": 77
+        }
+      ],
+      "statement": "Legacy mixing uses int32_t roll/2 and pitch/2 and the specified signed formulas for the four channels, retaining results without premature clamping.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 74,
+          "end": 77,
+          "text": "Legacy mode first computes r=roll/2 and p=pitch/2 using int32_t:\nM1=thrust-r+p+yaw；M2=thrust-r-p-yaw；\nM3=thrust+r-p+yaw；M4=thrust+r+p-yaw。\nThis function does not clamp early, so powerDistributionCap can handle negative values and values above 65535."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R030",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 79,
+          "end": 82
+        }
+      ],
+      "statement": "ForceTorque computes four X-frame forces using the 0.25 thrust factor, 0.707106781 arm-length factor, and torque-ratio formulas, and sets negative forces to zero.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 79,
+          "end": 82,
+          "text": "ForceTorque mode: thrustPart=0.25*thrustSi; arm=0.707106781*armLength;\nrollPart=0.25/arm*torqueX；pitchPart=0.25/arm*torqueY；\nyawPart=0.25/thrustToTorque*torqueZ. Combine the four motor forces using the X-frame signs; replace each negative force with 0.\nIf armLength or thrustToTorque is zero, safely set the corresponding component to 0."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R031",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 82,
+          "end": 82
+        }
+      ],
+      "statement": "When armLength or thrustToTorque is zero, the corresponding component safely becomes zero.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 82,
+          "end": 82,
+          "text": "If armLength or thrustToTorque is zero, safely set the corresponding component to 0."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R032",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 83,
+          "end": 84
+        }
+      ],
+      "statement": "The dispatcher uses default parameters of 0.0397m and 0.005964 and a dimensionally appropriate motorForceToPwm conversion, rather than multiplying newtons directly by 65535.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 83,
+          "end": 84,
+          "text": "The scheduler uses the Crazyflie 2 defaults armLength=0.0397m and thrustToTorque=0.005964, and converts to PWM through\nthe dimensioned mapping in motorForceToPwm; multiplying values in newtons directly by 65535 is prohibited."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R033",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 86,
+          "end": 86
+        }
+      ],
+      "statement": "Force mode clamps each normalized force to [0,1] before converting it to uint16_t PWM.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 86,
+          "end": 86,
+          "text": "Force mode clamps each normalizedForces[i] to [0,1], multiplies by 65535, and converts to uint16_t."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R034",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 87,
+          "end": 88
+        }
+      ],
+      "statement": "powerDistribution routes the three modes by controlMode; unknown modes leave the output unchanged.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 87,
+          "end": 88,
+          "text": "powerDistribution must route exactly to Legacy, ForceTorque, or Force according to control->controlMode;\nunknown modes leave the output unchanged."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R035",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 90,
+          "end": 93
+        }
+      ],
+      "statement": "Only when the maximum strictly exceeds the limit does powerDistributionCap subtract the same excess from all four channels and set isCapped=true; equality with the limit does not clip.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 90,
+          "end": 93,
+          "text": "powerDistributionCap finds the maximum of the four motor values. Only if that maximum exceeds maxAllowedThrust, compute\nreduction=max-maxAllowed, subtract that value from all four motors, then use capMinThrust to enforce\nthe idleThrust lower bound and return isCapped=true. Equality with the upper bound does not count as capping. The difference between 70000 and the limit 65535\nmust be 4465; a low value reduced below zero becomes idleThrust (0 when idle=0)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R036",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 91,
+          "end": 93
+        }
+      ],
+      "statement": "After clipping, capMinThrust clamps low values to idleThrust; negative values must not wrap around as unsigned integers.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 91,
+          "end": 93,
+          "text": "reduction=max-maxAllowed, subtract that value from all four motors, then use capMinThrust to enforce\nthe idleThrust lower bound and return isCapped=true. Equality with the upper bound does not count as capping. The difference between 70000 and the limit 65535\nmust be 4465; a low value reduced below zero becomes idleThrust (0 when idle=0)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R037",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 95,
+          "end": 95
+        }
+      ],
+      "statement": "batteryCompensation updates using old+alpha*(supply-old), with standard alpha=0.01.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 95,
+          "end": 95,
+          "text": "batteryCompensation returns old + alpha*(supply-old), with standard alpha=0.01."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R038",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 96,
+          "end": 97
+        }
+      ],
+      "statement": "motorsCompensateBatteryVoltage computes round(thrust*nominal/actual) and clamps to [0,65535]; when actual<=0, it returns the original value.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 96,
+          "end": 97,
+          "text": "motorsCompensateBatteryVoltage returns round(thrust*nominal/actual), returning the input unchanged if actual<=0;\nclamp the result to [0,65535]."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R039",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 99,
+          "end": 100
+        }
+      ],
+      "statement": "Explicit conversion boundaries separate int32_t mixing, normalized force, uint16_t PWM, and physical duty cycle.",
+      "category": "interface",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 99,
+          "end": 100,
+          "text": "The final four motor outputs correspond to device-side PWM duty cycles of 0% through 100%. `int32_t` mixing values, normalized force,\nuint16_t PWM representations, and physical PWM duty cycles must be related by explicit conversion boundaries, not treated as the same quantity. When the system"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R040",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 101,
+          "end": 101
+        }
+      ],
+      "statement": "All four physical PWM output commands are zero when disarmed, emergency-stopped, or in a safety-fault state.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 101,
+          "end": 101,
+          "text": "is disarmed, emergency-stopped, or in a safety-fault state, all four physical PWM outputs must be zero."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R041",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 103,
+          "end": 103
+        }
+      ],
+      "statement": "Battery voltage is obtained from the ADC environment input and converted to V.",
+      "category": "interface",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 103,
+          "end": 103,
+          "text": "Battery voltage is an ADC environment input, expressed in V after conversion. The low-voltage policy must distinguish at least warning, maximum-thrust limitation, and"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R042",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 103,
+          "end": 104
+        }
+      ],
+      "statement": "The low-voltage policy distinguishes warnings, maximum-thrust limiting, and controlled landing; thresholds come from the frozen configuration rather than hard-coded fixture values.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 103,
+          "end": 104,
+          "text": "Battery voltage is an ADC environment input, expressed in V after conversion. The low-voltage policy must distinguish at least warning, maximum-thrust limitation, and\ncontrolled landing. Thresholds come from frozen configuration; a test-fixture value must not be treated as a device fact. The four GPIO LEDs"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R043",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Power distribution and battery",
+      "source_lines": [
+        {
+          "start": 105,
+          "end": 106
+        }
+      ],
+      "statement": "The four GPIO LEDs should indicate flight/warning states, but the particular colors and patterns require a subsequently frozen contract before the display policy can be assessed.",
+      "category": "observability",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The requirements omit necessary parameters or contain conflicting wording; clarify a common contract first, rather than deriving it from the candidate implementation."
+      },
+      "source_excerpt": [
+        {
+          "start": 105,
+          "end": 106,
+          "text": "are observable device outputs for flight/warning indication. Their display policy is software behavior; specific colors or patterns must be\nspecified by subsequent frozen API/requirements, not invented by the generator."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R044",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 112,
+          "end": 114
+        }
+      ],
+      "statement": "attitudeControllerInit initializes three attitude PIDs and three rate PIDs, with no side effects on repeated initialization.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 112,
+          "end": 114,
+          "text": "attitudeControllerInit creates and initializes the six objects pidRoll/pidPitch/pidYaw and pidRollRate/pidPitchRate/\npidYawRate; repeated calls have no side effects. All three rate-PID outputs pass through\nsaturateSignedInt16. The attitude-loop yaw update uses reset=true semantics; roll/pitch are not reset."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R045",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 113,
+          "end": 114
+        }
+      ],
+      "statement": "All three rate PID outputs are limited using saturateSignedInt16.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 113,
+          "end": 114,
+          "text": "pidYawRate; repeated calls have no side effects. All three rate-PID outputs pass through\nsaturateSignedInt16. The attitude-loop yaw update uses reset=true semantics; roll/pitch are not reset."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R046",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 114,
+          "end": 114
+        }
+      ],
+      "statement": "The attitude-loop yaw update uses reset=true; roll/pitch updates do not reset.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 114,
+          "end": 114,
+          "text": "saturateSignedInt16. The attitude-loop yaw update uses reset=true semantics; roll/pitch are not reset."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R047",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 115,
+          "end": 115
+        }
+      ],
+      "statement": "ResetAll resets attitude PIDs to the current attitude and clears the three rate PIDs; a single-axis reset affects only its specified axis.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 115,
+          "end": 115,
+          "text": "ResetAll resets the attitude PIDs using the current attitude and clears the three rate PIDs; a single-axis reset affects only the specified axis."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R048",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 118,
+          "end": 118
+        }
+      ],
+      "statement": "yaw modeVelocity accumulates desiredYaw using attitudeRate.yaw*attitudeUpdateDt.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 118,
+          "end": 118,
+          "text": "- yaw modeVelocity：desiredYaw += attitudeRate.yaw*attitudeUpdateDt；"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R049",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 119,
+          "end": 119
+        }
+      ],
+      "statement": "A nonzero yawMaxDelta limits desiredYaw relative to current yaw to the corresponding positive/negative range; zero disables this limit.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 119,
+          "end": 119,
+          "text": "- When yawMaxDelta!=0, limit desiredYaw relative to state.attitude.yaw to +/-yawMaxDelta; disable this limit when it is 0;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R050",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 120,
+          "end": 120
+        }
+      ],
+      "statement": "yaw modeAbs uses the target yaw; quat modeAbs obtains yaw by converting the target quaternion to RPY.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 120,
+          "end": 120,
+          "text": "- yaw modeAbs directly uses setpoint.attitude.yaw; quat modeAbs converts the quaternion to RPY and uses its yaw;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R051",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 121,
+          "end": 121
+        }
+      ],
+      "statement": "roll/pitch modeVelocity directly uses the corresponding attitudeRate and resets that attitude PID.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 121,
+          "end": 121,
+          "text": "- roll/pitch modeVelocity directly uses attitudeRate and resets the corresponding attitude PID;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R052",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 122,
+          "end": 126
+        }
+      ],
+      "statement": "With z disabled, use manual thrust; with z enabled, use position-control thrust computed from current position/velocity and the z target, rather than copying the manual value.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 122,
+          "end": 126,
+          "text": "- z modeDisable uses manual thrust; otherwise use position-control thrust. x/y modeDisable uses manual attitude.\n  Position-control thrust is the position-control submodule's output computed from current State.position / State.velocity and the setpoint z\n  target; it must not degenerate into a direct copy of setpoint.thrust. This submodule is an internal implementation in the current frozen API,\n  but must retain a replaceable position-controller output boundary so host tests can inject deterministic thrust values;\n  do not misinterpret 'z mode enabled' as manual-throttle mode;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R053",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 124,
+          "end": 125
+        }
+      ],
+      "statement": "Retain a replaceable position-controller output boundary for injecting deterministic thrust.",
+      "category": "interface",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 124,
+          "end": 125,
+          "text": "  target; it must not degenerate into a direct copy of setpoint.thrust. This submodule is an internal implementation in the current frozen API,\n  but must retain a replaceable position-controller output boundary so host tests can inject deterministic thrust values;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R054",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 122,
+          "end": 122
+        }
+      ],
+      "statement": "When x/y modeDisable is selected, use manual attitude.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 122,
+          "end": 122,
+          "text": "- z modeDisable uses manual thrust; otherwise use position-control thrust. x/y modeDisable uses manual attitude."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R055",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 127,
+          "end": 127
+        }
+      ],
+      "statement": "When thrust==0, clear all four control quantities, reset attitude/position PIDs, and synchronize desiredYaw.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 127,
+          "end": 127,
+          "text": "- When thrust==0, clear roll/pitch/yaw/thrust, reset the attitude and position PIDs, and synchronize desiredYaw;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R056",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 128,
+          "end": 128
+        }
+      ],
+      "statement": "The rate-loop pitchActual uses -sensors->gyro.y.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 128,
+          "end": 128,
+          "text": "- Rate-loop pitchActual must use -sensors->gyro.y;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R057",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Cascaded PID and controllerPid",
+      "source_lines": [
+        {
+          "start": 129,
+          "end": 129
+        }
+      ],
+      "statement": "After retrieving actuator outputs, the Legacy coordinate convention negates control->yaw.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 129,
+          "end": 129,
+          "text": "- After obtaining actuator outputs, negate control->yaw for the legacy coordinate system."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R058",
+      "source_requirement_id": "§6",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "6. CRTP Commander RPYT",
+      "source_lines": [
+        {
+          "start": 135,
+          "end": 136
+        }
+      ],
+      "statement": "DISABLE priority sets thrustLocked=true; receiving raw thrust==0 releases the lock.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 135,
+          "end": 136,
+          "text": "crtpCommanderRpytDecodeSetpoint must use exactly that name and respect branch precedence:\n- When activePriority==DISABLE, set thrustLocked=true; unlock upon receiving raw thrust==0;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§6"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R059",
+      "source_requirement_id": "§6",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "6. CRTP Commander RPYT",
+      "source_lines": [
+        {
+          "start": 137,
+          "end": 137
+        }
+      ],
+      "statement": "Outside AltHold, locking or raw<1000 produces zero thrust; otherwise thrust must not exceed 60000.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 137,
+          "end": 137,
+          "text": "- Outside AltHold, output thrust=0 if locked or raw<1000; otherwise cap thrust at 60000;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§6"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R060",
+      "source_requirement_id": "§6",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "6. CRTP Commander RPYT",
+      "source_lines": [
+        {
+          "start": 138,
+          "end": 139
+        }
+      ],
+      "statement": "AltHold selects z velocity mode, zero direct thrust, and vertical velocity (raw-32767)/32767.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 138,
+          "end": 139,
+          "text": "- AltHold: mode.z=modeVelocity, thrust=0, velocity.z=(raw-32767)/32767; on first entry,\n  call position PID/filter reset and set modeSet=true; on exit, set mode.z=modeDisable and modeSet=false;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§6"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R061",
+      "source_requirement_id": "§6",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "6. CRTP Commander RPYT",
+      "source_lines": [
+        {
+          "start": 138,
+          "end": 139
+        }
+      ],
+      "statement": "First entry into AltHold resets the position PID/filter and sets modeSet; exit disables z and clears modeSet.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 138,
+          "end": 139,
+          "text": "- AltHold: mode.z=modeVelocity, thrust=0, velocity.z=(raw-32767)/32767; on first entry,\n  call position PID/filter reset and set modeSet=true; on exit, set mode.z=modeDisable and modeSet=false;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§6"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R062",
+      "source_requirement_id": "§6",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "6. CRTP Commander RPYT",
+      "source_lines": [
+        {
+          "start": 140,
+          "end": 141
+        }
+      ],
+      "statement": "PosHold takes precedence over default mode, selects x/y velocity mode with the specified pitch/roll velocity mapping, and disables and zeros attitude roll/pitch.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 140,
+          "end": 141,
+          "text": "- PosHold takes precedence over default stabilization: x/y=modeVelocity, roll/pitch=modeDisable,\n  velocity.x=pitch/30, velocity.y=roll/30, and attitude roll/pitch=0;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§6"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R063",
+      "source_requirement_id": "§6",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "6. CRTP Commander RPYT",
+      "source_lines": [
+        {
+          "start": 142,
+          "end": 143
+        }
+      ],
+      "statement": "Enter PosSet only when posSetMode is true and rawThrust is nonzero; set targets using the specified coordinate mapping and absolute modes, and clear direct thrust.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 142,
+          "end": 143,
+          "text": "- PosSet executes only when posSetMode && rawThrust!=0: x/y/z=modeAbs, roll/pitch=modeDisable,\n  yaw=modeAbs, position=(-pitch,roll,thrust/1000), attitude.yaw=raw yaw, and final thrust=0;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§6"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R064",
+      "source_requirement_id": "§6",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "6. CRTP Commander RPYT",
+      "source_lines": [
+        {
+          "start": 144,
+          "end": 144
+        }
+      ],
+      "statement": "Default roll/pitch RATE uses velocity mode and attitudeRate; ANGLE uses absolute mode and attitude.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 144,
+          "end": 144,
+          "text": "- Default Roll/Pitch RATE->modeVelocity+attitudeRate; ANGLE->modeAbs+attitude;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§6"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R065",
+      "source_requirement_id": "§6",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "6. CRTP Commander RPYT",
+      "source_lines": [
+        {
+          "start": 145,
+          "end": 145
+        }
+      ],
+      "statement": "Default yaw RATE uses velocity mode and negative rawYaw; ANGLE uses absolute mode and target yaw.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 145,
+          "end": 145,
+          "text": "- Default Yaw RATE->modeVelocity with attitudeRate.yaw=-rawYaw; ANGLE->modeAbs+attitude.yaw;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§6"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R066",
+      "source_requirement_id": "§6",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "6. CRTP Commander RPYT",
+      "source_lines": [
+        {
+          "start": 146,
+          "end": 146
+        }
+      ],
+      "statement": "PLUSMODE rotates roll/pitch by 45 degrees, XMODE leaves values unchanged, and CAREFREE enters an observable error path.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 146,
+          "end": 146,
+          "text": "- PLUSMODE rotates roll/pitch by 45 degrees; XMODE does not rotate; CAREFREE takes an observable error path;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§6"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R067",
+      "source_requirement_id": "§6",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "6. CRTP Commander RPYT",
+      "source_lines": [
+        {
+          "start": 147,
+          "end": 147
+        }
+      ],
+      "statement": "rotateYaw uses the standard two-dimensional rotation formula after converting to radians.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 147,
+          "end": 147,
+          "text": "- rotateYaw uses the standard 2D rotation formula, first converting the angle input to radians."
+        }
+      ],
+      "source_requirement_ids": [
+        "§6"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R068",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 153,
+          "end": 153
+        }
+      ],
+      "statement": "supervisorUpdate executes only when RATE_DO_EXECUTE(RATE_SUPERVISOR,stabilizerStep) is true.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 153,
+          "end": 153,
+          "text": "supervisorUpdate executes only when RATE_DO_EXECUTE(RATE_SUPERVISOR,stabilizerStep) is true."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R069",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 154,
+          "end": 155
+        }
+      ],
+      "statement": "supervisorCanFly permits only ReadyToFly/Flying/WarningLevelOut/Landed; CanArm permits only PreFlChecksPassed.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 154,
+          "end": 155,
+          "text": "supervisorCanFly returns true only for ReadyToFly/Flying/WarningLevelOut/Landed; CanArm returns true only for\nPreFlChecksPassed. IsArmed/IsCrashed return the current flags. RequestArming sets"
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R070",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 155,
+          "end": 155
+        }
+      ],
+      "statement": "IsArmed and IsCrashed return the current flags.",
+      "category": "observability",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 155,
+          "end": 155,
+          "text": "PreFlChecksPassed. IsArmed/IsCrashed return the current flags. RequestArming sets"
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R071",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 155,
+          "end": 158
+        }
+      ],
+      "statement": "RequestArming sets arming in an allowed state and enters Arming in the same call; repeated requests are idempotent, and disallowed states return false.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 155,
+          "end": 158,
+          "text": "PreFlChecksPassed. IsArmed/IsCrashed return the current flags. RequestArming sets\narming in an allowed state and changes supervisorState to Arming during that successful call; repeated requests are idempotent; disallowed states return\nfalse. RequestCrashRecovery rejects recovery while tumbled and allows clearing crash otherwise; doRecovery=false\nsets crash and returns true (the request was accepted and the crash state took effect)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R072",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 157,
+          "end": 158
+        }
+      ],
+      "statement": "CrashRecovery refuses recovery while tumbled and otherwise permits clearing crash; doRecovery=false sets crash and returns true.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 157,
+          "end": 158,
+          "text": "false. RequestCrashRecovery rejects recovery while tumbled and allows clearing crash otherwise; doRecovery=false\nsets crash and returns true (the request was accepted and the crash state took effect)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R073",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 160,
+          "end": 164
+        }
+      ],
+      "statement": "isFlyingCheck refreshes the flight tick whenever any motor exceeds idle and retains flying hysteresis for strictly less than 2000ms.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 160,
+          "end": 164,
+          "text": "isFlyingCheck: any motorRatio>idleThrust refreshes the recent-flight tick. Flight remains true for less than 2000ms\nsince that tick and becomes false at or beyond the threshold. An initial recent-flight tick of 0 denotes 'never flown',\nso return false until a motor has been observed above idleThrust; do not mistake currentTick-0 for\na hysteresis window. If tick=0 can itself be a valid flight event, use a separate seen flag to distinguish that event from\n'never flown'."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R074",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 161,
+          "end": 164
+        }
+      ],
+      "statement": "Do not report flying if no motor above idle has ever been observed; use a separate seen flag to distinguish a valid tick=0 event.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 161,
+          "end": 164,
+          "text": "since that tick and becomes false at or beyond the threshold. An initial recent-flight tick of 0 denotes 'never flown',\nso return false until a motor has been observed above idleThrust; do not mistake currentTick-0 for\na hysteresis window. If tick=0 can itself be a valid flight event, use a separate seen flag to distinguish that event from\n'never flown'."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R075",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 166,
+          "end": 167
+        }
+      ],
+      "statement": "When crashDetectionGs>0, detect crash from the acceleration-magnitude deviation; a zero threshold disables detection.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 166,
+          "end": 167,
+          "text": "isTumbledCheck implements all three safety checks:\n- Detect a crash when crashDetectionGs>0 and |sqrt(ax²+ay²+az²)-1| exceeds the threshold; disable this check when the threshold is 0;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R076",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 168,
+          "end": 168
+        },
+        {
+          "start": 171,
+          "end": 171
+        }
+      ],
+      "statement": "When the absolute values of all three axes are below freeFallThreshold, set free fall and reset the tumble timer, entering ExceptFreeFall rather than directly setting tumbled.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 168,
+          "end": 168,
+          "text": "- If absolute values on all three axes are below freeFallThreshold, set isFreeFalling and reset tumble timing;"
+        },
+        {
+          "start": 171,
+          "end": 171,
+          "text": "Free fall only sets isFreeFalling and enters ExceptFreeFall; it must not directly set isTumbled=true."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R077",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 169,
+          "end": 169
+        }
+      ],
+      "statement": "Tilt starts the tumble timer; inversion uses a shorter timeout; returning upright clears the timer.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 169,
+          "end": 169,
+          "text": "- Start timing when accZ falls below the tilt threshold; use a shorter timeout below the inverted threshold; clear timing when upright again;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R078",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 170,
+          "end": 170
+        }
+      ],
+      "statement": "When tumbleCheckEnabled=false, do not report tumbled.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 170,
+          "end": 170,
+          "text": "- Do not report tumbled when tumbleCheckEnabled=false."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R079",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 172,
+          "end": 173
+        }
+      ],
+      "statement": "The return value of isTumbledCheck represents only tumbling; crash alone is exposed through state or a condition bit.",
+      "category": "interface",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 172,
+          "end": 173,
+          "text": "The function's bool return value means 'is tumbled'. Crash-only detection must set the crash state, but need not\nchange that return value to true. Callers observe crash through IsCrashed or the Supervisor condition bit."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R080",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 175,
+          "end": 178
+        }
+      ],
+      "statement": "When AUTO_ARMING is enabled, initial entry into PreFlChecksPassed uses the same arming path as an explicit request; when disabled, do not arm automatically.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 175,
+          "end": 178,
+          "text": "Arming after state transitions: when build configuration enables AUTO_ARMING and the state has just entered PreFlChecksPassed,\ninvoke the same arming path used by an explicit request. Clear arming upon leaving the states Arming, ReadyToFly, Flying, WarningLevelOut, and\nLanded, which permit arming to persist. AUTO_ARMING is a build/configuration input; do not\narm automatically and unconditionally when it is disabled."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R081",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 176,
+          "end": 177
+        }
+      ],
+      "statement": "Clear arming when leaving the five states allowed to retain it.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 176,
+          "end": 177,
+          "text": "invoke the same arming path used by an explicit request. Clear arming upon leaving the states Arming, ReadyToFly, Flying, WarningLevelOut, and\nLanded, which permit arming to persist. AUTO_ARMING is a build/configuration input; do not"
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R082",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 180,
+          "end": 183
+        }
+      ],
+      "statement": "Evaluate spinup timeout only in Arming, using the configured start/period; set timeout only on reaching the period, and clear the start and bit on exit.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 180,
+          "end": 183,
+          "text": "Evaluate spinup timeout only in Arming. Both its start tick and timeout period are configurable inputs. A start tick of 0\nmeans not started. Do not set a timeout when elapsed time is strictly below the configured period; at or above it, set\nSUPERVISOR_CB_SPINUP_TIMEOUT. Clear the start tick and this condition bit when leaving Arming. Do not hard-code a particular\nperiod (such as the 500ms used in one test fixture) as a product constant."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R083",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 185,
+          "end": 188
+        }
+      ],
+      "statement": "The Emergency-stop watchdog bool represents health: true if never notified or not over 1000ms, false on timeout; fault consumers explicitly negate it.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 185,
+          "end": 188,
+          "text": "Emergency-stop watchdog: never notified (last=0) is healthy; within the 1000ms window is healthy; timeout is unhealthy.\nThe return value of `checkEmergencyStopWatchdog(currentTick,lastNotificationTick)` specifically means 'healthy': normal operation\nor last=0 returns true; timeout returns false. Callers that need a failure condition must explicitly negate it; do not infer\nbool semantics from the function name."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R084",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 189,
+          "end": 189
+        }
+      ],
+      "statement": "Commander setpoint age strictly over 500ms sets WARNING; strictly over 2000ms sets TIMEOUT.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 189,
+          "end": 189,
+          "text": "Set WARNING when Commander setpoint age exceeds 500ms, and TIMEOUT when it exceeds 2000ms. The ReadyToFly"
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R085",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 190,
+          "end": 194
+        }
+      ],
+      "statement": "The ReadyToFly preflight timeout and landing timeout update their respective conditions, which are returned by the corresponding public functions.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 190,
+          "end": 194,
+          "text": "preflight timeout, landing timeout based on landing tick, CRTP stop, parameter stop, and watchdog stop\neach update their corresponding condition bit. Implement spinup timeout in Arming. DShot checks require all four motor RPMs to stay\nwithin [min,max] for the specified qualifying duration; set a fault after RPM stays below the not-responding threshold for the specified time; clear when CanFly=false.\nExpose these behaviors through the public functions named exactly supervisorIsPreflightTimeout, supervisorIsLandingTimeout,\nupdateAndPopulateConditions, and isRPMatArmingValid."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R086",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 190,
+          "end": 191
+        }
+      ],
+      "statement": "CRTP stop, parameter stop, and watchdog stop each update their corresponding condition bit.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 190,
+          "end": 191,
+          "text": "preflight timeout, landing timeout based on landing tick, CRTP stop, parameter stop, and watchdog stop\neach update their corresponding condition bit. Implement spinup timeout in Arming. DShot checks require all four motor RPMs to stay"
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R087",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 191,
+          "end": 194
+        }
+      ],
+      "statement": "DShot arming checks require all four RPMs to remain within range for the required qualifying duration.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 191,
+          "end": 194,
+          "text": "each update their corresponding condition bit. Implement spinup timeout in Arming. DShot checks require all four motor RPMs to stay\nwithin [min,max] for the specified qualifying duration; set a fault after RPM stays below the not-responding threshold for the specified time; clear when CanFly=false.\nExpose these behaviors through the public functions named exactly supervisorIsPreflightTimeout, supervisorIsLandingTimeout,\nupdateAndPopulateConditions, and isRPMatArmingValid."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R088",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 192,
+          "end": 192
+        }
+      ],
+      "statement": "RPM below the not-responding threshold for the specified duration sets a fault; CanFly=false clears the corresponding check state.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 192,
+          "end": 192,
+          "text": "within [min,max] for the specified qualifying duration; set a fault after RPM stays below the not-responding threshold for the specified time; clear when CanFly=false."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R089",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 195,
+          "end": 196
+        }
+      ],
+      "statement": "Sensor, motor-ratio, RPM, and safety-configuration injection functions supply actual inputs to supervisorUpdate rather than permanent zero placeholders.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 195,
+          "end": 196,
+          "text": "supervisorSetSensorData, supervisorSetMotorRatios, supervisorSetMotorRPMs, and\nsupervisorConfigureSafety inject actual inputs before supervisorUpdate; permanently using zero-valued placeholders is prohibited."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R090",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 198,
+          "end": 200
+        }
+      ],
+      "statement": "WarningLevelOut setpoint override disables x/y, zeros horizontal absolute attitude and yaw velocity, and preserves z.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 198,
+          "end": 200,
+          "text": "supervisorOverrideSetpoint：\n- WarningLevelOut: disable x/y; roll/pitch=modeAbs with angle 0; yaw=modeVelocity with rate 0;\n  leave z unchanged;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R091",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 201,
+          "end": 201
+        }
+      ],
+      "statement": "Setpoint overrides in Arming/ReadyToFly/Flying/Landed leave the targets unchanged.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 201,
+          "end": 201,
+          "text": "- Arming/ReadyToFly/Flying/Landed leave the setpoint unchanged;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R092",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 202,
+          "end": 203
+        }
+      ],
+      "statement": "Other Supervisor states use an all-zero setpoint.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 202,
+          "end": 203,
+          "text": "- Other states copy an all-zero setpoint; emergency, WDT, tumbled/freefall/motor fault must also produce the zeroing or\n  limiting effects described by the tests."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R093",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 202,
+          "end": 203
+        }
+      ],
+      "statement": "Emergency/WDT/tumble/free-fall/motor faults must also produce the zeroing or limiting effects stated by external tests, but this line does not specify additional per-state limits and rules.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The requirements omit necessary parameters or contain conflicting wording; clarify a common contract first, rather than deriving it from the candidate implementation."
+      },
+      "source_excerpt": [
+        {
+          "start": 202,
+          "end": 203,
+          "text": "- Other states copy an all-zero setpoint; emergency, WDT, tumbled/freefall/motor fault must also produce the zeroing or\n  limiting effects described by the tests."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R094",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 205,
+          "end": 205
+        }
+      ],
+      "statement": "supervisorAreMotorsAllowedToRun permits only the specified five states.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 205,
+          "end": 205,
+          "text": "supervisorAreMotorsAllowedToRun is true only in Arming/ReadyToFly/Flying/WarningLevelOut/Landed."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R095",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Supervisor",
+      "source_lines": [
+        {
+          "start": 206,
+          "end": 208
+        }
+      ],
+      "statement": "supervisorGetInfoBitfield encodes live state using the specified bit0-bit11 layout.",
+      "category": "observability",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 206,
+          "end": 208,
+          "text": "supervisorGetInfoBitfield uses the test-specified layout: bit0 canArm, bit1 isArmed, bit2 autoArming,\nbit3 canFly、bit4 isFlying、bit5 isTumbled、bit6 isLocked、bit7 isCrashed、bit8 trajectoryFlying、\nbit9 trajectoryFinished、bit10 trajectoryDisabled、bit11 deckFault。"
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R096",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. Estimator and Commander arbitration",
+      "source_lines": [
+        {
+          "start": 214,
+          "end": 214
+        }
+      ],
+      "statement": "Estimator uses a FIFO of capacity 16; enqueue on full and dequeue on empty return false.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 214,
+          "end": 214,
+          "text": "Estimator uses a FIFO of capacity 16. A 17th enqueue without dequeue returns false; dequeue on an empty queue returns false."
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R097",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. Estimator and Commander arbitration",
+      "source_lines": [
+        {
+          "start": 215,
+          "end": 215
+        }
+      ],
+      "statement": "estimatorComplementary drains the queue on every call and retains the latest value of each measurement type.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 215,
+          "end": 215,
+          "text": "estimatorComplementary drains the queue in one call and retains the last value for each measurement type."
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R098",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. Estimator and Commander arbitration",
+      "source_lines": [
+        {
+          "start": 216,
+          "end": 218
+        }
+      ],
+      "statement": "On the 250Hz divider, update fusion, Euler/Quaternion, gravity-compensated Z acceleration, and vertical velocity; otherwise leave those outputs unchanged.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 216,
+          "end": 218,
+          "text": "When RATE_DO_EXECUTE(RATE_250_HZ,step) is true, call sensfusion6UpdateQ, update Euler/Quaternion, remove\nZ gravity, and update vertical velocity. Update position when RATE_DO_EXECUTE(RATE_100_HZ,step) is true. Do not\nchange the corresponding outputs when their rate conditions are not met."
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R099",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. Estimator and Commander arbitration",
+      "source_lines": [
+        {
+          "start": 217,
+          "end": 218
+        }
+      ],
+      "statement": "On the 100Hz divider, update position; otherwise leave position output unchanged.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 217,
+          "end": 218,
+          "text": "Z gravity, and update vertical velocity. Update position when RATE_DO_EXECUTE(RATE_100_HZ,step) is true. Do not\nchange the corresponding outputs when their rate conditions are not met."
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R100",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. Estimator and Commander arbitration",
+      "source_lines": [
+        {
+          "start": 220,
+          "end": 222
+        }
+      ],
+      "statement": "For ordinary priorities, Commander replaces its sole active setpoint and writes the current tick only when newPriority>=current; lower priority is rejected.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 220,
+          "end": 222,
+          "text": "Commander retains one active setpoint and priority. Except for `COMMANDER_PRIORITY_DISABLE`,\noverwrite only when newPriority>=current, also recording the current tick; reject lower priority. DISABLE is an emergency override and must be\naccepted and become the active priority even if numerically below current. Stop the high-level trajectory when priority exceeds HIGHLEVEL."
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R101",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. Estimator and Commander arbitration",
+      "source_lines": [
+        {
+          "start": 220,
+          "end": 222
+        }
+      ],
+      "statement": "DISABLE emergency override is accepted regardless of its numeric value and becomes the active priority.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 220,
+          "end": 222,
+          "text": "Commander retains one active setpoint and priority. Except for `COMMANDER_PRIORITY_DISABLE`,\noverwrite only when newPriority>=current, also recording the current tick; reject lower priority. DISABLE is an emergency override and must be\naccepted and become the active priority even if numerically below current. Stop the high-level trajectory when priority exceeds HIGHLEVEL."
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R102",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. Estimator and Commander arbitration",
+      "source_lines": [
+        {
+          "start": 222,
+          "end": 222
+        }
+      ],
+      "statement": "A new priority above HIGHLEVEL stops the high-level trajectory.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 222,
+          "end": 222,
+          "text": "accepted and become the active priority even if numerically below current. Stop the high-level trajectory when priority exceeds HIGHLEVEL."
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R103",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. Estimator and Commander arbitration",
+      "source_lines": [
+        {
+          "start": 223,
+          "end": 223
+        }
+      ],
+      "statement": "RelaxPriority sets the current priority to LOWEST=1.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 223,
+          "end": 223,
+          "text": "RelaxPriority sets LOWEST=1. InactivityTime"
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R104",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. Estimator and Commander arbitration",
+      "source_lines": [
+        {
+          "start": 223,
+          "end": 224
+        }
+      ],
+      "statement": "InactivityTime returns currentTick-lastUpdate; GetActivePriority returns the current priority.",
+      "category": "observability",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 223,
+          "end": 224,
+          "text": "RelaxPriority sets LOWEST=1. InactivityTime\nreturns currentTick-lastUpdate; GetActivePriority returns the current priority."
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R105",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 230,
+          "end": 231
+        }
+      ],
+      "statement": "stabilizerInit initializes sensors->estimator->controller->powerDistribution->motors->collisionAvoidance in order, creates the task, and is idempotent.",
+      "category": "initialization",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 230,
+          "end": 231,
+          "text": "The observable stabilizerInit order must be sensorsInit->stateEstimatorInit->controllerInit->\npowerDistributionInit->motorsInit->collisionAvoidanceInit; create the task and remain idempotent."
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R106",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 233,
+          "end": 233
+        }
+      ],
+      "statement": "stabilizerTask waits until the system has started and sensor calibration is complete.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 233,
+          "end": 233,
+          "text": "stabilizerTask waits for system startup and sensor calibration. The normal loop order is strictly: sensorsWaitDataReady,"
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R107",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 233,
+          "end": 236
+        }
+      ],
+      "statement": "The normal control loop follows the specified order: sensor wait/read->estimation->commander->supervisor->collision avoidance->override->control->distribution->battery compensation->clipping->motor output.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 233,
+          "end": 236,
+          "text": "stabilizerTask waits for system startup and sensor calibration. The normal loop order is strictly: sensorsWaitDataReady,\nsensorsAcquire、stateEstimator、commanderGetSetpoint、supervisorUpdate、\ncollisionAvoidanceUpdateSetpoint、supervisorOverrideSetpoint、controller、powerDistribution、\nbatteryCompensation, powerDistributionCap, setMotorRatios. When CanFly=false, prevent new commands and zero outputs;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R108",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 236,
+          "end": 236
+        }
+      ],
+      "statement": "When CanFly=false, block new commands and zero control outputs.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 236,
+          "end": 236,
+          "text": "batteryCompensation, powerDistributionCap, setMotorRatios. When CanFly=false, prevent new commands and zero outputs;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R109",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 237,
+          "end": 237
+        },
+        {
+          "start": 239,
+          "end": 240
+        }
+      ],
+      "statement": "A submitted high-level setpoint actually calls commanderSetSetpoint with COMMANDER_PRIORITY_HIGHLEVEL on the next control step.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 237,
+          "end": 237,
+          "text": "submit an available high-level setpoint with HIGHLEVEL priority; stop motors when motorsAllowed=false. If a Health test"
+        },
+        {
+          "start": 239,
+          "end": 240,
+          "text": "The host injects a high-level setpoint through stabilizerSubmitHighLevelSetpoint; the next control step must actually call\ncommanderSetSetpoint(..., COMMANDER_PRIORITY_HIGHLEVEL), not merely mention it in a comment."
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R110",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 237,
+          "end": 237
+        }
+      ],
+      "statement": "When motorsAllowed=false, stop the motors.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 237,
+          "end": 237,
+          "text": "submit an available high-level setpoint with HIGHLEVEL priority; stop motors when motorsAllowed=false. If a Health test"
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R111",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 237,
+          "end": 238
+        }
+      ],
+      "statement": "When a Health test is requested, healthRunTests replaces the normal control branch.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 237,
+          "end": 238,
+          "text": "submit an available high-level setpoint with HIGHLEVEL priority; stop motors when motorsAllowed=false. If a Health test\nrequest exists, run healthRunTests in place of the normal control branch."
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R112",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 242,
+          "end": 242
+        }
+      ],
+      "statement": "compressState multiplies position and velocity by 1000 to obtain mm and mm/s.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 242,
+          "end": 242,
+          "text": "compressState: position*1000->mm, velocity*1000->mm/s; acc x/y*9810; acc z uses"
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R113",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 242,
+          "end": 243
+        }
+      ],
+      "statement": "compressState multiplies acceleration x/y by 9810 and computes z as (acc.z+1)*9810.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 242,
+          "end": 243,
+          "text": "compressState: position*1000->mm, velocity*1000->mm/s; acc x/y*9810; acc z uses\n(acc.z+1)*9810; gyro deg/s*PI/180*1000->mrad/s, with gyro.y negated for the pitch component; call"
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R114",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 243,
+          "end": 243
+        }
+      ],
+      "statement": "compressState converts angular velocity from deg/s to mrad/s and negates the gyro.y pitch component.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 243,
+          "end": 243,
+          "text": "(acc.z+1)*9810; gyro deg/s*PI/180*1000->mrad/s, with gyro.y negated for the pitch component; call"
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R115",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 244,
+          "end": 244
+        }
+      ],
+      "statement": "compressState uses quatcompress to produce a 32-bit compressed quaternion.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 244,
+          "end": 244,
+          "text": "quatcompress for the quaternion to obtain a 32-bit value."
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R116",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 246,
+          "end": 246
+        }
+      ],
+      "statement": "rateSupervisorValidate accepts only the closed interval [997,1003].",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 246,
+          "end": 246,
+          "text": "rateSupervisorValidate returns true for [997,1003], inclusive, and false otherwise. The Supervisor task"
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R117",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Stabilizer, state compression, and rate supervision",
+      "source_lines": [
+        {
+          "start": 246,
+          "end": 247
+        }
+      ],
+      "statement": "The Supervisor task waits 2000ms; a timeout while sensors are active enters assert/error, whereas a timeout while suspended is allowed.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 246,
+          "end": 247,
+          "text": "rateSupervisorValidate returns true for [997,1003], inclusive, and false otherwise. The Supervisor task\nwaits 2000ms; a timeout while sensors are active must enter an assert/error state; a timeout while sensors are suspended is acceptable."
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R118",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. Health",
+      "source_lines": [
+        {
+          "start": 253,
+          "end": 256
+        }
+      ],
+      "statement": "healthShallWeRunTest consumes a test request, performs the corresponding initialization, clears the request, and returns true; with no request and tests complete, it returns false.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 253,
+          "end": 256,
+          "text": "startPropTest triggers configureAcc and clears its request; startBatTest triggers testBattery, sets tick=0, and clears its request;\nrequests are consumed in healthShallWeRunTest: on either request, it performs the corresponding state initialization and request clearing,\nthen returns true. healthRunTests only advances an initialized test state; it must not require callers to manually change private state first.\nWhen testDone and no request is pending, ShallWeRunTest=false."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R119",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. Health",
+      "source_lines": [
+        {
+          "start": 253,
+          "end": 253
+        }
+      ],
+      "statement": "A propeller request initializes configureAcc; a battery request initializes testBattery and sets tick to zero.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 253,
+          "end": 253,
+          "text": "startPropTest triggers configureAcc and clears its request; startBatTest triggers testBattery, sets tick=0, and clears its request;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R120",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. Health",
+      "source_lines": [
+        {
+          "start": 255,
+          "end": 255
+        }
+      ],
+      "statement": "healthRunTests advances an initialized test state without relying on the caller to modify private state.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 255,
+          "end": 255,
+          "text": "then returns true. healthRunTests only advances an initialized test state; it must not require callers to manually change private state first."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R121",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. Health",
+      "source_lines": [
+        {
+          "start": 258,
+          "end": 258
+        }
+      ],
+      "statement": "configureAcc clears results, switches accelerometer mode, records idleVoltage, and stops the motors.",
+      "category": "initialization",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 258,
+          "end": 258,
+          "text": "Propeller procedure: configureAcc clears results, changes accelerometer mode, records idleVoltage, and stops motors; then collect"
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R122",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. Health",
+      "source_lines": [
+        {
+          "start": 258,
+          "end": 259
+        }
+      ],
+      "statement": "The propeller test collects 100 acceleration samples to calculate noise variance.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 258,
+          "end": 259,
+          "text": "Propeller procedure: configureAcc clears results, changes accelerometer mode, records idleVoltage, and stops motors; then collect\n100 acceleration samples to compute noise variance. Start/stop motors 0..3 in turn and measure vibration and voltage; after all finish, restore"
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R123",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. Health",
+      "source_lines": [
+        {
+          "start": 259,
+          "end": 260
+        }
+      ],
+      "statement": "The propeller test starts/stops motors 0..3 in order to measure vibration/voltage; after all finish, it restores flight sensor mode and evaluates the results.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 259,
+          "end": 260,
+          "text": "100 acceleration samples to compute noise variance. Start/stop motors 0..3 in turn and measure vibration and voltage; after all finish, restore\nflight-sensor mode and evaluate. evaluatePropTest skips the check and returns true when highThreshold==0; otherwise,"
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R124",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. Health",
+      "source_lines": [
+        {
+          "start": 260,
+          "end": 261
+        }
+      ],
+      "statement": "evaluatePropTest skips and passes when highThreshold==0; otherwise it passes only when low<=value<=high.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 260,
+          "end": 261,
+          "text": "flight-sensor mode and evaluate. evaluatePropTest skips the check and returns true when highThreshold==0; otherwise,\nlow<=value<=high passes. Increment the count on failure; set the corresponding motorPass bit on success."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R125",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. Health",
+      "source_lines": [
+        {
+          "start": 261,
+          "end": 261
+        }
+      ],
+      "statement": "A failed propeller evaluation increments the failure count; a pass sets the corresponding motorPass bit.",
+      "category": "observability",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 261,
+          "end": 261,
+          "text": "low<=value<=high passes. Increment the count on failure; set the corresponding motorPass bit on success."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R126",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. Health",
+      "source_lines": [
+        {
+          "start": 263,
+          "end": 263
+        }
+      ],
+      "statement": "The battery test loads all four motors at tick1, updates minimum voltage at tick2..49, and stops and evaluates at tick50.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 263,
+          "end": 263,
+          "text": "Battery procedure: load all four motors at tick=1; update minLoadedVoltage during ticks 2..49; stop and evaluate at tick=50;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R127",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. Health",
+      "source_lines": [
+        {
+          "start": 264,
+          "end": 264
+        }
+      ],
+      "statement": "batterySag=idle-minLoaded; strictly exceeding the threshold fails, otherwise it passes.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 264,
+          "end": 264,
+          "text": "batterySag=idle-minLoaded; exceeding the threshold fails, otherwise passes. restartBatTest restarts after waiting 2000ms."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R128",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. Health",
+      "source_lines": [
+        {
+          "start": 264,
+          "end": 264
+        }
+      ],
+      "statement": "restartBatTest restarts after waiting 2000ms.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 264,
+          "end": 264,
+          "text": "batterySag=idle-minLoaded; exceeding the threshold fails, otherwise passes. restartBatTest restarts after waiting 2000ms."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R129",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. Health",
+      "source_lines": [
+        {
+          "start": 265,
+          "end": 265
+        }
+      ],
+      "statement": "variance uses sumSq-sum*sum/n without dividing by n again, matching the given constant and [1,2,3] examples.",
+      "category": "numeric",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 265,
+          "end": 265,
+          "text": "variance uses sumSq-(sum*sum/n), without another division by n; a constant array has variance 0, and [1,2,3] yields 2."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R130",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 271,
+          "end": 271
+        }
+      ],
+      "statement": "crtpInit idempotently creates a 200-slot TX queue and TX/RX tasks.",
+      "category": "initialization",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 271,
+          "end": 271,
+          "text": "crtpInit creates a 200-slot TX queue and TX/RX tasks and is idempotent. Each valid port may create one 16-slot RX"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R131",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 271,
+          "end": 272
+        }
+      ],
+      "statement": "A valid port can create a capacity-16 RX queue; duplicate creation enters an error state.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 271,
+          "end": 272,
+          "text": "crtpInit creates a 200-slot TX queue and TX/RX tasks and is idempotent. Each valid port may create one 16-slot RX\nqueue; duplicate creation enters an error state. SendPacket is nonblocking and returns false when full; in the host model, SendPacketBlock"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R132",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 272,
+          "end": 273
+        }
+      ],
+      "statement": "SendPacket is nonblocking and returns false when full; SendPacketBlock succeeds when space is available on the host.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 272,
+          "end": 273,
+          "text": "queue; duplicate creation enters an error state. SendPacket is nonblocking and returns false when full; in the host model, SendPacketBlock\nsucceeds whenever space is available. ReceivePacket/Block/Wait respectively simulate immediate, waiting, and time-bounded packet retrieval."
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R133",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 273,
+          "end": 273
+        }
+      ],
+      "statement": "ReceivePacket/Block/Wait respectively provide immediate, waiting, and time-limited receive, but this line omits wait progression and timeout-return details when no data is available; clarification of the frozen API/contract is required.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The requirements omit necessary parameters or contain conflicting wording; clarify a common contract first, rather than deriving it from the candidate implementation."
+      },
+      "source_excerpt": [
+        {
+          "start": 273,
+          "end": 273,
+          "text": "succeeds whenever space is available. ReceivePacket/Block/Wait respectively simulate immediate, waiting, and time-bounded packet retrieval."
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R134",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 275,
+          "end": 276
+        }
+      ],
+      "statement": "RxTask both delivers to an existing port queue and invokes a registered callback; it discards the packet when neither exists.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 275,
+          "end": 276,
+          "text": "After receiving from link, RxTask both delivers to the existing port queue and calls the registered callback; if neither exists,\ndiscard the packet. TxTask retains a packet on send failure and retries every 10ms. Tasks do not process packets with nopLink. SetLink disables the old link,"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R135",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 276,
+          "end": 276
+        }
+      ],
+      "statement": "TxTask retains the packet after a failed send and retries after 10ms.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 276,
+          "end": 276,
+          "text": "discard the packet. TxTask retains a packet on send failure and retries every 10ms. Tasks do not process packets with nopLink. SetLink disables the old link,"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R136",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 276,
+          "end": 276
+        }
+      ],
+      "statement": "With nopLink, the send and receive tasks do not process packets.",
+      "category": "control_flow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 276,
+          "end": 276,
+          "text": "discard the packet. TxTask retains a packet on send failure and retries every 10ms. Tasks do not process packets with nopLink. SetLink disables the old link,"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R137",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 276,
+          "end": 277
+        }
+      ],
+      "statement": "SetLink disables the old link, replaces NULL with nopLink, and then enables the new link.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 276,
+          "end": 277,
+          "text": "discard the packet. TxTask retains a packet on send failure and retries every 10ms. Tasks do not process packets with nopLink. SetLink disables the old link,\nmaps NULL to nopLink, then enables the new link. Reset clears the TX queue and calls link.reset. IsConnected returns the callback result"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R138",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 277,
+          "end": 277
+        }
+      ],
+      "statement": "Reset clears the TX queue and calls link.reset.",
+      "category": "state",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 277,
+          "end": 277,
+          "text": "maps NULL to nopLink, then enables the new link. Reset clears the TX queue and calls link.reset. IsConnected returns the callback result"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R139",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 277,
+          "end": 278
+        }
+      ],
+      "statement": "IsConnected returns the callback result when a callback exists, otherwise true.",
+      "category": "observability",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 277,
+          "end": 278,
+          "text": "maps NULL to nopLink, then enables the new link. Reset clears the TX queue and calls link.reset. IsConnected returns the callback result\nwhen provided, otherwise true. GetFreeTxQueuePackets=200-currentCount."
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R140",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 278,
+          "end": 278
+        }
+      ],
+      "statement": "GetFreeTxQueuePackets returns 200-currentCount.",
+      "category": "observability",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 278,
+          "end": 278,
+          "text": "when provided, otherwise true. GetFreeTxQueuePackets=200-currentCount."
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R141",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 279,
+          "end": 280
+        }
+      ],
+      "statement": "RegisterPortCB accepts only ports in [0,CRTP_NBR_OF_PORTS) and rejects out-of-range values.",
+      "category": "safety",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 279,
+          "end": 280,
+          "text": "RegisterPortCB accepts only `0 <= port < CRTP_NBR_OF_PORTS`; when `CRTP_NBR_OF_PORTS=16`,\nreject port 16 and above without out-of-bounds access. updateStats computes rx/tx rates every 500ms and clears the counters."
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R142",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CRTP transport",
+      "source_lines": [
+        {
+          "start": 280,
+          "end": 280
+        }
+      ],
+      "statement": "updateStats computes rx/tx rates every 500ms and clears the counters.",
+      "category": "timing",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 280,
+          "end": 280,
+          "text": "reject port 16 and above without out-of-bounds access. updateStats computes rx/tx rates every 500ms and clears the counters."
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R143",
+      "source_requirement_id": "§12",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "12. Deck, logging, and final boundaries",
+      "source_lines": [
+        {
+          "start": 286,
+          "end": 286
+        }
+      ],
+      "statement": "deckDiscovery scans known I2C addresses and OneWire ROMs, deduplicates entries, stays within capacity, and returns the number actually written.",
+      "category": "dataflow",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 286,
+          "end": 286,
+          "text": "deckDiscovery scans known I2C addresses and OneWire ROMs, deduplicates within capacity, and returns the number actually written."
+        }
+      ],
+      "source_requirement_ids": [
+        "§12"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R144",
+      "source_requirement_id": "§12",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "12. Deck, logging, and final boundaries",
+      "source_lines": [
+        {
+          "start": 288,
+          "end": 291
+        }
+      ],
+      "statement": "Expose and maintain the eight precisely named log objects and frozen fields, reflecting actual estimator, sensor, motor, fusion, Supervisor, and Health states.",
+      "category": "observability",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 288,
+          "end": 291,
+          "text": "Expose and maintain logging objects with the exact names: stateEstimate, gyro, acc, baro, motor,\nsensfusion6Log, supervisorLog, healthLog. Fields must match RE_api.txt and include at least the test-listed\nEuler/Quaternion, three-axis sensor values, pressure, motor requests, fusion state, Supervisor info/accNorm,\nHealth motorPass/batteryPass/batterySag/motorTestCount。"
+        }
+      ],
+      "source_requirement_ids": [
+        "§12"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "CF-R145",
+      "source_requirement_id": "§12",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "12. Deck, logging, and final boundaries",
+      "source_lines": [
+        {
+          "start": 293,
+          "end": 294
+        }
+      ],
+      "statement": "Extreme inputs and cross-module boundaries must use the same public API, without separate parallel functions written only for examples.",
+      "category": "interface",
+      "applicability_condition": "Applies to this project's established generation task; missing implementation must not be reclassified as inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 293,
+          "end": 294,
+          "text": "All boundary cases (extreme roll, maximum thrust, zero acceleration, altitude retention in warning state, PosHold branch precedence, and Health\nreplacing the control loop) must use the same public API above; do not create parallel functions solely for examples."
+        }
+      ],
+      "source_requirement_ids": [
+        "§12"
+      ],
+      "code_judgment": null
+    }
+  ],
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/preparation/crazyflie/requirements_checklist.json",
+    "original_sha256": "a563bb2a705c6bb9bbb227607e886fb05babbf73e4c3f7e0b74e488033dd7e4f",
+    "language": "Original Chinese requirements and judgments retained; no semantic translation.",
+    "transformation": "Workspace/home-path anonymization and export metadata only; leaf statements and classifications unchanged."
+  }
+}

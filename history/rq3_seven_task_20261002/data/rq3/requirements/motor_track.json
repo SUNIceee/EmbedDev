@@ -1,0 +1,417 @@
+{
+  "task": "motor_track",
+  "item_count": 27,
+  "original_checklist": {
+    "original_repository_relative_path": "fse/rq3_task_extension_20261002/measurement_preparation/motor_track_checklist.json",
+    "sha256": "9d673a6c41e40ea09d7f2826a3d7285e6b0d2a5880f17b1c52212bfe8f9c7a4a"
+  },
+  "items": [
+    {
+      "id": "MT-R01",
+      "ordinal": 1,
+      "requirement_original_text": "MT-R01. Application scope and stages.\r\nImplement the six declared application functions and owned globals. The application owns speed planning and actuation only, not camera recognition, laser drivers, encoders, physical PWM timers or PID helper internals. The caller may invoke speed_control() then motor_control(); motor_control() consumes the stored wheel targets/modes and must not implicitly run speed_control(). This explicit stage boundary makes the four declared modes independently usable.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 5,
+        "line_end_1based_inclusive": 6,
+        "byte_start_0based": 349,
+        "byte_end_0based_exclusive": 849,
+        "original_slice_sha256": "17de3a8d0ff0ebbc4108f9f3670801d1099f29f7e60cc2a0b54da218aaa94aa2"
+      }
+    },
+    {
+      "id": "MT-R02",
+      "ordinal": 2,
+      "requirement_original_text": "MT-R02. PWM initialization.\r\nmotor_init initializes exactly the four declared channels once each at 17000 Hz with zero duty. It does not perform control or write a nonzero duty. Do not require a particular order among these four initialization calls.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 8,
+        "line_end_1based_inclusive": 9,
+        "byte_start_0based": 851,
+        "byte_end_0based_exclusive": 1103,
+        "original_slice_sha256": "0ddee75c12a2e5ba57434fa53264d67e6dc9453132cabf889af99522092ae53e"
+      }
+    },
+    {
+      "id": "MT-R03",
+      "ordinal": 3,
+      "requirement_original_text": "MT-R03. Initial application state.\r\nAt process start all wheel numeric state, target_speed and clk are zero; both wheel modes are MODE_NORMAL. Initialize motor_pid_l/r to kp=7021, ki=10, kd=0, integral=0, previous error=0, maximum output/integral=50000. Initialize target_speed_pid to kp=5,ki=0,kd=30 and output/integral limits 5; posloop_pid to kp=200,ki=0,kd=0 and limits50000. Wheel brake/soft helper state starts zero. motor_init need not reset running controller state.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 11,
+        "line_end_1based_inclusive": 12,
+        "byte_start_0based": 1105,
+        "byte_end_0based_exclusive": 1581,
+        "original_slice_sha256": "4b547ceb55faaeb7a10a27bbf8d9b3ad1ef27c701084cd4bfba0ad1f05c6c6cc"
+      }
+    },
+    {
+      "id": "MT-R04",
+      "ordinal": 4,
+      "requirement_original_text": "MT-R04. Three-point geometry.\r\nradius_3pts returns the circumcircle radius of the three input points, in the coordinate unit, without modifying the arrays or application state. Inputs are finite noncollinear points whose determinant magnitude is at least 1e-6. Collinear/duplicate/NULL inputs are outside this task; no new error API is required.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 14,
+        "line_end_1based_inclusive": 15,
+        "byte_start_0based": 1583,
+        "byte_end_0based_exclusive": 1930,
+        "original_slice_sha256": "b78eb8a1a4db2b3903b47badf1353ca46cbaa44bc38385f3a1ce207b86eca91c"
+      }
+    },
+    {
+      "id": "MT-R05",
+      "ordinal": 5,
+      "requirement_original_text": "MT-R05. Encoder aggregation.\r\nget_total_encoder returns the mathematical average of the two cumulative encoder counts, truncated toward zero. Counts are signed 64-bit values in [-2^60,2^60], so their sum cannot overflow. It does not modify counts or control state.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 17,
+        "line_end_1based_inclusive": 18,
+        "byte_start_0based": 1932,
+        "byte_end_0based_exclusive": 2198,
+        "original_slice_sha256": "cdc918d03ff20ecb8f44445b9f61f92c7339ad5bd21f39ecb2585f5ad964c85a"
+      }
+    },
+    {
+      "id": "MT-R06",
+      "ordinal": 6,
+      "requirement_original_text": "MT-R06. Square signal.\r\nEach square_signal invocation first increments clk by one. If the resulting value exceeds10000, set clk=0. Set both wheel target speeds to20 for clk<2000,0 for2000<=clk<4000,15 for4000<=clk<6000,28 for6000<=clk<8000,0 for8000<=clk<10000. At exactly clk=10000 retain the previous two wheel target speeds. This preserves the supplied code boundary; clk counts invocations rather than proving elapsed hardware milliseconds. Do not change scalar target_speed, wheel modes or PWM.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 20,
+        "line_end_1based_inclusive": 21,
+        "byte_start_0based": 2200,
+        "byte_end_0based_exclusive": 2701,
+        "original_slice_sha256": "1bf8a5a6f41e90c8f3a3d0c32f3bfef6a15f263734c26f460ebb008b8ce499a4"
+      }
+    },
+    {
+      "id": "MT-R07",
+      "ordinal": 7,
+      "requirement_original_text": "MT-R07. Planning defaults and differential mapping.\r\nEvery speed_control call starts by assigning MODE_NORMAL to both wheels and diff=15.8*tan(angle*PI*2.4/180)/40/2. Apply the first matching decision in R08-R18 in the stated order, then the unconditional safety override R19, then assign left target=target_speed-diff*target_speed and right target=target_speed+diff*target_speed. diff is a local calculation, not an extra public API.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 23,
+        "line_end_1based_inclusive": 24,
+        "byte_start_0based": 2703,
+        "byte_end_0based_exclusive": 3139,
+        "original_slice_sha256": "1bfcc328a067ce31a4e867c41280f12c72e73a408ef68b7570c7e114abcf69f5"
+      }
+    },
+    {
+      "id": "MT-R08",
+      "ordinal": 8,
+      "requirement_original_text": "MT-R08. Animal stop and priority.\r\nHighest decision priority: when fa_type==ANIMAL and unsigned32(now_ms-animal_time_ms)<2500, set target_speed=0 and diff=0. The timestamp subtraction is modulo2^32; exactly2500 is expired. Other decisions cannot override this branch, except the equivalent final stop policy.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 26,
+        "line_end_1based_inclusive": 27,
+        "byte_start_0based": 3141,
+        "byte_end_0based_exclusive": 3451,
+        "original_slice_sha256": "b9328b65cb2e96dacdb62dffec462c881d0af4e4c2b28df9dba24648bb848936"
+      }
+    },
+    {
+      "id": "MT-R09",
+      "ordinal": 9,
+      "requirement_original_text": "MT-R09. Fruit/laser reverse.\r\nOtherwise, if fruit_delta<0 and (laser_angle<5 or laser_angle>175), set target_speed=-1. Boundaries5 and175 do not trigger. Retain the angular diff; this decision precedes tag, garage and ramp decisions.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 29,
+        "line_end_1based_inclusive": 30,
+        "byte_start_0based": 3453,
+        "byte_end_0based_exclusive": 3688,
+        "original_slice_sha256": "44e2f76cfefe785bde0cc067b7d649bd200479d673b0d1eb0bfaf87444e8c621"
+      }
+    },
+    {
+      "id": "MT-R10",
+      "ordinal": 10,
+      "requirement_original_text": "MT-R10. Tag search and stop.\r\nOtherwise TAG_SEARCH sets speed1. Otherwise TAG_STOP or TAG_SHOOTING sets speed0. These decisions precede AprilTag, garage, ramp and track decisions; retain the current differential ratio.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 32,
+        "line_end_1based_inclusive": 33,
+        "byte_start_0based": 3690,
+        "byte_end_0based_exclusive": 3910,
+        "original_slice_sha256": "fcdb58f1589ec67e86e7db2b8e7ac19efd4b407bb96c980661b80b4aa9d257a6"
+      }
+    },
+    {
+      "id": "MT-R11",
+      "ordinal": 11,
+      "requirement_original_text": "MT-R11. AprilTag behavior.\r\nOtherwise APRILTAG_FOUND sets speed0.5 and diff0. Otherwise APRILTAG_MAYBE sets speed1 with normal modes. A confirmed target is not a zero-speed stop.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 35,
+        "line_end_1based_inclusive": 36,
+        "byte_start_0based": 3912,
+        "byte_end_0based_exclusive": 4092,
+        "original_slice_sha256": "41414f349f9926f7ec9ceabd80948a93d5b4600cfbc86c7caf1514b2116b64aa"
+      }
+    },
+    {
+      "id": "MT-R12",
+      "ordinal": 12,
+      "requirement_original_text": "MT-R12. Garage behavior.\r\nOtherwise either GARAGE_OUT direction sets speed14 and MODE_SOFT on both wheels. Otherwise either GARAGE_IN direction sets speed10 with normal modes. Garage decisions precede ramp and track decisions.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 38,
+        "line_end_1based_inclusive": 39,
+        "byte_start_0based": 4094,
+        "byte_end_0based_exclusive": 4322,
+        "original_slice_sha256": "d2cbec67c0dd6a595e4b24a87cc4286671ed7bcb33d8377fadce4e43d5ff770e"
+      }
+    },
+    {
+      "id": "MT-R13",
+      "ordinal": 13,
+      "requirement_original_text": "MT-R13. Ramp mode.\r\nOtherwise enable_adc!=0 sets speed9 and both modes MODE_BANGBANG. It precedes Y-road, circle and geometry branches.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 41,
+        "line_end_1based_inclusive": 42,
+        "byte_start_0based": 4324,
+        "byte_end_0based_exclusive": 4461,
+        "original_slice_sha256": "c88d9a63e5763e2c6ef790acd0e38547f081754d38220ee5cb03b3910f655515"
+      }
+    },
+    {
+      "id": "MT-R14",
+      "ordinal": 14,
+      "requirement_original_text": "MT-R14. Y-road behavior.\r\nOtherwise YROAD_NEAR sets speed3. Otherwise YROAD_FOUND sets speed3. Both retain angular differential and normal modes.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 44,
+        "line_end_1based_inclusive": 45,
+        "byte_start_0based": 4463,
+        "byte_end_0based_exclusive": 4610,
+        "original_slice_sha256": "5f37bfbda21108ab1a7f5b65a5f964be4a4c8968af68254ae844689de7bc16c7"
+      }
+    },
+    {
+      "id": "MT-R15",
+      "ordinal": 15,
+      "requirement_original_text": "MT-R15. Persistent circle ramp.\r\nOtherwise a left/right circle-begin state sets target_speed=clamp(previous target_speed-0.02,11,17). Preserve target_speed between calls so repeated circle calls decelerate. Both modes remain normal.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 47,
+        "line_end_1based_inclusive": 48,
+        "byte_start_0based": 4612,
+        "byte_end_0based_exclusive": 4846,
+        "original_slice_sha256": "500f6ac450390231a90da5d4080fd63828a65b2fdce4a62be3dc43419a6582b7"
+      }
+    },
+    {
+      "id": "MT-R16",
+      "ordinal": 16,
+      "requirement_original_text": "MT-R16. Lookahead curve.\r\nOtherwise, if rptsn_num>20, choose id=min(70,rptsn_num-1), compute error=abs((rptsn[id][0]-rptsn[0][0])/(rptsn[id][1]-rptsn[0][1])), call pid_solve(&target_speed_pid,error) once and set target_speed=clamp(17-returned_value,9,17). The domain guarantees a nonzero denominator. Use the specified point, not always the last point.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 50,
+        "line_end_1based_inclusive": 51,
+        "byte_start_0based": 4848,
+        "byte_end_0based_exclusive": 5202,
+        "original_slice_sha256": "e116ece9223e1a879f792ed545171b0c0b77a079a10309d60a6528c04eaab9d5"
+      }
+    },
+    {
+      "id": "MT-R17",
+      "ordinal": 17,
+      "requirement_original_text": "MT-R17. Degraded lookahead.\r\nOtherwise, if5<rptsn_num<=20 set speed9. The constants NORMAL_SPEED=17 and NORMAL_MIN_SPEED=-8 are fixed for this task.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 53,
+        "line_end_1based_inclusive": 54,
+        "byte_start_0based": 5204,
+        "byte_end_0based_exclusive": 5354,
+        "original_slice_sha256": "52e5821ef5eb83a0c60093e49228cb44c6818b88f6f2ca5873529ff80edcb4d5"
+      }
+    },
+    {
+      "id": "MT-R18",
+      "ordinal": 18,
+      "requirement_original_text": "MT-R18. No matching decision.\r\nIf no earlier decision matches and rptsn_num<=5, retain the previous scalar target_speed while recomputing differential distribution and resetting modes to normal. Do not invent a new fallback motion decision.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 56,
+        "line_end_1based_inclusive": 57,
+        "byte_start_0based": 5356,
+        "byte_end_0based_exclusive": 5598,
+        "original_slice_sha256": "4ed4c822a63bd5122c8bab6c544218dafff15fd705fe8626de06bedfb300becb"
+      }
+    },
+    {
+      "id": "MT-R19",
+      "ordinal": 19,
+      "requirement_original_text": "MT-R19. Final safety override.\r\nAfter all branch selection, if garage==GARAGE_STOP OR (garage is neither OUT direction AND elec_data[0]+elec_data[1]<60), force target_speed=0,diff=0,and both modes normal. Exactly60 does not trigger. Both OUT directions are exempt from only the low-inductance condition; GARAGE_STOP always stops. This sets a braking target, not necessarily zero physical PWM when encoder feedback is nonzero.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 59,
+        "line_end_1based_inclusive": 60,
+        "byte_start_0based": 5600,
+        "byte_end_0based_exclusive": 6027,
+        "original_slice_sha256": "ef3287d46ad1a9b859f6358a64278beea0128a531b3d90df300af53e273d017f"
+      }
+    },
+    {
+      "id": "MT-R20",
+      "ordinal": 20,
+      "requirement_original_text": "MT-R20. Normal actuation.\r\nmotor_control computes each wheel error as its stored target_speed minus encoder_speed. MODE_NORMAL assigns duty=pid_solve(the corresponding motor_pid_l/r,error); preserve each controller integral/previous-error state across calls. It does not overwrite wheel targets or modes.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 62,
+        "line_end_1based_inclusive": 63,
+        "byte_start_0based": 6029,
+        "byte_end_0based_exclusive": 6335,
+        "original_slice_sha256": "01d45bd30008cec13a0d04c363da04b932896f2740200c2f307f0f3773977f0b"
+      }
+    },
+    {
+      "id": "MT-R21",
+      "ordinal": 21,
+      "requirement_original_text": "MT-R21. Bang-bang actuation.\r\nFor MODE_BANGBANG clear the corresponding normal PID out_i, and add bangbang_pid_solve(&wheel.brake_pid,error) to that wheel previous duty.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 65,
+        "line_end_1based_inclusive": 66,
+        "byte_start_0based": 6337,
+        "byte_end_0based_exclusive": 6508,
+        "original_slice_sha256": "1b39e1ddd8d2580f6675b50ed491698320e029f2aac0e9fcaa08e7bbbcce1b72"
+      }
+    },
+    {
+      "id": "MT-R22",
+      "ordinal": 22,
+      "requirement_original_text": "MT-R22. Soft actuation.\r\nFor MODE_SOFT clear the corresponding normal PID out_i, and add changable_pid_solve(&wheel.pid,error) to that wheel previous duty.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 68,
+        "line_end_1based_inclusive": 69,
+        "byte_start_0based": 6510,
+        "byte_end_0based_exclusive": 6667,
+        "original_slice_sha256": "d1677935a059c2f82589a7625f1c8f3a4d794e03a9935a2914cddb6dd2d5974e"
+      }
+    },
+    {
+      "id": "MT-R23",
+      "ordinal": 23,
+      "requirement_original_text": "MT-R23. Position-loop actuation.\r\nFor MODE_POSLOOP clear the corresponding normal PID out_i and assign duty=pid_solve(&posloop_pid,float(target_encoder-total_encoder)). The shared position helper has zero integral/derivative gains, so evaluation order between wheels does not change output. Caller-provided encoder differences remain in [-1000000,1000000].\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 71,
+        "line_end_1based_inclusive": 72,
+        "byte_start_0based": 6669,
+        "byte_end_0based_exclusive": 7027,
+        "original_slice_sha256": "65bf8f6d11d51ee7aa14a929ebda9f1be5d980eb54ed8fd8f688c4439b390c5e"
+      }
+    },
+    {
+      "id": "MT-R24",
+      "ordinal": 24,
+      "requirement_original_text": "MT-R24. Base duty saturation.\r\nAfter mode calculation clamp each signed duty to[-50000,50000]. Each wheel uses its own feedback and stored duty.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 74,
+        "line_end_1based_inclusive": 75,
+        "byte_start_0based": 7029,
+        "byte_end_0based_exclusive": 7175,
+        "original_slice_sha256": "f6bfa55a04faeecfe973538e2dae3e7b20c4b1b1ab6cb07048206776635c61e1"
+      }
+    },
+    {
+      "id": "MT-R25",
+      "ordinal": 25,
+      "requirement_original_text": "MT-R25. Angle protection.\r\nIf abs(angle)>10 and scalar target_speed-(left encoder_speed+right encoder_speed)/2<0, clamp each duty to[-50000,40000]. Otherwise if abs(angle)>10, clamp to[-40000,40000]. At exactly abs(angle)==10 apply only the base saturation. Preserve signed duty as the public observable.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 77,
+        "line_end_1based_inclusive": 78,
+        "byte_start_0based": 7177,
+        "byte_end_0based_exclusive": 7483,
+        "original_slice_sha256": "4b4793321ececbe6fc7a8a4d605c66eba1885d91203e3d91f335de8c531a4534"
+      }
+    },
+    {
+      "id": "MT-R26",
+      "ordinal": 26,
+      "requirement_original_text": "MT-R26. Complementary PWM observables.\r\nAfter saturation write both direction channels for each wheel. Nonnegative duty d writes forward=(uint32_t)d and reverse0; negative duty d writes forward0 and reverse=(uint32_t)(-d). Every control call writes all four channels, so stale reverse/forward values cannot survive a direction change. Finite fractional magnitudes truncate toward zero. Do not drive both direction channels with nonzero final values; no additional transient dead-time timing requirement is imposed.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 80,
+        "line_end_1based_inclusive": 81,
+        "byte_start_0based": 7485,
+        "byte_end_0based_exclusive": 8001,
+        "original_slice_sha256": "ad809d6449c96d2f4a27846eb40c96930dce8e21376e9664b8ba873c9c243acf"
+      }
+    },
+    {
+      "id": "MT-R27",
+      "ordinal": 27,
+      "requirement_original_text": "MT-R27. Stage ownership.\r\nspeed_control and the three utilities do not initialize or write PWM. motor_control does not read or modify planning flags/timestamps/points, nor call speed_control. The fixed application scheduler owns invocation timing; this is sequential host behavior, not concurrent race or real-time verification.\r\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/motor_track/RE_req.txt",
+        "original_sha256": "6da50918f2fcf4fd2d6d2bbbb6f8a47f3f766bdbf970093219c3387cb1b9aa6c",
+        "line_start_1based": 83,
+        "line_end_1based_inclusive": 84,
+        "byte_start_0based": 8003,
+        "byte_end_0based_exclusive": 8333,
+        "original_slice_sha256": "73ac8141954843a00ec4177fb07674b8a98c20eef57e385398b838e90c905034"
+      }
+    }
+  ],
+  "judgments_not_regenerated": true,
+  "source_text_and_item_order_preserved": true
+}

@@ -1,0 +1,1278 @@
+{
+  "identity": "crazyflie__deepseek-v4-pro__B_chatdev__r02",
+  "candidate_key": "6b18056b679eb1db3ee1e64d30a1eb612485a6dbead60165a8bc318411ed20d8",
+  "completed_at": "2026-10-03T13:45:35.565344+08:00",
+  "review_mode": "Codex assisted static review of unchanged code; ignore whole-build blockage only; no model API calls",
+  "human_review_status": "pending",
+  "total_cases": 100,
+  "counts": {
+    "pass": 46,
+    "fail": 47,
+    "uncertain": 7,
+    "not_applicable": 0
+  },
+  "applicable_denominator": 100,
+  "assisted_fraction": "23/50",
+  "assisted_percent": 46.0,
+  "host_pass": false,
+  "host_gated_fraction": "0",
+  "input_manifest_sha256": "2afc9e770e86bac7b1f68b964afa6aaf4f3a060bb1f7a44361868d761d9d256a",
+  "review_sources": {
+    "fse\\rq1_chatdev_deepseek_static_20261003\\numeric_control_review.json": "46921ab09fa2d33d5c929111099324c12649adb712ac3446a8e6543c57f8f993",
+    "fse\\rq1_chatdev_deepseek_static_20261003\\lifecycle_io_review.json": "8e0e3e7296671a6649506b4b54e707fafbdbecd1f50f714696caebb3045d2314",
+    "fse\\rq1_chatdev_deepseek_static_20261003\\integration_review.json": "5c2ddd6fd6be3c12ff8e8fe3b4f318499a63621ba66ae2d736178931ce5cfc5d"
+  },
+  "code_sha256": {
+    "6_generated_code.h": "184ff1eb838b6ccab6603f0defbbea9e3ff52f1e1abe8523443e23ce9341f523",
+    "crazyflie_internal.h": "99d9b3588c40001b56f8bbdc2997a0470c991f2e7bc11b2c621219f03ab5ac07",
+    "crazyflie_sensfusion6.c": "e597fa3a6537ed2296f6a951a405654b5480c415c5a1026b879ac14e7906675a",
+    "crazyflie_power.c": "91d48df025815d454f7b5f09fba84b381b1646ccd045619d1cfb91b81a8f6d34",
+    "crazyflie_control.c": "4cae64371934321ebb7d28924fb61cc686bd82a07ad5f158dfe4ec223527a127",
+    "crazyflie_commander_rpyt.c": "ae0ca7816275c538f6486b5431e13629cff233b6384bc8e0d9b3fec671639b80",
+    "crazyflie_supervisor.c": "4d1279f4c4b7a4f12cf27359ee577074e74d70b5af6d6ed9cc1a536f7407cc2f",
+    "crazyflie_estimator_commander.c": "23bde9752f08e9cfe4ad27caf747eec2895d637d8e78751ad1f79cd0d198847b",
+    "crazyflie_stabilizer.c": "c05e092ceb0c07ba4a38edbddb0e4fdf56333628176bf6e068c5045dc4c1d623",
+    "crazyflie_health.c": "e4f7e389e306487ad6dd69014eef01bf4432eda73460f22214d2b7bd3aa9768e",
+    "crazyflie_crtp.c": "023ad7b7454529f0ef0fcb3a9264f7935ae29dafd70ba18cbf146629847a3c1d",
+    "crazyflie_deck_log.c": "6a61ed1b43391bbced533ec4f09fbd155394ba094530f18ff10ee5f57bd29a67"
+  },
+  "cases": [
+    {
+      "id": "CF-NUM-01",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_sensfusion6.c:33-42 - Compares against >32767 and <-32767 before converting an in-range value to int16_t."
+      ],
+      "rationale": "The input type is int32_t. The upper and lower branches apply symmetric saturation, raising -32768 to -32767 and returning in-range values unchanged. The piecewise function is monotonic and does not narrow the value before checking the bounds, avoiding wraparound.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-NUM-02",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_sensfusion6.c:44-53 - Uses floating-point loops that add or subtract 360; modifies an angle only when it is strictly above +180 or below -180."
+      ],
+      "rationale": "For the non-boundary signed angles and whole-turn offsets specified by this case, normalization preserves periodic equivalence and produces a value in the closed interval. Exact +180 and -180 are both unchanged. Endpoint signs follow the original requirement; +180 and -180 are not required to become the same numerical value. Failure to make progress for extremely large finite values is recorded separately in CF-NUM-03.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.96,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SF-01",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_sensfusion6.c:103-130 - Short-circuits at entry when initialized; on the first call sets the identity quaternion, clears the three integrals, and sets the initialization flag.",
+        "crazyflie_sensfusion6.c:133-135 - sensfusion6Test returns the actual global initialization flag."
+      ],
+      "rationale": "The first initialization establishes the required state. A subsequent call after updates returns immediately because the flag is true, preserving the running quaternion and integrals. The test entry point exposes that flag.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SF-02",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_sensfusion6.c:194-210 - Integrates directly in float and then sums four squared components. The only protection is norm<1e-6; there is no overflow or non-finite check."
+      ],
+      "rationale": "A counterexample exists within the finite input domain: with an identity initial quaternion, acc=(0,0,0), gx=1e20f, gy=gz=0, and dt=1, qx is approximately 5e19. Squaring qx exceeds the binary32 range, making norm infinity and its reciprocal zero. Normalization therefore produces an all-zero quaternion whose norm is no longer approximately 1. Larger finite products can also yield NaN through Inf*0. This is a static derivation from floating-point semantics, not an executed test. The case specifies no upper bound on sensor values or dt.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.94,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SF-03",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_sensfusion6.c:157-187 - Skips the entire accelerometer normalization and feedback branch when the acceleration norm is below 1e-6.",
+        "crazyflie_sensfusion6.c:189-213 - Gyroscope integration and quaternion normalization still execute after that branch."
+      ],
+      "rationale": "Zero acceleration on all three axes causes neither division by its norm nor accelerometer correction. With ordinary nonzero angular velocity and positive dt, subsequent integration still occurs. This judgment does not extend the guarantee to extreme floating-point values.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SF-04",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_sensfusion6.c:25-27 - twoKp/twoKi/beta are only defined as 0.8/0.002/0.01.",
+        "crazyflie_sensfusion6.c:157-187 - The update contains only Mahony-style PI feedback; clearing the integral when twoKi is disabled is inside the nonzero-acceleration branch.",
+        "crazyflie_sensfusion6.c:138-221 - The function has no CONFIG_IMU_MADGWICK_QUATERNION conditional branch or beta-based gradient calculation."
+      ],
+      "rationale": "Madgwick mode is not implemented, and beta is never used in the update. Declaring the parameter alone does not satisfy the oracle. Moreover, when an integral is already nonzero, twoKi=0 and acc=0 bypass lines 179-181, leaving the integral uncleared.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SF-05",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_sensfusion6.c:125-128 - The first initialization sets baseZacc=0 and calibrated=false.",
+        "crazyflie_sensfusion6.c:213-218 - After updating the current gravity vector, saves the acceleration dot product and sets the flag to true only when !sensfusion6IsCalibrated."
+      ],
+      "rationale": "The case supplies a valid acceleration update followed by a different valid sample. Once the first update establishes the baseline, the flag prevents repeated calibration. Zero acceleration can also trigger premature calibration, but this judgment does not claim to cover that preceding input sequence.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.96,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SF-06",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_sensfusion6.c:223-241 - Derives gravity components and Euler angles directly from qw/qx/qy/qz at call time, clamping to [-1,1] before asinf.",
+        "crazyflie_sensfusion6.c:73-86 - Computes gravity from the supplied quaternion; the identity quaternion gives (0,0,1)."
+      ],
+      "rationale": "The Euler path does not depend on stale gravityX/Y/Z. With all output pointers valid, it returns angles for the current quaternion. The asin domain is protected, and the gravity formula satisfies the identity-orientation requirement.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PWR-01",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_power.c:13-21 - Promotes roll/pitch/yaw/thrust to int32_t, divides r/p by 2, and directly writes the four signed combinations.",
+        "6_generated_code.h:98 - All four MotorPower channels have type int32_t."
+      ],
+      "rationale": "The four formulas are t-r+p+y, t-r-p-y, t+r-p+y, and t+r+p-y, matching the requirement. There is no premature clamping, so negative intermediates and legitimate values above 65535 remain available to the later clipping stage.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PWR-02",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_power.c:90-128 - Dispatches by controlMode to Legacy, ForceTorque, or Force; other values do not write outputs.",
+        "crazyflie_power.c:58-73 - Force mode first clamps each channel to [0,1], then multiplies by 65535 and converts to uint16_t.",
+        "crazyflie_power.c:102-115 - The SI branch invokes ForceTorque and then motorForceToPwm for each channel."
+      ],
+      "rationale": "Each of the three modes uses its own fields and conversion path. An unknown mode reaches the end without changing the caller's existing output. This case concerns ordinary finite inputs in the frozen modes; it does not assume an unspecified policy for NaN inputs.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PWR-03",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_power.c:32-45 - Retains thrustPart and initializes roll/pitch/yaw components to zero, computing each only when its own denominator is nonzero.",
+        "crazyflie_power.c:47-55 - The combination retains the other valid components and only then clamps negative motor forces to zero."
+      ],
+      "rationale": "armLength=0 removes only the roll/pitch terms, while thrustToTorque=0 removes only the yaw term. Each avoids its corresponding division by zero without converting quantities in newtons directly to arbitrary PWM values.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PWR-04",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_power.c:148-164 - Finds the maximum and returns false immediately when max<=maxAllowed; establishes a common reduction only above that bound.",
+        "crazyflie_power.c:130-135 - capMinThrust returns the greater of value and idleThrust."
+      ],
+      "rationale": "A value equal to the upper limit is not clipped. Above the limit, all four channels subtract the same excess and individually apply the idle lower bound. For 70000 and 65535, reduction=4465; a low channel that becomes negative is restored to idle.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PWR-05",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_supervisor.c:121-127 - Motor permission depends only on supervisorState, without checking emergency/crashed bits or gArmed.",
+        "crazyflie_supervisor.c:400-405 - States including ReadyToFly/Flying return before reading fault conditions and do not clear the setpoint.",
+        "crazyflie_supervisor.c:601 - A normal update also passes three false values to updateAndPopulateConditions, clearing an already-set emergency-stop condition.",
+        "crazyflie_stabilizer.c:141-174 - When CanFly is true and the state permits motors, nonzero mixed control values continue to be published to all four motor channels."
+      ],
+      "rationale": "The ordinary locked-state path can produce zero output. However, in Flying/ReadyToFly, newly set emergency/fault bits do not suffice to disable motors: the override function returns early, the permission function remains true, and no actual safety-state transition occurs. Thus the universal requirement for all physical outputs to be zero when locked, emergency-stopped, or subject to a safety fault fails.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PWR-06",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_power.c:169-171 - The first-order filter correctly computes old+alpha*(supply-old).",
+        "crazyflie_power.c:174-190 - In addition to actual<=0, nominal<=0 also returns the original thrust. The other branch applies scaling, endpoint limits, and rounding."
+      ],
+      "rationale": "Preserving thrust for actual<=0 and compensating ordinary positive voltages are correct, but the requirement exempts only actual<=0. With actual=4, nominal=-1, and motorThrust=1000, the documented formula gives negative compensated thrust that should clamp to 0; the nominal<=0 branch instead returns 1000. nominal=0 likewise violates the formula. The case explicitly includes zero/negative voltage inputs, so the case cannot pass overall.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.96,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PID-01",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_control.c:68-113 - Initially invokes pidReset on six objects and sets initialized; gAttitudeControllerInitialized makes repeated initialization return immediately.",
+        "crazyflie_control.c:23-32 - Reset clears the integral, previous error, and output, and sets the object initialization flag.",
+        "crazyflie_control.c:116-129 - All three rate outputs pass through saturateSignedInt16."
+      ],
+      "rationale": "This satisfies initial establishment of the six objects, preservation of history on repeated calls, and the symmetric int16 saturation path for the three rate outputs. Zero default gains are not part of this case's specified numerical oracle. The conversion defect before saturation for values beyond int32 is recorded separately in CF-PID-07.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.96,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PID-02",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_control.c:240-264 - The velocity branch updates gDesiredYaw; Abs/quaternion branches assign an angle directly; nonzero yawMaxDelta clamps the desired angle.",
+        "crazyflie_control.c:291-298 - The actual velocity-mode rate setpoint directly equals setpoint.attitudeRate.yaw, entirely bypassing integrated/clamped desiredYaw.",
+        "crazyflie_control.c:300-314 - The actuator consumes only that yawDesiredRate."
+      ],
+      "rationale": "Yaw integration and angle-clamping assignments exist, but the velocity control path never consumes their result. For example, with state.yaw=0, positive yaw rate, and yawMaxDelta=1, accumulated desiredYaw is limited while the rate target remains unchanged; enabling or disabling this clamp has no actuator effect in that branch. An assignment disconnected from actual control does not establish the required stateful yaw integration/clamping. The separate Abs and quaternion branches are implemented.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.92,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PID-03",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_control.c:224-238 - For input thrust=0, clears control, invokes ResetAll, synchronizes gDesiredYaw to state.yaw, sets gPositionIntegral=0, and returns.",
+        "crazyflie_control.c:143-155 - ResetAll invokes pidReset on six objects, clearing all attitude/rate history."
+      ],
+      "rationale": "In this case's sequence of nonzero manual control followed by zero thrust, all four actuator quantities become zero, attitude and position integrals are cleared, and desiredYaw is synchronized to the current yaw before resumption. The distinct oracle concerning ResetAll's unused attitude parameters is recorded in CF-PID-06.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PID-04",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_control.c:186-213 - positionControllerUpdate computes from z-position/velocity errors and does not merely copy manual thrust.",
+        "crazyflie_control.c:227-237 - Before checking z mode, setpoint.thrust==0 always clears output and returns.",
+        "crazyflie_control.c:316-319 - Dispatch to position-derived thrust by z mode is reached only after the early-return condition.",
+        "crazyflie_commander_rpyt.c:70-80,108-122 - Normal AltHold and PosSet both set manual thrust to 0."
+      ],
+      "rationale": "The position submodule exists, but the standard z-enabled output path is intercepted when raw/manual thrust is 0. Valid AltHold/PosSet inputs therefore never reach position-derived thrust. The manual z/x/y branches cannot substitute for this required behavior. The code also supplies no explicit runtime injection hook; replaceable test output cannot be assumed from comments.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PID-05",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_control.c:300-303 - pitchActual explicitly receives -sensors->gyro.y, while roll/yaw retain their own original directions.",
+        "crazyflie_control.c:308-314 - After reading the three actuator values, only yaw applies -(int32_t)yawOut followed by saturation.",
+        "crazyflie_control.c:224-237 - Zero thrust immediately returns all-zero control."
+      ],
+      "rationale": "The pitch measurement sign matches the requirement. Legacy yaw is negated once at final control assignment, without a second inversion. Negating a zero rate output still gives zero. This judgment does not incorrectly require zero output for zero error with nonzero historical integral state.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-RPYT-01",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_estimator_commander.c:193-198 - Accepting DISABLE does set thrustLocked=true.",
+        "crazyflie_commander_rpyt.c:50-59 - The decoder unlocks only when rawThrust==0; it neither reads commanderGetActivePriority nor relocks according to DISABLE.",
+        "crazyflie_commander_rpyt.c:88-92 - Output depends only on current thrustLocked and the raw threshold."
+      ],
+      "rationale": "This is not inferred merely from a missing keyword: the first cross-module DISABLE does lock thrust. A reachable counterexample is DISABLE, then decoding raw=0 to unlock while active priority remains DISABLE, then decoding raw=5000. The output is 5000 because the decoder does not relock for the current disabled priority. Zero-packet unlocking and low-threshold behavior exist, but the complete constraint while DISABLE remains active fails.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.96,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-RPYT-02",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_commander_rpyt.c:70-85 - AltHold maps to z velocity, thrust=0, and (raw-32767)/32767, with commanderModeSet tracking first entry and exit.",
+        "crazyflie_commander_rpyt.c:29-33 - The called resetPositionControllerForCommander is an empty function.",
+        "crazyflie_control.c:21,200-204 - The actual position integral gPositionIntegral is static state in another module and is unaffected by the empty reset."
+      ],
+      "rationale": "Mode mapping and entry/exit flags are correct, but the position PID/filter reset required on first entry has no implementation. Avoiding repeated calls to the empty function during continuing AltHold does not compensate for the missing initial state reset.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-RPYT-03",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_commander_rpyt.c:94-105 - posHold precedes posSet and the default stabilization branch and returns when complete.",
+        "crazyflie_commander_rpyt.c:108-122 - posSet requires posSetMode && rawThrust!=0; default RATE/ANGLE handling follows it."
+      ],
+      "rationale": "Priority is explicit for the overlapping PosHold/PosSet/stabilization combinations listed by this case. PosSet+raw=0 does not enter position mode and correctly falls through to the default mode. Other AltHold defects do not replace this branch-specific judgment.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-RPYT-04",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_commander_rpyt.c:14-26 - rotateYaw converts degrees to radians and uses standard two-dimensional rotation.",
+        "crazyflie_commander_rpyt.c:61-68 - PLUSMODE rotates by 45 degrees and XMODE leaves values unchanged; CAREFREE instead performs ordinary rotation directly using the command yaw."
+      ],
+      "rationale": "The first two modes conform, but CAREFREE has no assertion, error state, or error-return path and instead provides a deterministic rotation not authorized by the requirement. A comment claiming observability cannot substitute for an actual error signal.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-EST-01",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_estimator_commander.c:15-20 - Defines a fixed 16-slot FIFO with head/tail/count.",
+        "crazyflie_estimator_commander.c:35-64 - Full/empty/NULL checks return false before reads, writes, or count changes; successful operations advance indices modulo 16."
+      ],
+      "rationale": "Capacity is exactly 16; a seventeenth enqueue without a dequeue does not alter existing data. Dequeue order follows head and preserves FIFO order. Reading again after draining does not corrupt the destination or queue state.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-EST-02",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_estimator_commander.c:97-121 - while(estimatorDequeue) drains the queue and updates each valid type's s_last* value and has flag in order.",
+        "crazyflie_estimator_commander.c:22-29 - Gyro/acc/baro/TOF each have independent storage for their last measurement."
+      ],
+      "rationale": "Mixed and repeated types are dequeued in FIFO order. The last sample of a type replaces earlier samples of that type, while different types do not overwrite one another; count is zero at the end. Adequate use of TOF/baro in fusion is a different behavior and does not affect this case's drain-and-retain-last-value requirement.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-EST-03",
+      "verdict": "pass",
+      "code_evidence": [
+        "6_generated_code.h:21-24 - RATE_250_HZ=4 and RATE_100_HZ=10; the macro takes step modulo the divider.",
+        "crazyflie_estimator_commander.c:123-166 - Fusion, Euler/Quaternion output, and vertical velocity are all within the 250 Hz gate.",
+        "crazyflie_estimator_commander.c:168-170 - z-position integration is only within the 100 Hz gate."
+      ],
+      "rationale": "The gates are independent: step=4 updates fusion-related quantities only, step=10 updates position only, and step=20 can update both. Unmatched steps only drain the queue without modifying the corresponding state outputs. This judgment concerns rate division only and does not establish the missing horizontal-estimation algorithm.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-EST-04",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_estimator_commander.c:183-214 - DISABLE unconditionally replaces the active command; an ordinary priority replaces it only when >=active, recording g_systemTickMs.",
+        "crazyflie_estimator_commander.c:230-232 - The getter returns the actual active priority.",
+        "crazyflie_internal.h:7; crazyflie_stabilizer.c:12 - The millisecond tick has an actual shared declaration and definition."
+      ],
+      "rationale": "A non-null setpoint at equal or higher ordinary priority is accepted and refreshes the timestamp. A lower ordinary priority changes neither the active setpoint nor its timestamp. DISABLE overrides even when numerically lower and becomes the active priority.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-NUM-03",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_sensfusion6.c:44-51 - Normalizes only by repeated float addition/subtraction of 360, with no fmodf, magnitude bound, or no-progress exit."
+      ],
+      "rationale": "For the finite binary32 counterexample 1e20f, the spacing between adjacent representable values is much greater than 360. angle_deg-=360.0f rounds back to the original value, so the loop never progresses; -1e20f behaves similarly. Ordinary inputs spanning a few turns terminate, but the case supplies no upper bound, so universal termination for large but finite values is not guaranteed. This nonterminating call was not executed.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.94,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SF-07",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_sensfusion6.c:223-227 - Euler returns entirely if any output pointer is NULL.",
+        "crazyflie_sensfusion6.c:244-253 - Quaternion likewise returns entirely instead of protecting its four optional outputs separately."
+      ],
+      "rationale": "NULL dereferences and global corruption are avoided, but supplying one NULL pointer with the remaining outputs valid prevents every valid output from being updated. Caller sentinel values remain, violating the requirement that available outputs remain correct.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SF-08",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_sensfusion6.c:256-267 - Each GetAccZ call derives gravity from the current quaternion and computes the dot product; WithoutGravity additionally subtracts global baseZacc.",
+        "crazyflie_sensfusion6.c:12-31,125-128 - Static and first-initialization quaternion/baseline values are deterministic; the initial base is 0.",
+        "crazyflie_sensfusion6.c:215-218 - The baseline is not replaced after calibration completes."
+      ],
+      "rationale": "Before calibration, calculation uses a deterministic zero baseline. After valid calibration and for subsequent different samples, it projects using the current orientation and subtracts the retained baseline. This judgment does not establish calibration validity for an abnormal first sample.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.96,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PWR-07",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_power.c:32-55 - SI thrust/torque first form four X-frame motor forces in newtons using arm and thrustToTorque; negative values are removed only after combination.",
+        "crazyflie_power.c:76-87 - motorForceToPwm first divides by CRAZYFLIE_MAX_MOTOR_FORCE_N to obtain a dimensionless ratio, then multiplies by 65535.",
+        "crazyflie_power.c:102-114; 6_generated_code.h:30-32 - Dispatch uses the frozen arm length, torque ratio, and maximum-motor-force constants."
+      ],
+      "rationale": "The actual path preserves the roles of newtons, metres, and the torque coefficient; it does not multiply a quantity in newtons directly by 65535. Negative-force clamping occurs after complete X-frame mixing.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PWR-08",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:157-174 - The ordinary path initializes an all-zero array and performs clipping/publication only when motorsAllowed; a locked state can retain four zero outputs.",
+        "crazyflie_supervisor.c:121-127,400-405 - Emergency-stop conditions in Flying/ReadyToFly do not actually inhibit output; nonzero mixing can still be published.",
+        "crazyflie_stabilizer.c:120-123; crazyflie_health.c:109-193 - The Health branch returns before the common safety-output stage and does not update motor logs, potentially retaining previous nonzero outputs."
+      ],
+      "rationale": "Once zero reaches the ordinary final stage, cap(idle=0) does not raise it again. However, the system does not guarantee that every safety condition reaches this zeroing path. An emergency stop with state still Flying can retain a nonzero command. Likewise, after nonzero motor output, locking and then submitting a Health request can leave the old output through early return. The main loop also never invokes batteryCompensation; an unexecuted stage cannot establish the complete postcondition.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PID-06",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_control.c:158-169 - A single-axis reset changes only that axis's attitude/rate objects, preserving the other two axes.",
+        "crazyflie_control.c:143-155 - ResetAll explicitly discards rollActual/pitchActual/yawActual and zeroes all six objects."
+      ],
+      "rationale": "Axes are isolated and ResetAll also clears rate PIDs, but the requirement to use the current attitude is not implemented: all three current-attitude parameters are discarded via (void). The missing current-attitude state cannot be supplied by the reviewer, so the full set of oracles is not satisfied.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-PID-07",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_control.c:120-129 - Floating-point PID output passes through lrintf and then int32_t conversion before int16 saturation.",
+        "crazyflie_control.c:174-182 - The getter repeats the same conversion-before-saturation path.",
+        "crazyflie_control.c:308-314 - Yaw coordinate conversion does occur later but cannot repair an earlier conversion error."
+      ],
+      "rationale": "Ordinary errors such as 50000 can saturate correctly. However, a finite PID output of 3e9 exceeds the Windows 32-bit long/int32 range. lrintf/narrowing occurs before saturation, so the correct positive sign or value is no longer guaranteed. The case explicitly requires no wraparound before saturation, but the implementation neither clamps to +/-32767 in the floating-point domain first nor guards out-of-range conversion. The extreme-value call was not executed.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.94,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-RPYT-05",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_commander_rpyt.c:125-138 - Roll/Pitch RATE selects modeVelocity and preserves the respective signs; ANGLE selects modeAbs/attitude.",
+        "crazyflie_commander_rpyt.c:141-146 - Yaw RATE separately uses -yaw; ANGLE uses the original yaw."
+      ],
+      "rationale": "The default branch selects rate versus angle mode per axis. Yaw-rate inversion does not extend to roll/pitch. PLUS/X coordinate-preprocessing issues are handled by their dedicated mode cases.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-RPYT-06",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_commander_rpyt.c:108-122 - With nonzero raw thrust in PosSet, x/y/z are Abs, roll/pitch are Disable, and yaw is Abs.",
+        "crazyflie_commander_rpyt.c:116-120 - position=(-pitch,roll,rawThrust/1000), attitude.yaw uses raw yaw, and final thrust=0."
+      ],
+      "rationale": "In the normal PosSet branch assessed here, all three position mappings, the negative pitch sign, mode settings, and final zero manual thrust meet the requirement. The erroneous downstream controller early return is the cross-module defect in CF-PID-04 and does not negate implementation of this function's mapping.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-RPYT-07",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_commander_rpyt.c:57-59,88-92 - raw=0 unlocks. Outside AltHold, locked thrust or raw<MIN_THRUST gives zero; otherwise output is min(raw,MAX_THRUST).",
+        "6_generated_code.h:7-8 - MIN_THRUST=1000 and MAX_THRUST=60000."
+      ],
+      "rationale": "Given the actual lock state, values below the threshold become zero, 1000..60000 are retained, and values above 60000 are clamped. Synchronization of the lock with DISABLE priority fails separately in CF-RPYT-01.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-EST-05",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_estimator_commander.c:193-205 - Accepting a setpoint stores the current tick; rejection of lower priority leaves the timestamp unchanged.",
+        "crazyflie_estimator_commander.c:221-227 - lastUpdateTick==0 returns 0 immediately, without distinguishing a command legitimately accepted at tick=0."
+      ],
+      "rationale": "Differences and refresh behavior are correct at nonzero ticks. However, after the first command is legitimately accepted at tick=0, a query at tick=100 should give 100 but instead keeps returning 0, violating currentTick-lastUpdate. The requirement does not exclude tick=0. This is an actual state boundary, not speculation based on compilation.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.98,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-EST-06",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_estimator_commander.c:33,189-190,206-207 - g_highLevelSetpointActive is only a private flag; it is assigned but never read.",
+        "crazyflie_stabilizer.c:91-99,125-128 - The high-level pending setpoint is separate static state; the flag neither cancels it nor drives any trajectory-stop function.",
+        "crazyflie_estimator_commander.c:193-198,230-232 - DISABLE override and priority retrieval are implemented."
+      ],
+      "rationale": "Higher-priority and DISABLE arbitration can replace the active command. However, the required high-level trajectory stop consists only of a never-consumed Boolean assignment, without trajectory-state synchronization or cancellation. A flag name is not functional evidence. In particular, the pending high-level state is not cleared by this stopping branch. Satisfying the other two oracles is insufficient for this case to pass.",
+      "ignored_build_obstacle": "Only the whole-build obstacle is set aside: crazyflie_health.c:180 uses g_systemTickMs without a declaration visible in that translation unit. An actual non-static definition of the same name exists at crazyflie_stabilizer.c:12 and an extern declaration at crazyflie_internal.h:7, but health.c:2 does not include that internal header. No declaration was added and no code was modified. This compilation obstacle does not automatically make every functional case fail.",
+      "confidence": 0.95,
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-01",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_supervisor.c:98-128 — CanFly admits ReadyToFly/Flying/WarningLevelOut/Landed; CanArm admits only PreFlChecksPassed; motor permission additionally admits Arming; IsArmed/IsCrashed return current stored flags."
+      ],
+      "rationale": "Each explicit state-membership set and the two flag getters matches RE_req §7; no unsafe extra state is included.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-02",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_supervisor.c:174-197 — an already armed Arming request returns true unchanged; forbidden states return false before mutation; an allowed request sets gArmed, Arming state and ARMED bit."
+      ],
+      "rationale": "The permitted arming transition, forbidden-state nonmutation and repeated successful request are implemented. Disarming is a separate doArm=false branch.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-03",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_supervisor.c:199-214 — tumbled rejects before mutation; doRecovery=true clears gCrashed/CRASHED bit; false sets both and returns true."
+      ],
+      "rationale": "All three documented crash-recovery branches are explicit and consistent.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-04",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_supervisor.c:43-44,216-237 — independent sFlightSeen distinguishes an event at tick zero from no event, and elapsed time must be strictly below the threshold.",
+        "6_generated_code.h:25 — IS_FLYING_HYSTERESIS_THRESHOLD is 2000."
+      ],
+      "rationale": "Never-seen returns false; any motor above idle updates the timestamp including tick zero. With no new event, 1999 ms remains true and 2000 ms returns false.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-05",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_supervisor.c:239-306 — enabled checks separately latch crash on acceleration-norm deviation; freefall sets its output/bit while returning false for tumble and resetting tumble timing; tilt/inversion select durations; upright and disabled checks clear tumble/timer."
+      ],
+      "rationale": "For the independent enabled crash/freefall/tilt/inversion scenarios, crash and tumble are distinct. The disabled-tumble branch returns false. This verdict does not establish complete Supervisor state-transition integration, assessed separately.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-06",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_supervisor.c:537-542 — supervisorConfigureArming stores caller-provided autoArming and duration.",
+        "crazyflie_supervisor.c:576-587,601-602 — detects entry into PreFlChecksPassed, invokes supervisorRequestArming(true) only if enabled, and clears gArmed outside the allowed retention states."
+      ],
+      "rationale": "The public configuration controls auto arming, reuses the explicit arming path, and implements required arming cleanup; the previous-state value is persisted.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-07",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_supervisor.c:174-197,537-542 — arming captures current tick and the public configuration supplies the spinup duration.",
+        "crazyflie_supervisor.c:589-599 — timeout is evaluated only for Arming with a nonzero start and configured nonzero duration, using >=; outside Arming start and condition are cleared."
+      ],
+      "rationale": "For an active configured spinup period, T-1 is clear and T is set; the zero start sentinel suppresses timeout, and exiting Arming clears the timer and bit. The period is not a hard-coded fixture constant.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-08",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_supervisor.c:309-318 — the helper correctly returns health (zero notification or elapsed <=1000).",
+        "crazyflie_supervisor.c:601 — the update caller passes false for emergencyStopWatchdogFailed; no call of checkEmergencyStopWatchdog or explicit health negation exists elsewhere in the candidate."
+      ],
+      "rationale": "The helper satisfies the numeric health convention, but the required caller-side negation/condition construction is absent. A stale watchdog notification cannot cause a watchdog failure through supervisorUpdate.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-09",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_supervisor.c:320-340 — preflight/landing helpers merely return booleans and do not publish condition bits.",
+        "crazyflie_supervisor.c:343-390,563-574,601 — warning and shutdown comparisons exist, but preflight/landing conditions are never updated and all three stop inputs supplied by supervisorUpdate are false.",
+        "crazyflie_estimator_commander.c:221-227 — an actual command accepted at tick zero is treated as zero inactivity forever until another update."
+      ],
+      "rationale": "The complete timeout/stop partition is missing. For example, a preflight deadline may be reached while the PREFLIGHT_TIMEOUT bit remains unchanged; an injected external EMERGENCY_STOP bit is cleared by the next hard-coded false update. Commander tick-zero aging also defeats warning/shutdown thresholds.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-10",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_supervisor.c:392-435 — allowed states return unchanged; WarningLevelOut zeros the setpoint but restores z mode/thrust/position/velocity and sets level roll/pitch plus zero-rate yaw; all other states become zero."
+      ],
+      "rationale": "The required warning-level lateral disable and height preservation, allowed-state preservation, and other-state zero behavior are explicitly implemented for the frozen Setpoint fields.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-11",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_supervisor.c:130-171 — the nominal bit positions 0..11 are correct and non-aliasing.",
+        "crazyflie_supervisor.c:35-38,82-85 — trajectoryFlying/trajectoryFinished/trajectoryDisabled/deckFault are private flags only initialized to false; the complete code contains no assignments from real trajectory/deck inputs."
+      ],
+      "rationale": "The all-input toggle scenario cannot be supported by the candidate: bits 8..11 always remain zero through its implemented API paths. Correct shift constants alone do not implement the required observable flag behavior.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-STAB-01",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:26-31 — all six initialization wrappers are empty.",
+        "crazyflie_stabilizer.c:65-89 — calls the named wrappers in order and uses an idempotence guard, but creates no control or supervision task."
+      ],
+      "rationale": "Ordering and repeat protection are present, but task creation and observable initialization are absent; declarations and empty wrapper calls do not satisfy the complete initialization oracle.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-STAB-02",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:131-174 — sensor/estimator/commander/supervisor/controller/mixing/cap/publication order is visible, but there is no batteryCompensation call between mixing and capping.",
+        "crazyflie_power.c:169 — batteryCompensation exists as a separate helper, unused in the stabilizer loop."
+      ],
+      "rationale": "The required battery-compensation stage is skipped. Therefore the complete mandated normal-loop sequence is not preserved even though override precedes control and cap precedes publication.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-STAB-03",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:125-145 — pending HIGHLEVEL commands are submitted and consumed before checking supervisorCanFly.",
+        "crazyflie_stabilizer.c:157-174 — motorsAllowed=false correctly keeps published ratios zero."
+      ],
+      "rationale": "The final motor guard is present, but CanFly=false does not block the new high-level command: it has already mutated commander state before the guard clears only the local setpoint. The unsafe-command oracle therefore fails.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-STAB-04",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:180-209 — positions and velocities multiply by 1000; acceleration x/y by9810 and z uses (z+1)*9810; gyro uses PI/180*1000 with negative y; quaternion is passed to quatcompress.",
+        "crazyflie_stabilizer.c:45-63 — quatcompress returns an implemented packed 32-bit value."
+      ],
+      "rationale": "The listed scaling, signs, gravity offset and quaternion-compression call are all explicit. The case does not specify an alternative exact quaternion packing layout.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-STAB-05",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:211-225 — rate validation accepts inclusive [997,1003], but the task only updates s_lastRateSupervisorTick every2000 ticks and has no sensor-activity branch or assert/error state."
+      ],
+      "rationale": "Both rate boundaries are correct, but active-sensor timeout and paused-sensor timeout are indistinguishable; an active overdue sensor produces no failure.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-HEALTH-01",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_health.c:23-65 — public prop/battery request functions set pending flags; ShallWeRunTest clears the respective flag, initializes configureAcc or testBattery/counters/results, and returns true; otherwise it reflects healthTestState!=testDone.",
+        "crazyflie_health.c:109-193 — RunTests switches on the already initialized workflow rather than consuming requests."
+      ],
+      "rationale": "The frozen API uses healthRequestPropTest/healthRequestBatteryTest for the requests described as startPropTest/startBatTest in prose. The public request-consumer lifecycle is implemented without requiring private-state injection.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-HEALTH-02",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_health.c:115-150 — noise collection stores100 x-axis samples, but measureProp evaluates exactly one raw sample per motor and never computes noise variance or performs motor/sensor configuration/restoration."
+      ],
+      "rationale": "The required configure/noise/four-motor/restore/evaluate workflow is only partially represented. Motor indices advance0..3, but actual motor actuation, measurement windows and restoration are absent.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-HEALTH-03",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_health.c:92-106 — variance computes sumSq-(sum*sum)/n without another division; constant samples cancel and [1,2,3] yields2.",
+        "crazyflie_health.c:75-90 — highThreshold==0 returns true; otherwise inclusive low/high comparisons decide pass."
+      ],
+      "rationale": "The numeric formula, zero-high bypass and inclusive endpoints match the original requirement exactly.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-HEALTH-04",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_health.c:152-171 — minimum updates only at ticks2..49 and sag is idle-minus-min, but loaded voltage is synthesized from baroPressure and there is no four-motor load/stop.",
+        "crazyflie_health.c:21,179-183 — restartWaitStart is permanently zero, so restart compares absolute uptime rather than elapsed time since entering restart."
+      ],
+      "rationale": "A restart entered after uptime2000ms restarts immediately instead of waiting2000ms. The source also lacks the specified load/stop and genuine voltage measurement sequence; these cannot be supplied by ignoring the build error.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-CRTP-01",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_crtp.c:62-105 — initialization guard preserves existing state on repetition; invalid or duplicate queues set s_crtpError; only ports below the bound are created.",
+        "crazyflie_crtp.c:107-117,154-164 — TX/RX insertions reject at capacities200/16.",
+        "6_generated_code.h:12-14 — frozen port count16, RX16 and TX200."
+      ],
+      "rationale": "All listed queue/registration oracles are implemented: initialization is idempotent, duplicate/invalid registration enters an explicit error state, and both capacities are bounded. This case's oracle does not claim successful RTOS task creation.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-CRTP-02",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_crtp.c:154-197 — RX packet value is copied into an existing nonfull per-port queue and the callback is invoked independently; if neither endpoint is present the local packet is dropped."
+      ],
+      "rationale": "Queue and callback can both receive a packet. Each queue owns a value copy, callback delivery occurs within the local packet's lifetime, and no dynamic allocation is leaked. Full queues do not prevent an existing callback from receiving.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-CRTP-03",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_crtp.c:199-213 — failed send leaves head/count unchanged and nopLink returns early, but there is no elapsed-time gate, delay or10ms retry schedule."
+      ],
+      "rationale": "Packet retention and nop behavior are correct, but a second immediate call retries immediately instead of respecting10ms. The comment 'next retry' supplies no timing implementation.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-CRTP-04",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_crtp.c:215-230 — disables the old link, substitutes nopLink forNULL and then enables the new link.",
+        "crazyflie_crtp.c:232-250 — reset clears TX indices/count and invokes reset callback; connection uses callback or falls back totrue."
+      ],
+      "rationale": "All specified link-replacement, reset and connection-fallback branches are explicitly implemented.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-12",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_supervisor.c:437-451 — every one of the four RPM values must lie within inclusive min/max.",
+        "crazyflie_supervisor.c:453-489 — CanFly=false or recovered RPM clears tracking/fault; first low RPM starts a timestamp and the fault sets only when elapsed >= configured duration."
+      ],
+      "rationale": "The documented independent RPM helper checks enforce all-four range membership and sustained-low timing, including a separate active flag for tick-zero starts. This does not claim their integration into supervisorUpdate, which CF-SUP-13 fails.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-13",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_supervisor.c:491-542 — setters store sensors, motor ratios, RPMs and safety settings separately.",
+        "crazyflie_supervisor.c:544-603 — update consumes stored sensors/ratios/safety thresholds but never reads gMotorRPMs or calls either RPM helper.",
+        "crazyflie_supervisor.c:24,71,512-520 — the only gMotorRPMs references are declaration, reset and setter writes."
+      ],
+      "rationale": "RPM injection has no effect on the next Supervisor update. Thus not every documented injected input participates in behavior; permanent lack of RPM use is a functional omission, not a build obstacle.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-14",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_supervisor.c:544-550 — RATE_DO_EXECUTE is tested before any time/state mutation.",
+        "6_generated_code.h:23-24 — RATE_SUPERVISOR=10 and RATE_DO_EXECUTE uses stabilizerStep modulo divider."
+      ],
+      "rationale": "An unscheduled step returns immediately without updating timers, flags or conditions; scheduled work uses the stabilizer-step divider as required.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-SUP-15",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_supervisor.c:278-305,563-599 — freefall/tumble and commander/spinup conditions have explicit recovery clearing; gCrashed is preserved until requested recovery.",
+        "crazyflie_supervisor.c:320-390,544-603 — PREFLIGHT_TIMEOUT and LANDING_TIMEOUT have no set/clear integration or exit cleanup."
+      ],
+      "rationale": "Cleanup is incomplete. For example, starting with the public PREFLIGHT_TIMEOUT or LANDING_TIMEOUT bit set, restoring inputs or leaving the related state does not clear it. Supporting a few transient bits does not satisfy the all-related-condition cleanup oracle.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-STAB-06",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:120-123 — healthShallWeRunTest is checked before command submission and all normal control stages; true calls healthRunTests and immediately returns.",
+        "crazyflie_health.c:23-65 — public requests are consumed, cleared and converted into initialized workflow state by healthShallWeRunTest."
+      ],
+      "rationale": "A pending health request visibly preempts the normal controller/motor branch without partial normal-loop execution. Health workflow correctness is separately assessed; this branch-selection oracle is implemented.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-STAB-07",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:131-177 — controllerPid/powerDistribution run on every normal iteration with no 500Hz divider; no100Hz radio work is scheduled.",
+        "crazyflie_estimator_commander.c:97-170 — estimator drains its FIFO each call, with separate250Hz fusion and100Hz position gates."
+      ],
+      "rationale": "The estimator distinguishes its250Hz fusion from entry cadence, but the complete1kHz scheduling period lacks500Hz control and100Hz radio separation. Declared frequency constants are not used to gate those stages.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-HEALTH-05",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_health.c:35-48,116-123 — a new prop workflow initializes motorPass to zero.",
+        "crazyflie_health.c:75-90 — each evaluated in-range motor sets1<<motorIndex; each out-of-range evaluation increments motorTestCount; highThreshold==0 bypasses evaluation and returns true."
+      ],
+      "rationale": "For the documented initialized four-motor evaluation, each evaluated motor contributes its own result bit, failures increment the count, and the zero-high case follows the specified bypass. The bypass intentionally performs no threshold evaluation.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-HEALTH-06",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_health.c:109-193 — no Health state writes motor requests/ratios, starts/stops any motor, switches the sensor mode or restores flight configuration."
+      ],
+      "rationale": "The state names and counters do not implement actuator safety. Neither per-motor exclusivity nor stop-before-transition nor sensor restoration has a concrete control path.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-CRTP-05",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_crtp.c:107-122 — nonblocking send rejects full queues; the host-model Block variant uses the same insertion and succeeds whenever space exists.",
+        "crazyflie_crtp.c:199-213,252-255 — successful transmission removes one packet, failed transmission retains it, and free count is capacity minus count."
+      ],
+      "rationale": "The stated host-model Block contract requires available-space success rather than an actual waiting scheduler. Capacity and count/free-count accounting remain consistent for the documented operations.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-CRTP-06",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_crtp.c:124-152 — all three receive entry points immediately call the same dequeue; Wait explicitly discards wait_ms."
+      ],
+      "rationale": "Immediate, blocking and timed receive have no distinct waiting behavior. A packet arriving before or at the timeout boundary cannot be observed by the already returned Wait/Block call, although existing-packet dequeue removes exactly one.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-CRTP-07",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_crtp.c:58-60,195,210,267-274 — TX/RX event counters increment, but updateStats merely resets them when500ms has elapsed; no rate calculation, storage or publication exists."
+      ],
+      "rationale": "The cadence check and counter reset are present, but the required RX/TX rates are never calculated. A full window containing events has no corresponding reported rate.",
+      "ignored_build_obstacle": "Whole-project build blockage at crazyflie_health.c:180 (g_systemTickMs lacks a visible declaration in that translation unit) is not used to zero functional cases. The unchanged candidate already defines it at crazyflie_stabilizer.c:12 and declares it at crazyflie_internal.h:7, which health.c does not include. No source fix, new behavior or execution is assumed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-OBS-01",
+      "verdict": "pass",
+      "code_evidence": [
+        "6_generated_code.h:2-338",
+        "crazyflie_sensfusion6.c:12-31",
+        "crazyflie_control.c:11-16",
+        "crazyflie_commander_rpyt.c:11-12",
+        "crazyflie_supervisor.c:8-9",
+        "crazyflie_health.c:7-10",
+        "crazyflie_deck_log.c:4-13"
+      ],
+      "rationale": "The public header preserves the frozen declarations, types and macros; declared observable objects have one non-static definition. The twelve files include only the supplied local headers and standard C headers. The separate health translation-unit declaration failure is scored under CF-OBS-03, not used to erase correct symbol definitions.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-OBS-02",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_deck_log.c:4-13",
+        "crazyflie_estimator_commander.c:67-95,165",
+        "crazyflie_stabilizer.c:102-111,174",
+        "crazyflie_sensfusion6.c:89-101,220",
+        "crazyflie_supervisor.c:383-389",
+        "crazyflie_health.c:68-89"
+      ],
+      "rationale": "All eight named log objects and their required fields exist. Representative estimator, fusion, motor-publication, condition-population and health evaluations copy the corresponding current values into them; they are not all fixed declarations. More demanding synchronization between arbitrary updates and mirrored getters is assessed separately under CF-INT-10/17.",
+      "ignored_build_obstacle": "Whole-build blockage in health.c does not remove the explicit assignments in these functions; no code was changed.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-TRACE-01",
+      "verdict": "uncertain",
+      "code_evidence": [
+        "candidate.json: twelve C/header bodies",
+        "manifest.json: code and original-case binding"
+      ],
+      "rationale": "The bound candidate contains code but no complete requirement-to-state/interface/behavior trace graph. Critical cross-artifact edges cannot be verified from the code alone. Do not infer missing model links or exclude the case from the denominator.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-TRACE-02",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_commander_rpyt.c:63-66",
+        "approved_input.json: requirement section 6",
+        "candidate.json: twelve C/header bodies"
+      ],
+      "rationale": "CAREFREE requires an observable error in the frozen requirement, but the candidate instead implements a normal rotation and comments that the mode is not fully defined. This is a concrete failure of requirement precedence and of the no-incompatible-interpretation oracle. The unavailable model/interface conflict-resolution record cannot erase an already established failed conjunct. Peer review corrected the initial uncertain verdict to fail.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-OBS-03",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_health.c:2,179-183",
+        "crazyflie_internal.h:7",
+        "crazyflie_stabilizer.c:12",
+        "host_report.json: compile_returncode=1"
+      ],
+      "rationale": "healthRunTests references g_systemTickMs without including the internal header that declares it. A definition exists elsewhere, but this translation unit has no visible declaration; the actual frozen Host build reports that undeclared identifier. This case explicitly tests build/declaration compatibility, so the defect is not waived.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-OBS-04",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_supervisor.c:544-550",
+        "crazyflie_stabilizer.c:176-177",
+        "crazyflie_health.c:152-168"
+      ],
+      "rationale": "supervisorUpdate replaces the millisecond clock with a caller's loop-divider count, so a scheduled step can move the clock backwards or replace elapsed time. In addition, healthRunTests invents voltage as baroPressure/1000+2 instead of the required ADC voltage. Both violate the explicit unit boundary.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-OBS-05",
+      "verdict": "uncertain",
+      "code_evidence": [
+        "candidate.json: twelve C/header bodies",
+        "manifest.json: static review input boundary"
+      ],
+      "rationale": "No bound traceability graph exposes the requested numeric, safety, queue and integration model-to-code edges. Code citations in this new review do not manufacture that missing generated artifact.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-01",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_commander_rpyt.c:88-92,125-146",
+        "crazyflie_estimator_commander.c:201-213,235-242",
+        "crazyflie_stabilizer.c:135-174",
+        "crazyflie_control.c:224-237,270-322",
+        "crazyflie_power.c:6-22"
+      ],
+      "rationale": "For the stated nominal manual RPYT path with finite ordinary inputs, accepted priority is checked at commanderSetSetpoint, the selected setpoint reaches the control loop, CanFly=false zeros it, and the final motor guard publishes zero unless motors are permitted. Manual thrust remains PWM and angular fields retain the declared units before legacy mixing. This does not certify emergency behavior, position modes or transport callback wiring, which have separate cases.",
+      "ignored_build_obstacle": null,
+      "confidence": "medium",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-02",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_estimator_commander.c:193-198",
+        "crazyflie_supervisor.c:400-405,601",
+        "crazyflie_stabilizer.c:141-174"
+      ],
+      "rationale": "DISABLE accepts and stores a nonzero supplied setpoint and only sets thrustLocked; the controller/publication path does not consult that lock. Independently, override returns immediately for Flying/ReadyToFly before examining emergency bits, and update clears emergency inputs with three false arguments. An active thrust command can therefore survive emergency injection.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-03",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:38-43,131-149",
+        "crazyflie_estimator_commander.c:97-170,173-180"
+      ],
+      "rationale": "The control loop acquires g_currentSensors but stateEstimatorStepInternal explicitly discards its sensors argument and consumes a separate measurement FIFO. The FIFO's cached gyro/acc values are not copied back into g_currentSensors used by controllerPid. Thus sensor acquisition alone does not advance fusion, and FIFO injection alone does not give the controller the same current sample. A coherent sensor-to-estimator-to-controller path is absent; a new adapter would be a functional addition.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-04",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_supervisor.c:121-128,199-213,239-307,544-603",
+        "crazyflie_stabilizer.c:141-174"
+      ],
+      "rationale": "Crash/tumble detection changes flags and condition bits, but supervisorUpdate does not transition a Flying state into a fault state. MotorsAllowed depends on state only and override leaves Flying setpoints untouched. Recovery's tumble restriction exists, but the required preceding safe-stop path is not realized.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-05",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_estimator_commander.c:35-64",
+        "crazyflie_crtp.c:154-164,178-195"
+      ],
+      "rationale": "The estimator FIFO reports full via false and both rings remain bounded. However, a full valid CRTP receive queue without a callback simply drops the packet; pushRx has no status and the delivered=false branch only contains a comment. The required overflow report is absent, so not all queue-pressure oracles are supported.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-06",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:148-174",
+        "crazyflie_power.c:169-191",
+        "crazyflie_control.c:127-129"
+      ],
+      "rationale": "The final loop calls powerDistribution and cap but never batteryCompensation/motorsCompensateBatteryVoltage; low-voltage compensation cannot precede capping as required. The rate output is also converted to integer before saturation. Existing standalone compensation helpers do not supply the missing integration call.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-07",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_estimator_commander.c:201-227",
+        "crazyflie_supervisor.c:563-574"
+      ],
+      "rationale": "Rejected low-priority inputs do not update the timestamp. But an accepted command at valid clock tick zero stores zero, and commanderGetInactivityTime then returns zero forever until another accepted input. Its age cannot reach the supervisor warning/shutdown thresholds, violating the accepted-input age oracle.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-08",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:120-122,157-174",
+        "crazyflie_health.c:115-171"
+      ],
+      "rationale": "Health preemption returns before the final safety guard and motor publication. Its configureAcc/measureProp/testBattery branches never stop or drive the four motor outputs, so previous nonzero outputs can persist during a simultaneous safety condition. The normal branch is skipped, but the specified health motor sequence and interlocks are missing.",
+      "ignored_build_obstacle": "health.c's missing clock declaration is ignored only as a whole-build obstacle; absent motor operations are not repaired or inferred.",
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-09",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_crtp.c:166-197,257-265",
+        "crazyflie_commander_rpyt.c:35-148",
+        "crazyflie_estimator_commander.c:183-213"
+      ],
+      "rationale": "Bounds and nopLink behavior are implemented, and a supplied callback is invoked once per received packet. No generated callback or registered route converts CrtpPacket into CommanderCrtpLegacyValues, calls the decoder and installs the active command. Completing that production route inside a test callback would add the missing behavior; the requested transport-to-command integration is unsupported.",
+      "ignored_build_obstacle": null,
+      "confidence": "medium",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-10",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_supervisor.c:174-213,383-389",
+        "crazyflie_sensfusion6.c:73-101,256-267"
+      ],
+      "rationale": "Public safety operations change armed/crashed flags, state and condition bits without refreshing supervisorLog.info before return; only a later condition-population call refreshes it. Similarly the gravity getter can update gravity globals without refreshing sensfusion6Log. Same-cycle logs can disagree with the current getter-visible state.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-11",
+      "verdict": "uncertain",
+      "code_evidence": [
+        "candidate.json: twelve C/header bodies",
+        "crazyflie_supervisor.c:544-603"
+      ],
+      "rationale": "The new candidate does not provide the bound state, interface and behavior artifacts needed for this three-way alignment check. Existing code-level safety failures are recorded elsewhere; no corresponding design edges can be fabricated.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-12",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_commander_rpyt.c:63-66",
+        "approved_input.json: requirement section 6"
+      ],
+      "rationale": "No invented board header or renamed public substitute is required, but CAREFREE takes a newly invented normal rotation path. The frozen requirement explicitly demands an observable error path for this unsupported mode; treating it as a normal command weakens that stated rule.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-13",
+      "verdict": "pass",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:65-89",
+        "crazyflie_sensfusion6.c:103-130",
+        "crazyflie_control.c:68-114",
+        "crazyflie_supervisor.c:51-96,174-198",
+        "crazyflie_crtp.c:62-104,215-230"
+      ],
+      "rationale": "Initialization functions guard against repeating their initialization side effects; repeated successful arming in Arming remains accepted, disallowed arming returns false, duplicate port queue creation enters an error path, and link replacement disables the old link then enables the new one including the nop fallback. Repeating these legal operations does not allocate duplicate queues or tasks. Missing task creation itself is assessed by the initialization-specific cases.",
+      "ignored_build_obstacle": null,
+      "confidence": "medium",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-14",
+      "verdict": "uncertain",
+      "code_evidence": [
+        "crazyflie_stabilizer.c:141-174",
+        "crazyflie_supervisor.c:98-128,400-405",
+        "approved_input.json: requirement section 7"
+      ],
+      "rationale": "Locked/crash states in the normal control branch do clear all four published outputs. However, this case also demands zero after entering Landed while the frozen requirement explicitly says Landed can fly, permits motors and leaves its setpoint unchanged. The all-states oracle conflicts with its own authoritative requirement; no changed expectation or invented mode is used to force a pass/fail. Keep uncertain in the denominator pending adjudication.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-15",
+      "verdict": "uncertain",
+      "code_evidence": [
+        "manifest.json: human_review_status",
+        "review outputs: human_verdict=pending"
+      ],
+      "rationale": "This review retains unsupported cases as fail/uncertain with reasons, but no new human disposition has been supplied for this candidate. A completed human adjudication record cannot be claimed from model review alone.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-16",
+      "verdict": "fail",
+      "code_evidence": [
+        "crazyflie_supervisor.c:544-550,563-598",
+        "crazyflie_stabilizer.c:176-177"
+      ],
+      "rationale": "supervisorUpdate directly assigns the scheduler's stabilizerStep to g_systemTickMs before timeout arithmetic. The requirement distinguishes loop-divider counts from the public millisecond clock; no timestamp conversion or independently owned clock update mediates this assignment.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-17",
+      "verdict": "fail",
+      "code_evidence": [
+        "6_generated_code.h:236-237",
+        "crazyflie_supervisor.c:11-16,111-119,343-375",
+        "approved_input.json: api ENV-CF-005"
+      ],
+      "rationale": "Public supervisorConditionBits is an extern object, but setters/getters and condition population use private gArmed/gCrashed/gTumbled flags without synchronizing a host-injected bit field at entry. For example, a host-injected crash bit is ignored by supervisorIsCrashed and can be cleared by condition population. This violates the explicit observable synchronization contract.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-18",
+      "verdict": "uncertain",
+      "code_evidence": [
+        "candidate.json: twelve C/header bodies",
+        "crazyflie_supervisor.c:544-603"
+      ],
+      "rationale": "There is no bound generated state model containing the enter/remain/recover transitions to compare against this candidate. The lack of such evidence is retained as uncertain rather than inferred from function names or treated as N/A.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    },
+    {
+      "id": "CF-INT-19",
+      "verdict": "uncertain",
+      "code_evidence": [
+        "manifest.json: review_mode and human_review_status",
+        "numeric_control_review.json",
+        "lifecycle_io_review.json",
+        "integration_review.json"
+      ],
+      "rationale": "Generator and current reviewer provenance are distinguished and passes cite source locations, but uncertain cases have no actual human disposition yet. The completed-review audit requested by this case is therefore incomplete.",
+      "ignored_build_obstacle": null,
+      "confidence": "high",
+      "human_verdict": "pending"
+    }
+  ],
+  "release_annotation": {
+    "human_review_attestation": "data/human_review_attestation.json",
+    "historical_fields": "Original per-case verdicts and initial human_verdict fields are retained unchanged. Later author confirmation is recorded separately.",
+    "original_language_retained": true,
+    "source_sha256": "7b729073073fb17766d7b6dced1e88dc80fd2c165da3a707fdde8521e0cf3c7d"
+  }
+}

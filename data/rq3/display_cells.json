@@ -1,0 +1,417 @@
+{
+  "schema_version": 2,
+  "model": "deepseek-v4-pro",
+  "task_order": [
+    "gpio_output",
+    "gpio_button_debounce",
+    "balance_control",
+    "discobot",
+    "onstep",
+    "crazyflie"
+  ],
+  "methods": [
+    "Direct-LLM",
+    "MetaGPT",
+    "ChatDev",
+    "StructGen",
+    "EmbedDev"
+  ],
+  "cells": [
+    {
+      "task": "gpio_output",
+      "method": "Direct-LLM",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_output",
+      "method": "MetaGPT",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_output",
+      "method": "ChatDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_output",
+      "method": "StructGen",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_output",
+      "method": "EmbedDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "Direct-LLM",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "MetaGPT",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "ChatDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "StructGen",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "EmbedDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "balance_control",
+      "method": "Direct-LLM",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "balance_control",
+      "method": "MetaGPT",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        57.14285714285714,
+        28.57142857142857,
+        100.0
+      ],
+      "mean_percent": 61.904761904761905,
+      "population_sd_percentage_points": 29.354352395090366
+    },
+    {
+      "task": "balance_control",
+      "method": "ChatDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "balance_control",
+      "method": "StructGen",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "balance_control",
+      "method": "EmbedDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "discobot",
+      "method": "Direct-LLM",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        82.25806451612904,
+        83.87096774193549,
+        80.64516129032258
+      ],
+      "mean_percent": 82.25806451612904,
+      "population_sd_percentage_points": 1.316929969238271
+    },
+    {
+      "task": "discobot",
+      "method": "MetaGPT",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        23.387096774193548,
+        16.93548387096774,
+        0.0
+      ],
+      "mean_percent": 13.440860215053762,
+      "population_sd_percentage_points": 9.86233135905599
+    },
+    {
+      "task": "discobot",
+      "method": "ChatDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        84.67741935483872,
+        98.38709677419355,
+        87.90322580645162
+      ],
+      "mean_percent": 90.3225806451613,
+      "population_sd_percentage_points": 5.852564800289579
+    },
+    {
+      "task": "discobot",
+      "method": "StructGen",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        85.48387096774194,
+        87.09677419354838,
+        87.09677419354838
+      ],
+      "mean_percent": 86.55913978494624,
+      "population_sd_percentage_points": 0.7603298722435979
+    },
+    {
+      "task": "discobot",
+      "method": "EmbedDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        98.38709677419355,
+        89.51612903225806,
+        99.19354838709677
+      ],
+      "mean_percent": 95.6989247311828,
+      "population_sd_percentage_points": 4.384275922123679
+    },
+    {
+      "task": "onstep",
+      "method": "Direct-LLM",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        40.0,
+        45.55555555555556,
+        45.55555555555556
+      ],
+      "mean_percent": 43.7037037037037,
+      "population_sd_percentage_points": 2.6189140043946213
+    },
+    {
+      "task": "onstep",
+      "method": "MetaGPT",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_percent": 0.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "onstep",
+      "method": "ChatDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        80.0,
+        77.77777777777779,
+        78.88888888888889
+      ],
+      "mean_percent": 78.88888888888889,
+      "population_sd_percentage_points": 0.9072184232530257
+    },
+    {
+      "task": "onstep",
+      "method": "StructGen",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        70.0,
+        63.33333333333333,
+        63.33333333333333
+      ],
+      "mean_percent": 65.55555555555556,
+      "population_sd_percentage_points": 3.142696805273547
+    },
+    {
+      "task": "onstep",
+      "method": "EmbedDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        83.33333333333334,
+        81.11111111111111,
+        84.44444444444444
+      ],
+      "mean_percent": 82.96296296296296,
+      "population_sd_percentage_points": 1.3857990321384956
+    },
+    {
+      "task": "crazyflie",
+      "method": "Direct-LLM",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        32.0,
+        33.0,
+        0.0
+      ],
+      "mean_percent": 21.666666666666668,
+      "population_sd_percentage_points": 15.326085243430198
+    },
+    {
+      "task": "crazyflie",
+      "method": "MetaGPT",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_percent": 0.0,
+      "population_sd_percentage_points": 0.0
+    },
+    {
+      "task": "crazyflie",
+      "method": "ChatDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        66.66666666666667,
+        46.0,
+        59.183673469387756
+      ],
+      "mean_percent": 57.28344671201814,
+      "population_sd_percentage_points": 8.543454573525684
+    },
+    {
+      "task": "crazyflie",
+      "method": "StructGen",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        42.0,
+        40.0,
+        33.0
+      ],
+      "mean_percent": 38.333333333333336,
+      "population_sd_percentage_points": 3.858612300930075
+    },
+    {
+      "task": "crazyflie",
+      "method": "EmbedDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        65.97938144329896,
+        63.1578947368421,
+        75.51020408163265
+      ],
+      "mean_percent": 68.21582675392457,
+      "population_sd_percentage_points": 5.2849567805179785
+    }
+  ],
+  "source_display_sha256": "0eb2affddb771539a443df59fe43ecfa324b45679f3b6c9b90ce3a4a9ec0a1db",
+  "position_scores": "data/rq3/position_scores.json",
+  "protocol": "data/rq3/protocol.json",
+  "figure_provenance": "rq3_export_provenance.json",
+  "display": "Six-task line chart of means, with no intervals or footer; EmbedDev is red.",
+  "historical_export": "history/rq3_seven_task_20261002"
+}

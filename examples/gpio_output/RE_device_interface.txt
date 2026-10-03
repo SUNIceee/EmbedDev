@@ -1,0 +1,7 @@
+GPIO Output Controller device/environment contract
+
+Language and runtime: ISO C11, single-threaded calls. Two active-high logical LEDs are mapped to channel 0 and channel 1. No vendor library, operating system, delays, interrupts, or physical pin addresses are required.
+board_gpio_write(uint8_t channel, bool on) is supplied by the platform. It records the exact requested logical channel and level and returns immediately. The controller must not infer success/failure from it; the callback has no failure return.
+The platform performs the physical pin mapping outside this task. Host verification observes callback events and public query results, not electrical hardware.
+All Boolean values use stdbool.h and uint8_t uses stdint.h. Caller supplies valid memory for non-null query pointers. The API accepts every uint8_t channel; only 0 and 1 are valid.
+No direct register access or additional external dependencies. Platform callbacks are linked externally. Candidate code/header are independent of the private tests and reference fixtures.

@@ -1,0 +1,7 @@
+condition,positions,no_code,candidate_build_failed,harness_or_link_failed,executed_assertion_failed,host_all_pass
+Direct generation + repair,27,9,2,3,1,12
+Prose planning,27,7,3,1,1,15
+EmbedDev,27,1,0,0,1,25
+Without state view,27,18,0,0,0,9
+Without behavior view,27,14,4,1,0,8
+Without extra trace feedback,27,15,2,1,0,9

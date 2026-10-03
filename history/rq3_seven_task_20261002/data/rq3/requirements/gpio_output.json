@@ -1,0 +1,132 @@
+{
+  "task": "gpio_output",
+  "item_count": 8,
+  "original_checklist": {
+    "original_repository_relative_path": "fse/rq3_task_extension_20261002/measurement_preparation/gpio_output_checklist.json",
+    "sha256": "091d0835b039ba498d832c26facaa00fa7c7f84bdba21e661eb01963c9f7f706"
+  },
+  "items": [
+    {
+      "id": "GO-R01",
+      "ordinal": 1,
+      "requirement_original_text": "GO-R01 Initialization: gpio_output_init() configures logical state for channels 0 and 1 as off and calls board_gpio_write(0, false), then board_gpio_write(1, false), exactly once each. Reinitialization has the same effects regardless of prior state.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_output/RE_req.txt",
+        "original_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 5,
+        "line_end_1based_inclusive": 5,
+        "byte_start_0based": 290,
+        "byte_end_0based_exclusive": 540,
+        "original_slice_sha256": "409a3adf150c5beb0d4ddb8ae0177941843386b7ac0097edb478bd3e3e6c3da8"
+      }
+    },
+    {
+      "id": "GO-R02",
+      "ordinal": 2,
+      "requirement_original_text": "GO-R02 Before the first initialization, set, toggle, and get return false and cause no platform writes; get does not modify the caller's output variable.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_output/RE_req.txt",
+        "original_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 6,
+        "line_end_1based_inclusive": 6,
+        "byte_start_0based": 540,
+        "byte_end_0based_exclusive": 694,
+        "original_slice_sha256": "afc437c9ef3a61cd698e8705fd5c096278885a01fd55e6153b07c8a32b9d21aa"
+      }
+    },
+    {
+      "id": "GO-R03",
+      "ordinal": 3,
+      "requirement_original_text": "GO-R03 Valid set: after initialization, gpio_output_set(channel, on) for channel 0 or 1 returns true, stores exactly the requested Boolean state, and calls board_gpio_write exactly once with that channel and value, even if the value is unchanged.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_output/RE_req.txt",
+        "original_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 7,
+        "line_end_1based_inclusive": 7,
+        "byte_start_0based": 694,
+        "byte_end_0based_exclusive": 941,
+        "original_slice_sha256": "4a1502846aae471950e1427876f4d188cf8eb434366e27032f28c924d98c165f"
+      }
+    },
+    {
+      "id": "GO-R04",
+      "ordinal": 4,
+      "requirement_original_text": "GO-R04 Channel independence: changing a valid channel leaves the other channel's stored state unchanged and never writes the other channel.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_output/RE_req.txt",
+        "original_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 8,
+        "line_end_1based_inclusive": 8,
+        "byte_start_0based": 941,
+        "byte_end_0based_exclusive": 1081,
+        "original_slice_sha256": "136314ae545de3dd743a9d25110f60388004745c7eeca7258c81e0c0aadde675"
+      }
+    },
+    {
+      "id": "GO-R05",
+      "ordinal": 5,
+      "requirement_original_text": "GO-R05 Valid toggle: after initialization, gpio_output_toggle(channel) negates the stored state of the requested channel, makes exactly one matching platform write, and returns true.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_output/RE_req.txt",
+        "original_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 9,
+        "line_end_1based_inclusive": 9,
+        "byte_start_0based": 1081,
+        "byte_end_0based_exclusive": 1264,
+        "original_slice_sha256": "74720886e195ec2731b9cff940a8f1e70cfb48455a1a2c6077c212a9c4ff710d"
+      }
+    },
+    {
+      "id": "GO-R06",
+      "ordinal": 6,
+      "requirement_original_text": "GO-R06 Invalid channels: any uint8_t channel other than 0 or 1 makes set, toggle, and get return false, with no state changes or platform writes. Failed get leaves its output variable unchanged.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_output/RE_req.txt",
+        "original_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 10,
+        "line_end_1based_inclusive": 10,
+        "byte_start_0based": 1264,
+        "byte_end_0based_exclusive": 1459,
+        "original_slice_sha256": "63ed61d373e9430e28168ecaaeb3066a23bb6fe90c3e51eed7cc0ae8a041cb51"
+      }
+    },
+    {
+      "id": "GO-R07",
+      "ordinal": 7,
+      "requirement_original_text": "GO-R07 Query: after initialization, gpio_output_get(channel, out_on) for a valid channel and non-null pointer returns true and writes its current state to out_on. Query never writes GPIO or changes controller state.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_output/RE_req.txt",
+        "original_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 11,
+        "line_end_1based_inclusive": 11,
+        "byte_start_0based": 1459,
+        "byte_end_0based_exclusive": 1675,
+        "original_slice_sha256": "d60e8f847d6dbb32308df6520cc77f572d1a8424cdb6eb1c96432128f890e74c"
+      }
+    },
+    {
+      "id": "GO-R08",
+      "ordinal": 8,
+      "requirement_original_text": "GO-R08 Null output: gpio_output_get(channel, NULL) returns false and has no side effects.\n",
+      "unit": "whole_original_numbered_requirement",
+      "source": {
+        "release_input": "examples/gpio_output/RE_req.txt",
+        "original_sha256": "77867280351931233cd89e2e27b9fe4e3889c506e5392073a2eefc766e566aca",
+        "line_start_1based": 12,
+        "line_end_1based_inclusive": 12,
+        "byte_start_0based": 1675,
+        "byte_end_0based_exclusive": 1765,
+        "original_slice_sha256": "a78e53e68c7d4eff36441f46a9168ba3e03c533d2bb6a5893710e298dc55e1da"
+      }
+    }
+  ],
+  "judgments_not_regenerated": true,
+  "source_text_and_item_order_preserved": true
+}

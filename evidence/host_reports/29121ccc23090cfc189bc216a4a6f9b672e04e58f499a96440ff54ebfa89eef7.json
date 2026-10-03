@@ -1,0 +1,106 @@
+{
+  "candidate": {
+    "key": "71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f",
+    "project": "discobot",
+    "header": "<WORKSPACE>\\fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\6_generated_code.h",
+    "source": "<WORKSPACE>\\fse\\official_baselines\\reassessment_host_20260921\\code\\71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f\\raw\\discobot_core.c",
+    "header_sha256": "585c2c7999f0f8fe0f49086ceeb15bbe2b76252d91872b5dd2acac2578602eb3",
+    "source_sha256": "b510109ccf4c1b479ff7d920ea5ef36f1a0f476833bc403ca2093aab7cfcf4b7",
+    "labels": [],
+    "whole_project_sha256": "71d522f00998850a2d87fef8df1902723e6923a60d96faef1caf0c82ecff150f",
+    "all_file_sha256": {
+      "6_generated_code.h": "585c2c7999f0f8fe0f49086ceeb15bbe2b76252d91872b5dd2acac2578602eb3",
+      "discobot_internal.h": "f83a2d38aa0c3ce6fa8ae340703b2f4f93f0d046df56f8deaa590c2951898a38",
+      "discobot_host_model.c": "1994c082a95f21df62e9beba4c11afc457e75c7ae3206d51981235b8eb5e6ceb",
+      "discobot_target_spl.c": "719037f1579b90e3c6407813b386ba8bde05bacae2222c21b9b18491454dc873",
+      "discobot_core.c": "b510109ccf4c1b479ff7d920ea5ef36f1a0f476833bc403ca2093aab7cfcf4b7"
+    }
+  },
+  "suite_sha256": "7b3ea083fc200084487ea77197bcd77fce7a340fbf147e2c3234652952a2a27f",
+  "complete": true,
+  "compile_returncode": 1,
+  "compile_timeout": false,
+  "source_changes": {
+    "header_include_alignment": [
+      "6_generated_code.h"
+    ],
+    "entrypoint_rename": "compile-time main=fse_candidate_main"
+  },
+  "cases": [
+    {
+      "id": "DB-B01",
+      "category": "data_to_output",
+      "anchor": "4.3 / 5.2",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "DB-B02",
+      "category": "safe_output",
+      "anchor": "4.3 / 5.3",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "DB-B03",
+      "category": "timing_state",
+      "anchor": "5.4",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "DB-B04",
+      "category": "timing_state",
+      "anchor": "9",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "DB-B05",
+      "category": "input_propagation",
+      "anchor": "6",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "DB-B06",
+      "category": "data_to_output",
+      "anchor": "5.3 / 10",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "DB-B07",
+      "category": "queue_lifecycle",
+      "anchor": "11",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "DB-B08",
+      "category": "input_propagation",
+      "anchor": "7",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    }
+  ],
+  "counts": {
+    "candidate_build_failed": 8
+  }
+}

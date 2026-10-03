@@ -1,0 +1,1417 @@
+{
+  "identity": "discobot__gpt-5.5__C4_structured__r02",
+  "project": "discobot",
+  "model": "gpt-5.5",
+  "method": "EmbedDev",
+  "repeat": 2,
+  "status": "complete_static_subset",
+  "candidate_files": [
+    {
+      "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+      "sha256": "a0ef68fe9fbe91fe766c670308cdbb83327c00a9378dd5b1a5b941c41434a805"
+    },
+    {
+      "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.h",
+      "sha256": "7b63780cce77af47f8acfea82c70a7d3f7ad9e6fc26bb9d8849f5d26a5f72701"
+    }
+  ],
+  "candidate_all_files_sha256_verified": true,
+  "checklist_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+  "candidate_inventory_sha256": "60721e6c11f3e5fb421b58209ce90367c3e66ea260a90a87b625c43d81a53d16",
+  "evaluator": "current Codex LLM static review",
+  "human_review_claimed": false,
+  "reviewed_at": "2026-10-02T06:32:49.795502+00:00",
+  "requirements": [
+    {
+      "id": "DB-R001",
+      "verdict": "fully_covered",
+      "reason": "GPIO, ticks, and logs retain actual updates.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 7,
+          "line_end": 40,
+          "function": "globals"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 44,
+          "line_end": 113,
+          "function": "implementation"
+        }
+      ]
+    },
+    {
+      "id": "DB-R002",
+      "verdict": "fully_covered",
+      "reason": "168MHz/168000 and incrementing ticks are present.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 15,
+          "line_end": 16,
+          "function": "clock"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 42,
+          "line_end": 43,
+          "function": "clock helpers"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 70,
+          "line_end": 70,
+          "function": "tick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R003",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R004",
+      "verdict": "partially_covered",
+      "reason": "Baud/RXNE exist, but PB6/7, 8N1, and NVIC values are not represented.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 104,
+          "line_end": 110,
+          "function": "UART"
+        }
+      ]
+    },
+    {
+      "id": "DB-R005",
+      "verdict": "partially_covered",
+      "reason": "Binary PA outputs use no PWM, but PP/pull-up/25MHz configuration is not represented.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 56,
+          "line_end": 67,
+          "function": "motors"
+        }
+      ]
+    },
+    {
+      "id": "DB-R006",
+      "verdict": "fully_covered",
+      "reason": "The host PD12-15 array provides equivalent operations.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 75,
+          "line_end": 77,
+          "function": "LED"
+        }
+      ]
+    },
+    {
+      "id": "DB-R007",
+      "verdict": "fully_covered",
+      "reason": "Bit 0 is active-high.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 69,
+          "line_end": 73,
+          "function": "button"
+        }
+      ]
+    },
+    {
+      "id": "DB-R008",
+      "verdict": "partially_covered",
+      "reason": "Initialization returning 0 and reading exist, but TM/SPI1/2G/50Hz configuration is missing.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 79,
+          "line_end": 81,
+          "function": "accelerometers"
+        }
+      ]
+    },
+    {
+      "id": "DB-R009",
+      "verdict": "partially_covered",
+      "reason": "Continuous/144-cycle settings have state, but 12-bit/div8 are not represented.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 28,
+          "line_end": 32,
+          "function": "ADC state"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 82,
+          "line_end": 82,
+          "function": "ADC init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R010",
+      "verdict": "partially_covered",
+      "reason": "Clock/init have state, but ready false still directly returns the value, rather than reading only after readiness.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 86,
+          "line_end": 88,
+          "function": "RNG"
+        }
+      ]
+    },
+    {
+      "id": "DB-R011",
+      "verdict": "fully_covered",
+      "reason": "The strictly specified order is followed.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 48,
+          "line_end": 48,
+          "function": "init_system"
+        }
+      ]
+    },
+    {
+      "id": "DB-R012",
+      "verdict": "fully_covered",
+      "reason": "The exact banner is sent after UART initialization.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 20,
+          "line_end": 20,
+          "function": "banner"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 48,
+          "line_end": 48,
+          "function": "init_system"
+        }
+      ]
+    },
+    {
+      "id": "DB-R013",
+      "verdict": "fully_covered",
+      "reason": "Update precedes clock/1000 configuration.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 50,
+          "line_end": 50,
+          "function": "init_systick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R014",
+      "verdict": "partially_covered",
+      "reason": "An error flag and infinite loop exist, but controlled host exit is absent; normal constant configuration makes failures difficult to inject.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 43,
+          "line_end": 43,
+          "function": "SysTick_Config_host"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 50,
+          "line_end": 50,
+          "function": "init_systick"
+        }
+      ]
+    },
+    {
+      "id": "DB-R015",
+      "verdict": "partially_covered",
+      "reason": "Host low/released state is complete, but the clock/input parameter path is missing.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 51,
+          "line_end": 51,
+          "function": "init_button"
+        }
+      ]
+    },
+    {
+      "id": "DB-R016",
+      "verdict": "fully_covered",
+      "reason": "0/1/2。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.h",
+          "line_start": 8,
+          "line_end": 8,
+          "function": "Directions"
+        }
+      ]
+    },
+    {
+      "id": "DB-R017",
+      "verdict": "fully_covered",
+      "reason": "10/01/default00。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 57,
+          "line_end": 57,
+          "function": "left"
+        }
+      ]
+    },
+    {
+      "id": "DB-R018",
+      "verdict": "fully_covered",
+      "reason": "10/01/default00。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 58,
+          "line_end": 58,
+          "function": "right"
+        }
+      ]
+    },
+    {
+      "id": "DB-R019",
+      "verdict": "fully_covered",
+      "reason": "It is explicitly unused.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 57,
+          "line_end": 58,
+          "function": "speed"
+        }
+      ]
+    },
+    {
+      "id": "DB-R020",
+      "verdict": "fully_covered",
+      "reason": "1010。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 59,
+          "line_end": 59,
+          "function": "forward"
+        }
+      ]
+    },
+    {
+      "id": "DB-R021",
+      "verdict": "fully_covered",
+      "reason": "0101。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 60,
+          "line_end": 60,
+          "function": "backward"
+        }
+      ]
+    },
+    {
+      "id": "DB-R022",
+      "verdict": "fully_covered",
+      "reason": "0010。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 61,
+          "line_end": 61,
+          "function": "softleft"
+        }
+      ]
+    },
+    {
+      "id": "DB-R023",
+      "verdict": "fully_covered",
+      "reason": "1000。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 62,
+          "line_end": 62,
+          "function": "softright"
+        }
+      ]
+    },
+    {
+      "id": "DB-R024",
+      "verdict": "fully_covered",
+      "reason": "0001。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 63,
+          "line_end": 63,
+          "function": "backsoftleft"
+        }
+      ]
+    },
+    {
+      "id": "DB-R025",
+      "verdict": "fully_covered",
+      "reason": "0100。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 64,
+          "line_end": 64,
+          "function": "backsoftright"
+        }
+      ]
+    },
+    {
+      "id": "DB-R026",
+      "verdict": "fully_covered",
+      "reason": "1001。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 65,
+          "line_end": 65,
+          "function": "spinright"
+        }
+      ]
+    },
+    {
+      "id": "DB-R027",
+      "verdict": "fully_covered",
+      "reason": "0110。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 66,
+          "line_end": 66,
+          "function": "spinleft"
+        }
+      ]
+    },
+    {
+      "id": "DB-R028",
+      "verdict": "fully_covered",
+      "reason": "0000。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 67,
+          "line_end": 67,
+          "function": "stop"
+        }
+      ]
+    },
+    {
+      "id": "DB-R029",
+      "verdict": "partially_covered",
+      "reason": "Initial low state has an actual effect, but clock/electrical configuration is missing.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 56,
+          "line_end": 56,
+          "function": "motor init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R030",
+      "verdict": "fully_covered",
+      "reason": "Completed outputs do not contain 11.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 44,
+          "line_end": 44,
+          "function": "pin writer"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 57,
+          "line_end": 67,
+          "function": "motors"
+        }
+      ]
+    },
+    {
+      "id": "DB-R031",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R032",
+      "verdict": "fully_covered",
+      "reason": "IDs and the table are correct.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.h",
+          "line_start": 6,
+          "line_end": 7,
+          "function": "IDs"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 46,
+          "line_end": 46,
+          "function": "flookup"
+        }
+      ]
+    },
+    {
+      "id": "DB-R033",
+      "verdict": "fully_covered",
+      "reason": "Available raw bytes 0..8 are dispatched.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 53,
+          "line_end": 54,
+          "function": "dispatch"
+        }
+      ]
+    },
+    {
+      "id": "DB-R034",
+      "verdict": "fully_covered",
+      "reason": "Invalid input changes neither callme nor outputs; empty input is not read.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 53,
+          "line_end": 54,
+          "function": "dispatch guards"
+        }
+      ]
+    },
+    {
+      "id": "DB-R035",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R036",
+      "verdict": "fully_covered",
+      "reason": "Indices 0..3 are correct; out-of-range indices return -1.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 69,
+          "line_end": 69,
+          "function": "read_buttonc"
+        }
+      ]
+    },
+    {
+      "id": "DB-R037",
+      "verdict": "fully_covered",
+      "reason": "Each tick accumulates toward 250 high-level ticks.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 70,
+          "line_end": 70,
+          "function": "SysTick_Handler"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.h",
+          "line_start": 29,
+          "line_end": 29,
+          "function": "threshold"
+        }
+      ]
+    },
+    {
+      "id": "DB-R038",
+      "verdict": "fully_covered",
+      "reason": "Low immediately clears the counter and releases the button.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 70,
+          "line_end": 70,
+          "function": "SysTick_Handler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R039",
+      "verdict": "fully_covered",
+      "reason": "A change guard and switch-only history handling are present.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 71,
+          "line_end": 71,
+          "function": "checkbutton"
+        }
+      ]
+    },
+    {
+      "id": "DB-R040",
+      "verdict": "fully_covered",
+      "reason": "The roll formula is correct.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 72,
+          "line_end": 72,
+          "function": "calc_pitch_roll"
+        }
+      ]
+    },
+    {
+      "id": "DB-R041",
+      "verdict": "fully_covered",
+      "reason": "The pitch formula is correct.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 72,
+          "line_end": 72,
+          "function": "calc_pitch_roll"
+        }
+      ]
+    },
+    {
+      "id": "DB-R042",
+      "verdict": "partially_covered",
+      "reason": "Outputs are initially low, but clock/PP configuration is not represented.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 75,
+          "line_end": 75,
+          "function": "LED init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R043",
+      "verdict": "fully_covered",
+      "reason": "The host equivalent correctly sets bits.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 76,
+          "line_end": 76,
+          "function": "LED_On"
+        }
+      ]
+    },
+    {
+      "id": "DB-R044",
+      "verdict": "fully_covered",
+      "reason": "Bits are cleared correctly.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 77,
+          "line_end": 77,
+          "function": "LED_Off"
+        }
+      ]
+    },
+    {
+      "id": "DB-R045",
+      "verdict": "fully_covered",
+      "reason": "Indices outside 0..3 cause no operation.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 76,
+          "line_end": 77,
+          "function": "LED guards"
+        }
+      ]
+    },
+    {
+      "id": "DB-R046",
+      "verdict": "fully_covered",
+      "reason": "The threshold is strictly >1000 while UART processing continues.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 54,
+          "line_end": 54,
+          "function": "main_loop_iteration"
+        }
+      ]
+    },
+    {
+      "id": "DB-R047",
+      "verdict": "partially_covered",
+      "reason": "It returns 0, but the TM parameter call is missing.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 79,
+          "line_end": 79,
+          "function": "init_accelerometers"
+        }
+      ]
+    },
+    {
+      "id": "DB-R048",
+      "verdict": "fully_covered",
+      "reason": "The three milli-g axes are divided by 1000.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 80,
+          "line_end": 81,
+          "function": "accelerometer flow"
+        }
+      ]
+    },
+    {
+      "id": "DB-R049",
+      "verdict": "partially_covered",
+      "reason": "Clock/continuous/144-cycle/Vref settings exist, but complete ADC mode/div8/alignment and other settings are absent.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 82,
+          "line_end": 82,
+          "function": "temperature init"
+        }
+      ]
+    },
+    {
+      "id": "DB-R050",
+      "verdict": "not_covered",
+      "reason": "Only raw is read, without start/EOC checks.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 83,
+          "line_end": 83,
+          "function": "read_temperature_sensor"
+        }
+      ]
+    },
+    {
+      "id": "DB-R051",
+      "verdict": "fully_covered",
+      "reason": "The formula uses the correct floating-point order.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 83,
+          "line_end": 83,
+          "function": "temperature formula"
+        }
+      ]
+    },
+    {
+      "id": "DB-R052",
+      "verdict": "fully_covered",
+      "reason": "The clock flag precedes initialized; a host equivalent is allowed.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 86,
+          "line_end": 86,
+          "function": "init_rng"
+        }
+      ]
+    },
+    {
+      "id": "DB-R053",
+      "verdict": "partially_covered",
+      "reason": "The while loop immediately breaks and both branches return the same value, preserving neither unready failure nor target waiting.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 87,
+          "line_end": 87,
+          "function": "get_random_number"
+        }
+      ]
+    },
+    {
+      "id": "DB-R054",
+      "verdict": "fully_covered",
+      "reason": "The complete uint32 0/MAX range is supported without numeric sentinels.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 87,
+          "line_end": 88,
+          "function": "RNG data"
+        }
+      ]
+    },
+    {
+      "id": "DB-R055",
+      "verdict": "unassessed",
+      "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance.",
+      "preclassified_as": "requires_execution_or_hardware",
+      "evidence": []
+    },
+    {
+      "id": "DB-R056",
+      "verdict": "fully_covered",
+      "reason": "It selects the first NULL slot among 25, uses sec*1000, and initializes time/count to 0.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 90,
+          "line_end": 90,
+          "function": "add_timed_task"
+        }
+      ]
+    },
+    {
+      "id": "DB-R057",
+      "verdict": "fully_covered",
+      "reason": "A full table is silent and not overwritten.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 90,
+          "line_end": 90,
+          "function": "add_timed_task"
+        }
+      ]
+    },
+    {
+      "id": "DB-R058",
+      "verdict": "fully_covered",
+      "reason": "All due entries run in slot order and update time/count.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 91,
+          "line_end": 91,
+          "function": "execute_tasks"
+        }
+      ]
+    },
+    {
+      "id": "DB-R059",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R060",
+      "verdict": "fully_covered",
+      "reason": "Non-NULL slots and call counts are printed.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 92,
+          "line_end": 92,
+          "function": "printtimes"
+        }
+      ]
+    },
+    {
+      "id": "DB-R061",
+      "verdict": "fully_covered",
+      "reason": "NULL entries are skipped, without Remove or preemption.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 90,
+          "line_end": 91,
+          "function": "scheduler"
+        }
+      ]
+    },
+    {
+      "id": "DB-R062",
+      "verdict": "partially_covered",
+      "reason": "Baud 0 falls back to 9600, but the warning is missing.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 104,
+          "line_end": 104,
+          "function": "init_usart1"
+        }
+      ]
+    },
+    {
+      "id": "DB-R063",
+      "verdict": "partially_covered",
+      "reason": "GPIOB/AF/8N1/NVIC configuration is missing; empty low-level stubs are not themselves penalized.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 104,
+          "line_end": 104,
+          "function": "init_usart1"
+        }
+      ]
+    },
+    {
+      "id": "DB-R064",
+      "verdict": "partially_covered",
+      "reason": "A 200-byte queue exists, but enablement state/calls are missing.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 104,
+          "line_end": 104,
+          "function": "init_usart1"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.h",
+          "line_start": 31,
+          "line_end": 31,
+          "function": "capacity"
+        }
+      ]
+    },
+    {
+      "id": "DB-R065",
+      "verdict": "fully_covered",
+      "reason": "Only RXNE enqueues; full writes are rejected.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 105,
+          "line_end": 105,
+          "function": "ISR"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 97,
+          "line_end": 97,
+          "function": "buf_putbyte"
+        }
+      ]
+    },
+    {
+      "id": "DB-R066",
+      "verdict": "partially_covered",
+      "reason": "TXlog effects are correct, but the SR 0x40 wait condition is absent.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 106,
+          "line_end": 106,
+          "function": "send"
+        }
+      ]
+    },
+    {
+      "id": "DB-R067",
+      "verdict": "fully_covered",
+      "reason": "Reading delegates to buf and returns 0 when empty.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 107,
+          "line_end": 107,
+          "function": "read"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 98,
+          "line_end": 98,
+          "function": "buffer read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R068",
+      "verdict": "fully_covered",
+      "reason": "The char conversion preserves the FF-to--1 convention.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 108,
+          "line_end": 108,
+          "function": "readc"
+        }
+      ]
+    },
+    {
+      "id": "DB-R069",
+      "verdict": "fully_covered",
+      "reason": "The monotonic-counter difference is returned.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 109,
+          "line_end": 109,
+          "function": "available"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 99,
+          "line_end": 99,
+          "function": "buf_available"
+        }
+      ]
+    },
+    {
+      "id": "DB-R070",
+      "verdict": "fully_covered",
+      "reason": "All fields are complete.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.h",
+          "line_start": 73,
+          "line_end": 73,
+          "function": "CircArray"
+        }
+      ]
+    },
+    {
+      "id": "DB-R071",
+      "verdict": "fully_covered",
+      "reason": "calloc, fields, and reinitialization warnings/skipping are present.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 94,
+          "line_end": 94,
+          "function": "initCircArray"
+        }
+      ]
+    },
+    {
+      "id": "DB-R072",
+      "verdict": "fully_covered",
+      "reason": "Modulo writes increment the counter; full writes return 0.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 97,
+          "line_end": 97,
+          "function": "put"
+        }
+      ]
+    },
+    {
+      "id": "DB-R073",
+      "verdict": "fully_covered",
+      "reason": "Modulo reads increment the counter; empty reads return 0.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 98,
+          "line_end": 98,
+          "function": "get"
+        }
+      ]
+    },
+    {
+      "id": "DB-R074",
+      "verdict": "fully_covered",
+      "reason": "The counters are equal.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 95,
+          "line_end": 95,
+          "function": "empty"
+        }
+      ]
+    },
+    {
+      "id": "DB-R075",
+      "verdict": "fully_covered",
+      "reason": "Nonempty with equal modulo indices.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 96,
+          "line_end": 96,
+          "function": "full"
+        }
+      ]
+    },
+    {
+      "id": "DB-R076",
+      "verdict": "fully_covered",
+      "reason": "n_w-n_r。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 99,
+          "line_end": 99,
+          "function": "available"
+        }
+      ]
+    },
+    {
+      "id": "DB-R077",
+      "verdict": "fully_covered",
+      "reason": "realloc uses a temporary value, leaving state unchanged on failure and updating size on success.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 100,
+          "line_end": 100,
+          "function": "resize"
+        }
+      ]
+    },
+    {
+      "id": "DB-R078",
+      "verdict": "fully_covered",
+      "reason": "clear/free/reset/disable/NULLfalse。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 101,
+          "line_end": 101,
+          "function": "delete"
+        }
+      ]
+    },
+    {
+      "id": "DB-R079",
+      "verdict": "fully_covered",
+      "reason": "Only contents are cleared; cursors remain unchanged.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 102,
+          "line_end": 102,
+          "function": "clear"
+        }
+      ]
+    },
+    {
+      "id": "DB-R080",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R081",
+      "verdict": "fully_covered",
+      "reason": "uint32+1。",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 112,
+          "line_end": 112,
+          "function": "func2"
+        }
+      ]
+    },
+    {
+      "id": "DB-R082",
+      "verdict": "fully_covered",
+      "reason": "The transparent C call is allowed by D:72.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 113,
+          "line_end": 113,
+          "function": "func1"
+        }
+      ]
+    },
+    {
+      "id": "DB-R083",
+      "verdict": "unassessed",
+      "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation.",
+      "preclassified_as": "requires_contract_clarification",
+      "evidence": []
+    },
+    {
+      "id": "DB-R084",
+      "verdict": "fully_covered",
+      "reason": "All constants are correct, without framing use.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.h",
+          "line_start": 26,
+          "line_end": 32,
+          "function": "constants"
+        }
+      ]
+    },
+    {
+      "id": "DB-R085",
+      "verdict": "fully_covered",
+      "reason": "The specified arrays actually update binary values.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 12,
+          "line_end": 14,
+          "function": "globals"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 44,
+          "line_end": 44,
+          "function": "pin writer"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 75,
+          "line_end": 77,
+          "function": "LED"
+        }
+      ]
+    },
+    {
+      "id": "DB-R086",
+      "verdict": "fully_covered",
+      "reason": "Only bit 0 is modified.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 73,
+          "line_end": 73,
+          "function": "button injection"
+        }
+      ]
+    },
+    {
+      "id": "DB-R087",
+      "verdict": "fully_covered",
+      "reason": "The same three-axis variables form the data path.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 80,
+          "line_end": 81,
+          "function": "accelerometer injection/read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R088",
+      "verdict": "fully_covered",
+      "reason": "Injected raw values feed the specified formula.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 83,
+          "line_end": 84,
+          "function": "ADC injection/read"
+        }
+      ]
+    },
+    {
+      "id": "DB-R089",
+      "verdict": "partially_covered",
+      "reason": "Independent inputs exist, but blocked is private without a getter, and unready returns the same value as success.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 33,
+          "line_end": 37,
+          "function": "RNG state"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 87,
+          "line_end": 88,
+          "function": "RNG read/inject"
+        }
+      ]
+    },
+    {
+      "id": "DB-R090",
+      "verdict": "fully_covered",
+      "reason": "DR/RXNE data enters the same ISR; false does not enqueue.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 105,
+          "line_end": 105,
+          "function": "ISR"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 110,
+          "line_end": 110,
+          "function": "injection"
+        }
+      ]
+    },
+    {
+      "id": "DB-R091",
+      "verdict": "fully_covered",
+      "reason": "Ordered appends, length maintenance, and bounds protection are present.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 106,
+          "line_end": 106,
+          "function": "send"
+        }
+      ]
+    },
+    {
+      "id": "DB-R092",
+      "verdict": "fully_covered",
+      "reason": "A production single step exists, without main or self-tests.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 54,
+          "line_end": 54,
+          "function": "main_loop_iteration"
+        }
+      ]
+    },
+    {
+      "id": "DB-R093",
+      "verdict": "fully_covered",
+      "reason": "Private queue reinitialization has a reachable release; generic queues can be deleted.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 104,
+          "line_end": 104,
+          "function": "UART reinit"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 101,
+          "line_end": 101,
+          "function": "delete"
+        }
+      ]
+    },
+    {
+      "id": "DB-R094",
+      "verdict": "fully_covered",
+      "reason": "NULL, full-buffer, and index guards exist.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 69,
+          "line_end": 69,
+          "function": "button"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 94,
+          "line_end": 106,
+          "function": "buffer/send"
+        }
+      ]
+    },
+    {
+      "id": "DB-R095",
+      "verdict": "fully_covered",
+      "reason": "The protocol is raw, without PWM or Remove; speed is unused.",
+      "evidence": [
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 53,
+          "line_end": 67,
+          "function": "protocol/motors"
+        },
+        {
+          "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\jobs\\discobot__gpt-5.5__C4_structured__r02\\repair_2\\6_generated_code.c",
+          "line_start": 90,
+          "line_end": 91,
+          "function": "scheduler"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "fully_covered": 70,
+    "unassessed": 7,
+    "partially_covered": 17,
+    "not_covered": 1
+  },
+  "denominator": 88,
+  "rate": 79.54545454545455,
+  "metric": "coverage of 88 statically reviewable requirement leaves; 7 preclassified leaves unassessed",
+  "all_project_requirements_assessed": false,
+  "code_modified": false,
+  "model_api_calls": 0,
+  "host_or_compiler_executed": false,
+  "prior_static_scores_used": false,
+  "note": "All113 C lines including long one-line bodies and92 header lines read. SHA verified; no prior score or other candidate verdict reused. R/D/A scope applied before judgments.",
+  "input_context": {
+    "requirement": {
+      "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\protocol\\discobot\\RE_req.txt",
+      "sha256": "0386b7323a917035fc1fcd21cafdd99aea562904d531126be06411af828c83bb",
+      "provided_to_generator": true
+    },
+    "device": {
+      "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\protocol\\discobot\\RE_device_interface.txt",
+      "sha256": "82e98267f500f08b2e54256b621795ae05b0884b56498f1bac2000cdc63366e0",
+      "provided_to_generator": true
+    },
+    "api": {
+      "path": "fse\\interrupted_restart_20260930\\subscription_fixed\\execution\\c4_repeat\\discobot__gpt-5.5__C4_structured__r02\\protocol\\discobot\\RE_api.txt",
+      "sha256": "9ef8f2d20200c0f43ee8752e08d60a6a07243eabc1e2f8438d3f9e347ab7cee0",
+      "provided_to_generator": true
+    }
+  },
+  "scope_review_complete": true,
+  "scope_review_policy": "R+D host-equivalent scope; configuration stubs allowed but required values and observable data paths must exist; Direct not penalized using unsupplied A; C equivalents for assembly accepted under D:72.",
+  "read_complete_candidate_files": true,
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/reviews/gpt/discobot/discobot__gpt-5.5__C4_structured__r02.json",
+    "original_sha256": "c4566f172caa9ab37c15c5afeaa2705ae51a5c0787b8812e7b1c6ebb5dd9dc56",
+    "language": "Original Chinese evidence/rationales retained; no semantic translation.",
+    "initial_review_status": {
+      "evaluator": "current Codex LLM static review",
+      "human_review_claimed": false
+    },
+    "preservation": "Initial verdicts, reasons, historical rates and human-review flags retained. Path anonymization and export metadata do not constitute a new review.",
+    "current_aggregation": "(fully_covered + partially_covered) / preclassified static denominator; no fractional weighting of partial items.",
+    "checklist_export": {
+      "path": "data/rq1/requirement_coverage/checklists/discobot.json",
+      "sha256": "e731137141a0fc3c4d67258ff76e0fa635fbea1d88801da73c3edee10d1c66c6",
+      "original_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+      "leaf_count": 95,
+      "static_denominator": 88,
+      "source_requirement": {
+        "path": "data/rq1/requirement_coverage/source_requirements/discobot_RE_req.txt",
+        "sha256": "06306779a3ef8033f15aab14cc1701a809e8129513e2d5b77ea4ae7491cb91c9"
+      }
+    },
+    "candidate_bindings": [
+      {
+        "source": "fse/interrupted_restart_20260930/subscription_fixed/execution/c4_repeat/discobot__gpt-5.5__C4_structured__r02/jobs/discobot__gpt-5.5__C4_structured__r02/repair_2/6_generated_code.c",
+        "original_sha256": "a0ef68fe9fbe91fe766c670308cdbb83327c00a9378dd5b1a5b941c41434a805",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.c",
+        "path": "evidence/candidate_sources/a0ef68fe9fbe91fe766c670308cdbb83327c00a9378dd5b1a5b941c41434a805/6_generated_code.c",
+        "distributed_sha256": "a0ef68fe9fbe91fe766c670308cdbb83327c00a9378dd5b1a5b941c41434a805",
+        "transformation": "none"
+      },
+      {
+        "source": "fse/interrupted_restart_20260930/subscription_fixed/execution/c4_repeat/discobot__gpt-5.5__C4_structured__r02/jobs/discobot__gpt-5.5__C4_structured__r02/repair_2/6_generated_code.h",
+        "original_sha256": "7b63780cce77af47f8acfea82c70a7d3f7ad9e6fc26bb9d8849f5d26a5f72701",
+        "kind": "candidate_source",
+        "original_name": "6_generated_code.h",
+        "path": "evidence/candidate_sources/7b63780cce77af47f8acfea82c70a7d3f7ad9e6fc26bb9d8849f5d26a5f72701/6_generated_code.h",
+        "distributed_sha256": "7b63780cce77af47f8acfea82c70a7d3f7ad9e6fc26bb9d8849f5d26a5f72701",
+        "transformation": "none"
+      }
+    ],
+    "evidence_line_numbers": "Original candidate lines; transformed candidate comments, where used, retain separately recorded original and distributed hashes."
+  }
+}

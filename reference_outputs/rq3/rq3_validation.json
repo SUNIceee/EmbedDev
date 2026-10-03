@@ -1,0 +1,255 @@
+{
+  "status": "offline_recomputed_from_bundled_scores",
+  "cells": 30,
+  "positions": 90,
+  "means_and_population_sd_match_fixed_display": true,
+  "population_sd_divisor": 3,
+  "counts_checked_for_locally_bound_reviews": 81,
+  "retained_no_code_positions": 8,
+  "fixed_smaller_task_candidates_verified": 44,
+  "exact_smaller_task_code_files_verified": 88,
+  "fixed_whole_requirement_items_verified": 31,
+  "retained_smaller_task_item_verdicts_checked": 457,
+  "replacement_testcase_verdicts_checked": 100,
+  "exact_replacement_code_files_verified": 12,
+  "rq1_shared_positions_cross_checked": 45,
+  "author_reported_replacement_positions": 1,
+  "author_reported_gpio_position_locally_verified": false,
+  "replacement_human_review": "author-attested; not independently witnessed by these scripts",
+  "new_model_calls": 0,
+  "new_host_runs": 0,
+  "new_semantic_judgments": 0,
+  "input_sha256": {
+    "data/rq3/display_cells.json": "aa7a4c91c44f24c2146f4520553da06ec3fc7d4a654a26685a847549556a40f9",
+    "data/rq3/position_scores.json": "a9e68fe1bcc5356fd89fcb15e81094e96ad39e42517cb37c5cd07136bf8a9da1",
+    "data/rq3/protocol.json": "c79f25e0553182696998eb5a21ccb963f5bb5d54c0a42aa63c462fb523a9fe25",
+    "rq3_export_provenance.json": "3c6f77d8e94bd4d73d0a764a444cba97e7c9442e250e132f3b3d347c2812b26b"
+  },
+  "plot": {
+    "chart_type": "line_means_only",
+    "point_count": 30,
+    "connecting_segments": 25,
+    "error_bars": 0,
+    "confidence_bands": 0,
+    "footer_present": false,
+    "colors": {
+      "Direct-LLM": "#7A7F87",
+      "MetaGPT": "#8E6CBB",
+      "ChatDev": "#2678B2",
+      "StructGen": "#2A9D8F",
+      "EmbedDev": "#D62728"
+    },
+    "geometry": [
+      {
+        "task": "gpio_output",
+        "method": "Direct-LLM",
+        "mean_percent": 100.0,
+        "x": 66.0,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "gpio_button_debounce",
+        "method": "Direct-LLM",
+        "mean_percent": 100.0,
+        "x": 170.2,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "balance_control",
+        "method": "Direct-LLM",
+        "mean_percent": 100.0,
+        "x": 274.4,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "discobot",
+        "method": "Direct-LLM",
+        "mean_percent": 82.25806451612904,
+        "x": 378.6,
+        "y": 192.9308755760369
+      },
+      {
+        "task": "onstep",
+        "method": "Direct-LLM",
+        "mean_percent": 43.7037037037037,
+        "x": 482.8,
+        "y": 125.00176366843033
+      },
+      {
+        "task": "crazyflie",
+        "method": "Direct-LLM",
+        "mean_percent": 21.666666666666668,
+        "x": 587.0,
+        "y": 86.17460317460318
+      },
+      {
+        "task": "gpio_output",
+        "method": "MetaGPT",
+        "mean_percent": 100.0,
+        "x": 66.0,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "gpio_button_debounce",
+        "method": "MetaGPT",
+        "mean_percent": 100.0,
+        "x": 170.2,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "balance_control",
+        "method": "MetaGPT",
+        "mean_percent": 61.904761904761905,
+        "x": 274.4,
+        "y": 157.07029478458048
+      },
+      {
+        "task": "discobot",
+        "method": "MetaGPT",
+        "mean_percent": 13.440860215053762,
+        "x": 378.6,
+        "y": 71.68151561699949
+      },
+      {
+        "task": "onstep",
+        "method": "MetaGPT",
+        "mean_percent": 0.0,
+        "x": 482.8,
+        "y": 48.0
+      },
+      {
+        "task": "crazyflie",
+        "method": "MetaGPT",
+        "mean_percent": 0.0,
+        "x": 587.0,
+        "y": 48.0
+      },
+      {
+        "task": "gpio_output",
+        "method": "ChatDev",
+        "mean_percent": 100.0,
+        "x": 66.0,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "gpio_button_debounce",
+        "method": "ChatDev",
+        "mean_percent": 100.0,
+        "x": 170.2,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "balance_control",
+        "method": "ChatDev",
+        "mean_percent": 100.0,
+        "x": 274.4,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "discobot",
+        "method": "ChatDev",
+        "mean_percent": 90.3225806451613,
+        "x": 378.6,
+        "y": 207.13978494623657
+      },
+      {
+        "task": "onstep",
+        "method": "ChatDev",
+        "mean_percent": 78.88888888888889,
+        "x": 482.8,
+        "y": 186.994708994709
+      },
+      {
+        "task": "crazyflie",
+        "method": "ChatDev",
+        "mean_percent": 57.28344671201814,
+        "x": 587.0,
+        "y": 148.92797754022246
+      },
+      {
+        "task": "gpio_output",
+        "method": "StructGen",
+        "mean_percent": 100.0,
+        "x": 66.0,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "gpio_button_debounce",
+        "method": "StructGen",
+        "mean_percent": 100.0,
+        "x": 170.2,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "balance_control",
+        "method": "StructGen",
+        "mean_percent": 100.0,
+        "x": 274.4,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "discobot",
+        "method": "StructGen",
+        "mean_percent": 86.55913978494624,
+        "x": 378.6,
+        "y": 200.5089605734767
+      },
+      {
+        "task": "onstep",
+        "method": "StructGen",
+        "mean_percent": 65.55555555555556,
+        "x": 482.8,
+        "y": 163.5026455026455
+      },
+      {
+        "task": "crazyflie",
+        "method": "StructGen",
+        "mean_percent": 38.333333333333336,
+        "x": 587.0,
+        "y": 115.53968253968254
+      },
+      {
+        "task": "gpio_output",
+        "method": "EmbedDev",
+        "mean_percent": 100.0,
+        "x": 66.0,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "gpio_button_debounce",
+        "method": "EmbedDev",
+        "mean_percent": 100.0,
+        "x": 170.2,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "balance_control",
+        "method": "EmbedDev",
+        "mean_percent": 100.0,
+        "x": 274.4,
+        "y": 224.1904761904762
+      },
+      {
+        "task": "discobot",
+        "method": "EmbedDev",
+        "mean_percent": 95.6989247311828,
+        "x": 378.6,
+        "y": 216.61239119303636
+      },
+      {
+        "task": "onstep",
+        "method": "EmbedDev",
+        "mean_percent": 82.96296296296296,
+        "x": 482.8,
+        "y": 194.17283950617283
+      },
+      {
+        "task": "crazyflie",
+        "method": "EmbedDev",
+        "mean_percent": 68.21582675392457,
+        "x": 587.0,
+        "y": 168.18978999500996
+      }
+    ]
+  }
+}

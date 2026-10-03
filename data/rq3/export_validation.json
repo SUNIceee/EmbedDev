@@ -1,0 +1,23 @@
+{
+  "status": "verified_offline",
+  "scope": "Six-task RQ3 current manuscript view",
+  "cells": 30,
+  "positions": 90,
+  "replacement": "crazyflie__deepseek-v4-pro__B_chatdev__r02",
+  "replacement_percent": 46.0,
+  "chatdev_crazyflie_mean_percent": 57.28344671201814,
+  "all_30_chart_points_match_current_manuscript": true,
+  "population_sd_divisor": 3,
+  "intervals_plotted": false,
+  "EmbedDev_red": true,
+  "footer_present": false,
+  "new_model_calls": 0,
+  "new_host_executions": 0,
+  "new_semantic_judgments": 0,
+  "standard_library_reconstruction_passed": true,
+  "reportlab_plotting_passed": true,
+  "visual_review": "PNG inspected: clear legend, labels and axes; six tasks and five series; red EmbedDev; ChatDev Crazyflie at 57.28%; no footer or error bars.",
+  "historical_snapshot": "history/rq3_seven_task_20261002",
+  "reference_outputs": "reference_outputs/rq3",
+  "human_review_attestation": "data/human_review_attestation.json"
+}

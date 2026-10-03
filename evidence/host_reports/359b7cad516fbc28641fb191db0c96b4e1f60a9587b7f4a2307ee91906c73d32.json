@@ -1,0 +1,85 @@
+{
+  "candidate": {
+    "key": "487121c8c8f5cf0e1d73f18660ffecce42ba5a9bdcf155ebf41703a4b9c1a873",
+    "project": "crazyflie",
+    "header": "<WORKSPACE>\\fse\\official_baselines\\reassessment_host_20260921\\code\\487121c8c8f5cf0e1d73f18660ffecce42ba5a9bdcf155ebf41703a4b9c1a873\\raw\\6_generated_code.h",
+    "source": "<WORKSPACE>\\fse\\official_baselines\\reassessment_host_20260921\\code\\487121c8c8f5cf0e1d73f18660ffecce42ba5a9bdcf155ebf41703a4b9c1a873\\raw\\6_generated_code.c",
+    "header_sha256": "48518cd38acd861b941a01899d521eed8c843564e3c3f7d7fe3986f72ae62ed7",
+    "source_sha256": "93342ab1c77b6c0d195a665323e97d26e49a6fb570c9594ad9693fdb77d89afd",
+    "labels": [],
+    "whole_project_sha256": "487121c8c8f5cf0e1d73f18660ffecce42ba5a9bdcf155ebf41703a4b9c1a873",
+    "all_file_sha256": {
+      "6_generated_code.h": "48518cd38acd861b941a01899d521eed8c843564e3c3f7d7fe3986f72ae62ed7",
+      "6_generated_code.c": "93342ab1c77b6c0d195a665323e97d26e49a6fb570c9594ad9693fdb77d89afd"
+    }
+  },
+  "suite_sha256": "7b3ea083fc200084487ea77197bcd77fce7a340fbf147e2c3234652952a2a27f",
+  "complete": true,
+  "compile_returncode": 1,
+  "compile_timeout": false,
+  "source_changes": {
+    "header_include_alignment": [
+      "6_generated_code.h"
+    ],
+    "entrypoint_rename": "compile-time main=fse_candidate_main"
+  },
+  "cases": [
+    {
+      "id": "CF-B01",
+      "category": "state_lifecycle",
+      "anchor": "7 / isFlyingCheck",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "CF-B02",
+      "category": "state_lifecycle",
+      "anchor": "7 / tick zero",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "CF-B03",
+      "category": "timing_state",
+      "anchor": "7 / Emergency-stop watchdog",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "CF-B04",
+      "category": "safe_output",
+      "anchor": "7 / supervisorOverrideSetpoint",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "CF-B05",
+      "category": "state_lifecycle",
+      "anchor": "7 / canFly=false",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    },
+    {
+      "id": "CF-B06",
+      "category": "input_propagation",
+      "anchor": "7 / RPM",
+      "checks": 0,
+      "failures": 0,
+      "status": "candidate_build_failed",
+      "reason": "No scenario executed; see compile.log"
+    }
+  ],
+  "counts": {
+    "candidate_build_failed": 6
+  }
+}

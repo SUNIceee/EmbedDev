@@ -1,0 +1,103 @@
+{
+  "candidate": {
+    "key": "f0a906e02e81cf00259721b1f4787fb50062f185406d6f9325ba30a06c271dd9",
+    "project": "discobot",
+    "header": "<WORKSPACE>\\fse\\official_baselines\\deepseek_onstep_r03_new_host_20261001\\code\\f0a906e02e81cf00259721b1f4787fb50062f185406d6f9325ba30a06c271dd9\\raw\\6_generated_code.h",
+    "source": "<WORKSPACE>\\fse\\official_baselines\\deepseek_onstep_r03_new_host_20261001\\code\\f0a906e02e81cf00259721b1f4787fb50062f185406d6f9325ba30a06c271dd9\\raw\\6_generated_code.c",
+    "header_sha256": "41f0919010085c8272617d47886a712811af89ade20bf2c032bf455e9385fca4",
+    "source_sha256": "ee7eac7f38d2b567ccec8d2b699c64599606d732434f41440db4ba5124f32689",
+    "labels": [],
+    "whole_project_sha256": "f0a906e02e81cf00259721b1f4787fb50062f185406d6f9325ba30a06c271dd9",
+    "all_file_sha256": {
+      "6_generated_code.h": "41f0919010085c8272617d47886a712811af89ade20bf2c032bf455e9385fca4",
+      "6_generated_code.c": "ee7eac7f38d2b567ccec8d2b699c64599606d732434f41440db4ba5124f32689"
+    }
+  },
+  "suite_sha256": "7b3ea083fc200084487ea77197bcd77fce7a340fbf147e2c3234652952a2a27f",
+  "complete": true,
+  "compile_returncode": 0,
+  "compile_timeout": false,
+  "source_changes": {
+    "header_include_alignment": [
+      "6_generated_code.h"
+    ],
+    "entrypoint_rename": "compile-time main=fse_candidate_main"
+  },
+  "cases": [
+    {
+      "id": "DB-B01",
+      "category": "data_to_output",
+      "anchor": "4.3 / 5.2",
+      "checks": 8,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "DB-B02",
+      "category": "safe_output",
+      "anchor": "4.3 / 5.3",
+      "checks": 10,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "DB-B03",
+      "category": "timing_state",
+      "anchor": "5.4",
+      "checks": 6,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "DB-B04",
+      "category": "timing_state",
+      "anchor": "9",
+      "checks": 5,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "DB-B05",
+      "category": "input_propagation",
+      "anchor": "6",
+      "checks": 6,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "DB-B06",
+      "category": "data_to_output",
+      "anchor": "5.3 / 10",
+      "checks": 6,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "DB-B07",
+      "category": "queue_lifecycle",
+      "anchor": "11",
+      "checks": 16,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    },
+    {
+      "id": "DB-B08",
+      "category": "input_propagation",
+      "anchor": "7",
+      "checks": 3,
+      "failures": 0,
+      "status": "pass",
+      "returncode": 0
+    }
+  ],
+  "counts": {
+    "pass": 8
+  }
+}

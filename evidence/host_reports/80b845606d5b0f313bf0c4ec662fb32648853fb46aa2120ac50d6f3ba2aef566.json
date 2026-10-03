@@ -1,0 +1,85 @@
+{
+  "candidate": {
+    "key": "d6cc5557b745eb6a5b32dfa7868e2a89db66c753b6d2cacf74edfc4bca1211de",
+    "project": "onstep",
+    "header": "<WORKSPACE>\\fse\\official_baselines\\reassessment_host_20260921\\code\\d6cc5557b745eb6a5b32dfa7868e2a89db66c753b6d2cacf74edfc4bca1211de\\raw\\6_generated_code.h",
+    "source": "<WORKSPACE>\\fse\\official_baselines\\reassessment_host_20260921\\code\\d6cc5557b745eb6a5b32dfa7868e2a89db66c753b6d2cacf74edfc4bca1211de\\raw\\6_generated_code.c",
+    "header_sha256": "d601b74cd2540e4cb2446070e289bf129d717d319c39f6e8c294fc7fa9295813",
+    "source_sha256": "960e7d6c2970cb0794c703182f5a206c2b6040e9e36af9f18b0c05961a515a9e",
+    "labels": [],
+    "whole_project_sha256": "d6cc5557b745eb6a5b32dfa7868e2a89db66c753b6d2cacf74edfc4bca1211de",
+    "all_file_sha256": {
+      "6_generated_code.h": "d601b74cd2540e4cb2446070e289bf129d717d319c39f6e8c294fc7fa9295813",
+      "6_generated_code.c": "960e7d6c2970cb0794c703182f5a206c2b6040e9e36af9f18b0c05961a515a9e"
+    }
+  },
+  "suite_sha256": "7b3ea083fc200084487ea77197bcd77fce7a340fbf147e2c3234652952a2a27f",
+  "complete": true,
+  "compile_returncode": 0,
+  "compile_timeout": false,
+  "source_changes": {
+    "header_include_alignment": [
+      "6_generated_code.h"
+    ],
+    "entrypoint_rename": "compile-time main=fse_candidate_main"
+  },
+  "cases": [
+    {
+      "id": "OS-B01",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-004",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B02",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-001 / runtime state reset",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B03",
+      "category": "state_lifecycle",
+      "anchor": "REQ-FUNC-001 / runtime state reset",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B04",
+      "category": "persistent_storage",
+      "anchor": "5 / NVM",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B05",
+      "category": "input_propagation",
+      "anchor": "3.2 / RTC",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    },
+    {
+      "id": "OS-B06",
+      "category": "invalid_input_state",
+      "anchor": "REQ-FUNC-005",
+      "checks": 0,
+      "failures": 0,
+      "status": "harness_build_failed",
+      "reason": "API/linkage incompatibility or missing symbol; no behavioral verdict"
+    }
+  ],
+  "counts": {
+    "harness_build_failed": 6
+  }
+}

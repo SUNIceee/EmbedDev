@@ -1,0 +1,276 @@
+DiscoBot Test-Compatible API Contract
+Version: Test-Compatible v3 (Comprehensive Host-Verifiable)
+Aligned with: DiscoBot-test-comprehensive.json DB-001 through DB-125
+
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+
+================================================================================
+1. Common types, constants, and global objects
+================================================================================
+
+typedef enum _ID {
+    FWD=0, BWD=1, FWDLEFT=2, FWDRIGHT=3,
+    BCKLEFT=4, BCKRIGHT=5, SPINRIGHT=6, SPINLEFT=7, STOPCAR=8
+} _ID;
+#define MAXIDSIZE 9
+
+typedef enum Directions { FORWARD=0, BACKWARD=1, STOP=2 } Directions;
+
+typedef enum ButtonState { ButtonIsReleased=0, ButtonIsPressed=1 } ButtonState;
+
+typedef void (*motor_command_fn)(void);
+
+extern volatile uint32_t msTicks;
+extern volatile uint32_t b_i;
+extern volatile ButtonState buttstate;
+extern volatile _ID msgid;
+extern motor_command_fn callme;
+extern motor_command_fn flookup[9];
+
+extern uint8_t GPIOA_output[16];
+extern uint8_t GPIOD_output[16];
+extern uint32_t GPIOA_IDR;
+extern uint32_t SystemCoreClock;
+extern uint32_t SysTick_reload;
+extern uint32_t usart1_baud_used;
+extern char usart1_tx_log[1024];
+extern size_t usart1_tx_length;
+extern const char *discobot_startup_banner;
+
+#define START_BYTE 0x24
+#define STOP_BYTE 0x2A
+#define UART_BAUD 9600
+#define BUTTON_DEBOUNCE_MS 250
+#define SYSTICK_PERIOD_TICKS 168000
+#define CIRC_BUFFER_MIN_SIZE 200
+#define MAXNUMTASKS 25
+
+================================================================================
+2. System initialization API
+================================================================================
+
+void init_system(void);
+  // Complete startup sequence: SystemInit->init_systick->init_LED_pins->init_button->
+  //   init_accelerometers→init_rng→init_temperature_sensor→
+  //   init_GPIO_A1A2A3A4_output→init_usart1(9600)→usart1_send("UART1 Initialized. @9600bps\r\n")
+
+void SystemInit(void);   // Clock configuration: SystemCoreClock=168000000
+
+void init_systick(void);
+  // SystemCoreClockUpdate()→SysTick_Config(SystemCoreClock/1000)=168000。
+  // Failure -> infinite while(1) loop.
+
+void init_button(void);
+  // PA0 floating input. Host mode clears button input and debounce state.
+
+bool dispatch_uart_command(int command);
+  // 0..8: set callme=flookup[command], invoke it immediately, and return true; otherwise do nothing and return false.
+
+void main_loop_iteration(void);
+  // Read and dispatch available UART data; checkbutton; execute_tasks; 1000ms idle interval performs no action.
+
+================================================================================
+3. Motor control (Car)
+================================================================================
+
+void init_GPIO_A1A2A3A4_output(void);
+  // RCC AHB1 GPIOA -> PA1-4: OUTPUT/Push-Pull/Pull-Up/25MHz -> initially low
+
+void set_left_motor_direc(int direc, float speed);
+  // FORWARD→PA1=1,PA2=0。BACKWARD→PA1=0,PA2=1。STOP→0,0。else→0,0。
+  // speed is declared but unused (no PWM, full speed)
+
+void set_right_motor_direc(int direc, float speed);
+  // FORWARD→PA3=1,PA4=0。BACKWARD→PA3=0,PA4=1。STOP→0,0。else→0,0。
+
+void move_forward(void);             // PA:1/0/1/0
+void move_backward(void);            // PA:0/1/0/1
+void move_forward_soft_left(void);   // PA:0/0/1/0
+void move_forward_soft_right(void);  // PA:1/0/0/0
+void move_backward_soft_left(void);  // PA:0/0/0/1
+void move_backward_soft_right(void); // PA:0/1/0/0
+void move_spin_right(void);          // PA:1/0/0/1
+void move_spin_left(void);           // PA:0/1/1/0
+void stop(void);                     // PA:0/0/0/0
+
+================================================================================
+4. Command dispatch and button
+================================================================================
+
+int read_buttonc(int i);
+  // Read (GPIOA->IDR >> i) & 1. i>3 -> -1. 0 -> PA0.
+
+void SysTick_Handler(void);
+  // Every 1ms: msTicks++. read_buttonc(0)==1 -> b_i++ (>=250 -> buttstate=Pressed).
+  // read_buttonc(0)==0→b_i=0→buttstate=Released。
+
+void checkbutton(void);
+  // Track changes in laststate vs buttstate. Transition-handling switch (break only).
+
+void calc_pitch_roll(float acc_x, float acc_y, float acc_z, float *pitch, float *roll);
+  // roll=atan2(acc_y,acc_z)*180/PI。pitch=atan2(-acc_x,sqrt(acc_y²+acc_z²))*180/PI。
+
+void discobot_set_button_level(bool high);
+
+================================================================================
+5. LED
+================================================================================
+
+void init_LED_pins(void);
+  // RCC AHB1 GPIOD→PD12~15 OUTPUT
+
+void LED_On(int i);    // 0~3→GPIOD BSRRL bit(12+i)。≥4→noop
+void LED_Off(int i);   // 0~3→GPIOD BSRRH bit(12+i)。≥4→noop
+
+================================================================================
+6. Accelerometers
+================================================================================
+
+int init_accelerometers(void);
+  // TM_LIS302DL_LIS3DSH_Init(TM_LIS3DSH_Sensitivity_2G, TM_LIS3DSH_Filter_50Hz). 0=success.
+
+void read_accelerometers(float b[3]);
+  // TM_LIS302DL_LIS3DSH_ReadAxes()→struct{X,Y,Z} milli-g int。
+  // b[i]=raw/1000.0f (g). Approximate range +/-2000mg -> +/-2.0g.
+
+void discobot_set_accelerometer_raw(int16_t x_mg, int16_t y_mg, int16_t z_mg);
+
+================================================================================
+7. Temperature
+================================================================================
+
+void init_temperature_sensor(void);
+  // ADC1: Independent/12bit/Prescaler8/ContinuousConv/Channel=TempSensor/Sample144Cycles。
+  // TempSensor+Vrefint→Enable→ADC_Cmd(ENABLE)。
+
+float read_temperature_sensor(void);
+  // Steps: 1)SoftwareStartConv 2)while(EOC==RESET) 3)raw=GetConversionValue
+  // 4)temp=raw/4095.0f 5)temp*=3.3f 6)temp-=0.760f 7)temp/=0.0025f 8)temp+=25.0f
+  // raw=943→~25°C。raw=866→~0°C。raw=1129→~85°C。
+
+void discobot_set_adc_raw(uint16_t raw);
+
+================================================================================
+8. RNG (hardware random-number generator)
+================================================================================
+
+void init_rng(void);
+  // RCC_AHB2PeriphClockCmd(RNG,ENABLE)→RNG_Cmd(ENABLE)。
+
+uint32_t get_random_number(void);
+  // while(RNG_GetFlagStatus(RNG_FLAG_DRDY)==RESET){}→RNG_GetRandomNumber()。
+  // No timeout.
+
+void discobot_set_rng(bool ready, uint32_t value);
+
+================================================================================
+9. Task — Timed Task Scheduler
+================================================================================
+
+#define MAXNUMTASKS 25
+
+typedef struct TimedTask {
+    void (*task)(void);
+    uint32_t msinterval;
+    uint32_t last_called;
+    uint32_t numcalls;
+} TimedTask;
+
+extern TimedTask timed_tasks[MAXNUMTASKS];
+
+void add_timed_task(void (*myfunc)(void), float interval_sec);
+  // Find the first NULL slot -> task=myfunc, msinterval=(long)(interval*1000), last_called=0, numcalls=0.
+  // All 25 slots full -> fail silently.
+
+void execute_tasks(void);
+  // Scan 25 slots: task&&msTicks>=last_called+msinterval -> task() -> last_called=msTicks -> numcalls++.
+
+void printtimes(void);
+  // Scan 25 slots: non-NULL -> printf("t%d=%d",i,numcalls).
+
+================================================================================
+10. CircArray -- circular array
+================================================================================
+
+typedef struct CircArray {
+    char *buf;
+    uint32_t size;
+    bool enabled;
+    uint32_t n_r;
+    uint32_t n_w;
+} CircArray;
+
+void initCircArray(CircArray *arr, int size);
+  // calloc(size,1). Set size/enabled=1/n_r=0/n_w=0. Already enabled -> print error and skip.
+
+int buf_putbyte(CircArray *arr, char c);
+  // !full→arr->buf[n_w%size]=c→n_w++→ret1。full→ret0。
+
+char buf_getbyte(CircArray *arr);
+  // !empty→ret arr->buf[n_r%size]→n_r++。empty→ret0。
+
+bool buf_empty(CircArray *arr);
+  // n_r==n_w
+
+bool buf_full(CircArray *arr);
+  // !empty && (n_r%size)==(n_w%size)
+
+int buf_available(CircArray *arr);
+  // n_w - n_r
+
+bool buf_resize(CircArray *arr, int newSize);
+  // realloc(arr->buf,newSize). Failure -> false. Success -> size=newSize -> true.
+
+bool buf_delete(CircArray *arr);
+  // buf_clear -> free(arr->buf) -> zero fields -> enabled=false. arr==NULL -> false.
+
+void buf_clear(CircArray *arr);
+  // memset all bytes to 0. Do not change n_r/n_w/size/enabled.
+
+================================================================================
+11. USART — USART1
+================================================================================
+
+void init_usart1(int baud);
+  // baud==0 -> 9600 plus warning. GPIOB6(TX AF)+PB7(RX AF): push-pull/pull-up/100MHz.
+  // USART: 8N1/NoFlow/TX+RX. USART_IT_RXNE interrupt. NVIC preempt/sub=0.
+  // initCircArray(&msg,200)。USART_Cmd(USART1,ENABLE)。
+
+void USART1_IRQHandler(void);
+  // RXNE -> c=DR -> buf_putbyte(&msg,c). Full -> data lost (0). TXE -> ignored.
+
+void usart1_send(volatile char *s);
+  // For each character: while(!(SR&0x40)) -> SendData(*s++). No timeout.
+
+uint8_t usart1_read(void);
+  // buf_getbyte(&msg). Empty -> 0.
+
+char usart1_readc(void);
+  // (char)buf_getbyte(&msg). 0xFF -> -1 (signed overflow).
+
+uint32_t usart1_available(void);
+  // buf_available(&msg)=n_w-n_r。
+
+void discobot_usart1_inject_rx(uint8_t value, bool rxne);
+
+================================================================================
+12. ARM assembly -- funcs1.s
+================================================================================
+(Declared in a C header; implemented in .s)
+
+int func1(int R0);
+  // PUSH{LR} -> BL func2 -> POP{LR} -> BX LR. Transparently call func2.
+
+int func2(int R0);
+  // ADD R0,R0,#1; BX LR. R0+=1. 5->6. 0->1. 0xFFFFFFFF->0 (wraparound).
+
+================================================================================
+13. Host testing and platform isolation
+================================================================================
+
+Do not unconditionally include SPL headers such as stm32f4xx.h / stm32f4xx_gpio.h / misc.h.
+Guard platform code with DISCOBOT_TARGET; otherwise use standard C/C++ host stubs and simulated registers.
+All pure-algorithm APIs must link and run on the host.
+Provide no-op stubs for SPL configuration calls (RCC_*ClockCmd / GPIO_Init / USART_Init, etc.) in host mode.

@@ -1,0 +1,3047 @@
+{
+  "schema_version": 1,
+  "project": "discobot",
+  "status": "requirements_only_not_code_reviewed",
+  "source": {
+    "path": "fse/static_testcase_completion_20261001/inputs/discobot/RE_req.txt",
+    "sha256": "0386b7323a917035fc1fcd21cafdd99aea562904d531126be06411af828c83bb",
+    "line_count": 301,
+    "line_numbering": "1-based physical text lines; CRLF and LF count identically"
+  },
+  "construction": "LLM semantic decomposition of RE_req only; no generated candidates or external testcase list read",
+  "summary": {
+    "leaf_count": 95,
+    "reviewability_counts": {
+      "static_evidence_reviewable": 88,
+      "requires_execution_or_hardware": 3,
+      "requires_contract_clarification": 4
+    },
+    "category_counts": {
+      "observability": 7,
+      "configuration": 6,
+      "performance": 2,
+      "interface": 18,
+      "initialization": 10,
+      "communication": 4,
+      "safety": 8,
+      "control_flow": 16,
+      "timing": 4,
+      "state": 9,
+      "numeric": 5,
+      "dataflow": 2,
+      "statistical": 1,
+      "artifact": 2,
+      "resource": 1
+    }
+  },
+  "source_notes": [
+    {
+      "lines": [
+        1,
+        16
+      ],
+      "kind": "provenance_and_scope",
+      "reason": "Version information, test provenance, and module overviews are not counted again; hardware-effect visibility is a separate obligation."
+    },
+    {
+      "lines": [
+        258,
+        270
+      ],
+      "kind": "historical_limits_and_aliases",
+      "reason": "Notes about noise triggering commands, lack of timeout/preemption, and similar behavior are not reinvented as repair goals; explicit protocol behavior is already counted, while physical safety and wraparound contradictions are listed separately."
+    },
+    {
+      "lines": [
+        203,
+        204
+      ],
+      "kind": "hardware_flag_naming_ambiguity",
+      "reason": "The source labels SR&0x40 as TXE; the register-bit name requires adjudication under a unified platform contract. This checklist does not silently substitute another mask."
+    }
+  ],
+  "requirements": [
+    {
+      "id": "DB-R001",
+      "source_requirement_id": "§1",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "1. Objectives and Acceptance Principles",
+      "source_lines": [
+        {
+          "start": 11,
+          "end": 14
+        }
+      ],
+      "statement": "The host implementation must reflect hardware behavior through specified observable states such as GPIO, SysTick, and USART logs; empty comments cannot replace actual updates.",
+      "category": "observability",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 11,
+          "end": 14,
+          "text": "DiscoBot-test-comprehensive.json is an input/expected-answer table rather than an executable test program. Its 125\nvalid cases are converted here into deterministic C11 calling contracts. The host version must expose hardware effects through states such as GPIOA_output, GPIOD_output,\nGPIOA_IDR, SysTick_reload, and the USART TX log. Empty comments must not replace initialization,\nGPIO writes, interrupt transmission/reception, or the startup sequence."
+        }
+      ],
+      "source_requirement_ids": [
+        "§1"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R002",
+      "source_requirement_id": "§2",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2. Hardware Configuration",
+      "source_lines": [
+        {
+          "start": 22,
+          "end": 23
+        }
+      ],
+      "statement": "Clock and SysTick configuration use 168MHz and 168000 ticks/1ms, and the handler advances msTicks.",
+      "category": "configuration",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 22,
+          "end": 23,
+          "text": "- MCU: STM32F407VG, SystemCoreClock=168000000 Hz\n- SysTick: SysTick_Config(SystemCoreClock/1000)=168000 ticks, strictly 1ms, msTicks++"
+        }
+      ],
+      "source_requirement_ids": [
+        "§2"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R003",
+      "source_requirement_id": "§2",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2. Hardware Configuration",
+      "source_lines": [
+        {
+          "start": 23,
+          "end": 23
+        }
+      ],
+      "statement": "The actual SysTick period on the target device is 1ms.",
+      "category": "performance",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_execution_or_hardware",
+        "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance."
+      },
+      "source_excerpt": [
+        {
+          "start": 23,
+          "end": 23,
+          "text": "- SysTick: SysTick_Config(SystemCoreClock/1000)=168000 ticks, strictly 1ms, msTicks++"
+        }
+      ],
+      "source_requirement_ids": [
+        "§2"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R004",
+      "source_requirement_id": "§2",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2. Hardware Configuration",
+      "source_lines": [
+        {
+          "start": 24,
+          "end": 24
+        }
+      ],
+      "statement": "USART1 configures PB6/PB7, 9600-8N1, RXNE interrupts, and NVIC priority 0/0.",
+      "category": "configuration",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 24,
+          "end": 24,
+          "text": "- USART1: PB6=TX, PB7=RX, 9600-8N1, RXNE interrupt, NVIC preempt=0/sub=0"
+        }
+      ],
+      "source_requirement_ids": [
+        "§2"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R005",
+      "source_requirement_id": "§2",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2. Hardware Configuration",
+      "source_lines": [
+        {
+          "start": 25,
+          "end": 25
+        }
+      ],
+      "statement": "PA1-PA4 are push-pull, pull-up, 25MHz outputs; motors use direct full-speed direction control without PWM.",
+      "category": "configuration",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 25,
+          "end": 25,
+          "text": "- Motors: PA1-PA4, push-pull outputs, pull-up, 25MHz; directly connected L293D (no PWM, full-speed operation)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§2"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R006",
+      "source_requirement_id": "§2",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2. Hardware Configuration",
+      "source_lines": [
+        {
+          "start": 26,
+          "end": 26
+        }
+      ],
+      "statement": "LEDs use PD12-PD15, with BSRRL/BSRRH representing set/reset operations.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 26,
+          "end": 26,
+          "text": "- LEDs: PD12-PD15 (orange/green/red/blue), controlled through BSRRL/BSRRH"
+        }
+      ],
+      "source_requirement_ids": [
+        "§2"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R007",
+      "source_requirement_id": "§2",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2. Hardware Configuration",
+      "source_lines": [
+        {
+          "start": 27,
+          "end": 27
+        }
+      ],
+      "statement": "PA0 is an active-high button input, low when released.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 27,
+          "end": 27,
+          "text": "- Button: PA0 input (this experiment uses active-high logic: high=pressed, low=released; external pull-up/down is handled by the target adapter)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§2"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R008",
+      "source_requirement_id": "§2",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2. Hardware Configuration",
+      "source_lines": [
+        {
+          "start": 28,
+          "end": 28
+        }
+      ],
+      "statement": "The accelerometer is LIS3DSH, using SPI1, ±2G sensitivity, and 50Hz filter configuration.",
+      "category": "configuration",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 28,
+          "end": 28,
+          "text": "- Accelerometer: LIS3DSH (onboard), wrapped by the TM library, ±2G sensitivity and 50Hz filtering, SPI1"
+        }
+      ],
+      "source_requirement_ids": [
+        "§2"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R009",
+      "source_requirement_id": "§2",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2. Hardware Configuration",
+      "source_lines": [
+        {
+          "start": 29,
+          "end": 29
+        }
+      ],
+      "statement": "Temperature ADC1 uses 12-bit, continuous, prescaler8, and sample144cycles configuration.",
+      "category": "configuration",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 29,
+          "end": 29,
+          "text": "- Temperature: internal STM32F4 sensor, ADC1 12-bit/continuous/prescaler8/sample144cycles"
+        }
+      ],
+      "source_requirement_ids": [
+        "§2"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R010",
+      "source_requirement_id": "§2",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "2. Hardware Configuration",
+      "source_lines": [
+        {
+          "start": 30,
+          "end": 30
+        }
+      ],
+      "statement": "Random numbers come from the AHB2 hardware RNG through its observable DRDY input.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 30,
+          "end": 30,
+          "text": "- RNG: STM32F4 hardware RNG (AHB2 clock), DRDY polling"
+        }
+      ],
+      "source_requirement_ids": [
+        "§2"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R011",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. System Initialization",
+      "source_lines": [
+        {
+          "start": 36,
+          "end": 40
+        },
+        {
+          "start": 296,
+          "end": 297
+        }
+      ],
+      "statement": "init_system starts modules in the specified SystemInit→SysTick→LED→button→accelerometer→RNG→temperature→motor GPIO→USART order.",
+      "category": "initialization",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 36,
+          "end": 40,
+          "text": "main() startup sequence (must be followed strictly):\nSystemInit() → init_systick() → init_LED_pins() → init_button() →\ninit_accelerometers() → init_rng() → init_temperature_sensor() →\ninit_GPIO_A1A2A3A4_output() → init_usart1(9600) →\nusart1_send(\"UART1 Initialized. @9600bps\\r\\n\") → while(1) main loop"
+        },
+        {
+          "start": 296,
+          "end": 297,
+          "text": "- init_system strictly follows the DB-114 sequence and sends the exact string\n  \"UART1 Initialized. @9600bps\\r\\n\" without changing the text."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R012",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. System Initialization",
+      "source_lines": [
+        {
+          "start": 40,
+          "end": 40
+        },
+        {
+          "start": 296,
+          "end": 297
+        }
+      ],
+      "statement": "After USART initialization, send exactly UART1 Initialized. @9600bps followed by CRLF.",
+      "category": "communication",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 40,
+          "end": 40,
+          "text": "usart1_send(\"UART1 Initialized. @9600bps\\r\\n\") → while(1) main loop"
+        },
+        {
+          "start": 296,
+          "end": 297,
+          "text": "- init_system strictly follows the DB-114 sequence and sends the exact string\n  \"UART1 Initialized. @9600bps\\r\\n\" without changing the text."
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R013",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. System Initialization",
+      "source_lines": [
+        {
+          "start": 42,
+          "end": 42
+        }
+      ],
+      "statement": "init_systick first calls SystemCoreClockUpdate, then configures SysTick with the core clock divided by 1000.",
+      "category": "initialization",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 42,
+          "end": 42,
+          "text": "- init_systick calls SystemCoreClockUpdate() before SysTick_Config(SystemCoreClock/1000)=168000"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R014",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. System Initialization",
+      "source_lines": [
+        {
+          "start": 43,
+          "end": 43
+        }
+      ],
+      "statement": "A nonzero SysTick_Config failure prevents normal control startup and enters the specified permanent error-wait path.",
+      "category": "safety",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 43,
+          "end": 43,
+          "text": "- SysTick_Config returns nonzero (error) → while(1){} infinite loop"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R015",
+      "source_requirement_id": "§3",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "3. System Initialization",
+      "source_lines": [
+        {
+          "start": 44,
+          "end": 44
+        }
+      ],
+      "statement": "init_button enables the GPIOA clock and configures PA0 as input, initially low/released on the host.",
+      "category": "initialization",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 44,
+          "end": 44,
+          "text": "- init_button: GPIOA clock plus PA0 as INPUT (floating input; initialized low/released on the host)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§3"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R016",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 50,
+          "end": 51
+        }
+      ],
+      "statement": "Directions uses FORWARD=0, BACKWARD=1, and STOP=2.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 50,
+          "end": 51,
+          "text": "4.1 Directions Enumeration\ntypedef enum { FORWARD=0, BACKWARD=1, STOP=2 } Directions;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R017",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 54,
+          "end": 56
+        }
+      ],
+      "statement": "The left motor maps forward/reverse/stop/invalid directions to PA1/PA2 values 10/01/00/00.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 54,
+          "end": 56,
+          "text": "void set_left_motor_direc(int direc, float speed);\n  // speed is declared but unused (no PWM). Set PA1/PA2 according to direc.\n  // FORWARD→PA1=1,PA2=0. BACKWARD→PA1=0,PA2=1. STOP→PA1=0,PA2=0. Otherwise→all 0."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R018",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 58,
+          "end": 59
+        }
+      ],
+      "statement": "The right motor maps forward/reverse/stop/invalid directions to PA3/PA4 values 10/01/00/00.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 58,
+          "end": 59,
+          "text": "void set_right_motor_direc(int direc, float speed);\n  // FORWARD→PA3=1,PA4=0. BACKWARD→PA3=0,PA4=1. STOP→PA3=0,PA4=0. Otherwise→all 0."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R019",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 55,
+          "end": 55
+        },
+        {
+          "start": 300,
+          "end": 301
+        }
+      ],
+      "statement": "Retain the speed parameter without implementing PWM speed control.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 55,
+          "end": 55,
+          "text": "  // speed is declared but unused (no PWM). Set PA1/PA2 according to direc."
+        },
+        {
+          "start": 300,
+          "end": 301,
+          "text": "Indices and full buffers must be handled with safe returns. Preserve historical behavior explicitly described by the tests (such as no UART framing protocol, no task\nremoval API, and an unused speed parameter); do not independently \"improve\" it into another protocol or PWM architecture."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R020",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 62,
+          "end": 62
+        }
+      ],
+      "statement": "move_forward outputs 1,0,1,0 on the four pins.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 62,
+          "end": 62,
+          "text": "void move_forward(void);             // 1,0,1,0 (both motors forward)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R021",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 63,
+          "end": 63
+        }
+      ],
+      "statement": "move_backward outputs 0,1,0,1 on the four pins.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 63,
+          "end": 63,
+          "text": "void move_backward(void);            // 0,1,0,1 (both motors reverse)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R022",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 64,
+          "end": 64
+        }
+      ],
+      "statement": "move_forward_soft_left outputs 0,0,1,0.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 64,
+          "end": 64,
+          "text": "void move_forward_soft_left(void);   // 0,0,1,0 (left stopped, right forward)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R023",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 65,
+          "end": 65
+        }
+      ],
+      "statement": "move_forward_soft_right outputs 1,0,0,0.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 65,
+          "end": 65,
+          "text": "void move_forward_soft_right(void);  // 1,0,0,0 (left forward, right stopped)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R024",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 66,
+          "end": 66
+        }
+      ],
+      "statement": "move_backward_soft_left outputs 0,0,0,1.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 66,
+          "end": 66,
+          "text": "void move_backward_soft_left(void);  // 0,0,0,1 (left stopped, right reverse)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R025",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 67,
+          "end": 67
+        }
+      ],
+      "statement": "move_backward_soft_right outputs 0,1,0,0.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 67,
+          "end": 67,
+          "text": "void move_backward_soft_right(void); // 0,1,0,0 (left reverse, right stopped)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R026",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 68,
+          "end": 68
+        }
+      ],
+      "statement": "move_spin_right outputs 1,0,0,1.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 68,
+          "end": 68,
+          "text": "void move_spin_right(void);          // 1,0,0,1 (left forward, right reverse=clockwise)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R027",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 69,
+          "end": 69
+        }
+      ],
+      "statement": "move_spin_left outputs 0,1,1,0.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 69,
+          "end": 69,
+          "text": "void move_spin_left(void);           // 0,1,1,0 (left reverse, right forward=counterclockwise)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R028",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 70,
+          "end": 70
+        }
+      ],
+      "statement": "stop clears all four motor pins to zero.",
+      "category": "safety",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 70,
+          "end": 70,
+          "text": "void stop(void);                     // 0,0,0,0 (coasting stop)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R029",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 72,
+          "end": 74
+        }
+      ],
+      "statement": "Motor GPIO initialization enables GPIOA, configures the specified electrical mode, and initializes all four outputs low.",
+      "category": "initialization",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 72,
+          "end": 74,
+          "text": "4.4 GPIO Initialization\nvoid init_GPIO_A1A2A3A4_output(void);\n  // Enable RCC AHB1 GPIOA. PA1-4: MODER=OUTPUT, OType=Push-Pull, PuPd=Up, Speed=25MHz. Initially all low."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R030",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 76,
+          "end": 77
+        },
+        {
+          "start": 261,
+          "end": 261
+        }
+      ],
+      "statement": "Motor direction outputs never set both inputs of either bridge to 1.",
+      "category": "safety",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 76,
+          "end": 77,
+          "text": "4.5 L293D Safety\n  // The code produces only 01/10/00 patterns (safe). It does not produce 11 (braking/shoot-through)."
+        },
+        {
+          "start": 261,
+          "end": 261,
+          "text": "- L293D: does not produce IN1=IN2=1 (safe)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R031",
+      "source_requirement_id": "§4",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "4. Car Motor Control",
+      "source_lines": [
+        {
+          "start": 262,
+          "end": 262
+        }
+      ],
+      "statement": "Instantaneous reversal timing and claims of \"generally safe\" behavior on a real target circuit require hardware evidence and cannot be established from code alone.",
+      "category": "performance",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_execution_or_hardware",
+        "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance."
+      },
+      "source_excerpt": [
+        {
+          "start": 262,
+          "end": 262,
+          "text": "- Motor reversal switches instantaneously without dead time (~ns scale), generally safe."
+        }
+      ],
+      "source_requirement_ids": [
+        "§4"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R032",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 83,
+          "end": 91
+        }
+      ],
+      "statement": "The nine command IDs and MAXIDSIZE=9 correspond exactly to the nine-function order in flookup.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 83,
+          "end": 91,
+          "text": "5.1 Command ID Enumeration\ntypedef enum _ID {\n    FWD=0, BWD=1, FWDLEFT=2, FWDRIGHT=3,\n    BCKLEFT=4, BCKRIGHT=5, SPINRIGHT=6, SPINLEFT=7, STOPCAR=8\n} _ID;\nMAXIDSIZE=9.\n\n5.2 Function Pointer Table\nmotor_command_fn flookup[9] = {move_forward, move_backward, move_forward_soft_left, move_forward_soft_right, move_backward_soft_left, move_backward_soft_right, move_spin_right, move_spin_left, stop};"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R033",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 93,
+          "end": 96
+        },
+        {
+          "start": 294,
+          "end": 294
+        }
+      ],
+      "statement": "Valid raw bytes 0..8 immediately invoke the corresponding movement function in flookup, without requiring frames or ACK/NAK.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 93,
+          "end": 96,
+          "text": "5.3 Command Dispatch (Main Loop)\n  // Call usart1_readc(). If c∈[0,8]→callme=flookup[c]→callme().\n  // c=-1 (char conversion of an empty buffer) or c>8→ignore, leaving callme unchanged.\n  // No framing protocol: raw bytes 0-8 immediately trigger commands. No ACK/NAK."
+        },
+        {
+          "start": 294,
+          "end": 294,
+          "text": "- dispatch_uart_command immediately invokes flookup for 0..8; invalid, negative, and empty reads leave motor state unchanged;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R034",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 95,
+          "end": 95
+        },
+        {
+          "start": 294,
+          "end": 294
+        }
+      ],
+      "statement": "Invalid, negative, and empty reads leave motor state unchanged; invalid inputs also leave callme unchanged.",
+      "category": "safety",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 95,
+          "end": 95,
+          "text": "  // c=-1 (char conversion of an empty buffer) or c>8→ignore, leaving callme unchanged."
+        },
+        {
+          "start": 294,
+          "end": 294,
+          "text": "- dispatch_uart_command immediately invokes flookup for 0..8; invalid, negative, and empty reads leave motor state unchanged;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R035",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 95,
+          "end": 95
+        },
+        {
+          "start": 207,
+          "end": 207
+        },
+        {
+          "start": 210,
+          "end": 210
+        }
+      ],
+      "statement": "The main-loop description assigns -1 to empty reads, while ring-buffer/read interfaces specify 0, which coincides with the valid forward byte; a unified empty-read detection contract is needed.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation."
+      },
+      "source_excerpt": [
+        {
+          "start": 95,
+          "end": 95,
+          "text": "  // c=-1 (char conversion of an empty buffer) or c>8→ignore, leaving callme unchanged."
+        },
+        {
+          "start": 207,
+          "end": 207,
+          "text": "  // = buf_getbyte(&msg). Empty→0. Note: 0 cannot be distinguished from actual data 0x00."
+        },
+        {
+          "start": 210,
+          "end": 210,
+          "text": "  // = (char)buf_getbyte(&msg). 0xFF→-1 (signed overflow). The read>=0 check in main rejects valid 0xFF."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R036",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 99,
+          "end": 100
+        }
+      ],
+      "statement": "read_buttonc(i) returns the specified GPIOA_IDR bit, or -1 for indices outside the allowed range.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 99,
+          "end": 100,
+          "text": "int read_buttonc(int i);\n  // Read (GPIOA->IDR >> i) & 1. i>3→return -1. 0→PA0."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R037",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 102,
+          "end": 105
+        }
+      ],
+      "statement": "Each SysTick increments msTicks; only after the high-level counter reaches 250 is ButtonIsPressed set.",
+      "category": "timing",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 102,
+          "end": 105,
+          "text": "void SysTick_Handler(void);\n  // Every 1ms: msTicks++. Debounce PA0 readings:\n  //   read_buttonc(0)==1→b_i++. b_i>=250→buttstate=ButtonIsPressed.\n  //   read_buttonc(0)==0→b_i=0→buttstate=ButtonIsReleased."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R038",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 105,
+          "end": 105
+        }
+      ],
+      "statement": "A low reading immediately clears the debounce count and sets ButtonIsReleased.",
+      "category": "state",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 105,
+          "end": 105,
+          "text": "  //   read_buttonc(0)==0→b_i=0→buttstate=ButtonIsReleased。"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R039",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 107,
+          "end": 108
+        }
+      ],
+      "statement": "checkbutton tracks changes between laststate and buttstate, retaining the historical switch/break-only transition behavior.",
+      "category": "state",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 107,
+          "end": 108,
+          "text": "void checkbutton(void);\n  // Track changes between laststate and buttstate. Transition handling uses a switch (break only)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R040",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 111,
+          "end": 115
+        }
+      ],
+      "statement": "calc_pitch_roll computes roll using atan2(acc_y,acc_z)*180/PI.",
+      "category": "numeric",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 111,
+          "end": 115,
+          "text": "void calc_pitch_roll(float acc_x, float acc_y, float acc_z, float *pitch, float *roll);\n  // roll = atan2(acc_y, acc_z)*180/PI\n  // pitch = atan2(-acc_x, sqrt(acc_y²+acc_z²))*180/PI\n  // Cases: (0,0,1)→(0,0). (1,0,0)→pitch=-90,roll=0. (0,0.707,0.707)→pitch=0,roll=45.\n  // (0,-0.707,0.707)→roll=-45. (0,0,-1)→|roll|=180,pitch=0."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R041",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 111,
+          "end": 115
+        }
+      ],
+      "statement": "calc_pitch_roll computes pitch using atan2(-acc_x,sqrt(acc_y²+acc_z²))*180/PI.",
+      "category": "numeric",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 111,
+          "end": 115,
+          "text": "void calc_pitch_roll(float acc_x, float acc_y, float acc_z, float *pitch, float *roll);\n  // roll = atan2(acc_y, acc_z)*180/PI\n  // pitch = atan2(-acc_x, sqrt(acc_y²+acc_z²))*180/PI\n  // Cases: (0,0,1)→(0,0). (1,0,0)→pitch=-90,roll=0. (0,0.707,0.707)→pitch=0,roll=45.\n  // (0,-0.707,0.707)→roll=-45. (0,0,-1)→|roll|=180,pitch=0."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R042",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 118,
+          "end": 119
+        }
+      ],
+      "statement": "LED initialization enables the GPIOD clock and configures PD12-15 as push-pull outputs, initially low.",
+      "category": "initialization",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 118,
+          "end": 119,
+          "text": "void init_LED_pins(void);\n  // Enable RCC AHB1 GPIOD. PD12-15 are push-pull outputs, initially low."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R043",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 121,
+          "end": 121
+        }
+      ],
+      "statement": "LED_On(i) writes the corresponding LED bit to BSRRL for a valid index.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 121,
+          "end": 121,
+          "text": "void LED_On(int i);    // i∈[0,3]→write (1<<(12+i)) to BSRRL"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R044",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 122,
+          "end": 122
+        }
+      ],
+      "statement": "LED_Off(i) writes the corresponding LED bit to BSRRH for a valid index.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 122,
+          "end": 122,
+          "text": "void LED_Off(int i);   // i∈[0,3]→write (1<<(12+i)) to BSRRH"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R045",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 123,
+          "end": 123
+        },
+        {
+          "start": 299,
+          "end": 300
+        }
+      ],
+      "statement": "Invalid LED indices return safely without writing other GPIO bits.",
+      "category": "safety",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 123,
+          "end": 123,
+          "text": "  // Invalid index (≥4)→no operation"
+        },
+        {
+          "start": 299,
+          "end": 300,
+          "text": "Independent self-tests must be emitted as separate files and must not be mixed into production code. All allocated memory must be releasable; NULL pointers, invalid\nindices, and full buffers must be handled with safe returns. Preserve historical behavior explicitly described by the tests (such as no UART framing protocol, no task"
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R046",
+      "source_requirement_id": "§5",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "5. Main",
+      "source_lines": [
+        {
+          "start": 125,
+          "end": 128
+        }
+      ],
+      "statement": "The main loop updates t_prev when msTicks-t_prev is strictly greater than 1000 and continuously reads and dispatches UART input.",
+      "category": "timing",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 125,
+          "end": 128,
+          "text": "5.7 Main Loop\nwhile(1):\n  // Check on each msTicks: msTicks-t_prev>1000→t_prev=msTicks (a 1-second timer with no action yet).\n  // Read and dispatch UART bytes (see 5.3)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§5"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R047",
+      "source_requirement_id": "§6",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "6. Accelerometers",
+      "source_lines": [
+        {
+          "start": 134,
+          "end": 135
+        }
+      ],
+      "statement": "init_accelerometers calls the specified TM initializer with 2G/50Hz parameters and returns 0 on success.",
+      "category": "initialization",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 134,
+          "end": 135,
+          "text": "int init_accelerometers(void);\n  // TM_LIS302DL_LIS3DSH_Init(TM_LIS3DSH_Sensitivity_2G, TM_LIS3DSH_Filter_50Hz). Success→0."
+        }
+      ],
+      "source_requirement_ids": [
+        "§6"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R048",
+      "source_requirement_id": "§6",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "6. Accelerometers",
+      "source_lines": [
+        {
+          "start": 137,
+          "end": 139
+        },
+        {
+          "start": 289,
+          "end": 289
+        }
+      ],
+      "statement": "read_accelerometers reads raw three-axis milli-g values and divides by 1000 in floating point to convert to g.",
+      "category": "dataflow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 137,
+          "end": 139,
+          "text": "void read_accelerometers(float *acc[3]);\n  // TM_LIS302DL_LIS3DSH_ReadAxes()→struct{X,Y,Z} (integer milli-g).\n  // acc_x = raw.X/1000.0f (g). Approximate range: ±2000 milli-g→±2.0g."
+        },
+        {
+          "start": 289,
+          "end": 289,
+          "text": "- discobot_set_accelerometer_raw sets three raw milli-g values; read_accelerometers divides them by 1000;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§6"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R049",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Temperature",
+      "source_lines": [
+        {
+          "start": 145,
+          "end": 148
+        }
+      ],
+      "statement": "Temperature initialization enables the ADC1 clock and internal temperature/Vrefint, configuring independent/12-bit/continuous/right-aligned/no-external-trigger/single-channel/144-cycle operation.",
+      "category": "initialization",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 145,
+          "end": 148,
+          "text": "void init_temperature_sensor(void);\n  // ADC1: APB2 clock/Independent/12bit/Prescaler8/ContinuousConv/NoExtTrig/RightAlign.\n  // NbrOfConversion=1/Channel=TempSensor/SampleTime=144Cycles.\n  // Enable TempSensor and Vrefint. Enable ADC1."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R050",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Temperature",
+      "source_lines": [
+        {
+          "start": 150,
+          "end": 152
+        }
+      ],
+      "statement": "Temperature reading strictly starts software conversion, waits for EOC, then obtains the conversion value.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 150,
+          "end": 152,
+          "text": "float read_temperature_sensor(void);\n  // Steps (strict order): 1)ADC_SoftwareStartConv 2)while(ADC_FLAG_EOC==RESET) 3)temp=GetConversionValue\n  // 4)temp/=4095 5)temp*=3.3 6)temp-=0.760 7)temp/=0.0025 8)temp+=25.0"
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R051",
+      "source_requirement_id": "§7",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "7. Temperature",
+      "source_lines": [
+        {
+          "start": 152,
+          "end": 154
+        }
+      ],
+      "statement": "Temperature is computed in floating point as ((raw/4095*3.3)-0.760)/0.0025+25, avoiding integer truncation.",
+      "category": "numeric",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 152,
+          "end": 154,
+          "text": "  // 4)temp/=4095 5)temp*=3.3 6)temp-=0.760 7)temp/=0.0025 8)temp+=25.0\n  // Divide before multiplying (avoid integer truncation).\n  // raw=943→~25°C. raw=866→~0°C. raw=1129→~85°C. raw=0→~-279°C. raw=4095→~1041°C."
+        }
+      ],
+      "source_requirement_ids": [
+        "§7"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R052",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. RNG",
+      "source_lines": [
+        {
+          "start": 160,
+          "end": 161
+        }
+      ],
+      "statement": "init_rng first enables the AHB2 RNG clock, then enables RNG.",
+      "category": "initialization",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 160,
+          "end": 161,
+          "text": "void init_rng(void);\n  // RCC_AHB2PeriphClockCmd(RCC_AHB2Periph_RNG,ENABLE)→RNG_Cmd(ENABLE)。"
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R053",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. RNG",
+      "source_lines": [
+        {
+          "start": 163,
+          "end": 165
+        },
+        {
+          "start": 291,
+          "end": 291
+        }
+      ],
+      "statement": "Random-number reads wait for DRDY before reading hardware values; target mode retains unbounded waiting, while host unreadiness must not cause a real deadlock.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 163,
+          "end": 165,
+          "text": "uint32_t get_random_number(void);\n  // while(RNG_GetFlagStatus(RNG_FLAG_DRDY)==RESET){}→RNG_GetRandomNumber().\n  // Block waiting for DRDY, without timeout. RNG failure→infinite loop."
+        },
+        {
+          "start": 291,
+          "end": 291,
+          "text": "- discobot_set_rng sets DRDY and the return value; ready=false represents hardware blocking, but host tests must not actually deadlock;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R054",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. RNG",
+      "source_lines": [
+        {
+          "start": 166,
+          "end": 166
+        }
+      ],
+      "statement": "Random outputs may be 0 or 0xFFFFFFFF; valid endpoints must not be filtered out.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 166,
+          "end": 166,
+          "text": "  // Two consecutive calls should usually differ. Both 0x00000000 and 0xFFFFFFFF are valid random outputs."
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R055",
+      "source_requirement_id": "§8",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "8. RNG",
+      "source_lines": [
+        {
+          "start": 166,
+          "end": 166
+        }
+      ],
+      "statement": "The claim that consecutive calls usually differ requires statistical or hardware validation of the actual random source.",
+      "category": "statistical",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_execution_or_hardware",
+        "reason": "Real timing, resources, physical devices, and statistical properties require execution, build artifacts, or hardware measurements; code reading alone cannot establish compliance."
+      },
+      "source_excerpt": [
+        {
+          "start": 166,
+          "end": 166,
+          "text": "  // Two consecutive calls should usually differ. Both 0x00000000 and 0xFFFFFFFF are valid random outputs."
+        }
+      ],
+      "source_requirement_ids": [
+        "§8"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R056",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Timed Task Scheduler",
+      "source_lines": [
+        {
+          "start": 172,
+          "end": 175
+        }
+      ],
+      "statement": "add_timed_task selects the first NULL slot among 25, stores the callback and interval*1000 in milliseconds, and clears last_called/numcalls.",
+      "category": "state",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 172,
+          "end": 175,
+          "text": "#define MAXNUMTASKS 25\n\nvoid add_timed_task(void (*myfunc)(void), float interval_sec);\n  // Scan timed_tasks[0..24] for the first NULL slot. Set task=myfunc, msinterval=(long)(interval*1000), last_called=0, numcalls=0."
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R057",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Timed Task Scheduler",
+      "source_lines": [
+        {
+          "start": 176,
+          "end": 176
+        }
+      ],
+      "statement": "If all 25 slots are occupied, additions are silently rejected without damaging existing tasks.",
+      "category": "safety",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 176,
+          "end": 176,
+          "text": "  // All 25 slots full→silent failure (no addition, no error report)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R058",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Timed Task Scheduler",
+      "source_lines": [
+        {
+          "start": 178,
+          "end": 180
+        }
+      ],
+      "statement": "execute_tasks executes non-NULL due tasks in slot order, then writes the current msTicks and increments numcalls; multiple tasks may execute on the same tick.",
+      "category": "timing",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 178,
+          "end": 180,
+          "text": "void execute_tasks(void);\n  // Traverse 25 slots: if task!=NULL and msTicks>=last_called+msinterval→task()→last_called=msTicks→numcalls++.\n  // Multiple tasks may trigger on the same tick and execute in slot order. Skip NULL slots."
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R059",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Timed Task Scheduler",
+      "source_lines": [
+        {
+          "start": 181,
+          "end": 181
+        }
+      ],
+      "statement": "The source labels missed triggers from additive time comparison during tick overflow as a BUG, without specifying whether to preserve the bug or use wraparound-safe semantics; this cannot be independently revised into a scoring criterion.",
+      "category": "timing",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation."
+      },
+      "source_excerpt": [
+        {
+          "start": 181,
+          "end": 181,
+          "text": "  // BUG: when msTicks (uint32_t) overflows, msTicks<last_called+msinterval may cause missed triggers."
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R060",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Timed Task Scheduler",
+      "source_lines": [
+        {
+          "start": 183,
+          "end": 184
+        }
+      ],
+      "statement": "printtimes outputs the corresponding t{i} and numcalls for nonempty tasks.",
+      "category": "observability",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 183,
+          "end": 184,
+          "text": "void printtimes(void);\n  // Traverse 25 slots: non-NULL→printf(\"t{i}=%d\", numcalls)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R061",
+      "source_requirement_id": "§9",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "9. Timed Task Scheduler",
+      "source_lines": [
+        {
+          "start": 186,
+          "end": 186
+        },
+        {
+          "start": 269,
+          "end": 269
+        }
+      ],
+      "statement": "Retain sequential scheduling without a remove API, priorities, or preemption; skip NULL slots.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 186,
+          "end": 186,
+          "text": "  // There is no remove_timed_task() function. Manually setting task=NULL effectively removes a task."
+        },
+        {
+          "start": 269,
+          "end": 269,
+          "text": "- timed_task has no task-removal API, priorities, or preemption; long tasks block later tasks."
+        }
+      ],
+      "source_requirement_ids": [
+        "§9"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R062",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. USART",
+      "source_lines": [
+        {
+          "start": 192,
+          "end": 193
+        }
+      ],
+      "statement": "When init_usart1 receives baud=0, it uses 9600 and issues a warning.",
+      "category": "configuration",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 192,
+          "end": 193,
+          "text": "void init_usart1(int baud);\n  // baud==0→baud=9600 plus a warning. GPIOB6(TX AF)+PB7(RX AF): push-pull/pull-up/100MHz."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R063",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. USART",
+      "source_lines": [
+        {
+          "start": 193,
+          "end": 196
+        }
+      ],
+      "statement": "Initialization actually enables GPIOB, configures PB6/PB7 as alternate-function/push-pull/pull-up/100MHz, and uses 8N1, no flow control, bidirectional USART, and the specified interrupt priorities.",
+      "category": "initialization",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 193,
+          "end": 196,
+          "text": "  // baud==0→baud=9600 plus a warning. GPIOB6(TX AF)+PB7(RX AF): push-pull/pull-up/100MHz.\n  // USART: 8N1, no flow control, TX+RX. Enable the USART_IT_RXNE interrupt. NVIC preempt=0/sub=0.\n  // initCircArray(&msg, 200) creates the receive buffer. USART_Cmd(USART1,ENABLE).\n  // A comment says \"Enable clock for GPIOA\", but GPIOB is actually enabled (documentation bug; code is correct)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R064",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. USART",
+      "source_lines": [
+        {
+          "start": 195,
+          "end": 195
+        }
+      ],
+      "statement": "Create the 200-byte msg receive buffer and enable USART1.",
+      "category": "initialization",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 195,
+          "end": 195,
+          "text": "  // initCircArray(&msg, 200) creates the receive buffer. USART_Cmd(USART1,ENABLE)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R065",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. USART",
+      "source_lines": [
+        {
+          "start": 198,
+          "end": 200
+        }
+      ],
+      "statement": "The RXNE interrupt reads DR and enqueues it in the ring buffer; a full buffer drops that byte, and unrelated interrupts such as TXE are ignored.",
+      "category": "communication",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 198,
+          "end": 200,
+          "text": "void USART1_IRQHandler(void);\n  // RXNE→c=USART1->DR→buf_putbyte(&msg,c). Buffer full→return 0→data loss.\n  // TXE and other interrupts→ignore (TX uses polling)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R066",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. USART",
+      "source_lines": [
+        {
+          "start": 202,
+          "end": 204
+        }
+      ],
+      "statement": "Target usart1_send waits for the specified status bit before transmitting each character, retaining the target's unbounded-wait path.",
+      "category": "communication",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 202,
+          "end": 204,
+          "text": "void usart1_send(volatile char *s);\n  // while(*s): while(!(USART1->SR&0x40)){} wait TXE→USART_SendData(*s++).\n  // No timeout: USART1 disabled→infinite loop."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R067",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. USART",
+      "source_lines": [
+        {
+          "start": 206,
+          "end": 207
+        }
+      ],
+      "statement": "usart1_read delegates to buf_getbyte and returns 0 when empty.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 206,
+          "end": 207,
+          "text": "uint8_t usart1_read(void);\n  // = buf_getbyte(&msg). Empty→0. Note: 0 cannot be distinguished from actual data 0x00."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R068",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. USART",
+      "source_lines": [
+        {
+          "start": 209,
+          "end": 210
+        },
+        {
+          "start": 270,
+          "end": 270
+        }
+      ],
+      "statement": "usart1_readc retains the specified char conversion, making 0xFF appear as -1 under this signed-char convention.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 209,
+          "end": 210,
+          "text": "char usart1_readc(void);\n  // = (char)buf_getbyte(&msg). 0xFF→-1 (signed overflow). The read>=0 check in main rejects valid 0xFF."
+        },
+        {
+          "start": 270,
+          "end": 270,
+          "text": "- usart1_readc has the 0xFF→-1 signed-overflow pitfall."
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R069",
+      "source_requirement_id": "§10",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "10. USART",
+      "source_lines": [
+        {
+          "start": 212,
+          "end": 213
+        }
+      ],
+      "statement": "usart1_available returns n_w-n_r, the readable count.",
+      "category": "observability",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 212,
+          "end": 213,
+          "text": "uint32_t usart1_available(void);\n  // = buf_available(&msg) = n_w - n_r。"
+        }
+      ],
+      "source_requirement_ids": [
+        "§10"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R070",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CircArray",
+      "source_lines": [
+        {
+          "start": 219,
+          "end": 221
+        }
+      ],
+      "statement": "CircArray provides the specified buf, size, enabled, n_r, and n_w fields.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 219,
+          "end": 221,
+          "text": "typedef struct CircArray {\n    char *buf; uint32_t size; bool enabled; uint32_t n_r, n_w;\n} CircArray;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R071",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CircArray",
+      "source_lines": [
+        {
+          "start": 223,
+          "end": 224
+        }
+      ],
+      "statement": "initCircArray allocates zeroed memory, sets size/enabled, and clears n_r/n_w; if already enabled, it reports an error and skips initialization.",
+      "category": "state",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 223,
+          "end": 224,
+          "text": "void initCircArray(CircArray *arr, int size);\n  // calloc(size,1). Set size/enabled/n_r=0/n_w=0. Already enabled→print error and skip."
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R072",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CircArray",
+      "source_lines": [
+        {
+          "start": 226,
+          "end": 227
+        }
+      ],
+      "statement": "When not full, buf_putbyte writes at n_w%size, increments n_w, and returns 1; when full, it returns 0 without overwriting.",
+      "category": "state",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 226,
+          "end": 227,
+          "text": "int buf_putbyte(CircArray *arr, char c);\n  // !full→arr->buf[n_w%size]=c→n_w++→return1。full→return0。"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R073",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CircArray",
+      "source_lines": [
+        {
+          "start": 229,
+          "end": 230
+        }
+      ],
+      "statement": "When not empty, buf_getbyte reads at n_r%size and increments n_r; when empty, it returns 0.",
+      "category": "state",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 229,
+          "end": 230,
+          "text": "char buf_getbyte(CircArray *arr);\n  // !empty→return arr->buf[n_r%size]→n_r++。empty→return0。"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R074",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CircArray",
+      "source_lines": [
+        {
+          "start": 232,
+          "end": 232
+        }
+      ],
+      "statement": "buf_empty tests emptiness using n_r==n_w.",
+      "category": "observability",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 232,
+          "end": 232,
+          "text": "bool buf_empty(CircArray *arr);   // n_r==n_w"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R075",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CircArray",
+      "source_lines": [
+        {
+          "start": 233,
+          "end": 233
+        }
+      ],
+      "statement": "buf_full tests fullness by requiring nonempty state and equal read/write indices modulo size.",
+      "category": "observability",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 233,
+          "end": 233,
+          "text": "bool buf_full(CircArray *arr);    // !empty && (n_r%size)==(n_w%size)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R076",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CircArray",
+      "source_lines": [
+        {
+          "start": 234,
+          "end": 234
+        }
+      ],
+      "statement": "buf_available returns n_w-n_r.",
+      "category": "observability",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 234,
+          "end": 234,
+          "text": "int buf_available(CircArray *arr);  // n_w-n_r"
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R077",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CircArray",
+      "source_lines": [
+        {
+          "start": 236,
+          "end": 237
+        }
+      ],
+      "statement": "buf_resize uses realloc, returning false and preserving the original allocation on failure; on success, it updates size and returns true.",
+      "category": "state",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 236,
+          "end": 237,
+          "text": "bool buf_resize(CircArray *arr, int newSize);\n  // realloc(arr->buf,newSize). Failure→false. Success→size=newSize→true."
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R078",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CircArray",
+      "source_lines": [
+        {
+          "start": 239,
+          "end": 240
+        }
+      ],
+      "statement": "buf_delete clears the buffer, frees the allocation, zeroes fields, and disables it; NULL returns false.",
+      "category": "state",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 239,
+          "end": 240,
+          "text": "bool buf_delete(CircArray *arr);\n  // buf_clear→free(arr->buf)→zero fields→enabled=false. arr==NULL→false."
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R079",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CircArray",
+      "source_lines": [
+        {
+          "start": 242,
+          "end": 243
+        }
+      ],
+      "statement": "buf_clear clears buffer contents without changing n_r/n_w/size/enabled.",
+      "category": "state",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 242,
+          "end": 243,
+          "text": "void buf_clear(CircArray *arr);\n  // memset all to 0. Do not change n_r/n_w/size/enabled."
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R080",
+      "source_requirement_id": "§11",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "11. CircArray",
+      "source_lines": [
+        {
+          "start": 266,
+          "end": 266
+        }
+      ],
+      "statement": "The source claims that uint32_t n_w wraparound does not affect modulo operations for arbitrary size, which is not generally mathematically valid; counter wraparound and fullness contracts need clarification.",
+      "category": "numeric",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation."
+      },
+      "source_excerpt": [
+        {
+          "start": 266,
+          "end": 266,
+          "text": "- buf_full remains correct when uint32_t n_w overflows (modulo operations are unchanged)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§11"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R081",
+      "source_requirement_id": "§12",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "12. ARM Assembly",
+      "source_lines": [
+        {
+          "start": 248,
+          "end": 251
+        }
+      ],
+      "statement": "func2 adds 1 under 32-bit register semantics, including wraparound from 0xFFFFFFFF to 0.",
+      "category": "numeric",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 248,
+          "end": 251,
+          "text": "(Only declarations are needed in the C header; implementations are in .s files.)\n\nint func2(int R0);\n  // ADD R0, R0, #1; BX LR. R0_out=R0+1. 5→6. 0→1. 0xFFFFFFFF→0 (wraparound)."
+        }
+      ],
+      "source_requirement_ids": [
+        "§12"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R082",
+      "source_requirement_id": "§12",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "12. ARM Assembly",
+      "source_lines": [
+        {
+          "start": 253,
+          "end": 255
+        }
+      ],
+      "statement": "func1 transparently passes its argument to func2, saving/restoring LR and preserving the specified AAPCS calling semantics.",
+      "category": "control_flow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 253,
+          "end": 255,
+          "text": "int func1(int R0);\n  // PUSH {LR}→BL func2→POP {LR}→BX LR. Transparently call func2.\n  // AAPCS: R0-R3 are caller-saved. func1 passes R0-R3 directly to func2 without changing them."
+        }
+      ],
+      "source_requirement_ids": [
+        "§12"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R083",
+      "source_requirement_id": "§12",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "12. ARM Assembly",
+      "source_lines": [
+        {
+          "start": 248,
+          "end": 248
+        }
+      ],
+      "statement": "The original requirement places implementations in .s files while the generation task targets host C11; whether assembly is a deliverable must first be adjudicated under a unified task boundary.",
+      "category": "artifact",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "requires_contract_clarification",
+        "reason": "The requirements lack necessary parameters or contain conflicting text. The unified contract must first be clarified; it must not be inferred backward from the candidate implementation."
+      },
+      "source_excerpt": [
+        {
+          "start": 248,
+          "end": 248,
+          "text": "(Only declarations are needed in the C header; implementations are in .s files.)"
+        }
+      ],
+      "source_requirement_ids": [
+        "§12"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R084",
+      "source_requirement_id": "§14",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "14. Constants",
+      "source_lines": [
+        {
+          "start": 276,
+          "end": 280
+        }
+      ],
+      "statement": "Expose the listed constants; START_BYTE/STOP_BYTE belong to GUI information and must not introduce a firmware framing protocol.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 276,
+          "end": 280,
+          "text": "START_BYTE=0x24, STOP_BYTE=0x2A (used by the Java GUI; firmware has no framing protocol)\nUART_BAUD=9600, BUTTON_DEBOUNCE_MS=250\nSYSTICK_PERIOD_TICKS=168000\nCIRC_BUFFER_MIN_SIZE=200\nMAXNUMTASKS=25"
+        }
+      ],
+      "source_requirement_ids": [
+        "§14"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R085",
+      "source_requirement_id": "§15",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "15. Host Verification and Deterministic Inputs",
+      "source_lines": [
+        {
+          "start": 286,
+          "end": 287
+        }
+      ],
+      "statement": "Host GPIOA_output[1..4] and GPIOD_output[12..15] reflect their respective pins and contain only 0 or 1.",
+      "category": "observability",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 286,
+          "end": 287,
+          "text": "When DISCOBOT_TARGET is undefined, provide these deterministic models:\n- GPIOA_output[1..4] stores motor pins and GPIOD_output[12..15] stores LEDs; pin values must be 0 or 1;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§15"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R086",
+      "source_requirement_id": "§15",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "15. Host Verification and Deterministic Inputs",
+      "source_lines": [
+        {
+          "start": 288,
+          "end": 288
+        }
+      ],
+      "statement": "discobot_set_button_level modifies only bit 0 of GPIOA_IDR.",
+      "category": "safety",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 288,
+          "end": 288,
+          "text": "- GPIOA_IDR stores button input; discobot_set_button_level modifies only bit 0;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§15"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R087",
+      "source_requirement_id": "§15",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "15. Host Verification and Deterministic Inputs",
+      "source_lines": [
+        {
+          "start": 289,
+          "end": 289
+        }
+      ],
+      "statement": "The accelerometer injection function stores three raw milli-g values for the same read path.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 289,
+          "end": 289,
+          "text": "- discobot_set_accelerometer_raw sets three raw milli-g values; read_accelerometers divides them by 1000;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§15"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R088",
+      "source_requirement_id": "§15",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "15. Host Verification and Deterministic Inputs",
+      "source_lines": [
+        {
+          "start": 290,
+          "end": 290
+        }
+      ],
+      "statement": "ADC injection sets the next raw temperature value and feeds the same Section 7 formula path.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 290,
+          "end": 290,
+          "text": "- discobot_set_adc_raw sets the next temperature ADC value; the formula strictly follows Section 7;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§15"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R089",
+      "source_requirement_id": "§15",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "15. Host Verification and Deterministic Inputs",
+      "source_lines": [
+        {
+          "start": 291,
+          "end": 291
+        }
+      ],
+      "statement": "RNG injection sets both DRDY and the return value, making unreadiness observable without actual deadlock.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 291,
+          "end": 291,
+          "text": "- discobot_set_rng sets DRDY and the return value; ready=false represents hardware blocking, but host tests must not actually deadlock;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§15"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R090",
+      "source_requirement_id": "§15",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "15. Host Verification and Deterministic Inputs",
+      "source_lines": [
+        {
+          "start": 292,
+          "end": 292
+        }
+      ],
+      "statement": "UART injection sets DR/RXNE, then executes the same USART1_IRQHandler logic.",
+      "category": "dataflow",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 292,
+          "end": 292,
+          "text": "- discobot_usart1_inject_rx sets DR/RXNE, then executes the same USART1_IRQHandler logic;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§15"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R091",
+      "source_requirement_id": "§15",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "15. Host Verification and Deterministic Inputs",
+      "source_lines": [
+        {
+          "start": 293,
+          "end": 293
+        }
+      ],
+      "statement": "Host usart1_send appends characters to the TX log in order and maintains its length.",
+      "category": "communication",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 293,
+          "end": 293,
+          "text": "- usart1_send appends characters to usart1_tx_log in order and maintains usart1_tx_length;"
+        }
+      ],
+      "source_requirement_ids": [
+        "§15"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R092",
+      "source_requirement_id": "§15",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "15. Host Verification and Deterministic Inputs",
+      "source_lines": [
+        {
+          "start": 295,
+          "end": 295
+        },
+        {
+          "start": 299,
+          "end": 299
+        }
+      ],
+      "statement": "main_loop_iteration is a single-step equivalent of the production main loop; production code does not define main and self-tests are separate files.",
+      "category": "artifact",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 295,
+          "end": 295,
+          "text": "- main_loop_iteration is the single-step host equivalent of while(1); production code must not define main();"
+        },
+        {
+          "start": 299,
+          "end": 299,
+          "text": "Independent self-tests must be emitted as separate files and must not be mixed into production code. All allocated memory must be releasable; NULL pointers and invalid"
+        }
+      ],
+      "source_requirement_ids": [
+        "§15"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R093",
+      "source_requirement_id": "§15",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "15. Host Verification and Deterministic Inputs",
+      "source_lines": [
+        {
+          "start": 299,
+          "end": 299
+        }
+      ],
+      "statement": "All allocated memory has a release path.",
+      "category": "resource",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 299,
+          "end": 299,
+          "text": "Independent self-tests must be emitted as separate files and must not be mixed into production code. All allocated memory must be releasable; NULL pointers and invalid"
+        }
+      ],
+      "source_requirement_ids": [
+        "§15"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R094",
+      "source_requirement_id": "§15",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "15. Host Verification and Deterministic Inputs",
+      "source_lines": [
+        {
+          "start": 299,
+          "end": 300
+        }
+      ],
+      "statement": "NULL pointers, invalid indices, and full buffers are handled with safe returns.",
+      "category": "safety",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 299,
+          "end": 300,
+          "text": "Independent self-tests must be emitted as separate files and must not be mixed into production code. All allocated memory must be releasable; NULL pointers, invalid\nindices, and full buffers must be handled with safe returns. Preserve historical behavior explicitly described by the tests (such as no UART framing protocol, no task"
+        }
+      ],
+      "source_requirement_ids": [
+        "§15"
+      ],
+      "code_judgment": null
+    },
+    {
+      "id": "DB-R095",
+      "source_requirement_id": "§15",
+      "source_id_kind": "original_section_anchor_no_formal_requirement_id",
+      "source_section": "15. Host Verification and Deterministic Inputs",
+      "source_lines": [
+        {
+          "start": 300,
+          "end": 301
+        }
+      ],
+      "statement": "Retain the historical architecture without UART framing or a task-removal API and with unused speed; do not add another protocol or PWM functionality.",
+      "category": "interface",
+      "applicability_condition": "Applicable to the project's defined generation task; missing implementation does not make a requirement inapplicable.",
+      "static_reviewability": {
+        "classification": "static_evidence_reviewable",
+        "reason": "Implementations, data flow, and branches can be inspected in the original code; static evidence does not establish actual execution or hardware performance."
+      },
+      "source_excerpt": [
+        {
+          "start": 300,
+          "end": 301,
+          "text": "Indices and full buffers must be handled with safe returns. Preserve historical behavior explicitly described by the tests (such as no UART framing protocol, no task\nremoval API, and an unused speed parameter); do not independently \"improve\" it into another protocol or PWM architecture."
+        }
+      ],
+      "source_requirement_ids": [
+        "§15"
+      ],
+      "code_judgment": null
+    }
+  ],
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/preparation/discobot/requirements_checklist.json",
+    "original_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+    "language": "Original Chinese requirements and judgments retained; no semantic translation.",
+    "transformation": "Workspace/home-path anonymization and export metadata only; leaf statements and classifications unchanged."
+  }
+}

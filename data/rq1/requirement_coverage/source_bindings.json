@@ -1,0 +1,695 @@
+{
+  "fse/official_baselines/reassessment_host_20260921/code/0304b72fb65281e2038255b42e8937a4eb2718bb01efe05a3324035d276abb3e/raw/6_generated_code.h": {
+    "original_sha256": "dfeeb2d473f1d11fb05fbcaf1d2d7894bc3d140e8cd1f650902ecbbf00e7fed3",
+    "distributed_sha256": "dfeeb2d473f1d11fb05fbcaf1d2d7894bc3d140e8cd1f650902ecbbf00e7fed3",
+    "path": "evidence/coverage_candidates/dfeeb2d473f1d11fb05fbcaf1d2d7894bc3d140e8cd1f650902ecbbf00e7fed3/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/0304b72fb65281e2038255b42e8937a4eb2718bb01efe05a3324035d276abb3e/raw/crazyflie_lib.c": {
+    "original_sha256": "d07aa37a9fafd1d448470b6b93dc4f33f8e409d4c9f5a63bff6f87390f97804c",
+    "distributed_sha256": "d07aa37a9fafd1d448470b6b93dc4f33f8e409d4c9f5a63bff6f87390f97804c",
+    "path": "evidence/coverage_candidates/d07aa37a9fafd1d448470b6b93dc4f33f8e409d4c9f5a63bff6f87390f97804c/crazyflie_lib.c",
+    "kind": "candidate_source",
+    "original_name": "crazyflie_lib.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/e88a06a13c1bb6f84868d3255e2bdf718eb93928d470023f020544272d7857ce/raw/6_generated_code.c": {
+    "original_sha256": "5087fc40759a9e3fa4a5467481b910eb9a73092d435ffad7d1400f7c8438a893",
+    "distributed_sha256": "5087fc40759a9e3fa4a5467481b910eb9a73092d435ffad7d1400f7c8438a893",
+    "path": "evidence/coverage_candidates/5087fc40759a9e3fa4a5467481b910eb9a73092d435ffad7d1400f7c8438a893/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/e88a06a13c1bb6f84868d3255e2bdf718eb93928d470023f020544272d7857ce/raw/6_generated_code.h": {
+    "original_sha256": "357bb95e01b86a6f7374e0e0146e4b1c528e609569e133d35f71d1871501a51b",
+    "distributed_sha256": "357bb95e01b86a6f7374e0e0146e4b1c528e609569e133d35f71d1871501a51b",
+    "path": "evidence/coverage_candidates/357bb95e01b86a6f7374e0e0146e4b1c528e609569e133d35f71d1871501a51b/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/e48f2c28811621f29295f491db4d1a2ac352a88eefecc8b37898ebfeb4a5b59e/raw/6_generated_code.h": {
+    "original_sha256": "28500f605e266d2d435b983ce0b0d014654c4f69945665f1dcc8cc3ddd9dd9c5",
+    "distributed_sha256": "28500f605e266d2d435b983ce0b0d014654c4f69945665f1dcc8cc3ddd9dd9c5",
+    "path": "evidence/coverage_candidates/28500f605e266d2d435b983ce0b0d014654c4f69945665f1dcc8cc3ddd9dd9c5/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/e48f2c28811621f29295f491db4d1a2ac352a88eefecc8b37898ebfeb4a5b59e/raw/discobot.c": {
+    "original_sha256": "cd863bb5fe9f1c7ad6162c213c0e7f3db0a56378b8d7530f1611e465be9f4fd0",
+    "distributed_sha256": "cd863bb5fe9f1c7ad6162c213c0e7f3db0a56378b8d7530f1611e465be9f4fd0",
+    "path": "evidence/coverage_candidates/cd863bb5fe9f1c7ad6162c213c0e7f3db0a56378b8d7530f1611e465be9f4fd0/discobot.c",
+    "kind": "candidate_source",
+    "original_name": "discobot.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/b0e9c66fd9abcfd5bef433dc013fb91e15cf1b5c2e5af1d509cc891e69f40342/raw/6_generated_code.c": {
+    "original_sha256": "6b15b0df36f0f3d68f4eafb9cf1c446599e13e417783b118e06f81d0f4b2d382",
+    "distributed_sha256": "6b15b0df36f0f3d68f4eafb9cf1c446599e13e417783b118e06f81d0f4b2d382",
+    "path": "evidence/coverage_candidates/6b15b0df36f0f3d68f4eafb9cf1c446599e13e417783b118e06f81d0f4b2d382/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/b0e9c66fd9abcfd5bef433dc013fb91e15cf1b5c2e5af1d509cc891e69f40342/raw/6_generated_code.h": {
+    "original_sha256": "7f86b387ab117d57f5366a5c6138de736368dd8c4ce82b91072d98d23f2953e3",
+    "distributed_sha256": "7f86b387ab117d57f5366a5c6138de736368dd8c4ce82b91072d98d23f2953e3",
+    "path": "evidence/coverage_candidates/7f86b387ab117d57f5366a5c6138de736368dd8c4ce82b91072d98d23f2953e3/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/140942c27782a37a97fdf2cd3cfc3afd5e7d18f740a1038e47e1329a3b3a3c22/raw/6_generated_code.h": {
+    "original_sha256": "36333c3c89de09aabd4e2c077191fd4e7fc95f647abc948450cf28ed0a2e5673",
+    "distributed_sha256": "36333c3c89de09aabd4e2c077191fd4e7fc95f647abc948450cf28ed0a2e5673",
+    "path": "evidence/coverage_candidates/36333c3c89de09aabd4e2c077191fd4e7fc95f647abc948450cf28ed0a2e5673/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/140942c27782a37a97fdf2cd3cfc3afd5e7d18f740a1038e47e1329a3b3a3c22/raw/circarray.c": {
+    "original_sha256": "1dbda0d35409f855dbc8a5e00502eeae1b59fe1d41cf711bba552b1e7f4f974e",
+    "distributed_sha256": "1dbda0d35409f855dbc8a5e00502eeae1b59fe1d41cf711bba552b1e7f4f974e",
+    "path": "evidence/coverage_candidates/1dbda0d35409f855dbc8a5e00502eeae1b59fe1d41cf711bba552b1e7f4f974e/circarray.c",
+    "kind": "candidate_source",
+    "original_name": "circarray.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/140942c27782a37a97fdf2cd3cfc3afd5e7d18f740a1038e47e1329a3b3a3c22/raw/discobot.c": {
+    "original_sha256": "08fb38976cbe8ee8ca28dd2a8b4f7fd3f2f85e505c957d9ad4f25200c310fe52",
+    "distributed_sha256": "08fb38976cbe8ee8ca28dd2a8b4f7fd3f2f85e505c957d9ad4f25200c310fe52",
+    "path": "evidence/coverage_candidates/08fb38976cbe8ee8ca28dd2a8b4f7fd3f2f85e505c957d9ad4f25200c310fe52/discobot.c",
+    "kind": "candidate_source",
+    "original_name": "discobot.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/140942c27782a37a97fdf2cd3cfc3afd5e7d18f740a1038e47e1329a3b3a3c22/raw/funcs1.c": {
+    "original_sha256": "c546e8930b4060fe15f686ac2c386fdc3e8e537009b3f9d5e48e7c3bd977c7eb",
+    "distributed_sha256": "c546e8930b4060fe15f686ac2c386fdc3e8e537009b3f9d5e48e7c3bd977c7eb",
+    "path": "evidence/coverage_candidates/c546e8930b4060fe15f686ac2c386fdc3e8e537009b3f9d5e48e7c3bd977c7eb/funcs1.c",
+    "kind": "candidate_source",
+    "original_name": "funcs1.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/140942c27782a37a97fdf2cd3cfc3afd5e7d18f740a1038e47e1329a3b3a3c22/raw/usart.c": {
+    "original_sha256": "1b5f289a1a9088b6eedf38f3fae7832b51037f2127c7a01d0fc897aadd119680",
+    "distributed_sha256": "1b5f289a1a9088b6eedf38f3fae7832b51037f2127c7a01d0fc897aadd119680",
+    "path": "evidence/coverage_candidates/1b5f289a1a9088b6eedf38f3fae7832b51037f2127c7a01d0fc897aadd119680/usart.c",
+    "kind": "candidate_source",
+    "original_name": "usart.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/221db5d4e724b02433a1e5ae9f872aa319df01be1dc1e861729f5d6fc621591a/raw/6_generated_code.c": {
+    "original_sha256": "bddc17e9cc18c9a4e058a428aa430903a457a10ff690bd2b3d6da6801c46f143",
+    "distributed_sha256": "bddc17e9cc18c9a4e058a428aa430903a457a10ff690bd2b3d6da6801c46f143",
+    "path": "evidence/coverage_candidates/bddc17e9cc18c9a4e058a428aa430903a457a10ff690bd2b3d6da6801c46f143/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/221db5d4e724b02433a1e5ae9f872aa319df01be1dc1e861729f5d6fc621591a/raw/6_generated_code.h": {
+    "original_sha256": "eb26ddc5da71ed35db3ae082487c083437188961ff0653e8f8a8181dd4293cff",
+    "distributed_sha256": "eb26ddc5da71ed35db3ae082487c083437188961ff0653e8f8a8181dd4293cff",
+    "path": "evidence/coverage_candidates/eb26ddc5da71ed35db3ae082487c083437188961ff0653e8f8a8181dd4293cff/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/221db5d4e724b02433a1e5ae9f872aa319df01be1dc1e861729f5d6fc621591a/raw/onstep_hal_host.c": {
+    "original_sha256": "fd0930a1ed7e228e41ba6a72823218ebde592728c6dcd8d469379a69400908e1",
+    "distributed_sha256": "fd0930a1ed7e228e41ba6a72823218ebde592728c6dcd8d469379a69400908e1",
+    "path": "evidence/coverage_candidates/fd0930a1ed7e228e41ba6a72823218ebde592728c6dcd8d469379a69400908e1/onstep_hal_host.c",
+    "kind": "candidate_source",
+    "original_name": "onstep_hal_host.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/221db5d4e724b02433a1e5ae9f872aa319df01be1dc1e861729f5d6fc621591a/raw/onstep_hal_private.h": {
+    "original_sha256": "900aca3617320b2a9642db9afe93af92aaa948be97ada3fc032cf755cde8dc78",
+    "distributed_sha256": "900aca3617320b2a9642db9afe93af92aaa948be97ada3fc032cf755cde8dc78",
+    "path": "evidence/coverage_candidates/900aca3617320b2a9642db9afe93af92aaa948be97ada3fc032cf755cde8dc78/onstep_hal_private.h",
+    "kind": "candidate_source",
+    "original_name": "onstep_hal_private.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/38bc699be9a3c8d5dba387a77de750153aabad4cc3ea5da93fc5b87e4f26fd3f/raw/6_generated_code.c": {
+    "original_sha256": "1e2de8c7fdaa0f5afbb290887baa90983d4451d2b787ae3417ee489c880f349d",
+    "distributed_sha256": "1e2de8c7fdaa0f5afbb290887baa90983d4451d2b787ae3417ee489c880f349d",
+    "path": "evidence/coverage_candidates/1e2de8c7fdaa0f5afbb290887baa90983d4451d2b787ae3417ee489c880f349d/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/38bc699be9a3c8d5dba387a77de750153aabad4cc3ea5da93fc5b87e4f26fd3f/raw/6_generated_code.h": {
+    "original_sha256": "826edc8576b1fab62a573dc1685a9fa9497f1689ccdea045685db5fb6887cf13",
+    "distributed_sha256": "826edc8576b1fab62a573dc1685a9fa9497f1689ccdea045685db5fb6887cf13",
+    "path": "evidence/coverage_candidates/826edc8576b1fab62a573dc1685a9fa9497f1689ccdea045685db5fb6887cf13/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/3b4a5ccca61d076bda531585c329b6dffa1df72c97888b463935c6be942b9b5e/raw/6_generated_code.c": {
+    "original_sha256": "6f66f22287021c33857e9e94f3880abc274b1f1c932fcd8621bb26e10b86bd97",
+    "distributed_sha256": "6f66f22287021c33857e9e94f3880abc274b1f1c932fcd8621bb26e10b86bd97",
+    "path": "evidence/coverage_candidates/6f66f22287021c33857e9e94f3880abc274b1f1c932fcd8621bb26e10b86bd97/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/3b4a5ccca61d076bda531585c329b6dffa1df72c97888b463935c6be942b9b5e/raw/6_generated_code.h": {
+    "original_sha256": "b1ebf3ca69f90ed12849ecb73cb6a1f970bb38781346fbccc1731ddc65109519",
+    "distributed_sha256": "b1ebf3ca69f90ed12849ecb73cb6a1f970bb38781346fbccc1731ddc65109519",
+    "path": "evidence/coverage_candidates/b1ebf3ca69f90ed12849ecb73cb6a1f970bb38781346fbccc1731ddc65109519/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/3b4a5ccca61d076bda531585c329b6dffa1df72c97888b463935c6be942b9b5e/raw/6_generated_code_host.h": {
+    "original_sha256": "5ccf5fc6e7167253581f79e16248994b21970257c27ae3868199fe45cd58c6e1",
+    "distributed_sha256": "5ccf5fc6e7167253581f79e16248994b21970257c27ae3868199fe45cd58c6e1",
+    "path": "evidence/coverage_candidates/5ccf5fc6e7167253581f79e16248994b21970257c27ae3868199fe45cd58c6e1/6_generated_code_host.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code_host.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/da12626d548d7d475395c7ba9c7b168fe3074b5fe1529ecbf2c4e3fb794f5ba7/raw/6_generated_code.c": {
+    "original_sha256": "f072a05ed9cd25f1424083e8517388dca88ebfa2a9030f7590b6e480ccd3a056",
+    "distributed_sha256": "f072a05ed9cd25f1424083e8517388dca88ebfa2a9030f7590b6e480ccd3a056",
+    "path": "evidence/coverage_candidates/f072a05ed9cd25f1424083e8517388dca88ebfa2a9030f7590b6e480ccd3a056/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/da12626d548d7d475395c7ba9c7b168fe3074b5fe1529ecbf2c4e3fb794f5ba7/raw/6_generated_code.h": {
+    "original_sha256": "85de95bcfcf8ffad5c9ec079c4be7aed9793362e51277daa97b76945d76d3634",
+    "distributed_sha256": "85de95bcfcf8ffad5c9ec079c4be7aed9793362e51277daa97b76945d76d3634",
+    "path": "evidence/coverage_candidates/85de95bcfcf8ffad5c9ec079c4be7aed9793362e51277daa97b76945d76d3634/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/c533223749589f0010d0804e048c1f9b8a74b66689176200d0e1f8bbe866e9a4/raw/6_generated_code.c": {
+    "original_sha256": "b82f27f31a5ad4c1d87f6e9444d2d404552744f00fd766a657b740fae9010cf5",
+    "distributed_sha256": "b82f27f31a5ad4c1d87f6e9444d2d404552744f00fd766a657b740fae9010cf5",
+    "path": "evidence/coverage_candidates/b82f27f31a5ad4c1d87f6e9444d2d404552744f00fd766a657b740fae9010cf5/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/c533223749589f0010d0804e048c1f9b8a74b66689176200d0e1f8bbe866e9a4/raw/6_generated_code.h": {
+    "original_sha256": "c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b",
+    "distributed_sha256": "c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b",
+    "path": "evidence/coverage_candidates/c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/9f5aee1371244e0399a8db7e0f264629a8de41fb824ccb14827bdbbfa1a5cac3/raw/6_generated_code.c": {
+    "original_sha256": "2f2f4d97c84d17a2a0114d4f612536806c939ea99079a6842b8e9f7f757bf010",
+    "distributed_sha256": "2f2f4d97c84d17a2a0114d4f612536806c939ea99079a6842b8e9f7f757bf010",
+    "path": "evidence/coverage_candidates/2f2f4d97c84d17a2a0114d4f612536806c939ea99079a6842b8e9f7f757bf010/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/9f5aee1371244e0399a8db7e0f264629a8de41fb824ccb14827bdbbfa1a5cac3/raw/6_generated_code.h": {
+    "original_sha256": "c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b",
+    "distributed_sha256": "c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b",
+    "path": "evidence/coverage_candidates/c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/6048e7222078cc38de1195eb8a5b950abc370b7bf9384c87349b4e86e492c6c3/raw/6_generated_code.c": {
+    "original_sha256": "929fe2aa7e5fb206f94f72d29d51d79c9af2e849b7879ceb70d60a83461f6c61",
+    "distributed_sha256": "929fe2aa7e5fb206f94f72d29d51d79c9af2e849b7879ceb70d60a83461f6c61",
+    "path": "evidence/coverage_candidates/929fe2aa7e5fb206f94f72d29d51d79c9af2e849b7879ceb70d60a83461f6c61/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/6048e7222078cc38de1195eb8a5b950abc370b7bf9384c87349b4e86e492c6c3/raw/6_generated_code.h": {
+    "original_sha256": "05f7af119ef5d28559fc2a9390fb48fd3fa2b75d1803f5bc8f2536599ef3e1da",
+    "distributed_sha256": "05f7af119ef5d28559fc2a9390fb48fd3fa2b75d1803f5bc8f2536599ef3e1da",
+    "path": "evidence/coverage_candidates/05f7af119ef5d28559fc2a9390fb48fd3fa2b75d1803f5bc8f2536599ef3e1da/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/1423e1c6a7fd5834b002547210a99a85ee5bdab35876a34e769bebd43f6f819d/raw/6_generated_code.c": {
+    "original_sha256": "d0ab31c89dfe5af8bd0a0f3f74caf4278071a1c0929f0a39c09a6c52caa9b04e",
+    "distributed_sha256": "d0ab31c89dfe5af8bd0a0f3f74caf4278071a1c0929f0a39c09a6c52caa9b04e",
+    "path": "evidence/coverage_candidates/d0ab31c89dfe5af8bd0a0f3f74caf4278071a1c0929f0a39c09a6c52caa9b04e/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/1423e1c6a7fd5834b002547210a99a85ee5bdab35876a34e769bebd43f6f819d/raw/6_generated_code.h": {
+    "original_sha256": "a4dab42e2cb778e97acf87aa408aa4d1a2952d0877ae70909dd89e2802f2ff8c",
+    "distributed_sha256": "a4dab42e2cb778e97acf87aa408aa4d1a2952d0877ae70909dd89e2802f2ff8c",
+    "path": "evidence/coverage_candidates/a4dab42e2cb778e97acf87aa408aa4d1a2952d0877ae70909dd89e2802f2ff8c/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/ac77ec804f07d580974475913bb16f5e262c7d0aded0bb162a05cb956a8ac5cf/raw/6_generated_code.c": {
+    "original_sha256": "e276777f81d99c42b70d717f44218a36df55bee2c875c8a94f4a93e57b458b52",
+    "distributed_sha256": "e276777f81d99c42b70d717f44218a36df55bee2c875c8a94f4a93e57b458b52",
+    "path": "evidence/coverage_candidates/e276777f81d99c42b70d717f44218a36df55bee2c875c8a94f4a93e57b458b52/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/ac77ec804f07d580974475913bb16f5e262c7d0aded0bb162a05cb956a8ac5cf/raw/6_generated_code.h": {
+    "original_sha256": "1aa182691adae419c02fc4ecd1114149c5d6aee1e8faf1ba0379e5c4ffb8d95f",
+    "distributed_sha256": "1aa182691adae419c02fc4ecd1114149c5d6aee1e8faf1ba0379e5c4ffb8d95f",
+    "path": "evidence/coverage_candidates/1aa182691adae419c02fc4ecd1114149c5d6aee1e8faf1ba0379e5c4ffb8d95f/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/18a4648b7350249a2c194686b951e2b31f1827e7cf4eaed18ec8e5d7d2cb612a/raw/6_generated_code.c": {
+    "original_sha256": "684bed4c61e109a55d560d45c9fd50f60d2e8f24635778cafba88a20703d895e",
+    "distributed_sha256": "684bed4c61e109a55d560d45c9fd50f60d2e8f24635778cafba88a20703d895e",
+    "path": "evidence/coverage_candidates/684bed4c61e109a55d560d45c9fd50f60d2e8f24635778cafba88a20703d895e/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/18a4648b7350249a2c194686b951e2b31f1827e7cf4eaed18ec8e5d7d2cb612a/raw/6_generated_code.h": {
+    "original_sha256": "4405d24d128058f20513997a4c8eb6e5ee817d46e2897027be1eb8256a4faeee",
+    "distributed_sha256": "4405d24d128058f20513997a4c8eb6e5ee817d46e2897027be1eb8256a4faeee",
+    "path": "evidence/coverage_candidates/4405d24d128058f20513997a4c8eb6e5ee817d46e2897027be1eb8256a4faeee/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/8fe02edabc2aac5a62fc6c7b5f9456536c03a0dcddc90b09201ce2329ab12f5f/raw/6_generated_code.c": {
+    "original_sha256": "6cc29c303fd55a170fcf1a52fbe262dfcb02db3c2f2c3e971385d18a3f01dc39",
+    "distributed_sha256": "6cc29c303fd55a170fcf1a52fbe262dfcb02db3c2f2c3e971385d18a3f01dc39",
+    "path": "evidence/coverage_candidates/6cc29c303fd55a170fcf1a52fbe262dfcb02db3c2f2c3e971385d18a3f01dc39/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/8fe02edabc2aac5a62fc6c7b5f9456536c03a0dcddc90b09201ce2329ab12f5f/raw/6_generated_code.h": {
+    "original_sha256": "4e0be14ed949b1a1cd9d970a14421f9c223e1bac20e2770ea8859fa5479c58b1",
+    "distributed_sha256": "4e0be14ed949b1a1cd9d970a14421f9c223e1bac20e2770ea8859fa5479c58b1",
+    "path": "evidence/coverage_candidates/4e0be14ed949b1a1cd9d970a14421f9c223e1bac20e2770ea8859fa5479c58b1/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/392f0d59b1eea399d597884341fc336405a556aa42d8269a4cf0d23ae270734f/raw/6_generated_code.c": {
+    "original_sha256": "d0b6c777b5062ad2caf15aab5028342f269e2aeef75fa088a1cfde420b583e6e",
+    "distributed_sha256": "d0b6c777b5062ad2caf15aab5028342f269e2aeef75fa088a1cfde420b583e6e",
+    "path": "evidence/coverage_candidates/d0b6c777b5062ad2caf15aab5028342f269e2aeef75fa088a1cfde420b583e6e/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/392f0d59b1eea399d597884341fc336405a556aa42d8269a4cf0d23ae270734f/raw/6_generated_code.h": {
+    "original_sha256": "4bdb4ae1cc5bad40e1daa119b68acb7bce8a261ec8c0141f888eb2404e5134b8",
+    "distributed_sha256": "4bdb4ae1cc5bad40e1daa119b68acb7bce8a261ec8c0141f888eb2404e5134b8",
+    "path": "evidence/coverage_candidates/4bdb4ae1cc5bad40e1daa119b68acb7bce8a261ec8c0141f888eb2404e5134b8/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/f03c542b114e9fd3291f80fd2673b5ae985a4160c9aa399d4ab99eefc426b2f8/raw/6_generated_code.h": {
+    "original_sha256": "cf42817b5c7006962802de3fa17a8dd805c70fccd4953fc519ac72fdaf020d72",
+    "distributed_sha256": "cf42817b5c7006962802de3fa17a8dd805c70fccd4953fc519ac72fdaf020d72",
+    "path": "evidence/coverage_candidates/cf42817b5c7006962802de3fa17a8dd805c70fccd4953fc519ac72fdaf020d72/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/f03c542b114e9fd3291f80fd2673b5ae985a4160c9aa399d4ab99eefc426b2f8/raw/onstep.c": {
+    "original_sha256": "5b953abbd5555ca5e9d048383bc79f528a27e2b0c71801ef7f41ef59e7857d93",
+    "distributed_sha256": "5b953abbd5555ca5e9d048383bc79f528a27e2b0c71801ef7f41ef59e7857d93",
+    "path": "evidence/coverage_candidates/5b953abbd5555ca5e9d048383bc79f528a27e2b0c71801ef7f41ef59e7857d93/onstep.c",
+    "kind": "candidate_source",
+    "original_name": "onstep.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/f03c542b114e9fd3291f80fd2673b5ae985a4160c9aa399d4ab99eefc426b2f8/raw/onstep_hal.c": {
+    "original_sha256": "56f41fb7ac74897ebc56960a6ca20f1121a35e0424d2dcd58c8acc5b15a5e31e",
+    "distributed_sha256": "56f41fb7ac74897ebc56960a6ca20f1121a35e0424d2dcd58c8acc5b15a5e31e",
+    "path": "evidence/coverage_candidates/56f41fb7ac74897ebc56960a6ca20f1121a35e0424d2dcd58c8acc5b15a5e31e/onstep_hal.c",
+    "kind": "candidate_source",
+    "original_name": "onstep_hal.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a4afa36ecbc517050be31f15c63ede606064c2d4b26e3ad81b4fae1d77fa24de/raw/6_generated_code.c": {
+    "original_sha256": "7ece87e4a327e6c4f17208d06c0044ec871489fc91beaaea49f6ad41ff0b8318",
+    "distributed_sha256": "7ece87e4a327e6c4f17208d06c0044ec871489fc91beaaea49f6ad41ff0b8318",
+    "path": "evidence/coverage_candidates/7ece87e4a327e6c4f17208d06c0044ec871489fc91beaaea49f6ad41ff0b8318/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a4afa36ecbc517050be31f15c63ede606064c2d4b26e3ad81b4fae1d77fa24de/raw/6_generated_code.h": {
+    "original_sha256": "fce28d1066e5ec34686233ddc006739285166b68dbb3c3d4366d27d84a59fdec",
+    "distributed_sha256": "fce28d1066e5ec34686233ddc006739285166b68dbb3c3d4366d27d84a59fdec",
+    "path": "evidence/coverage_candidates/fce28d1066e5ec34686233ddc006739285166b68dbb3c3d4366d27d84a59fdec/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/7e2123e18fa90bdba03339f10c7e9103b48effb2a35367a57d4c231c0520ad98/raw/6_generated_code.c": {
+    "original_sha256": "f7543bb57730961d33af3614760503dea85a451037e2371de4f24874bb071988",
+    "distributed_sha256": "f7543bb57730961d33af3614760503dea85a451037e2371de4f24874bb071988",
+    "path": "evidence/coverage_candidates/f7543bb57730961d33af3614760503dea85a451037e2371de4f24874bb071988/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/7e2123e18fa90bdba03339f10c7e9103b48effb2a35367a57d4c231c0520ad98/raw/6_generated_code.h": {
+    "original_sha256": "fce28d1066e5ec34686233ddc006739285166b68dbb3c3d4366d27d84a59fdec",
+    "distributed_sha256": "fce28d1066e5ec34686233ddc006739285166b68dbb3c3d4366d27d84a59fdec",
+    "path": "evidence/coverage_candidates/fce28d1066e5ec34686233ddc006739285166b68dbb3c3d4366d27d84a59fdec/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/5bf97c1ab1198494aceb0c9bfa20f1d9b9b8206d45e6c036448c30e9dc839a42/raw/6_generated_code.c": {
+    "original_sha256": "d50e2d0e2df1c64ca89b389f7068ea5401b33be74bcce8c6d79faec84c35c7f1",
+    "distributed_sha256": "d50e2d0e2df1c64ca89b389f7068ea5401b33be74bcce8c6d79faec84c35c7f1",
+    "path": "evidence/coverage_candidates/d50e2d0e2df1c64ca89b389f7068ea5401b33be74bcce8c6d79faec84c35c7f1/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/5bf97c1ab1198494aceb0c9bfa20f1d9b9b8206d45e6c036448c30e9dc839a42/raw/6_generated_code.h": {
+    "original_sha256": "cb4bd376bc24265d404b4fdb154dcb7b353f80bb301fc5cb5e02a09a33314124",
+    "distributed_sha256": "cb4bd376bc24265d404b4fdb154dcb7b353f80bb301fc5cb5e02a09a33314124",
+    "path": "evidence/coverage_candidates/cb4bd376bc24265d404b4fdb154dcb7b353f80bb301fc5cb5e02a09a33314124/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/9e9d3588aa5e703a0807685781c633890b40fd9db648cc4ed6ae53578283b1bb/raw/6_generated_code.c": {
+    "original_sha256": "8019a928d9ec8cf2f181547e6bdfb7b62fcd890eb18d83d44ea9e88a794f69a9",
+    "distributed_sha256": "8019a928d9ec8cf2f181547e6bdfb7b62fcd890eb18d83d44ea9e88a794f69a9",
+    "path": "evidence/coverage_candidates/8019a928d9ec8cf2f181547e6bdfb7b62fcd890eb18d83d44ea9e88a794f69a9/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/9e9d3588aa5e703a0807685781c633890b40fd9db648cc4ed6ae53578283b1bb/raw/6_generated_code.h": {
+    "original_sha256": "6c083fded7927f917e878eaffcf533095d8132960b9512ffa67975ac91b70056",
+    "distributed_sha256": "6c083fded7927f917e878eaffcf533095d8132960b9512ffa67975ac91b70056",
+    "path": "evidence/coverage_candidates/6c083fded7927f917e878eaffcf533095d8132960b9512ffa67975ac91b70056/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/32d875755397631bf9ef8d2b2b60f4c1518af545d46b1d7a301f0b0a701445b0/raw/6_generated_code.c": {
+    "original_sha256": "52ed1b61fe67fa3e07ce965dfe8b3f0803fec052a244a0bb14e48069860862ad",
+    "distributed_sha256": "52ed1b61fe67fa3e07ce965dfe8b3f0803fec052a244a0bb14e48069860862ad",
+    "path": "evidence/coverage_candidates/52ed1b61fe67fa3e07ce965dfe8b3f0803fec052a244a0bb14e48069860862ad/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/32d875755397631bf9ef8d2b2b60f4c1518af545d46b1d7a301f0b0a701445b0/raw/6_generated_code.h": {
+    "original_sha256": "36e6f4e8e54128210d7e6222b52f922d5663dd2ed0ef9be7e40fe6e139630509",
+    "distributed_sha256": "36e6f4e8e54128210d7e6222b52f922d5663dd2ed0ef9be7e40fe6e139630509",
+    "path": "evidence/coverage_candidates/36e6f4e8e54128210d7e6222b52f922d5663dd2ed0ef9be7e40fe6e139630509/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/d349e1a9346483aa6af258455e69024b20282a8bb86cf4308924b27d50d5ea9b/raw/6_generated_code.c": {
+    "original_sha256": "1688099f3363d184eeb5fe2d84c59f04362bec7928784efd3d115e327b1ca3ad",
+    "distributed_sha256": "65a500e6d0d081e5d09ee0efe7b2fb742ac20a5ba017d7a82300e07d7b0af00d",
+    "path": "evidence/coverage_candidates/1688099f3363d184eeb5fe2d84c59f04362bec7928784efd3d115e327b1ca3ad/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none; English translation in this distribution; original digest retained",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/d349e1a9346483aa6af258455e69024b20282a8bb86cf4308924b27d50d5ea9b/raw/6_generated_code.h": {
+    "original_sha256": "2495f7732333e7a4da0adfaba3ba7811e250e9f45a351163503ca1c46992d2f2",
+    "distributed_sha256": "2495f7732333e7a4da0adfaba3ba7811e250e9f45a351163503ca1c46992d2f2",
+    "path": "evidence/coverage_candidates/2495f7732333e7a4da0adfaba3ba7811e250e9f45a351163503ca1c46992d2f2/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/8746b4be4ccdfe537cc0609c834a9e83e38c354a578682500445912acd6651e8/raw/6_generated_code.h": {
+    "original_sha256": "cf1070979a56012ba4e3aa1d688558e361cbea3b7dfb09a5396392d0ab2301ba",
+    "distributed_sha256": "cf1070979a56012ba4e3aa1d688558e361cbea3b7dfb09a5396392d0ab2301ba",
+    "path": "evidence/coverage_candidates/cf1070979a56012ba4e3aa1d688558e361cbea3b7dfb09a5396392d0ab2301ba/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/8746b4be4ccdfe537cc0609c834a9e83e38c354a578682500445912acd6651e8/raw/discobot_core.c": {
+    "original_sha256": "a592f9628212734452b7d753356c1536f92267113df7a20c4221a79cfb9b5dc8",
+    "distributed_sha256": "a592f9628212734452b7d753356c1536f92267113df7a20c4221a79cfb9b5dc8",
+    "path": "evidence/coverage_candidates/a592f9628212734452b7d753356c1536f92267113df7a20c4221a79cfb9b5dc8/discobot_core.c",
+    "kind": "candidate_source",
+    "original_name": "discobot_core.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/8746b4be4ccdfe537cc0609c834a9e83e38c354a578682500445912acd6651e8/raw/discobot_peripherals.c": {
+    "original_sha256": "305facaea68aa314600f70049fc14750b1bf598167fb872f752b8c739043a3b1",
+    "distributed_sha256": "305facaea68aa314600f70049fc14750b1bf598167fb872f752b8c739043a3b1",
+    "path": "evidence/coverage_candidates/305facaea68aa314600f70049fc14750b1bf598167fb872f752b8c739043a3b1/discobot_peripherals.c",
+    "kind": "candidate_source",
+    "original_name": "discobot_peripherals.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a353ba8ee060078b9313fb7d338a775fa76be5586de1c588b89000cf9650be86/raw/6_generated_code.h": {
+    "original_sha256": "e74a79d6fdf983a234f029dc9638260b447557ae140fd63ad89ed0dde427e0bd",
+    "distributed_sha256": "e74a79d6fdf983a234f029dc9638260b447557ae140fd63ad89ed0dde427e0bd",
+    "path": "evidence/coverage_candidates/e74a79d6fdf983a234f029dc9638260b447557ae140fd63ad89ed0dde427e0bd/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a353ba8ee060078b9313fb7d338a775fa76be5586de1c588b89000cf9650be86/raw/accelerometers.c": {
+    "original_sha256": "35b6d5b4ab152605e51fade20ad8b6b728757a2a39d7a6d3207292fd09934544",
+    "distributed_sha256": "35b6d5b4ab152605e51fade20ad8b6b728757a2a39d7a6d3207292fd09934544",
+    "path": "evidence/coverage_candidates/35b6d5b4ab152605e51fade20ad8b6b728757a2a39d7a6d3207292fd09934544/accelerometers.c",
+    "kind": "candidate_source",
+    "original_name": "accelerometers.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a353ba8ee060078b9313fb7d338a775fa76be5586de1c588b89000cf9650be86/raw/car.c": {
+    "original_sha256": "d99eb41a44e74437a5b37301e14276e47485324e43428264a881689e26aa5ded",
+    "distributed_sha256": "d99eb41a44e74437a5b37301e14276e47485324e43428264a881689e26aa5ded",
+    "path": "evidence/coverage_candidates/d99eb41a44e74437a5b37301e14276e47485324e43428264a881689e26aa5ded/car.c",
+    "kind": "candidate_source",
+    "original_name": "car.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a353ba8ee060078b9313fb7d338a775fa76be5586de1c588b89000cf9650be86/raw/circarray.c": {
+    "original_sha256": "d8915316c98ee9f440cc61f58f51314d351a46cd36c182a1ef8800e7aa3c9f4b",
+    "distributed_sha256": "d8915316c98ee9f440cc61f58f51314d351a46cd36c182a1ef8800e7aa3c9f4b",
+    "path": "evidence/coverage_candidates/d8915316c98ee9f440cc61f58f51314d351a46cd36c182a1ef8800e7aa3c9f4b/circarray.c",
+    "kind": "candidate_source",
+    "original_name": "circarray.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a353ba8ee060078b9313fb7d338a775fa76be5586de1c588b89000cf9650be86/raw/discobot_globals.c": {
+    "original_sha256": "54a6b8415789fb78970384bc2b4a600b7bcbe650b1338b7a6e36d94a956effb4",
+    "distributed_sha256": "54a6b8415789fb78970384bc2b4a600b7bcbe650b1338b7a6e36d94a956effb4",
+    "path": "evidence/coverage_candidates/54a6b8415789fb78970384bc2b4a600b7bcbe650b1338b7a6e36d94a956effb4/discobot_globals.c",
+    "kind": "candidate_source",
+    "original_name": "discobot_globals.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a353ba8ee060078b9313fb7d338a775fa76be5586de1c588b89000cf9650be86/raw/funcs1.c": {
+    "original_sha256": "62cd19c993d54e91d8e568478213a1be4844dfa426e0cc6b026cdf7ce658802a",
+    "distributed_sha256": "62cd19c993d54e91d8e568478213a1be4844dfa426e0cc6b026cdf7ce658802a",
+    "path": "evidence/coverage_candidates/62cd19c993d54e91d8e568478213a1be4844dfa426e0cc6b026cdf7ce658802a/funcs1.c",
+    "kind": "candidate_source",
+    "original_name": "funcs1.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a353ba8ee060078b9313fb7d338a775fa76be5586de1c588b89000cf9650be86/raw/main_app.c": {
+    "original_sha256": "51fdeeb44daa64ff8a4f1226fc2829e21a77f34c6364db9bd9fe2de6ae301c23",
+    "distributed_sha256": "51fdeeb44daa64ff8a4f1226fc2829e21a77f34c6364db9bd9fe2de6ae301c23",
+    "path": "evidence/coverage_candidates/51fdeeb44daa64ff8a4f1226fc2829e21a77f34c6364db9bd9fe2de6ae301c23/main_app.c",
+    "kind": "candidate_source",
+    "original_name": "main_app.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a353ba8ee060078b9313fb7d338a775fa76be5586de1c588b89000cf9650be86/raw/rng.c": {
+    "original_sha256": "86ac1aaafbf05ee061f9c45ffd999c73032883088447a23738b3e738388c9cae",
+    "distributed_sha256": "86ac1aaafbf05ee061f9c45ffd999c73032883088447a23738b3e738388c9cae",
+    "path": "evidence/coverage_candidates/86ac1aaafbf05ee061f9c45ffd999c73032883088447a23738b3e738388c9cae/rng.c",
+    "kind": "candidate_source",
+    "original_name": "rng.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a353ba8ee060078b9313fb7d338a775fa76be5586de1c588b89000cf9650be86/raw/task.c": {
+    "original_sha256": "cc6121faffe4e33f56c76e3d1c7d3a97ef8b51cd0bb95f412100d4a6bdbe1532",
+    "distributed_sha256": "cc6121faffe4e33f56c76e3d1c7d3a97ef8b51cd0bb95f412100d4a6bdbe1532",
+    "path": "evidence/coverage_candidates/cc6121faffe4e33f56c76e3d1c7d3a97ef8b51cd0bb95f412100d4a6bdbe1532/task.c",
+    "kind": "candidate_source",
+    "original_name": "task.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a353ba8ee060078b9313fb7d338a775fa76be5586de1c588b89000cf9650be86/raw/temperature.c": {
+    "original_sha256": "672528bf790df7aeb3b6f43f675a746402a40261636414a77c9fdb5eb587ec8a",
+    "distributed_sha256": "672528bf790df7aeb3b6f43f675a746402a40261636414a77c9fdb5eb587ec8a",
+    "path": "evidence/coverage_candidates/672528bf790df7aeb3b6f43f675a746402a40261636414a77c9fdb5eb587ec8a/temperature.c",
+    "kind": "candidate_source",
+    "original_name": "temperature.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a353ba8ee060078b9313fb7d338a775fa76be5586de1c588b89000cf9650be86/raw/usart.c": {
+    "original_sha256": "7eecd2f7e2a598836a87e2c5c5fb450b49d7c4304c23b0e30492fe3451881ab1",
+    "distributed_sha256": "7eecd2f7e2a598836a87e2c5c5fb450b49d7c4304c23b0e30492fe3451881ab1",
+    "path": "evidence/coverage_candidates/7eecd2f7e2a598836a87e2c5c5fb450b49d7c4304c23b0e30492fe3451881ab1/usart.c",
+    "kind": "candidate_source",
+    "original_name": "usart.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a5841692331ba73ca782ca78dc4d43fd1df4f9135387dbadc5763af1f9eecc92/raw/6_generated_code.c": {
+    "original_sha256": "852557783e1c8f66acfa7826000786ff51a60a1e741ff4ec5ccf5b2a37a7ec1c",
+    "distributed_sha256": "852557783e1c8f66acfa7826000786ff51a60a1e741ff4ec5ccf5b2a37a7ec1c",
+    "path": "evidence/coverage_candidates/852557783e1c8f66acfa7826000786ff51a60a1e741ff4ec5ccf5b2a37a7ec1c/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a5841692331ba73ca782ca78dc4d43fd1df4f9135387dbadc5763af1f9eecc92/raw/6_generated_code.h": {
+    "original_sha256": "a96488ef99b710b2002230ac3b302efbe2b7e781146a445afa7904fa34d6b828",
+    "distributed_sha256": "a96488ef99b710b2002230ac3b302efbe2b7e781146a445afa7904fa34d6b828",
+    "path": "evidence/coverage_candidates/a96488ef99b710b2002230ac3b302efbe2b7e781146a445afa7904fa34d6b828/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a5841692331ba73ca782ca78dc4d43fd1df4f9135387dbadc5763af1f9eecc92/raw/sensor_rng.c": {
+    "original_sha256": "a5e88e0796e839eb41dc6d1da04c6abce8a7d6c4184d0e205fba17094dcd27be",
+    "distributed_sha256": "a5e88e0796e839eb41dc6d1da04c6abce8a7d6c4184d0e205fba17094dcd27be",
+    "path": "evidence/coverage_candidates/a5e88e0796e839eb41dc6d1da04c6abce8a7d6c4184d0e205fba17094dcd27be/sensor_rng.c",
+    "kind": "candidate_source",
+    "original_name": "sensor_rng.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/a5841692331ba73ca782ca78dc4d43fd1df4f9135387dbadc5763af1f9eecc92/raw/usart_circ.c": {
+    "original_sha256": "dde8a1b98e9cc5f59f8372c7d3cec54af00a644cc6bbc57e63938e03fc65480e",
+    "distributed_sha256": "dde8a1b98e9cc5f59f8372c7d3cec54af00a644cc6bbc57e63938e03fc65480e",
+    "path": "evidence/coverage_candidates/dde8a1b98e9cc5f59f8372c7d3cec54af00a644cc6bbc57e63938e03fc65480e/usart_circ.c",
+    "kind": "candidate_source",
+    "original_name": "usart_circ.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/797cfaf5d09824e410b5bb8dd7e12e14b41d4bcc90098ab46d5a3fa936c83c25/raw/6_generated_code.c": {
+    "original_sha256": "0083d3daab927050362f36d5d2f1c34dc725c744e437e37303f50be0718a5e6c",
+    "distributed_sha256": "0083d3daab927050362f36d5d2f1c34dc725c744e437e37303f50be0718a5e6c",
+    "path": "evidence/coverage_candidates/0083d3daab927050362f36d5d2f1c34dc725c744e437e37303f50be0718a5e6c/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/797cfaf5d09824e410b5bb8dd7e12e14b41d4bcc90098ab46d5a3fa936c83c25/raw/6_generated_code.h": {
+    "original_sha256": "c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b",
+    "distributed_sha256": "c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b",
+    "path": "evidence/coverage_candidates/c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/f87a6bf5a7fc475d59c8613c1253cfa7a26e5d7b89f5ab0c26a0a97817e71949/raw/6_generated_code.c": {
+    "original_sha256": "def0f5d736f7566c7ba16d876baa794e19ef0054ca118ffb6b7fe14a2d9bb40e",
+    "distributed_sha256": "def0f5d736f7566c7ba16d876baa794e19ef0054ca118ffb6b7fe14a2d9bb40e",
+    "path": "evidence/coverage_candidates/def0f5d736f7566c7ba16d876baa794e19ef0054ca118ffb6b7fe14a2d9bb40e/6_generated_code.c",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.c",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  },
+  "fse/official_baselines/reassessment_host_20260921/code/f87a6bf5a7fc475d59c8613c1253cfa7a26e5d7b89f5ab0c26a0a97817e71949/raw/6_generated_code.h": {
+    "original_sha256": "c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b",
+    "distributed_sha256": "c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b",
+    "path": "evidence/coverage_candidates/c5a2ed29aedbfa7c7c3cf1f4eca7b16ef31097cce4e637fbb4e375e0b44f405b/6_generated_code.h",
+    "kind": "candidate_source",
+    "original_name": "6_generated_code.h",
+    "transformation": "none",
+    "scope": "Requirement-coverage evidence, including the selected ChatDev replacement."
+  }
+}

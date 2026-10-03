@@ -1,0 +1,1899 @@
+{
+  "schema_version": "1.0",
+  "project": "Crazyflie",
+  "purpose": "Independent semantic evaluation for embedded-code generation. This file is excluded from generation prompts and is used only by the LLM reviewer and human adjudicators.",
+  "evaluation_mode": "scenario review, not executable simulation",
+  "design_principles": [
+    "Each case evaluates a rule, state sequence, invariant, or inter-module contract rather than a memorized single input-output pair.",
+    "Numeric cases use boundary classes, metamorphic relations, and non-example values where possible.",
+    "A pass requires code evidence and satisfaction of every oracle; comments alone are not evidence.",
+    "Human adjudication is final; all critical cases, all uncertain cases, and a random sample of LLM passes are reviewed."
+  ],
+  "review_output_schema": {
+    "verdict": "pass | fail | uncertain | not_applicable",
+    "code_evidence": "function names plus concise code locations or excerpts",
+    "rationale": "why every oracle is or is not satisfied",
+    "confidence": "0.0 to 1.0",
+    "human_verdict": "pending | pass | fail | not_applicable"
+  },
+  "test_cases": [
+    {
+      "id": "CF-NUM-01",
+      "refs": [
+        "RE_req §2"
+      ],
+      "kind": "boundary_property",
+      "scenario": "Apply saturateSignedInt16 to values below, at, inside, and above the symmetric range, including values not named in the requirements.",
+      "oracle": [
+        "result is always in [-32767,32767]",
+        "interior values are unchanged",
+        "-32768 maps to -32767",
+        "mapping is monotone"
+      ],
+      "evidence": [
+        "saturateSignedInt16"
+      ],
+      "severity": "medium"
+    },
+    {
+      "id": "CF-NUM-02",
+      "refs": [
+        "RE_req §2"
+      ],
+      "kind": "metamorphic",
+      "scenario": "Compare capAngle(x), capAngle(x+360k), and capAngle(-x) for several nontrivial signed x and k.",
+      "oracle": [
+        "output is in closed interval [-180,180]",
+        "periodicity holds",
+        "boundary signs are preserved at ±180"
+      ],
+      "evidence": [
+        "capAngle"
+      ],
+      "severity": "medium"
+    },
+    {
+      "id": "CF-SF-01",
+      "refs": [
+        "RE_req §3"
+      ],
+      "kind": "idempotence",
+      "scenario": "Initialize fusion, perform a valid update, then initialize again.",
+      "oracle": [
+        "first initialization produces unit quaternion and cleared integrals",
+        "second initialization does not erase established runtime state",
+        "test flag remains observable"
+      ],
+      "evidence": [
+        "sensfusion6Init",
+        "sensfusion6Test",
+        "fusion state"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-SF-02",
+      "refs": [
+        "RE_req §3"
+      ],
+      "kind": "numerical_invariant",
+      "scenario": "Perform a sequence of finite gyro/acceleration updates with varying dt.",
+      "oracle": [
+        "quaternion remains finite",
+        "quaternion norm remains approximately one after every update",
+        "no component becomes NaN or infinity"
+      ],
+      "evidence": [
+        "sensfusion6UpdateQ",
+        "quaternion normalization"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-SF-03",
+      "refs": [
+        "RE_req §3"
+      ],
+      "kind": "fault_boundary",
+      "scenario": "Call sensfusion6UpdateQ with all acceleration components zero and nonzero angular velocity.",
+      "oracle": [
+        "no division by zero",
+        "gyro integration still occurs",
+        "acceleration correction is skipped"
+      ],
+      "evidence": [
+        "sensfusion6UpdateQ",
+        "zero-acceleration guard"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-SF-04",
+      "refs": [
+        "RE_req §3"
+      ],
+      "kind": "mode_contract",
+      "scenario": "Review default Mahony and CONFIG_IMU_MADGWICK_QUATERNION branches under equivalent sensor input.",
+      "oracle": [
+        "Mahony uses documented proportional/integral semantics",
+        "twoKi=0 clears all integral feedback",
+        "Madgwick uses beta correction and no integral feedback"
+      ],
+      "evidence": [
+        "sensfusion6UpdateQ",
+        "compile-time mode branch"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-SF-05",
+      "refs": [
+        "RE_req §3"
+      ],
+      "kind": "stateful_calibration",
+      "scenario": "Feed first valid acceleration sample, then a materially different later sample.",
+      "oracle": [
+        "baseZacc is established exactly once",
+        "calibrated becomes true",
+        "later samples do not silently recalibrate baseZacc"
+      ],
+      "evidence": [
+        "baseZacc",
+        "calibrated"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-SF-06",
+      "refs": [
+        "RE_req §3"
+      ],
+      "kind": "cache_consistency",
+      "scenario": "Mutate the current quaternion through the supported update path, then request Euler angles and gravity direction.",
+      "oracle": [
+        "Euler result derives from current quaternion rather than stale gravity cache",
+        "asin input is protected against numeric drift",
+        "unit quaternion reports expected gravity direction"
+      ],
+      "evidence": [
+        "sensfusion6GetEulerRPY",
+        "estimatedGravityDirection"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-PWR-01",
+      "refs": [
+        "RE_req §4"
+      ],
+      "kind": "arithmetic_width",
+      "scenario": "Use legacy mixing inputs that create intermediate values above uint16_t range and below zero before capping.",
+      "oracle": [
+        "mixing intermediates use int32_t",
+        "no early clamp hides overflow",
+        "four motor equations preserve required signs"
+      ],
+      "evidence": [
+        "powerDistributionLegacy",
+        "MotorPower"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-PWR-02",
+      "refs": [
+        "RE_req §4"
+      ],
+      "kind": "mode_routing",
+      "scenario": "Compare Legacy, ForceTorque, Force, and an unknown controlMode using the same initialized output buffer.",
+      "oracle": [
+        "each known mode uses only its specified mapping",
+        "Force clamps normalized forces before PWM conversion",
+        "unknown mode leaves existing output unchanged"
+      ],
+      "evidence": [
+        "powerDistribution",
+        "controlMode"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-PWR-03",
+      "refs": [
+        "RE_req §4"
+      ],
+      "kind": "zero_guard",
+      "scenario": "Use ForceTorque mode once with armLength=0 and once with thrustToTorque=0.",
+      "oracle": [
+        "affected contribution is safely zero",
+        "unaffected contributions remain meaningful",
+        "no divide-by-zero or fabricated PWM scaling"
+      ],
+      "evidence": [
+        "powerDistributionForceTorque"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-PWR-04",
+      "refs": [
+        "RE_req §4"
+      ],
+      "kind": "relational_boundary",
+      "scenario": "Compare powerDistributionCap when maximum equals allowed thrust, exceeds it by a small amount, and causes another motor to fall below idle thrust.",
+      "oracle": [
+        "equality does not count as capped",
+        "same reduction is applied to all motors only when needed",
+        "post-reduction values respect idle thrust"
+      ],
+      "evidence": [
+        "powerDistributionCap",
+        "capMinThrust"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-PWR-05",
+      "refs": [
+        "RE_req §4"
+      ],
+      "kind": "safety_interlock",
+      "scenario": "Evaluate actuator output while locked, emergency-stopped, or in a safety fault state.",
+      "oracle": [
+        "all physical PWM outputs are zero",
+        "no later compensation or cap stage re-enables a motor"
+      ],
+      "evidence": [
+        "motor output path",
+        "supervisor interlock"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-PWR-06",
+      "refs": [
+        "RE_req §4"
+      ],
+      "kind": "numeric_contract",
+      "scenario": "Review battery compensation for normal, zero, negative, underflowing, and overflowing voltage/thrust inputs.",
+      "oracle": [
+        "first-order compensation uses documented alpha",
+        "nonpositive actual voltage leaves thrust unchanged",
+        "final compensated thrust is bounded to PWM range"
+      ],
+      "evidence": [
+        "batteryCompensation",
+        "motorsCompensateBatteryVoltage"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-PID-01",
+      "refs": [
+        "RE_req §5"
+      ],
+      "kind": "idempotence",
+      "scenario": "Initialize attitude controller twice after changing PID runtime state.",
+      "oracle": [
+        "six PID objects are initialized on first call",
+        "repeated initialization has no destructive side effect",
+        "rate outputs are saturated"
+      ],
+      "evidence": [
+        "attitudeControllerInit",
+        "PID objects"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-PID-02",
+      "refs": [
+        "RE_req §5"
+      ],
+      "kind": "stateful_control",
+      "scenario": "Drive controllerPid through yaw velocity, yaw absolute, quaternion yaw, and yawMaxDelta enabled/disabled cases.",
+      "oracle": [
+        "velocity integrates desiredYaw using dt",
+        "absolute modes bypass integration as specified",
+        "zero yawMaxDelta disables clamp",
+        "quaternion conversion supplies yaw"
+      ],
+      "evidence": [
+        "controllerPid",
+        "desiredYaw"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-PID-03",
+      "refs": [
+        "RE_req §5"
+      ],
+      "kind": "reset_sequence",
+      "scenario": "Issue thrust=0 after nonzero control history, then resume control.",
+      "oracle": [
+        "all actuator outputs become zero",
+        "attitude and position PID state is reset",
+        "desiredYaw synchronizes before resume"
+      ],
+      "evidence": [
+        "controllerPid",
+        "PID reset path"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-PID-04",
+      "refs": [
+        "RE_req §5"
+      ],
+      "kind": "mode_contract",
+      "scenario": "Compare manual z/x/y modes with enabled position-control modes.",
+      "oracle": [
+        "manual modes preserve manual thrust/attitude behavior",
+        "enabled z mode uses a replaceable position-controller output boundary",
+        "enabled mode is not implemented as a direct copy of setpoint.thrust"
+      ],
+      "evidence": [
+        "controllerPid",
+        "position controller boundary"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-PID-05",
+      "refs": [
+        "RE_req §5"
+      ],
+      "kind": "coordinate_contract",
+      "scenario": "Review pitch rate and final legacy yaw sign handling.",
+      "oracle": [
+        "pitch rate consumes negative gyro.y",
+        "legacy actuator yaw is negated exactly once",
+        "zero input remains zero"
+      ],
+      "evidence": [
+        "controllerPid",
+        "rate PID input",
+        "control yaw"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-RPYT-01",
+      "refs": [
+        "RE_req §6"
+      ],
+      "kind": "priority_state",
+      "scenario": "Decode RPYT packets while disable priority is active, first with nonzero raw thrust and then with zero raw thrust.",
+      "oracle": [
+        "lock persists for nonzero thrust",
+        "zero raw thrust releases lock",
+        "locked or low raw thrust produces zero thrust outside AltHold"
+      ],
+      "evidence": [
+        "crtpCommanderRpytDecodeSetpoint",
+        "thrustLocked"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-RPYT-02",
+      "refs": [
+        "RE_req §6"
+      ],
+      "kind": "mode_transition",
+      "scenario": "Enter AltHold, remain in it, then exit.",
+      "oracle": [
+        "z mode and velocity mapping are correct",
+        "PID/filter reset occurs only on entry",
+        "exit restores z disable and clears modeSet"
+      ],
+      "evidence": [
+        "crtpCommanderRpytDecodeSetpoint",
+        "AltHold state"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-RPYT-03",
+      "refs": [
+        "RE_req §6"
+      ],
+      "kind": "branch_priority",
+      "scenario": "Supply packets with overlapping PosHold, PosSet, and stabilizer-mode conditions.",
+      "oracle": [
+        "PosHold has documented priority",
+        "PosSet requires nonzero raw thrust",
+        "otherwise decoder falls through to default behavior"
+      ],
+      "evidence": [
+        "crtpCommanderRpytDecodeSetpoint",
+        "branch order"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-RPYT-04",
+      "refs": [
+        "RE_req §6"
+      ],
+      "kind": "coordinate_transform",
+      "scenario": "Compare PLUSMODE, XMODE, and CAREFREE yaw modes with a non-axis-aligned roll/pitch input.",
+      "oracle": [
+        "PLUSMODE applies 45-degree rotation",
+        "XMODE does not rotate",
+        "CAREFREE takes explicit observable error path"
+      ],
+      "evidence": [
+        "rotateYaw",
+        "yaw mode branch"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-SUP-01",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "state_machine",
+      "scenario": "Review all states accepted by supervisorCanFly, supervisorCanArm, supervisorAreMotorsAllowedToRun, IsArmed, and IsCrashed.",
+      "oracle": [
+        "allowed-state sets exactly match requirements",
+        "no unsafe state is accidentally included",
+        "reported flags match current state"
+      ],
+      "evidence": [
+        "supervisorCanFly",
+        "supervisorCanArm",
+        "supervisorAreMotorsAllowedToRun"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-SUP-02",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "arming_sequence",
+      "scenario": "Request arming from allowed and forbidden states, including a repeated successful request.",
+      "oracle": [
+        "allowed request sets arming and transitions to Arming",
+        "forbidden request returns false without state mutation",
+        "repeat is idempotent"
+      ],
+      "evidence": [
+        "supervisorRequestArming",
+        "supervisor state"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-SUP-03",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "recovery_sequence",
+      "scenario": "Request crash recovery when tumbled, when upright, and with doRecovery=false.",
+      "oracle": [
+        "tumbled recovery is rejected",
+        "upright recovery clears crash",
+        "doRecovery=false accepts request and establishes crash"
+      ],
+      "evidence": [
+        "supervisorRequestCrashRecovery",
+        "crash state"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-SUP-04",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "tick_boundary",
+      "scenario": "Observe flight at tick zero, then evaluate just before and at the configured flying hysteresis threshold; separately evaluate never-seen flight.",
+      "oracle": [
+        "tick zero event is distinguishable from never-seen state",
+        "less-than threshold remains flying",
+        "at-or-after threshold is not flying"
+      ],
+      "evidence": [
+        "isFlyingCheck",
+        "seen flag",
+        "recent flight tick"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-SUP-05",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "fault_partition",
+      "scenario": "Exercise acceleration-norm crash, freefall, tilt tumble, inversion timeout, and disabled tumble checking independently.",
+      "oracle": [
+        "freefall does not itself report tumbled",
+        "crash and tumbled are not conflated",
+        "upright recovery clears relevant timing",
+        "disabled check reports no tumble"
+      ],
+      "evidence": [
+        "isTumbledCheck",
+        "crash flag",
+        "freefall flag"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-SUP-06",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "configuration_contract",
+      "scenario": "Compare AUTO_ARMING enabled and disabled when entering preflight-passed, then leave a state that may retain arming.",
+      "oracle": [
+        "auto arming invokes same path as explicit request only when enabled",
+        "arming clears on required exit states",
+        "configuration is not hardcoded"
+      ],
+      "evidence": [
+        "AUTO_ARMING",
+        "arming transition"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-SUP-07",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "tick_boundary",
+      "scenario": "Enter Arming with configurable spinup start and period; inspect T-1, T, and exit behavior.",
+      "oracle": [
+        "timeout is assessed only in Arming",
+        "start tick zero means not started",
+        "condition bit sets at-or-after period and clears on exit"
+      ],
+      "evidence": [
+        "spinup timer",
+        "SUPERVISOR_CB_SPINUP_TIMEOUT"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-SUP-08",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "boolean_semantics",
+      "scenario": "Compare emergency-stop watchdog with last notification zero, within window, and beyond window.",
+      "oracle": [
+        "function return means healthy",
+        "zero last notification is healthy",
+        "caller explicitly negates health when creating failure condition"
+      ],
+      "evidence": [
+        "checkEmergencyStopWatchdog",
+        "condition update"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-SUP-09",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "timeout_partition",
+      "scenario": "Advance Commander-setpoint age through warning and shutdown thresholds, then test preflight, landing, CRTP, parameter, and watchdog stop sources.",
+      "oracle": [
+        "warning and timeout condition bits use correct thresholds",
+        "each stop source updates its own condition",
+        "no unrelated condition is overwritten"
+      ],
+      "evidence": [
+        "updateAndPopulateConditions",
+        "condition bits"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-SUP-10",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "override_safety",
+      "scenario": "Apply supervisorOverrideSetpoint in WarningLevelOut, allowed flight states, and safety fault states.",
+      "oracle": [
+        "WarningLevelOut disables lateral motion and levels roll/pitch",
+        "allowed states preserve setpoint",
+        "safety faults produce required zero/limited behavior"
+      ],
+      "evidence": [
+        "supervisorOverrideSetpoint"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-SUP-11",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "bitfield_contract",
+      "scenario": "Independently toggle all Supervisor info inputs.",
+      "oracle": [
+        "each documented flag occupies exactly its assigned bit",
+        "unrelated flags do not alias",
+        "returned value is stable for unchanged state"
+      ],
+      "evidence": [
+        "supervisorGetInfoBitfield"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-EST-01",
+      "refs": [
+        "RE_req §8"
+      ],
+      "kind": "queue_boundary",
+      "scenario": "Fill estimator FIFO to capacity, attempt another enqueue, drain it, then dequeue empty queue.",
+      "oracle": [
+        "capacity is exactly 16",
+        "overflow and empty operations return false without corruption",
+        "FIFO order is preserved"
+      ],
+      "evidence": [
+        "estimatorEnqueue",
+        "estimatorDequeue"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-EST-02",
+      "refs": [
+        "RE_req §8"
+      ],
+      "kind": "drain_semantics",
+      "scenario": "Enqueue repeated measurement types in mixed order and run estimatorComplementary once.",
+      "oracle": [
+        "queue is drained",
+        "last value of each measurement type is retained",
+        "no stale queue entry remains"
+      ],
+      "evidence": [
+        "estimatorComplementary",
+        "measurement FIFO"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-EST-03",
+      "refs": [
+        "RE_req §8"
+      ],
+      "kind": "rate_gate",
+      "scenario": "Run consecutive stabilizer steps that hit neither, one, or both 250Hz and 100Hz divisors.",
+      "oracle": [
+        "fusion/Euler/vertical velocity change only on 250Hz gate",
+        "position changes only on 100Hz gate",
+        "nonmatching steps preserve outputs"
+      ],
+      "evidence": [
+        "RATE_DO_EXECUTE",
+        "estimatorComplementary"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-EST-04",
+      "refs": [
+        "RE_req §8"
+      ],
+      "kind": "priority_contract",
+      "scenario": "Submit setpoints at increasing, decreasing, equal, and DISABLE priorities while advancing tick.",
+      "oracle": [
+        "equal or greater normal priority replaces active setpoint",
+        "lower normal priority is rejected",
+        "DISABLE always overrides",
+        "accepted update records tick"
+      ],
+      "evidence": [
+        "commanderSetSetpoint",
+        "active priority"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-STAB-01",
+      "refs": [
+        "RE_req §9"
+      ],
+      "kind": "initialization_order",
+      "scenario": "Inspect stabilizerInit and repeat it after initialization.",
+      "oracle": [
+        "required initialization order is preserved",
+        "task creation occurs",
+        "repeated call is safe"
+      ],
+      "evidence": [
+        "stabilizerInit",
+        "initialization calls"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-STAB-02",
+      "refs": [
+        "RE_req §9"
+      ],
+      "kind": "integration_sequence",
+      "scenario": "Review one normal stabilizer control iteration using instrumentation or code evidence.",
+      "oracle": [
+        "required sensor-to-motor call order is preserved",
+        "supervisor override precedes controller",
+        "battery compensation and cap precede motor ratio publication"
+      ],
+      "evidence": [
+        "stabilizerTask",
+        "call sequence"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-STAB-03",
+      "refs": [
+        "RE_req §9"
+      ],
+      "kind": "integration_safety",
+      "scenario": "Run control loop with canFly=false, motorsAllowed=false, and a pending high-level setpoint.",
+      "oracle": [
+        "unsafe condition blocks new command and zeros motors",
+        "high-level setpoint is submitted with HIGHLEVEL priority when allowed",
+        "motor guard dominates later stages"
+      ],
+      "evidence": [
+        "stabilizerTask",
+        "commanderSetSetpoint",
+        "setMotorRatios"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-STAB-04",
+      "refs": [
+        "RE_req §9"
+      ],
+      "kind": "unit_conversion",
+      "scenario": "Review compressState with signed position, velocity, acceleration, gyro, and quaternion values.",
+      "oracle": [
+        "documented scale factors and signs are applied",
+        "acc.z includes gravity offset",
+        "gyro pitch uses negative y",
+        "quaternion uses quatcompress"
+      ],
+      "evidence": [
+        "compressState"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-STAB-05",
+      "refs": [
+        "RE_req §9"
+      ],
+      "kind": "watchdog_boundary",
+      "scenario": "Review rate validation at both inclusive bounds and outside bounds; compare timeout behavior with active versus paused sensors.",
+      "oracle": [
+        "[997,1003] is accepted",
+        "outside range is rejected",
+        "sensor activity controls timeout failure"
+      ],
+      "evidence": [
+        "rateSupervisorValidate",
+        "rateSupervisorTask"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-HEALTH-01",
+      "refs": [
+        "RE_req §10"
+      ],
+      "kind": "request_lifecycle",
+      "scenario": "Start prop and battery tests, call healthShallWeRunTest, then healthRunTests without manual private-state setup.",
+      "oracle": [
+        "request consumer initializes and clears request",
+        "ShallWeRunTest truth reflects requests/test state",
+        "RunTests advances only initialized workflow"
+      ],
+      "evidence": [
+        "startPropTest",
+        "startBatTest",
+        "healthShallWeRunTest",
+        "healthRunTests"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-HEALTH-02",
+      "refs": [
+        "RE_req §10"
+      ],
+      "kind": "state_machine",
+      "scenario": "Follow prop test through configuration, noise collection, four motor measurements, restore, and evaluation.",
+      "oracle": [
+        "100-sample collection is honored",
+        "motors are tested in order 0..3",
+        "sensors and motors are restored",
+        "result bits/count reflect evaluation"
+      ],
+      "evidence": [
+        "healthRunTests",
+        "evaluatePropTest"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-HEALTH-03",
+      "refs": [
+        "RE_req §10"
+      ],
+      "kind": "numeric_property",
+      "scenario": "Review variance for constant samples and nonconstant samples, then evaluate prop thresholds including highThreshold=0.",
+      "oracle": [
+        "constant sequence variance is zero",
+        "formula is sumSq-(sum*sum/n)",
+        "zero high threshold bypasses check",
+        "inclusive thresholds pass"
+      ],
+      "evidence": [
+        "variance helper",
+        "evaluatePropTest"
+      ],
+      "severity": "medium"
+    },
+    {
+      "id": "CF-HEALTH-04",
+      "refs": [
+        "RE_req §10"
+      ],
+      "kind": "timed_sequence",
+      "scenario": "Run battery test across load, measurement, evaluation, and restart delay boundaries.",
+      "oracle": [
+        "loaded-voltage minimum updates only in measurement interval",
+        "battery sag is idle minus minimum loaded voltage",
+        "restart waits configured 2000ms"
+      ],
+      "evidence": [
+        "healthRunTests",
+        "restartBatTest"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-CRTP-01",
+      "refs": [
+        "RE_req §11"
+      ],
+      "kind": "queue_and_registration",
+      "scenario": "Initialize CRTP twice, create valid/duplicate/invalid port queues, and fill TX/RX queues.",
+      "oracle": [
+        "initialization is idempotent",
+        "duplicate port creation enters required error path",
+        "port range [0,15] only",
+        "queue capacities are enforced"
+      ],
+      "evidence": [
+        "crtpInit",
+        "crtpInitTaskQueue",
+        "crtpRegisterPortCB"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-CRTP-02",
+      "refs": [
+        "RE_req §11"
+      ],
+      "kind": "delivery_contract",
+      "scenario": "Receive a packet for a port with queue and callback, callback only, queue only, and neither.",
+      "oracle": [
+        "existing queue and callback both receive packet",
+        "missing endpoints cause drop",
+        "ownership is not duplicated or leaked"
+      ],
+      "evidence": [
+        "crtpRxTask",
+        "port callback",
+        "RX queue"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-CRTP-03",
+      "refs": [
+        "RE_req §11"
+      ],
+      "kind": "retry_sequence",
+      "scenario": "Make link send fail once then succeed, and compare behavior with nopLink.",
+      "oracle": [
+        "failed TX packet is retained",
+        "retry interval is 10ms",
+        "nopLink processes no packets"
+      ],
+      "evidence": [
+        "crtpTxTask",
+        "link adapter"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-CRTP-04",
+      "refs": [
+        "RE_req §11"
+      ],
+      "kind": "link_lifecycle",
+      "scenario": "Replace an active link, set NULL link, reset, and query connection with and without callback.",
+      "oracle": [
+        "old link is disabled before replacement",
+        "NULL becomes nopLink",
+        "reset clears TX and calls link reset",
+        "connection fallback is true without callback"
+      ],
+      "evidence": [
+        "crtpSetLink",
+        "crtpReset",
+        "crtpIsConnected"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-OBS-01",
+      "refs": [
+        "RE_req §12",
+        "RE_api §0A"
+      ],
+      "kind": "api_contract",
+      "scenario": "Inspect generated header and implementation against every frozen public function, macro, type, enum, and declared observable.",
+      "oracle": [
+        "names and signatures match RE_api.txt exactly",
+        "declared extern observables are defined once and are non-static",
+        "host build has no unconditional STM32/FreeRTOS dependency"
+      ],
+      "evidence": [
+        "generated header",
+        "generated code",
+        "RE_api.txt"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-OBS-02",
+      "refs": [
+        "RE_req §12"
+      ],
+      "kind": "observability_contract",
+      "scenario": "Inspect required log groups and their fields after representative module updates.",
+      "oracle": [
+        "all required log objects have exact names",
+        "fields expose documented estimator, motor, fusion, supervisor, and health values",
+        "values are updated rather than fixed placeholders"
+      ],
+      "evidence": [
+        "log groups",
+        "public log objects"
+      ],
+      "severity": "medium"
+    },
+    {
+      "id": "CF-TRACE-01",
+      "refs": [
+        "FSE traceability policy"
+      ],
+      "kind": "cross_artifact",
+      "scenario": "For every critical test above, traverse requirement anchor to state/interface/behavior model and then to generated code.",
+      "oracle": [
+        "no critical testcase has an unresolved requirement-to-model link",
+        "no referenced interface/behavior function lacks code realization",
+        "missing link is fail or uncertain, never automatic pass"
+      ],
+      "evidence": [
+        "traceability.json",
+        "state_model",
+        "interface_model",
+        "behavior_model",
+        "generated code"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-TRACE-02",
+      "refs": [
+        "FSE traceability policy"
+      ],
+      "kind": "conflict_review",
+      "scenario": "Find any conflict among requirement text, interface declaration, state/behavior model, and code.",
+      "oracle": [
+        "requirement and frozen API take precedence",
+        "conflict is explicitly reported",
+        "code does not silently choose an incompatible interpretation"
+      ],
+      "evidence": [
+        "RE_req.txt",
+        "RE_api.txt",
+        "models",
+        "generated code"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-NUM-03",
+      "refs": [
+        "RE_req §2"
+      ],
+      "kind": "large_value_property",
+      "scenario": "Review angle normalization for large but finite positive and negative inputs spanning several full turns.",
+      "oracle": [
+        "normalization terminates",
+        "result remains in closed range",
+        "no integer truncation is used for float angle semantics"
+      ],
+      "evidence": [
+        "capAngle"
+      ],
+      "severity": "medium"
+    },
+    {
+      "id": "CF-SF-07",
+      "refs": [
+        "RE_req §1",
+        "RE_req §3"
+      ],
+      "kind": "null_output_contract",
+      "scenario": "Call public fusion getters with each output pointer absent in turn and with all pointers present.",
+      "oracle": [
+        "no null dereference",
+        "available outputs remain correct",
+        "no hidden global is corrupted"
+      ],
+      "evidence": [
+        "sensfusion6GetEulerRPY",
+        "sensfusion6GetQuaternion"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-SF-08",
+      "refs": [
+        "RE_req §3"
+      ],
+      "kind": "derived_value_consistency",
+      "scenario": "Compare GetAccZ and GetAccZWithoutGravity before calibration, after calibration, and after a changed acceleration sample.",
+      "oracle": [
+        "gravity projection uses current attitude",
+        "without-gravity value subtracts frozen baseZacc",
+        "uninitialized calibration state is handled deterministically"
+      ],
+      "evidence": [
+        "sensfusion6GetAccZ",
+        "sensfusion6GetAccZWithoutGravity"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-PWR-07",
+      "refs": [
+        "RE_req §4"
+      ],
+      "kind": "unit_boundary",
+      "scenario": "Trace ForceTorque output from SI thrust/torque through motorForceToPwm to final PWM.",
+      "oracle": [
+        "newtons are not directly multiplied by 65535",
+        "arm and thrust-to-torque constants retain physical role",
+        "negative motor forces clamp only after X-frame composition"
+      ],
+      "evidence": [
+        "powerDistributionForceTorque",
+        "motorForceToPwm"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-PWR-08",
+      "refs": [
+        "RE_req §4"
+      ],
+      "kind": "post_condition",
+      "scenario": "Apply safety interlock after a nonzero mixer result and inspect every later output transformation.",
+      "oracle": [
+        "zero-motor requirement survives battery compensation and capping",
+        "all four channels are treated consistently",
+        "no stale pre-interlock output is published"
+      ],
+      "evidence": [
+        "stabilizerTask",
+        "powerDistributionCap",
+        "setMotorRatios"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-PID-06",
+      "refs": [
+        "RE_req §5"
+      ],
+      "kind": "selective_reset",
+      "scenario": "Reset one attitude axis after all six PIDs have accumulated history, then invoke ResetAll.",
+      "oracle": [
+        "single-axis reset affects only named axis",
+        "ResetAll uses current attitude and clears all rate PIDs",
+        "unrelated integral state is preserved until ResetAll"
+      ],
+      "evidence": [
+        "attitudeControllerResetRollAttitudePID",
+        "attitudeControllerResetAllPID"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-PID-07",
+      "refs": [
+        "RE_req §5"
+      ],
+      "kind": "output_bound",
+      "scenario": "Provide rate errors large enough to exceed signed 16-bit actuator range on each axis.",
+      "oracle": [
+        "all rate outputs are saturated symmetrically",
+        "no wraparound occurs before saturation",
+        "yaw coordinate conversion occurs after correct computation"
+      ],
+      "evidence": [
+        "attitudeControllerCorrectRatePID",
+        "saturateSignedInt16"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-RPYT-05",
+      "refs": [
+        "RE_req §6"
+      ],
+      "kind": "axis_semantics",
+      "scenario": "Decode default RATE and ANGLE packets with signed roll, pitch, and yaw values.",
+      "oracle": [
+        "RATE selects modeVelocity",
+        "ANGLE selects modeAbs",
+        "yaw-rate sign is inverted only where specified",
+        "roll and pitch do not inherit yaw behavior"
+      ],
+      "evidence": [
+        "crtpCommanderRpytDecodeSetpoint"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-RPYT-06",
+      "refs": [
+        "RE_req §6"
+      ],
+      "kind": "position_mapping",
+      "scenario": "Enter PosSet with nonzero raw thrust and nonzero pitch/roll/yaw.",
+      "oracle": [
+        "x/y/z mapping and pitch sign match requirement",
+        "roll/pitch modes are disabled",
+        "yaw is absolute and final thrust is zero"
+      ],
+      "evidence": [
+        "crtpCommanderRpytDecodeSetpoint",
+        "Setpoint"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-RPYT-07",
+      "refs": [
+        "RE_req §6"
+      ],
+      "kind": "thrust_boundary",
+      "scenario": "Decode non-AltHold thrust values immediately below lock threshold, within valid range, and above maximum.",
+      "oracle": [
+        "locked/low values produce zero",
+        "valid value is retained",
+        "high raw thrust is capped at 60000"
+      ],
+      "evidence": [
+        "crtpCommanderRpytDecodeSetpoint",
+        "MAX_THRUST"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-SUP-12",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "rpm_fault_sequence",
+      "scenario": "Feed four RPM values through arming validation and not-responding duration cases.",
+      "oracle": [
+        "all four motors must satisfy range for valid arming",
+        "CanFly=false clears relevant RPM state",
+        "persistent low RPM creates fault only after configured duration"
+      ],
+      "evidence": [
+        "isRPMatArmingValid",
+        "motor not responding check"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-SUP-13",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "input_injection",
+      "scenario": "Inject sensor data, motor ratios, motor RPMs, and safety configuration before supervisorUpdate.",
+      "oracle": [
+        "update reads injected rather than permanent zero values",
+        "each setter affects only documented input",
+        "safety configuration controls behavior without recompilation"
+      ],
+      "evidence": [
+        "supervisorSetSensorData",
+        "supervisorSetMotorRatios",
+        "supervisorSetMotorRPMs",
+        "supervisorConfigureSafety"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-SUP-14",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "scheduler_gate",
+      "scenario": "Call supervisorUpdate on adjacent stabilizer steps that miss and hit RATE_SUPERVISOR.",
+      "oracle": [
+        "supervisor state changes only on scheduled steps",
+        "unscheduled call does not advance timers or conditions",
+        "divider semantics use stabilizer step rather than milliseconds"
+      ],
+      "evidence": [
+        "supervisorUpdate",
+        "RATE_DO_EXECUTE"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-SUP-15",
+      "refs": [
+        "RE_req §7"
+      ],
+      "kind": "condition_cleanup",
+      "scenario": "Set timeout/freefall/crash conditions, restore normal inputs, and leave related states.",
+      "oracle": [
+        "transient conditions clear on documented recovery",
+        "persistent crash is not accidentally cleared",
+        "condition bits do not remain stale after state exit"
+      ],
+      "evidence": [
+        "updateAndPopulateConditions",
+        "supervisor state transitions"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-EST-05",
+      "refs": [
+        "RE_req §8"
+      ],
+      "kind": "time_accounting",
+      "scenario": "Accept a setpoint at a known tick, query inactivity at later ticks, then replace it with a higher priority setpoint.",
+      "oracle": [
+        "inactivity is currentTick-lastUpdate",
+        "accepted replacement refreshes tick",
+        "rejected low-priority request does not refresh tick"
+      ],
+      "evidence": [
+        "commanderGetInactivityTime",
+        "commanderSetSetpoint"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-EST-06",
+      "refs": [
+        "RE_req §8"
+      ],
+      "kind": "trajectory_arbitration",
+      "scenario": "Submit priority above HIGHLEVEL and then DISABLE.",
+      "oracle": [
+        "high-level trajectory is stopped at required threshold",
+        "DISABLE remains emergency override",
+        "active priority observable reflects final command"
+      ],
+      "evidence": [
+        "commanderSetSetpoint",
+        "commanderGetActivePriority"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-STAB-06",
+      "refs": [
+        "RE_req §9",
+        "RE_req §10"
+      ],
+      "kind": "control_preemption",
+      "scenario": "Make a health-test request during otherwise normal flight-control inputs.",
+      "oracle": [
+        "health workflow replaces normal control branch",
+        "normal controller/motor path is not partially executed",
+        "health request consumption is visible"
+      ],
+      "evidence": [
+        "stabilizerTask",
+        "healthRunTests",
+        "healthShallWeRunTest"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-STAB-07",
+      "refs": [
+        "RE_req §3",
+        "RE_req §9"
+      ],
+      "kind": "rate_separation",
+      "scenario": "Inspect one 1kHz scheduling period covering 500Hz control, 250Hz fusion, and 100Hz radio/position work.",
+      "oracle": [
+        "250Hz fusion is not misrepresented as whole estimator rate",
+        "500Hz control and 100Hz work retain separate gates",
+        "tick units are not mixed with loop divisors"
+      ],
+      "evidence": [
+        "stabilizerTask",
+        "estimatorComplementary",
+        "RATE_DO_EXECUTE"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-HEALTH-05",
+      "refs": [
+        "RE_req §10"
+      ],
+      "kind": "result_partition",
+      "scenario": "Evaluate prop-test data below, inside, and above configured thresholds for several motors.",
+      "oracle": [
+        "each motorPass bit reflects its own result",
+        "failure count is accurate",
+        "zero high threshold takes documented bypass"
+      ],
+      "evidence": [
+        "evaluatePropTest",
+        "health result"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-HEALTH-06",
+      "refs": [
+        "RE_req §10"
+      ],
+      "kind": "actuator_safety",
+      "scenario": "Inspect every Health state that starts, switches, or stops a motor.",
+      "oracle": [
+        "only intended motor is active during measurement",
+        "motors stop before configuration/evaluation transitions",
+        "normal flight sensor mode is restored on completion and failure"
+      ],
+      "evidence": [
+        "healthRunTests",
+        "motor controls",
+        "sensor mode"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-CRTP-05",
+      "refs": [
+        "RE_req §11"
+      ],
+      "kind": "send_semantics",
+      "scenario": "Compare nonblocking SendPacket and blocking-model SendPacketBlock with available and exhausted TX capacity.",
+      "oracle": [
+        "nonblocking send fails when full",
+        "block variant succeeds whenever host-model space exists",
+        "queue count/free-count remain consistent"
+      ],
+      "evidence": [
+        "crtpSendPacket",
+        "crtpSendPacketBlock",
+        "crtpGetFreeTxQueuePackets"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-CRTP-06",
+      "refs": [
+        "RE_req §11"
+      ],
+      "kind": "receive_semantics",
+      "scenario": "Compare immediate, blocking, and timed receive for an empty queue and a queue receiving a packet at the timeout boundary.",
+      "oracle": [
+        "each API has distinct documented waiting behavior",
+        "timeout does not consume a nonexistent packet",
+        "successful receive removes exactly one packet"
+      ],
+      "evidence": [
+        "crtpReceivePacket",
+        "crtpReceivePacketBlock",
+        "crtpReceivePacketWait"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-CRTP-07",
+      "refs": [
+        "RE_req §11"
+      ],
+      "kind": "periodic_statistics",
+      "scenario": "Accumulate TX/RX events across adjacent 500ms windows.",
+      "oracle": [
+        "rates are updated at 500ms cadence",
+        "counters reset after sampling",
+        "partial window is not reported as full-window rate"
+      ],
+      "evidence": [
+        "updateStats",
+        "CRTP statistics"
+      ],
+      "severity": "medium"
+    },
+    {
+      "id": "CF-OBS-03",
+      "refs": [
+        "RE_req §1",
+        "RE_api §0"
+      ],
+      "kind": "build_contract",
+      "scenario": "Inspect generated production translation unit and header as a standalone C11 host artifact.",
+      "oracle": [
+        "production code contains no main",
+        "header can be included repeatedly",
+        "all symbols required by implementation are declared or locally defined",
+        "no board-only dependency is unconditional"
+      ],
+      "evidence": [
+        "generated header",
+        "generated code",
+        "compiler diagnostics"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-OBS-04",
+      "refs": [
+        "RE_req §1",
+        "RE_api §0A"
+      ],
+      "kind": "unit_contract",
+      "scenario": "Trace public sensor, PWM, force, voltage, tick, and angle values across API boundaries.",
+      "oracle": [
+        "units are not silently conflated",
+        "tick is monotonic milliseconds at host boundary",
+        "conversion points are explicit and consistently named"
+      ],
+      "evidence": [
+        "SensorData",
+        "motor output",
+        "tick adapters"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-OBS-05",
+      "refs": [
+        "FSE traceability policy"
+      ],
+      "kind": "trace_evidence_quality",
+      "scenario": "Sample model-to-code trace edges for numeric, safety, queue, and integration cases.",
+      "oracle": [
+        "evidence points to real generated functions or symbols",
+        "one code function is not used to falsely satisfy unrelated requirements",
+        "missing evidence is visible in traceability.json"
+      ],
+      "evidence": [
+        "traceability.json",
+        "generated code"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-INT-01",
+      "refs": [
+        "RE_req §6",
+        "RE_req §7",
+        "RE_req §9"
+      ],
+      "kind": "end_to_end_nominal",
+      "scenario": "Trace a valid RPYT command through commander, supervisor, controller, power distribution, and motor publication.",
+      "oracle": [
+        "priority and safety checks occur before actuation",
+        "each module receives compatible units and modes",
+        "final motors are nonzero only when flight is allowed"
+      ],
+      "evidence": [
+        "decoder",
+        "supervisor",
+        "controller",
+        "power path"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-02",
+      "refs": [
+        "RE_req §6",
+        "RE_req §7",
+        "RE_req §9"
+      ],
+      "kind": "end_to_end_emergency",
+      "scenario": "Inject DISABLE priority or emergency-stop while a normal command is active.",
+      "oracle": [
+        "emergency path dominates active command",
+        "override reaches motor output in same control path",
+        "no stale commanded thrust survives"
+      ],
+      "evidence": [
+        "commander priority",
+        "supervisor condition",
+        "motor output"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-03",
+      "refs": [
+        "RE_req §3",
+        "RE_req §8",
+        "RE_req §9"
+      ],
+      "kind": "sensor_to_control",
+      "scenario": "Provide valid sensor input over a scheduled estimator/control cycle, then substitute zero acceleration.",
+      "oracle": [
+        "normal data advances estimation at correct rate",
+        "zero acceleration remains safe",
+        "controller consumes coherent current state rather than invalid values"
+      ],
+      "evidence": [
+        "sensor injection",
+        "estimator",
+        "controller"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-04",
+      "refs": [
+        "RE_req §7",
+        "RE_req §9"
+      ],
+      "kind": "fault_recovery",
+      "scenario": "Follow a crash/fault detection, motor stop, successful recovery request, and re-arming attempt.",
+      "oracle": [
+        "fault forces safe output",
+        "recovery respects tumble restriction",
+        "re-arming follows normal preflight path rather than bypassing safety"
+      ],
+      "evidence": [
+        "supervisor state machine",
+        "motor guard",
+        "arming path"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-05",
+      "refs": [
+        "RE_req §8",
+        "RE_req §9"
+      ],
+      "kind": "queue_pressure",
+      "scenario": "Saturate estimator or CRTP queue while the stabilizer loop continues at scheduled ticks.",
+      "oracle": [
+        "overflow is reported without memory corruption",
+        "control loop does not reinterpret queue count as time",
+        "recovery after drain preserves later messages"
+      ],
+      "evidence": [
+        "FIFO",
+        "CRTP queue",
+        "scheduler"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-INT-06",
+      "refs": [
+        "RE_req §4",
+        "RE_req §5",
+        "RE_req §9"
+      ],
+      "kind": "control_limit_chain",
+      "scenario": "Produce a controller request exceeding physical output range under low battery and a cap condition.",
+      "oracle": [
+        "controller arithmetic does not overflow",
+        "battery compensation and cap retain ordering",
+        "all final outputs satisfy safety and PWM bounds"
+      ],
+      "evidence": [
+        "controller output",
+        "battery compensation",
+        "powerDistributionCap"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-07",
+      "refs": [
+        "RE_req §6",
+        "RE_req §8"
+      ],
+      "kind": "priority_age_interaction",
+      "scenario": "Accept a high-priority setpoint, reject a lower priority refresh, then advance commander watchdog age.",
+      "oracle": [
+        "rejected update cannot postpone watchdog timeout",
+        "age derives from last accepted input",
+        "warning and shutdown lead to supervisor-visible effects"
+      ],
+      "evidence": [
+        "commander",
+        "watchdog",
+        "supervisor conditions"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-08",
+      "refs": [
+        "RE_req §7",
+        "RE_req §10"
+      ],
+      "kind": "maintenance_mode",
+      "scenario": "Start health test when normal flight command and safety condition are both present.",
+      "oracle": [
+        "health preemption does not bypass safety interlocks",
+        "motors follow health-specific safe sequence",
+        "normal command is not accidentally executed during test"
+      ],
+      "evidence": [
+        "health",
+        "stabilizer",
+        "supervisor"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-09",
+      "refs": [
+        "RE_req §11",
+        "RE_req §6"
+      ],
+      "kind": "transport_to_command",
+      "scenario": "Deliver a CRTP command through valid port queue/callback, then repeat with invalid port or nopLink.",
+      "oracle": [
+        "valid transport reaches command decoder exactly once",
+        "invalid/nop cases do not mutate active command",
+        "port bounds prevent out-of-range memory use"
+      ],
+      "evidence": [
+        "crtpRxTask",
+        "port callback",
+        "commander decoder"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-INT-10",
+      "refs": [
+        "RE_req §3",
+        "RE_req §12"
+      ],
+      "kind": "logging_coherence",
+      "scenario": "After fusion, control, and safety updates, inspect public logs and getter outputs in the same cycle.",
+      "oracle": [
+        "observables agree with current internal state",
+        "no stale quaternion/gravity or motor value is published",
+        "safety status is reflected in logs"
+      ],
+      "evidence": [
+        "fusion logs",
+        "motor logs",
+        "supervisor logs"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-INT-11",
+      "refs": [
+        "FSE traceability policy"
+      ],
+      "kind": "model_code_alignment",
+      "scenario": "For the flight-to-fault-recovery scenario, compare state diagram transition, behavior sequence, interface calls, and code branches.",
+      "oracle": [
+        "state transition has a corresponding behavior step",
+        "behavior calls declared interfaces",
+        "code realizes both normal and recovery branches"
+      ],
+      "evidence": [
+        "state diagram",
+        "behavior model",
+        "interface model",
+        "generated code"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-12",
+      "refs": [
+        "RE_req §1",
+        "FSE traceability policy"
+      ],
+      "kind": "non_hallucination",
+      "scenario": "Inspect generated dependencies and public symbols not supported by RE_req.txt, RE_device_interface.txt, or RE_api.txt.",
+      "oracle": [
+        "no invented board driver/API is required for host build",
+        "no renamed substitute API stands in for frozen symbol",
+        "extra behavior does not weaken stated safety rule"
+      ],
+      "evidence": [
+        "generated header",
+        "generated code",
+        "API trace"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-INT-13",
+      "refs": [
+        "RE_req §1",
+        "RE_req §7"
+      ],
+      "kind": "repeated_operation",
+      "scenario": "Repeat initialization, arming request, link configuration, and safety update in different legal orders.",
+      "oracle": [
+        "documented idempotent calls are safe",
+        "order-sensitive calls expose required failure or preserve state",
+        "no repeated call creates duplicate task/queue/side effect"
+      ],
+      "evidence": [
+        "initializers",
+        "arming",
+        "CRTP link",
+        "supervisor"
+      ],
+      "severity": "high"
+    },
+    {
+      "id": "CF-INT-14",
+      "refs": [
+        "RE_req §4",
+        "RE_req §7",
+        "RE_req §9"
+      ],
+      "kind": "stale_output_guard",
+      "scenario": "Generate nonzero motor powers, then transition to locked, landed, or crash state without another new command.",
+      "oracle": [
+        "previous motor values cannot persist after unsafe transition",
+        "guard is applied at final publication boundary",
+        "all four outputs are cleared"
+      ],
+      "evidence": [
+        "supervisor state",
+        "stabilizerTask",
+        "setMotorRatios"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-15",
+      "refs": [
+        "FSE traceability policy"
+      ],
+      "kind": "review_disagreement",
+      "scenario": "Present a testcase whose required behavior is named in requirement and model but whose code evidence is ambiguous or absent.",
+      "oracle": [
+        "LLM reviewer returns uncertain or fail rather than unsupported pass",
+        "case is routed to human adjudication",
+        "human decision and rationale are retained"
+      ],
+      "evidence": [
+        "review result",
+        "traceability.json",
+        "human adjudication"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-16",
+      "refs": [
+        "RE_req §1",
+        "RE_req §7"
+      ],
+      "kind": "time_unit_integrity",
+      "scenario": "Follow one timeout from its public millisecond tick input through scheduler gates and state decision.",
+      "oracle": [
+        "milliseconds are never compared directly to loop-divider counts",
+        "boundary decision uses documented strict or inclusive comparison",
+        "timer reset has an explicit owner"
+      ],
+      "evidence": [
+        "tick adapter",
+        "RATE_DO_EXECUTE",
+        "supervisor timer"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-17",
+      "refs": [
+        "RE_api §0A",
+        "FSE traceability policy"
+      ],
+      "kind": "linkage_contract",
+      "scenario": "Cross-check every host-observable symbol used by a review scenario against header declaration, unique definition, and code access path.",
+      "oracle": [
+        "extern declaration and exactly one non-static definition exist",
+        "writer updates observable before return",
+        "reader synchronizes injected observable at entry when required"
+      ],
+      "evidence": [
+        "generated header",
+        "generated code",
+        "traceability.json"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-18",
+      "refs": [
+        "RE_req §7",
+        "FSE traceability policy"
+      ],
+      "kind": "state_model_completeness",
+      "scenario": "Compare each safety-state transition in the state model with code branches for enter, remain, and recover paths.",
+      "oracle": [
+        "no modeled critical transition is missing in code",
+        "self-loops have explicit safe semantics",
+        "no code-only safety state lacks requirement/model evidence"
+      ],
+      "evidence": [
+        "state_model.json",
+        "state diagram",
+        "generated code"
+      ],
+      "severity": "critical"
+    },
+    {
+      "id": "CF-INT-19",
+      "refs": [
+        "FSE evaluation protocol"
+      ],
+      "kind": "reviewer_bias_control",
+      "scenario": "Audit a completed LLM review batch for unsupported passes, missing code citations, and generator-reviewer identity overlap.",
+      "oracle": [
+        "every pass cites code evidence",
+        "same-model self-review is marked and excluded from primary result",
+        "uncertain cases have human disposition"
+      ],
+      "evidence": [
+        "review records",
+        "model metadata",
+        "human adjudication"
+      ],
+      "severity": "high"
+    }
+  ]
+}

@@ -1,0 +1,481 @@
+{
+  "schema_version": 1,
+  "model": "deepseek-v4-pro",
+  "task_order": [
+    "gpio_output",
+    "gpio_button_debounce",
+    "balance_control",
+    "motor_track",
+    "discobot",
+    "onstep",
+    "crazyflie"
+  ],
+  "methods": [
+    "Direct-LLM",
+    "MetaGPT",
+    "ChatDev",
+    "StructGen",
+    "EmbedDev"
+  ],
+  "cells": [
+    {
+      "task": "gpio_output",
+      "method": "Direct-LLM",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_output",
+      "method": "MetaGPT",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_output",
+      "method": "ChatDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_output",
+      "method": "StructGen",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_output",
+      "method": "EmbedDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "Direct-LLM",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "MetaGPT",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "ChatDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "StructGen",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "gpio_button_debounce",
+      "method": "EmbedDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "balance_control",
+      "method": "Direct-LLM",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "balance_control",
+      "method": "MetaGPT",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        57.14285714285714,
+        28.57142857142857,
+        100.0
+      ],
+      "mean_percent": 61.904761904761905,
+      "sample_sd_percentage_points": 35.95159254890833
+    },
+    {
+      "task": "balance_control",
+      "method": "ChatDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "balance_control",
+      "method": "StructGen",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "balance_control",
+      "method": "EmbedDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        100.0,
+        100.0,
+        100.0
+      ],
+      "mean_percent": 100.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "motor_track",
+      "method": "Direct-LLM",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        85.18518518518519,
+        88.88888888888889,
+        81.48148148148148
+      ],
+      "mean_percent": 85.18518518518519,
+      "sample_sd_percentage_points": 3.7037037037037024
+    },
+    {
+      "task": "motor_track",
+      "method": "MetaGPT",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        14.814814814814813,
+        18.51851851851852,
+        3.7037037037037033
+      ],
+      "mean_percent": 12.345679012345679,
+      "sample_sd_percentage_points": 7.709874072096788
+    },
+    {
+      "task": "motor_track",
+      "method": "ChatDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        92.5925925925926,
+        92.5925925925926,
+        88.88888888888889
+      ],
+      "mean_percent": 91.35802469135803,
+      "sample_sd_percentage_points": 2.1383343303319506
+    },
+    {
+      "task": "motor_track",
+      "method": "StructGen",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        85.18518518518519,
+        88.88888888888889,
+        88.88888888888889
+      ],
+      "mean_percent": 87.65432098765432,
+      "sample_sd_percentage_points": 2.138334330331942
+    },
+    {
+      "task": "motor_track",
+      "method": "EmbedDev",
+      "protocol": "whole_numbered_requirements",
+      "n": 3,
+      "values_percent": [
+        88.88888888888889,
+        88.88888888888889,
+        88.88888888888889
+      ],
+      "mean_percent": 88.88888888888889,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "discobot",
+      "method": "Direct-LLM",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        82.25806451612904,
+        83.87096774193549,
+        80.64516129032258
+      ],
+      "mean_percent": 82.25806451612904,
+      "sample_sd_percentage_points": 1.6129032258064555
+    },
+    {
+      "task": "discobot",
+      "method": "MetaGPT",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        23.387096774193548,
+        16.93548387096774,
+        0.0
+      ],
+      "mean_percent": 13.440860215053762,
+      "sample_sd_percentage_points": 12.078839751968264
+    },
+    {
+      "task": "discobot",
+      "method": "ChatDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        84.67741935483872,
+        98.38709677419355,
+        87.90322580645162
+      ],
+      "mean_percent": 90.3225806451613,
+      "sample_sd_percentage_points": 7.167898723641602
+    },
+    {
+      "task": "discobot",
+      "method": "StructGen",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        85.48387096774194,
+        87.09677419354838,
+        87.09677419354838
+      ],
+      "mean_percent": 86.55913978494624,
+      "sample_sd_percentage_points": 0.9312101115961687
+    },
+    {
+      "task": "discobot",
+      "method": "EmbedDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        98.38709677419355,
+        89.51612903225806,
+        99.19354838709677
+      ],
+      "mean_percent": 95.6989247311828,
+      "sample_sd_percentage_points": 5.369619450386606
+    },
+    {
+      "task": "onstep",
+      "method": "Direct-LLM",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        40.0,
+        45.55555555555556,
+        45.55555555555556
+      ],
+      "mean_percent": 43.7037037037037,
+      "sample_sd_percentage_points": 3.207501495497922
+    },
+    {
+      "task": "onstep",
+      "method": "MetaGPT",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_percent": 0.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "onstep",
+      "method": "ChatDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        80.0,
+        77.77777777777779,
+        78.88888888888889
+      ],
+      "mean_percent": 78.88888888888889,
+      "sample_sd_percentage_points": 1.1111111111111072
+    },
+    {
+      "task": "onstep",
+      "method": "StructGen",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        70.0,
+        63.33333333333333,
+        63.33333333333333
+      ],
+      "mean_percent": 65.55555555555556,
+      "sample_sd_percentage_points": 3.8490017945975077
+    },
+    {
+      "task": "onstep",
+      "method": "EmbedDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        83.33333333333334,
+        81.11111111111111,
+        84.44444444444444
+      ],
+      "mean_percent": 82.96296296296296,
+      "sample_sd_percentage_points": 1.6972502573910504
+    },
+    {
+      "task": "crazyflie",
+      "method": "Direct-LLM",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        32.0,
+        33.0,
+        0.0
+      ],
+      "mean_percent": 21.666666666666668,
+      "sample_sd_percentage_points": 18.77054430040145
+    },
+    {
+      "task": "crazyflie",
+      "method": "MetaGPT",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "mean_percent": 0.0,
+      "sample_sd_percentage_points": 0.0
+    },
+    {
+      "task": "crazyflie",
+      "method": "ChatDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        66.66666666666666,
+        0.0,
+        59.183673469387756
+      ],
+      "mean_percent": 41.950113378684804,
+      "sample_sd_percentage_points": 36.52201810088009
+    },
+    {
+      "task": "crazyflie",
+      "method": "StructGen",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        42.0,
+        40.0,
+        33.0
+      ],
+      "mean_percent": 38.333333333333336,
+      "sample_sd_percentage_points": 4.725815626252609
+    },
+    {
+      "task": "crazyflie",
+      "method": "EmbedDev",
+      "protocol": "original_project_testcases",
+      "n": 3,
+      "values_percent": [
+        65.97938144329896,
+        63.1578947368421,
+        75.51020408163265
+      ],
+      "mean_percent": 68.21582675392457,
+      "sample_sd_percentage_points": 6.472723712465598
+    }
+  ],
+  "source_display_sha256": "3e3ac4728268dfc31906af8832b42929fcccd5f835e3523417f59a14b016b9db",
+  "position_scores": "data/rq3/position_scores.json",
+  "protocol": "data/rq3/protocol.json",
+  "figure_provenance": "rq3_export_provenance.json"
+}

@@ -1,0 +1,70 @@
+{
+  "identity": "discobot__gemini-3-flash-preview__B_metagpt__r03",
+  "project": "discobot",
+  "model": "gemini-3-flash-preview",
+  "method": "MetaGPT",
+  "repeat": 3,
+  "source_lineage": [
+    {
+      "kind": "authoritative_current_selected_position",
+      "source": "fse\\rq_rebuild_20261001\\rq1\\three_model_retry_revision_20261002\\current_three_model_view.json",
+      "json_pointer": "/rows/41",
+      "identity": "discobot__gemini-3-flash-preview__B_metagpt__r03"
+    },
+    {
+      "kind": "official_native_candidate_selection",
+      "source": "fse\\rq_rebuild_20261001\\rq1\\official_identity_rows.json",
+      "identity": "discobot__gemini-3-flash-preview__B_metagpt__r03",
+      "whole_project_sha256": null
+    },
+    {
+      "kind": "generation_result",
+      "path": "fse\\official_baselines\\run_same81\\jobs\\32236fd1b82fb4a7\\result.json",
+      "sha256": "7aad2c7be3a841934145bbffe12c287a43436cabfaee9a9695192e3df834ee2e",
+      "expected_sha256": "7aad2c7be3a841934145bbffe12c287a43436cabfaee9a9695192e3df834ee2e",
+      "sha256_verified": true
+    }
+  ],
+  "no_code_reason": "budget_stopped",
+  "status": "no_code",
+  "candidate_files": [],
+  "candidate_inventory_sha256": "60721e6c11f3e5fb421b58209ce90367c3e66ea260a90a87b625c43d81a53d16",
+  "checklist_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+  "evaluator": "current Codex LLM static review",
+  "reviewed_at": "2026-10-02T07:05:14.734083+00:00",
+  "human_review_claimed": false,
+  "requirements": [],
+  "counts": {},
+  "denominator": 88,
+  "rate": null,
+  "planned_position_rate": 0.0,
+  "interpretation": "No complete selected candidate; no code reading or leaf verdicts fabricated. Zero only in planned-position aggregation.",
+  "all_project_requirements_assessed": false,
+  "code_modified": false,
+  "model_api_calls": 0,
+  "host_or_compiler_executed": false,
+  "release_export": {
+    "original_path": "fse/requirement_coverage_review_20261002/reviews/gemini/discobot/discobot__gemini-3-flash-preview__B_metagpt__r03.json",
+    "original_sha256": "34e79a8b577d90bc135f36401b00bd3a7a4c5bfee82d903bb75d73740ce3b574",
+    "language": "Original Chinese evidence/rationales retained; no semantic translation.",
+    "initial_review_status": {
+      "evaluator": "current Codex LLM static review",
+      "human_review_claimed": false
+    },
+    "preservation": "Initial verdicts, reasons, historical rates and human-review flags retained. Path anonymization and export metadata do not constitute a new review.",
+    "current_aggregation": "(fully_covered + partially_covered) / preclassified static denominator; no fractional weighting of partial items.",
+    "checklist_export": {
+      "path": "data/rq1/requirement_coverage/checklists/discobot.json",
+      "sha256": "e731137141a0fc3c4d67258ff76e0fa635fbea1d88801da73c3edee10d1c66c6",
+      "original_sha256": "d2751d1b0f1a048577da8acc115615c636ded49360c5a2f1aa9a4a49d1769d1b",
+      "leaf_count": 95,
+      "static_denominator": 88,
+      "source_requirement": {
+        "path": "data/rq1/requirement_coverage/source_requirements/discobot_RE_req.txt",
+        "sha256": "06306779a3ef8033f15aab14cc1701a809e8129513e2d5b77ea4ae7491cb91c9"
+      }
+    },
+    "candidate_bindings": [],
+    "evidence_line_numbers": "Original candidate lines; transformed candidate comments, where used, retain separately recorded original and distributed hashes."
+  }
+}

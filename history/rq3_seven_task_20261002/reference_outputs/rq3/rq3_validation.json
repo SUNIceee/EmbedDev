@@ -1,0 +1,346 @@
+{
+  "status": "offline_recomputed_from_bundled_scores",
+  "cells": 35,
+  "positions": 105,
+  "means_and_sample_sd_match_fixed_display": true,
+  "counts_checked_for_locally_bound_reviews": 95,
+  "retained_no_code_positions": 9,
+  "fixed_new_task_candidates_verified": 59,
+  "exact_code_files_verified": 118,
+  "fixed_whole_requirement_items_verified": 58,
+  "retained_item_verdicts_checked": 862,
+  "author_reported_replacement_positions": 1,
+  "author_reported_position_locally_verified": false,
+  "new_model_calls": 0,
+  "new_host_runs": 0,
+  "new_semantic_judgments": 0,
+  "input_sha256": {
+    "data/rq3/display_cells.json": "ec34ca824af319c166bec2c94390bbb7f33a3f38480bd999cdbc2cdc9ed3f947",
+    "data/rq3/position_scores.json": "25c092d4d7146822f3dbec8c2d449629bfde2c06314a62061ff8a724458ae5bc",
+    "data/rq3/protocol.json": "cf787c00785960508b7a125eb0e33903d3c860f0b7b7f35e5da47b09542c87c6",
+    "rq3_export_provenance.json": "309baea26b441feb5c6999ddc811bab53f9146e18e8d2251fd0bc0fcf209ce21"
+  },
+  "plot": {
+    "bars": 35,
+    "sd_intervals": 18,
+    "zero_annotations": 2,
+    "sd_clipped": false,
+    "geometry": [
+      {
+        "task": "gpio_output",
+        "method": "Direct-LLM",
+        "x": 53.9,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "gpio_output",
+        "method": "MetaGPT",
+        "x": 65.5,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "gpio_output",
+        "method": "ChatDev",
+        "x": 77.1,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "gpio_output",
+        "method": "StructGen",
+        "x": 88.69999999999999,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "gpio_output",
+        "method": "EmbedDev",
+        "x": 100.3,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "gpio_button_debounce",
+        "method": "Direct-LLM",
+        "x": 136.0666666666667,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "gpio_button_debounce",
+        "method": "MetaGPT",
+        "x": 147.66666666666669,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "gpio_button_debounce",
+        "method": "ChatDev",
+        "x": 159.26666666666668,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "gpio_button_debounce",
+        "method": "StructGen",
+        "x": 170.86666666666667,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "gpio_button_debounce",
+        "method": "EmbedDev",
+        "x": 182.4666666666667,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "balance_control",
+        "method": "Direct-LLM",
+        "x": 218.23333333333335,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "balance_control",
+        "method": "MetaGPT",
+        "x": 229.83333333333334,
+        "width": 9.8,
+        "height": 102.42424242424244,
+        "mean_percent": 61.904761904761905,
+        "sd_percentage_points": 35.95159254890833
+      },
+      {
+        "task": "balance_control",
+        "method": "ChatDev",
+        "x": 241.43333333333334,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "balance_control",
+        "method": "StructGen",
+        "x": 253.03333333333336,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "balance_control",
+        "method": "EmbedDev",
+        "x": 264.6333333333333,
+        "width": 9.8,
+        "height": 165.4545454545455,
+        "mean_percent": 100.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "motor_track",
+        "method": "Direct-LLM",
+        "x": 300.4,
+        "width": 9.8,
+        "height": 140.94276094276094,
+        "mean_percent": 85.18518518518519,
+        "sd_percentage_points": 3.7037037037037024
+      },
+      {
+        "task": "motor_track",
+        "method": "MetaGPT",
+        "x": 312.0,
+        "width": 9.8,
+        "height": 20.426487093153753,
+        "mean_percent": 12.345679012345679,
+        "sd_percentage_points": 7.709874072096788
+      },
+      {
+        "task": "motor_track",
+        "method": "ChatDev",
+        "x": 323.59999999999997,
+        "width": 9.8,
+        "height": 151.15600448933782,
+        "mean_percent": 91.35802469135803,
+        "sd_percentage_points": 2.1383343303319506
+      },
+      {
+        "task": "motor_track",
+        "method": "StructGen",
+        "x": 335.2,
+        "width": 9.8,
+        "height": 145.0280583613917,
+        "mean_percent": 87.65432098765432,
+        "sd_percentage_points": 2.138334330331942
+      },
+      {
+        "task": "motor_track",
+        "method": "EmbedDev",
+        "x": 346.79999999999995,
+        "width": 9.8,
+        "height": 147.07070707070707,
+        "mean_percent": 88.88888888888889,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "discobot",
+        "method": "Direct-LLM",
+        "x": 382.56666666666666,
+        "width": 9.8,
+        "height": 136.09970674486803,
+        "mean_percent": 82.25806451612904,
+        "sd_percentage_points": 1.6129032258064555
+      },
+      {
+        "task": "discobot",
+        "method": "MetaGPT",
+        "x": 394.1666666666667,
+        "width": 9.8,
+        "height": 22.23851417399804,
+        "mean_percent": 13.440860215053762,
+        "sd_percentage_points": 12.078839751968264
+      },
+      {
+        "task": "discobot",
+        "method": "ChatDev",
+        "x": 405.76666666666665,
+        "width": 9.8,
+        "height": 149.44281524926689,
+        "mean_percent": 90.3225806451613,
+        "sd_percentage_points": 7.167898723641602
+      },
+      {
+        "task": "discobot",
+        "method": "StructGen",
+        "x": 417.3666666666667,
+        "width": 9.8,
+        "height": 143.2160312805474,
+        "mean_percent": 86.55913978494624,
+        "sd_percentage_points": 0.9312101115961687
+      },
+      {
+        "task": "discobot",
+        "method": "EmbedDev",
+        "x": 428.96666666666664,
+        "width": 9.8,
+        "height": 158.33822091886606,
+        "mean_percent": 95.6989247311828,
+        "sd_percentage_points": 5.369619450386606
+      },
+      {
+        "task": "onstep",
+        "method": "Direct-LLM",
+        "x": 464.7333333333333,
+        "width": 9.8,
+        "height": 72.30976430976432,
+        "mean_percent": 43.7037037037037,
+        "sd_percentage_points": 3.207501495497922
+      },
+      {
+        "task": "onstep",
+        "method": "MetaGPT",
+        "x": 476.3333333333333,
+        "width": 9.8,
+        "height": 0.0,
+        "mean_percent": 0.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "onstep",
+        "method": "ChatDev",
+        "x": 487.9333333333333,
+        "width": 9.8,
+        "height": 130.5252525252525,
+        "mean_percent": 78.88888888888889,
+        "sd_percentage_points": 1.1111111111111072
+      },
+      {
+        "task": "onstep",
+        "method": "StructGen",
+        "x": 499.5333333333333,
+        "width": 9.8,
+        "height": 108.46464646464648,
+        "mean_percent": 65.55555555555556,
+        "sd_percentage_points": 3.8490017945975077
+      },
+      {
+        "task": "onstep",
+        "method": "EmbedDev",
+        "x": 511.13333333333327,
+        "width": 9.8,
+        "height": 137.26599326599327,
+        "mean_percent": 82.96296296296296,
+        "sd_percentage_points": 1.6972502573910504
+      },
+      {
+        "task": "crazyflie",
+        "method": "Direct-LLM",
+        "x": 546.9,
+        "width": 9.8,
+        "height": 35.848484848484844,
+        "mean_percent": 21.666666666666668,
+        "sd_percentage_points": 18.77054430040145
+      },
+      {
+        "task": "crazyflie",
+        "method": "MetaGPT",
+        "x": 558.5,
+        "width": 9.8,
+        "height": 0.0,
+        "mean_percent": 0.0,
+        "sd_percentage_points": 0.0
+      },
+      {
+        "task": "crazyflie",
+        "method": "ChatDev",
+        "x": 570.1,
+        "width": 9.8,
+        "height": 69.4083694083694,
+        "mean_percent": 41.950113378684804,
+        "sd_percentage_points": 36.52201810088009
+      },
+      {
+        "task": "crazyflie",
+        "method": "StructGen",
+        "x": 581.6999999999999,
+        "width": 9.8,
+        "height": 63.424242424242436,
+        "mean_percent": 38.333333333333336,
+        "sd_percentage_points": 4.725815626252609
+      },
+      {
+        "task": "crazyflie",
+        "method": "EmbedDev",
+        "x": 593.3,
+        "width": 9.8,
+        "height": 112.86618608376611,
+        "mean_percent": 68.21582675392457,
+        "sd_percentage_points": 6.472723712465598
+      }
+    ]
+  }
+}
